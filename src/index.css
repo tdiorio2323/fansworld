@@ -162,7 +162,7 @@
   .media-tile {
     @apply relative rounded-3xl overflow-hidden bg-secondary/30;
     @apply hover:scale-105 transition-transform duration-300;
-    @apply cursor-pointer group;
+    @apply cursor-pointer;
   }
   
   .media-tile::before {

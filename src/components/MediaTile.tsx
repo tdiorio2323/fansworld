@@ -66,7 +66,7 @@ export function MediaTile({
 
   return (
     <div
-      className={cn("media-tile", sizeClasses[size], className)}
+      className={cn("media-tile group", sizeClasses[size], className)}
       onClick={onClick}
     >
       {/* Media Content */}
