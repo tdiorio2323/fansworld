@@ -47,22 +47,22 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
     <>
       {/* Desktop Sidebar */}
       <div className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0 lg:z-50">
-        <div className="flex flex-col flex-grow pt-5 bg-card border-r border-border overflow-y-auto">
-          <div className="flex items-center flex-shrink-0 px-6">
-            <div className="text-2xl font-bold text-gradient">FansWorld</div>
+        <div className="flex flex-col flex-grow glass-morphism border-r border-border/60 overflow-y-auto backdrop-blur-3xl">
+          <div className="flex items-center flex-shrink-0 px-6 pt-8 pb-6">
+            <div className="text-3xl font-luxury font-bold text-gradient">FansWorld</div>
           </div>
           
-          <div className="mt-8 flex-grow flex flex-col">
-            <nav className="flex-1 px-4 space-y-2">
+          <div className="flex-grow flex flex-col">
+            <nav className="flex-1 px-6 space-y-3">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 return (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`nav-item ${isActive(item.path) ? 'active' : ''}`}
+                    className={`nav-item group ${isActive(item.path) ? 'active' : ''}`}
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                     <span className="font-medium">{item.label}</span>
                   </Link>
                 );
@@ -71,7 +71,7 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
               {userRole === 'creator' && (
                 <Link
                   to="/post/create"
-                  className="btn-luxury mt-6 flex items-center justify-center gap-2"
+                  className="btn-luxury mt-8 flex items-center justify-center gap-3 text-base"
                 >
                   <Plus className="w-5 h-5" />
                   New Post
@@ -79,30 +79,32 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
               )}
             </nav>
             
-            <div className="px-4 pb-4 space-y-2">
+            <div className="px-6 pb-8 space-y-3 border-t border-border/40 pt-6 mt-6">
               <Link
                 to="/notifications"
-                className={`nav-item ${isActive('/notifications') ? 'active' : ''}`}
+                className={`nav-item group ${isActive('/notifications') ? 'active' : ''}`}
               >
-                <Bell className="w-5 h-5" />
+                <Bell className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                 <span className="font-medium">Notifications</span>
               </Link>
               
               <Link
                 to="/settings"
-                className={`nav-item ${isActive('/settings') ? 'active' : ''}`}
+                className={`nav-item group ${isActive('/settings') ? 'active' : ''}`}
               >
-                <Settings className="w-5 h-5" />
+                <Settings className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                 <span className="font-medium">Settings</span>
               </Link>
               
               <Link
                 to={`/creator/${username.toLowerCase()}`}
-                className={`nav-item ${isActive(`/creator/${username.toLowerCase()}`) ? 'active' : ''}`}
+                className={`nav-item group ${isActive(`/creator/${username.toLowerCase()}`) ? 'active' : ''}`}
               >
-                <Avatar className="w-6 h-6">
+                <Avatar className="w-7 h-7 ring-2 ring-primary/20 transition-all duration-300 group-hover:ring-primary/40">
                   <AvatarImage src="/placeholder-avatar.jpg" />
-                  <AvatarFallback>{username[0]?.toUpperCase()}</AvatarFallback>
+                  <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white font-semibold">
+                    {username[0]?.toUpperCase()}
+                  </AvatarFallback>
                 </Avatar>
                 <span className="font-medium">Profile</span>
               </Link>
@@ -113,8 +115,8 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
 
       {/* Mobile Header */}
       <div className="lg:hidden">
-        <div className="flex items-center justify-between h-16 px-4 bg-card border-b border-border">
-          <div className="text-xl font-bold text-gradient">FansWorld</div>
+        <div className="flex items-center justify-between h-18 px-6 glass-morphism border-b border-border/60 backdrop-blur-3xl">
+          <div className="text-2xl font-luxury font-bold text-gradient">FansWorld</div>
           
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="icon">
@@ -173,8 +175,8 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
       </div>
 
       {/* Mobile Bottom Navigation */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border">
-        <div className="flex items-center justify-around py-2">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 glass-morphism border-t border-border/60 backdrop-blur-3xl">
+        <div className="flex items-center justify-around py-4">
           {navItems.slice(0, 4).map((item) => {
             const Icon = item.icon;
             return (

@@ -103,36 +103,42 @@ export default function Home() {
         <div className="relative overflow-hidden bg-gradient-holo">
           <div className="absolute inset-0 bg-black/30" />
           <div className="absolute inset-0 bg-gradient-crystal opacity-40" />
-          <div className="relative px-4 py-20 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                Welcome to
-                <span className="block text-holographic">FansWorld</span>
-              </h1>
-              <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-                Discover exclusive content from your favorite creators. 
-                Join a premium community where creativity meets luxury.
-              </p>
+          <div className="relative px-4 py-32 sm:px-6 lg:px-8">
+            <div className="text-center max-w-5xl mx-auto">
+              <div className="animate-fade-up">
+                <h1 className="text-5xl md:text-8xl font-luxury font-bold text-white mb-8 leading-tight">
+                  Welcome to
+                  <span className="block text-holographic mt-2">FansWorld</span>
+                </h1>
+              </div>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                <Button size="lg" className="btn-holographic text-lg px-8 py-4">
+              <div className="animate-fade-up" style={{ animationDelay: '0.2s' }}>
+                <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
+                  Discover exclusive content from your favorite creators. 
+                  Join a premium community where creativity meets luxury.
+                </p>
+              </div>
+              
+              <div className="animate-fade-up flex flex-col sm:flex-row gap-6 justify-center items-center mb-16" style={{ animationDelay: '0.4s' }}>
+                <Button size="lg" className="btn-holographic text-lg px-12 py-5 text-white font-semibold">
                   Start Exploring
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                  <ArrowRight className="ml-3 w-6 h-6" />
                 </Button>
-                <Button variant="outline" size="lg" className="btn-chrome text-lg px-8 py-4">
+                <Button variant="outline" size="lg" className="btn-chrome text-lg px-12 py-5 font-semibold">
                   Become a Creator
                 </Button>
               </div>
 
-              {/* Search Bar */}
-              <div className="max-w-md mx-auto">
-                <div className="relative">
+              {/* Enhanced Search Bar */}
+              <div className="animate-fade-up max-w-lg mx-auto" style={{ animationDelay: '0.6s' }}>
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
                   <Input
                     type="text"
                     placeholder="Search creators..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-4 pr-4 py-6 text-lg glass-morphism text-white placeholder:text-white/60 focus:ring-2 focus:ring-holo-pink/50"
+                    className="relative pl-6 pr-6 py-8 text-lg glass-morphism text-white placeholder:text-white/60 focus:ring-2 focus:ring-holo-pink/50 border-white/20 focus:border-white/40 rounded-3xl bg-white/5 backdrop-blur-3xl"
                   />
                 </div>
               </div>
@@ -141,90 +147,115 @@ export default function Home() {
         </div>
 
         {/* Featured Section */}
-        <div className="px-4 py-16 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <div className="flex items-center gap-3 mb-4">
-              <Crown className="w-6 h-6 text-holo-gold drop-shadow-lg" />
-              <h2 className="text-3xl font-bold text-champagne">Featured Creators</h2>
+        <div className="px-4 py-24 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-20">
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <Crown className="w-8 h-8 text-holo-gold drop-shadow-lg float-animation" />
+                <h2 className="text-4xl md:text-6xl font-luxury font-bold text-champagne">Featured Creators</h2>
+              </div>
+              <p className="text-muted-foreground text-xl max-w-2xl mx-auto leading-relaxed">
+                Discover the most popular creators on FansWorld and join their exclusive communities
+              </p>
             </div>
-            <p className="text-muted-foreground text-lg">
-              Discover the most popular creators on FansWorld
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {featuredCreators.map((creator) => (
-              <CreatorCard
-                key={creator.username}
-                {...creator}
-                className="transform hover:scale-105 transition-transform duration-300"
-              />
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredCreators.map((creator, index) => (
+                <div 
+                  key={creator.username}
+                  className="animate-fade-up"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <CreatorCard
+                    {...creator}
+                    className="card-luxury hover:scale-[1.02] transition-all duration-500"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Trending Content */}
-        <div className="px-4 py-16 sm:px-6 lg:px-8 bg-secondary/20">
-          <div className="mb-12">
-            <div className="flex items-center gap-3 mb-4">
-              <TrendingUp className="w-6 h-6 text-holo-pink" />
-              <h2 className="text-3xl font-bold text-holographic">Trending Now</h2>
+        <div className="px-4 py-24 sm:px-6 lg:px-8 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-secondary/30 via-transparent to-accent/5"></div>
+          <div className="relative max-w-7xl mx-auto">
+            <div className="text-center mb-20">
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <TrendingUp className="w-8 h-8 text-holo-pink float-animation" style={{ animationDelay: '1s' }} />
+                <h2 className="text-4xl md:text-6xl font-luxury font-bold text-holographic">Trending Now</h2>
+              </div>
+              <p className="text-muted-foreground text-xl max-w-2xl mx-auto leading-relaxed">
+                Hot content from across the platform - discover what's capturing everyone's attention
+              </p>
             </div>
-            <p className="text-muted-foreground text-lg">
-              Hot content from across the platform
-            </p>
-          </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-            {trendingContent.map((content) => (
-              <MediaTile
-                key={content.id}
-                {...content}
-                size="medium"
-                className="transform hover:scale-105 transition-transform duration-300"
-              />
-            ))}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+              {trendingContent.map((content, index) => (
+                <div 
+                  key={content.id}
+                  className="animate-fade-up"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <MediaTile
+                    {...content}
+                    size="medium"
+                    className="media-tile hover:scale-[1.05] transition-all duration-500"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Stats Section */}
-        <div className="px-4 py-16 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="card-crystal p-6">
-              <div className="text-3xl font-bold text-holographic mb-2">100K+</div>
-              <div className="text-muted-foreground">Active Creators</div>
-            </div>
-            <div className="card-crystal p-6">
-              <div className="text-3xl font-bold text-champagne mb-2">5M+</div>
-              <div className="text-muted-foreground">Premium Subscribers</div>
-            </div>
-            <div className="card-crystal p-6">
-              <div className="text-3xl font-bold text-holographic mb-2">50M+</div>
-              <div className="text-muted-foreground">Content Pieces</div>
-            </div>
-            <div className="card-crystal p-6">
-              <div className="text-3xl font-bold text-champagne mb-2">$10M+</div>
-              <div className="text-muted-foreground">Creator Earnings</div>
+        <div className="px-4 py-24 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              {[
+                { value: "100K+", label: "Active Creators", gradient: "text-holographic" },
+                { value: "5M+", label: "Premium Subscribers", gradient: "text-champagne" },
+                { value: "50M+", label: "Content Pieces", gradient: "text-aurora" },
+                { value: "$10M+", label: "Creator Earnings", gradient: "text-luxury" }
+              ].map((stat, index) => (
+                <div 
+                  key={stat.label}
+                  className="card-crystal p-8 animate-fade-up"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className={`text-4xl md:text-5xl font-luxury font-bold mb-4 ${stat.gradient}`}>
+                    {stat.value}
+                  </div>
+                  <div className="text-muted-foreground text-lg font-medium">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
         {/* CTA Section */}
-        <div className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-champagne relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-crystal opacity-30" />
-          <div className="text-center text-white relative z-10">
-            <Sparkles className="w-16 h-16 mx-auto mb-6 text-holo-gold drop-shadow-lg" />
-            <h2 className="text-4xl font-bold mb-6 text-holographic">
+        <div className="px-4 py-32 sm:px-6 lg:px-8 bg-gradient-champagne relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-crystal opacity-20" />
+          <div className="absolute inset-0">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-holo-pink/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-holo-blue/10 rounded-full blur-3xl"></div>
+          </div>
+          
+          <div className="text-center text-white relative z-10 max-w-5xl mx-auto">
+            <Sparkles className="w-20 h-20 mx-auto mb-8 text-holo-gold drop-shadow-lg float-animation" />
+            <h2 className="text-5xl md:text-7xl font-luxury font-bold mb-8 text-holographic leading-tight">
               Ready to Join the Premium Experience?
             </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
+            <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto text-white/90 leading-relaxed font-light">
               Start your journey today and discover exclusive content from the world's most talented creators.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="btn-holographic text-lg px-8 py-4">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Button size="lg" className="btn-holographic text-lg px-12 py-6 font-semibold">
                 Sign Up Free
               </Button>
-              <Button variant="outline" size="lg" className="btn-chrome text-lg px-8 py-4">
+              <Button variant="outline" size="lg" className="btn-platinum text-lg px-12 py-6 font-semibold">
                 Learn More
               </Button>
             </div>
