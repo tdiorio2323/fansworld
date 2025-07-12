@@ -47,8 +47,17 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
     <>
       {/* Desktop Sidebar */}
       <div className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0 lg:z-50">
-        <div className="flex flex-col flex-grow glass-morphism border-r border-border/60 overflow-y-auto backdrop-blur-3xl">
-          <div className="flex items-center flex-shrink-0 px-6 pt-8 pb-6">
+        <div className="flex flex-col flex-grow glass-morphism border-r border-border/60 overflow-y-auto backdrop-blur-3xl relative">
+          {/* Subtle Accent Image */}
+          <div className="absolute top-20 right-4 w-16 h-16 opacity-5 rotate-12">
+            <img 
+              src="/lovable-uploads/2db52d3c-95ff-4d97-9f88-8201d599afdf.png" 
+              alt="" 
+              className="w-full h-full object-cover rounded-xl blur-sm"
+            />
+          </div>
+          
+          <div className="flex items-center flex-shrink-0 px-6 pt-8 pb-6 relative z-10">
             <div className="text-3xl font-luxury font-bold text-gradient">FansWorld</div>
           </div>
           
