@@ -38,16 +38,40 @@
 
     --radius: 1rem;
 
+    /* Chrome & Glass Effects */
+    --chrome-light: 0 0% 85%;
+    --chrome-medium: 0 0% 70%;
+    --chrome-dark: 0 0% 40%;
+    --glass-surface: 240 8% 12%;
+    --glass-border: 240 6% 25%;
+    
+    /* Holographic Colors */
+    --holo-pink: 330 85% 65%;
+    --holo-blue: 205 85% 65%;
+    --holo-purple: 270 85% 65%;
+    --holo-gold: 45 90% 65%;
+    --holo-cyan: 180 85% 65%;
+    --holo-green: 150 85% 65%;
+
     /* Premium gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(320 100% 75%));
     --gradient-luxury: linear-gradient(135deg, hsl(280 100% 70%), hsl(260 100% 80%), hsl(320 100% 75%));
     --gradient-card: linear-gradient(135deg, hsl(240 8% 8%), hsl(240 6% 10%));
     --gradient-glass: linear-gradient(135deg, hsla(280 100% 70% / 0.1), hsla(320 100% 75% / 0.1));
     
+    /* Holographic gradients */
+    --gradient-chrome: linear-gradient(135deg, hsl(var(--chrome-light)), hsl(var(--chrome-medium)), hsl(var(--chrome-dark)));
+    --gradient-holo: linear-gradient(45deg, hsl(var(--holo-pink)), hsl(var(--holo-purple)), hsl(var(--holo-blue)), hsl(var(--holo-cyan)), hsl(var(--holo-gold)));
+    --gradient-crystal: linear-gradient(135deg, hsla(var(--holo-pink) / 0.8), hsla(var(--holo-blue) / 0.6), hsla(var(--holo-purple) / 0.8));
+    --gradient-champagne: linear-gradient(135deg, hsl(var(--holo-gold)), hsl(45 85% 75%), hsl(var(--holo-pink)));
+    
     /* Premium shadows */
     --shadow-luxury: 0 25px 50px -12px hsla(280 100% 70% / 0.25);
     --shadow-glow: 0 0 40px hsla(280 100% 70% / 0.3);
     --shadow-card: 0 10px 30px -5px hsla(240 10% 3% / 0.5);
+    --shadow-chrome: 0 8px 32px hsla(0 0% 0% / 0.3), inset 0 1px 0 hsla(0 0% 100% / 0.1);
+    --shadow-glass: 0 8px 32px hsla(280 100% 70% / 0.15), 0 0 0 1px hsla(var(--glass-border) / 0.2);
+    --shadow-holo: 0 8px 32px hsla(var(--holo-pink) / 0.3), 0 0 0 1px hsla(var(--holo-blue) / 0.1);
     
     /* Animation transitions */
     --transition-luxury: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -180,6 +204,87 @@
     box-shadow: 0 0 30px hsla(320 100% 75% / 0.3);
   }
 
+  /* Chrome & Glass Components */
+  .btn-chrome {
+    background: var(--gradient-chrome);
+    @apply text-white px-8 py-3 rounded-2xl font-semibold;
+    box-shadow: var(--shadow-chrome);
+    @apply hover:scale-105 active:scale-95 transition-all duration-300;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-chrome::before {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(45deg, transparent 30%, hsla(0 0% 100% / 0.2) 50%, transparent 70%);
+    transform: translateX(-100%);
+    @apply transition-transform duration-700;
+  }
+  
+  .btn-chrome:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .btn-holographic {
+    background: var(--gradient-holo);
+    @apply text-white px-8 py-3 rounded-2xl font-semibold;
+    box-shadow: var(--shadow-holo);
+    @apply hover:scale-105 active:scale-95 transition-all duration-300;
+    animation: holo-shift 3s ease-in-out infinite;
+  }
+  
+  .card-chrome {
+    background: var(--gradient-chrome);
+    @apply rounded-3xl p-6 relative overflow-hidden;
+    box-shadow: var(--shadow-chrome);
+    @apply hover:scale-105 transition-all duration-300;
+  }
+  
+  .card-crystal {
+    background: var(--gradient-crystal);
+    @apply backdrop-blur-xl rounded-3xl p-6;
+    box-shadow: var(--shadow-holo);
+    border: 1px solid hsla(var(--holo-pink) / 0.3);
+    @apply hover:scale-105 transition-all duration-300;
+    position: relative;
+  }
+  
+  .card-crystal::before {
+    content: '';
+    @apply absolute inset-0 rounded-3xl;
+    background: var(--gradient-holo);
+    opacity: 0.1;
+    animation: crystal-sparkle 2s ease-in-out infinite alternate;
+  }
+  
+  .glass-morphism {
+    background: hsla(var(--glass-surface) / 0.8);
+    @apply backdrop-blur-2xl border rounded-3xl;
+    border-color: hsla(var(--glass-border) / 0.3);
+    box-shadow: var(--shadow-glass);
+  }
+  
+  .surface-glossy {
+    @apply relative;
+    background: linear-gradient(135deg, 
+      hsla(var(--glass-surface) / 0.9), 
+      hsla(var(--glass-surface) / 0.7)
+    );
+    @apply backdrop-blur-xl;
+  }
+  
+  .surface-glossy::after {
+    content: '';
+    @apply absolute inset-0 rounded-inherit;
+    background: linear-gradient(135deg, 
+      hsla(0 0% 100% / 0.1), 
+      transparent 50%, 
+      hsla(0 0% 0% / 0.1)
+    );
+    pointer-events: none;
+  }
+
   /* Text gradients */
   .text-gradient {
     @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
@@ -187,5 +292,54 @@
   
   .text-luxury {
     @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+  }
+  
+  .text-chrome {
+    background: var(--gradient-chrome);
+    @apply bg-clip-text text-transparent font-bold;
+  }
+  
+  .text-holographic {
+    background: var(--gradient-holo);
+    @apply bg-clip-text text-transparent font-bold;
+    animation: holo-text 3s ease-in-out infinite;
+  }
+  
+  .text-champagne {
+    background: var(--gradient-champagne);
+    @apply bg-clip-text text-transparent font-bold;
+  }
+  
+  /* Animation keyframes */
+  @keyframes holo-shift {
+    0%, 100% { 
+      filter: hue-rotate(0deg) saturate(1); 
+    }
+    50% { 
+      filter: hue-rotate(90deg) saturate(1.2); 
+    }
+  }
+  
+  @keyframes crystal-sparkle {
+    0% { 
+      opacity: 0.1;
+      transform: scale(1);
+    }
+    100% { 
+      opacity: 0.2;
+      transform: scale(1.02);
+    }
+  }
+  
+  @keyframes holo-text {
+    0%, 100% { 
+      filter: hue-rotate(0deg);
+    }
+    33% { 
+      filter: hue-rotate(120deg);
+    }
+    66% { 
+      filter: hue-rotate(240deg);
+    }
   }
 }

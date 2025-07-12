@@ -49,29 +49,29 @@ export function CreatorCard({
 
   return (
     <Link to={`/creator/${username}`} className={`block ${className}`}>
-      <div className="card-luxury hover:shadow-glow transition-all duration-300 group">
+      <div className="card-crystal hover:shadow-holo transition-all duration-300 group">
         {/* Header with Avatar and Badges */}
         <div className="flex items-start gap-4 mb-4">
           <div className="relative">
-            <Avatar className="w-16 h-16 ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all">
+            <Avatar className="w-16 h-16 ring-2 ring-holo-pink/30 group-hover:ring-holo-gold/60 transition-all">
               <AvatarImage src={avatar} alt={displayName} />
-              <AvatarFallback className="bg-gradient-primary text-primary-foreground text-lg">
+              <AvatarFallback className="bg-gradient-holo text-white text-lg">
                 {displayName[0]?.toUpperCase()}
               </AvatarFallback>
             </Avatar>
             
             {isPremium && (
               <div className="absolute -top-1 -right-1">
-                <Crown className="w-5 h-5 text-amber-400" />
+                <Crown className="w-5 h-5 text-holo-gold drop-shadow-lg" />
               </div>
             )}
           </div>
           
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="font-bold text-lg truncate">{displayName}</h3>
+              <h3 className="font-bold text-lg truncate text-holographic">{displayName}</h3>
               {isVerified && (
-                <Verified className="w-5 h-5 text-primary flex-shrink-0" />
+                <Verified className="w-5 h-5 text-holo-blue flex-shrink-0 drop-shadow-sm" />
               )}
             </div>
             
@@ -79,14 +79,14 @@ export function CreatorCard({
             
             <div className="flex flex-wrap gap-2 mb-3">
               {isPremium && (
-                <Badge variant="outline" className="text-amber-400 border-amber-400/30">
+                <Badge variant="outline" className="text-champagne border-holo-gold/40 bg-gradient-champagne/10">
                   Premium
                 </Badge>
               )}
-              <Badge variant="secondary">
+              <Badge variant="secondary" className="glass-morphism">
                 {subscriberCount.toLocaleString()} fans
               </Badge>
-              <Badge variant="secondary">
+              <Badge variant="secondary" className="glass-morphism">
                 {postCount} posts
               </Badge>
             </div>
@@ -104,7 +104,7 @@ export function CreatorCard({
             variant={following ? "secondary" : "outline"}
             size="sm"
             onClick={handleFollow}
-            className="flex-1"
+            className={`flex-1 ${following ? 'btn-chrome' : 'glass-morphism hover:bg-holo-blue/20'}`}
           >
             <UserPlus className="w-4 h-4 mr-2" />
             {following ? 'Following' : 'Follow'}
@@ -115,7 +115,7 @@ export function CreatorCard({
               variant="default"
               size="sm"
               onClick={handleSubscribe}
-              className="flex-1 btn-luxury"
+              className="flex-1 btn-holographic"
             >
               <Heart className="w-4 h-4 mr-2 fill-current" />
               Subscribed
@@ -125,7 +125,7 @@ export function CreatorCard({
               variant="default"
               size="sm"
               onClick={handleSubscribe}
-              className="flex-1 btn-luxury"
+              className="flex-1 btn-holographic"
             >
               Subscribe ${subscriptionPrice}/mo
             </Button>
@@ -133,7 +133,7 @@ export function CreatorCard({
         </div>
 
         {/* Hover Effect Overlay */}
-        <div className="absolute inset-0 rounded-3xl bg-gradient-luxury opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none" />
+        <div className="absolute inset-0 rounded-3xl bg-gradient-crystal opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none" />
       </div>
     </Link>
   );

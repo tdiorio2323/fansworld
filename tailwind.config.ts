@@ -61,6 +61,23 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				chrome: {
+					light: 'hsl(var(--chrome-light))',
+					medium: 'hsl(var(--chrome-medium))',
+					dark: 'hsl(var(--chrome-dark))'
+				},
+				glass: {
+					surface: 'hsl(var(--glass-surface))',
+					border: 'hsl(var(--glass-border))'
+				},
+				holo: {
+					pink: 'hsl(var(--holo-pink))',
+					blue: 'hsl(var(--holo-blue))',
+					purple: 'hsl(var(--holo-purple))',
+					gold: 'hsl(var(--holo-gold))',
+					cyan: 'hsl(var(--holo-cyan))',
+					green: 'hsl(var(--holo-green))'
 				}
 			},
 			backgroundImage: {
@@ -68,11 +85,18 @@ export default {
 				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-card': 'var(--gradient-card)',
 				'gradient-glass': 'var(--gradient-glass)',
+				'gradient-chrome': 'var(--gradient-chrome)',
+				'gradient-holo': 'var(--gradient-holo)',
+				'gradient-crystal': 'var(--gradient-crystal)',
+				'gradient-champagne': 'var(--gradient-champagne)',
 			},
 			boxShadow: {
 				'luxury': 'var(--shadow-luxury)',
 				'glow': 'var(--shadow-glow)',
 				'card': 'var(--shadow-card)',
+				'chrome': 'var(--shadow-chrome)',
+				'glass': 'var(--shadow-glass)',
+				'holo': 'var(--shadow-holo)',
 			},
 			transitionProperty: {
 				'luxury': 'var(--transition-luxury)',

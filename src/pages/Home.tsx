@@ -100,13 +100,14 @@ export default function Home() {
       {/* Main Content */}
       <div className="lg:pl-64 pb-20 lg:pb-0">
         {/* Hero Section */}
-        <div className="relative overflow-hidden bg-gradient-luxury">
-          <div className="absolute inset-0 bg-black/20" />
+        <div className="relative overflow-hidden bg-gradient-holo">
+          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-gradient-crystal opacity-40" />
           <div className="relative px-4 py-20 sm:px-6 lg:px-8">
             <div className="text-center">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
                 Welcome to
-                <span className="block text-gradient-luxury">FansWorld</span>
+                <span className="block text-holographic">FansWorld</span>
               </h1>
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
                 Discover exclusive content from your favorite creators. 
@@ -114,11 +115,11 @@ export default function Home() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                <Button size="lg" className="btn-luxury text-lg px-8 py-4">
+                <Button size="lg" className="btn-holographic text-lg px-8 py-4">
                   Start Exploring
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-                <Button variant="outline" size="lg" className="btn-glass text-lg px-8 py-4">
+                <Button variant="outline" size="lg" className="btn-chrome text-lg px-8 py-4">
                   Become a Creator
                 </Button>
               </div>
@@ -131,7 +132,7 @@ export default function Home() {
                     placeholder="Search creators..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-4 pr-4 py-6 text-lg bg-white/10 backdrop-blur-xl border-white/20 text-white placeholder:text-white/60"
+                    className="pl-4 pr-4 py-6 text-lg glass-morphism text-white placeholder:text-white/60 focus:ring-2 focus:ring-holo-pink/50"
                   />
                 </div>
               </div>
@@ -143,8 +144,8 @@ export default function Home() {
         <div className="px-4 py-16 sm:px-6 lg:px-8">
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <Crown className="w-6 h-6 text-amber-400" />
-              <h2 className="text-3xl font-bold text-gradient">Featured Creators</h2>
+              <Crown className="w-6 h-6 text-holo-gold drop-shadow-lg" />
+              <h2 className="text-3xl font-bold text-champagne">Featured Creators</h2>
             </div>
             <p className="text-muted-foreground text-lg">
               Discover the most popular creators on FansWorld
@@ -166,8 +167,8 @@ export default function Home() {
         <div className="px-4 py-16 sm:px-6 lg:px-8 bg-secondary/20">
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <TrendingUp className="w-6 h-6 text-primary" />
-              <h2 className="text-3xl font-bold text-gradient">Trending Now</h2>
+              <TrendingUp className="w-6 h-6 text-holo-pink" />
+              <h2 className="text-3xl font-bold text-holographic">Trending Now</h2>
             </div>
             <p className="text-muted-foreground text-lg">
               Hot content from across the platform
@@ -189,40 +190,41 @@ export default function Home() {
         {/* Stats Section */}
         <div className="px-4 py-16 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="card-glass p-6">
-              <div className="text-3xl font-bold text-gradient mb-2">100K+</div>
+            <div className="card-crystal p-6">
+              <div className="text-3xl font-bold text-holographic mb-2">100K+</div>
               <div className="text-muted-foreground">Active Creators</div>
             </div>
-            <div className="card-glass p-6">
-              <div className="text-3xl font-bold text-gradient mb-2">5M+</div>
+            <div className="card-crystal p-6">
+              <div className="text-3xl font-bold text-champagne mb-2">5M+</div>
               <div className="text-muted-foreground">Premium Subscribers</div>
             </div>
-            <div className="card-glass p-6">
-              <div className="text-3xl font-bold text-gradient mb-2">50M+</div>
+            <div className="card-crystal p-6">
+              <div className="text-3xl font-bold text-holographic mb-2">50M+</div>
               <div className="text-muted-foreground">Content Pieces</div>
             </div>
-            <div className="card-glass p-6">
-              <div className="text-3xl font-bold text-gradient mb-2">$10M+</div>
+            <div className="card-crystal p-6">
+              <div className="text-3xl font-bold text-champagne mb-2">$10M+</div>
               <div className="text-muted-foreground">Creator Earnings</div>
             </div>
           </div>
         </div>
 
         {/* CTA Section */}
-        <div className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-luxury">
-          <div className="text-center text-white">
-            <Sparkles className="w-16 h-16 mx-auto mb-6 text-amber-400" />
-            <h2 className="text-4xl font-bold mb-6">
+        <div className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-champagne relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-crystal opacity-30" />
+          <div className="text-center text-white relative z-10">
+            <Sparkles className="w-16 h-16 mx-auto mb-6 text-holo-gold drop-shadow-lg" />
+            <h2 className="text-4xl font-bold mb-6 text-holographic">
               Ready to Join the Premium Experience?
             </h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
               Start your journey today and discover exclusive content from the world's most talented creators.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-black hover:bg-white/90 text-lg px-8 py-4">
+              <Button size="lg" className="btn-holographic text-lg px-8 py-4">
                 Sign Up Free
               </Button>
-              <Button variant="outline" size="lg" className="btn-glass text-lg px-8 py-4">
+              <Button variant="outline" size="lg" className="btn-chrome text-lg px-8 py-4">
                 Learn More
               </Button>
             </div>
