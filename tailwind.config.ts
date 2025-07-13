@@ -134,7 +134,7 @@ export default {
 				'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
 				'display': ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
 				'serif': ['Playfair Display', 'Georgia', 'serif'],
-				'luxury': ['Playfair Display', 'Georgia', 'serif'],
+				'luxury': ['Montserrat', 'Poppins', 'system-ui', 'sans-serif'],
 			},
 			fontSize: {
 				'xs': ['0.75rem', { lineHeight: '1rem' }],
