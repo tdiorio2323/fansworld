@@ -100,9 +100,15 @@ export default function Home() {
       {/* Main Content */}
       <div className="lg:pl-64 pb-20 lg:pb-0">
         {/* Hero Section */}
-        <div className="relative overflow-hidden bg-gradient-holo">
-          <div className="absolute inset-0 bg-black/30" />
-          <div className="absolute inset-0 bg-gradient-crystal opacity-40" />
+        <div className="relative overflow-hidden">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/lovable-uploads/cb53b74b-f714-4e45-a399-b61b2f3de84f.png')"
+            }}
+          />
+          <div className="absolute inset-0 bg-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/30" />
           
           {/* Luxury Accent Images */}
           <div className="absolute top-10 right-10 w-32 h-32 opacity-20 animate-float">
