@@ -187,7 +187,7 @@ export default function Home() {
                 <h2 className="text-4xl md:text-6xl font-luxury font-bold text-champagne">Featured Creators</h2>
               </div>
               <p className="text-muted-foreground text-xl max-w-2xl mx-auto leading-relaxed">
-                Discover the most popular creators on FansWorld and join their exclusive communities
+                Discover the most popular creators on Champagne Room and join their exclusive communities
               </p>
             </div>
 

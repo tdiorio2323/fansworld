@@ -58,7 +58,7 @@ export default function Register() {
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gradient mb-4">Join FansWorld</h1>
+            <h1 className="text-4xl font-bold text-gradient mb-4">Join Champagne Room</h1>
             <p className="text-muted-foreground text-lg">
               Choose how you want to experience our premium platform
             </p>
@@ -338,7 +338,7 @@ export default function Register() {
           </div>
           
           <h1 className="text-3xl font-bold text-gradient mb-4">
-            Welcome to FansWorld!
+            Welcome to Champagne Room!
           </h1>
           
           <p className="text-muted-foreground mb-8">
