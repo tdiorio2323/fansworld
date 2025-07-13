@@ -124,7 +124,7 @@ export default function Home() {
               <div className="animate-fade-up">
                 <h1 className="text-5xl md:text-8xl font-luxury font-bold text-white mb-8 leading-tight">
                   Enter the
-                  <span className="block text-holographic mt-2">Champagne Room</span>
+                  <span className="block text-chrome mt-2 animate-pulse">Champagne Room</span>
                 </h1>
               </div>
               
@@ -136,11 +136,11 @@ export default function Home() {
               </div>
               
               <div className="animate-fade-up flex flex-col sm:flex-row gap-6 justify-center items-center mb-16" style={{ animationDelay: '0.4s' }}>
-                <Button size="lg" className="btn-holographic text-lg px-12 py-5 text-white font-semibold">
+                <Button size="lg" className="btn-liquid-metal text-lg px-12 py-5 text-white font-semibold">
                   Start Exploring
                   <ArrowRight className="ml-3 w-6 h-6" />
                 </Button>
-                <Button variant="outline" size="lg" className="btn-chrome text-lg px-12 py-5 font-semibold">
+                <Button variant="outline" size="lg" className="btn-chrome-mirror text-lg px-12 py-5 font-semibold">
                   Become a Creator
                 </Button>
               </div>
@@ -341,10 +341,10 @@ export default function Home() {
               Start your journey today and discover exclusive content from the world's most talented creators.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button size="lg" className="btn-holographic text-lg px-12 py-6 font-semibold">
+              <Button size="lg" className="btn-cyber-chrome text-lg px-12 py-6 font-semibold">
                 Sign Up Free
               </Button>
-              <Button variant="outline" size="lg" className="btn-platinum text-lg px-12 py-6 font-semibold">
+              <Button variant="outline" size="lg" className="btn-chrome-mirror text-lg px-12 py-6 font-semibold">
                 Learn More
               </Button>
             </div>

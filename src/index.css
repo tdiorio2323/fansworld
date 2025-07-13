@@ -40,17 +40,34 @@
 
     --radius: 1.25rem;
 
-    /* Metallic & Chrome Effects */
-    --chrome-platinum: 0 0% 88%;
-    --chrome-silver: 0 0% 75%;
-    --chrome-dark: 0 0% 35%;
-    --rose-gold: 25 50% 75%;
-    --warm-gold: 45 85% 70%;
+    /* Premium Chrome & Metallic System */
+    --chrome-platinum: 0 0% 92%;
+    --chrome-silver: 0 0% 80%;
+    --chrome-dark: 0 0% 25%;
+    --chrome-black: 0 0% 8%;
+    --chrome-highlight: 0 0% 100%;
+    --chrome-accent: 210 100% 75%;
+    --chrome-glow: 205 100% 65%;
+    
+    /* Luxury Metals */
+    --rose-gold: 15 45% 75%;
+    --warm-gold: 40 85% 68%;
+    --platinum: 0 0% 88%;
+    --titanium: 200 5% 60%;
+    --obsidian: 240 8% 12%;
+    
+    /* OnlyFans/Fansly Inspired Colors */
+    --neon-blue: 205 100% 65%;
+    --electric-pink: 325 100% 70%;
+    --cyber-purple: 270 100% 75%;
+    --vibrant-orange: 25 100% 65%;
+    --lime-green: 120 100% 60%;
     
     /* Enhanced Glass System */
     --glass-surface: 240 10% 8%;
     --glass-border: 240 8% 18%;
     --glass-highlight: 0 0% 100%;
+    --glass-tint: 280 100% 70%;
     
     /* Expanded Holographic Palette */
     --holo-pink: 330 90% 68%;
@@ -61,11 +78,52 @@
     --holo-green: 150 90% 68%;
     --holo-orange: 15 95% 68%;
 
+    /* Next-Gen Chrome Gradients */
+    --gradient-chrome-luxury: linear-gradient(135deg, 
+      hsl(var(--chrome-black)) 0%, 
+      hsl(var(--chrome-dark)) 15%, 
+      hsl(var(--chrome-silver)) 35%, 
+      hsl(var(--chrome-platinum)) 50%, 
+      hsl(var(--chrome-silver)) 65%, 
+      hsl(var(--chrome-dark)) 85%, 
+      hsl(var(--chrome-black)) 100%);
+    
+    --gradient-chrome-mirror: linear-gradient(135deg, 
+      hsl(var(--chrome-highlight)) 0%, 
+      hsl(var(--chrome-platinum)) 20%, 
+      hsl(var(--chrome-silver)) 40%, 
+      hsl(var(--chrome-dark)) 60%, 
+      hsl(var(--chrome-silver)) 80%, 
+      hsl(var(--chrome-highlight)) 100%);
+    
+    --gradient-chrome-neon: linear-gradient(135deg, 
+      hsl(var(--chrome-black)) 0%, 
+      hsl(var(--neon-blue)) 25%, 
+      hsl(var(--chrome-platinum)) 50%, 
+      hsl(var(--electric-pink)) 75%, 
+      hsl(var(--chrome-black)) 100%);
+
     /* Sophisticated Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%) 0%, hsl(285 95% 80%) 50%, hsl(320 100% 75%) 100%);
     --gradient-luxury: linear-gradient(135deg, hsl(280 100% 70%) 0%, hsl(270 95% 75%) 25%, hsl(285 90% 80%) 50%, hsl(320 100% 75%) 75%, hsl(330 95% 80%) 100%);
     --gradient-card: linear-gradient(135deg, hsl(240 10% 6%) 0%, hsl(240 8% 8%) 50%, hsl(240 10% 6%) 100%);
     --gradient-glass: linear-gradient(135deg, hsla(280 100% 70% / 0.08) 0%, hsla(320 100% 75% / 0.12) 50%, hsla(270 90% 80% / 0.08) 100%);
+    
+    /* Ultra Premium Gradients */
+    --gradient-liquid-metal: linear-gradient(135deg, 
+      hsla(var(--chrome-silver) / 0.9) 0%, 
+      hsla(var(--neon-blue) / 0.8) 25%, 
+      hsla(var(--chrome-platinum) / 0.9) 50%, 
+      hsla(var(--electric-pink) / 0.8) 75%, 
+      hsla(var(--chrome-silver) / 0.9) 100%);
+    
+    --gradient-cyber-chrome: linear-gradient(135deg, 
+      hsl(var(--chrome-black)) 0%, 
+      hsl(var(--cyber-purple)) 20%, 
+      hsl(var(--chrome-silver)) 40%, 
+      hsl(var(--neon-blue)) 60%, 
+      hsl(var(--chrome-platinum)) 80%, 
+      hsl(var(--electric-pink)) 100%);
     
     /* Metallic Gradients */
     --gradient-chrome: linear-gradient(135deg, hsl(var(--chrome-platinum)) 0%, hsl(var(--chrome-silver)) 50%, hsl(var(--chrome-dark)) 100%);
@@ -78,12 +136,15 @@
     --gradient-champagne: linear-gradient(135deg, hsl(var(--holo-gold)) 0%, hsl(45 90% 75%) 25%, hsl(var(--rose-gold)) 50%, hsl(var(--holo-pink)) 75%, hsl(var(--holo-gold)) 100%);
     --gradient-aurora: linear-gradient(135deg, hsla(var(--holo-purple) / 0.6) 0%, hsla(var(--holo-blue) / 0.8) 25%, hsla(var(--holo-cyan) / 0.6) 50%, hsla(var(--holo-green) / 0.7) 75%, hsla(var(--holo-blue) / 0.6) 100%);
     
-    /* Premium Shadow System */
+    /* Next-Level Shadow System */
     --shadow-luxury: 0 32px 64px -12px hsla(280 100% 70% / 0.4), 0 0 0 1px hsla(280 100% 70% / 0.05);
     --shadow-glow: 0 0 60px hsla(280 100% 70% / 0.4), 0 0 120px hsla(280 100% 70% / 0.2);
     --shadow-card: 0 12px 40px -8px hsla(240 12% 2% / 0.6), 0 0 0 1px hsla(240 8% 12% / 0.8);
     --shadow-glass: 0 16px 40px hsla(280 100% 70% / 0.2), 0 0 0 1px hsla(var(--glass-border) / 0.4), inset 0 1px 0 hsla(var(--glass-highlight) / 0.1);
     --shadow-chrome: 0 12px 40px hsla(0 0% 0% / 0.5), inset 0 2px 0 hsla(0 0% 100% / 0.15), inset 0 -1px 0 hsla(0 0% 0% / 0.4);
+    --shadow-chrome-glow: 0 0 80px hsla(var(--neon-blue) / 0.5), 0 20px 50px hsla(0 0% 0% / 0.6), inset 0 2px 0 hsla(0 0% 100% / 0.2);
+    --shadow-neon: 0 0 40px hsla(var(--electric-pink) / 0.6), 0 0 80px hsla(var(--neon-blue) / 0.4);
+    --shadow-liquid: 0 20px 60px hsla(0 0% 0% / 0.7), 0 0 100px hsla(var(--chrome-glow) / 0.4);
     --shadow-holo: 0 16px 40px hsla(var(--holo-pink) / 0.4), 0 0 0 1px hsla(var(--holo-blue) / 0.2);
     --shadow-elevation-1: 0 4px 12px hsla(240 12% 2% / 0.3);
     --shadow-elevation-2: 0 8px 24px hsla(240 12% 2% / 0.4);
@@ -299,27 +360,18 @@
     @apply opacity-100;
   }
 
-  /* Enhanced Chrome Effects */
+  /* Next-Gen Chrome Effects */
   .btn-chrome {
-    background: linear-gradient(135deg, 
-      hsl(0 0% 8%) 0%, 
-      hsl(0 0% 22%) 25%, 
-      hsl(0 0% 12%) 50%, 
-      hsl(0 0% 25%) 75%, 
-      hsl(0 0% 8%) 100%
-    );
+    background: var(--gradient-chrome-luxury);
     @apply text-white px-8 py-4 rounded-2xl font-semibold relative overflow-hidden;
     box-shadow: var(--shadow-chrome);
     transition: var(--transition-smooth);
-    border: 1px solid hsl(0 0% 30%);
+    border: 1px solid hsl(var(--chrome-silver));
   }
   
   .btn-chrome:hover {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 
-      0 16px 40px hsla(0 0% 0% / 0.6),
-      inset 0 2px 0 hsla(0 0% 100% / 0.2),
-      inset 0 -1px 0 hsla(0 0% 0% / 0.4);
+    box-shadow: var(--shadow-chrome-glow);
   }
   
   .btn-chrome::before {
@@ -328,9 +380,9 @@
     background: linear-gradient(
       45deg, 
       transparent 20%, 
-      hsla(0 0% 100% / 0.5) 45%, 
-      hsla(0 0% 100% / 0.8) 50%, 
-      hsla(0 0% 100% / 0.5) 55%, 
+      hsla(var(--chrome-highlight) / 0.6) 45%, 
+      hsla(var(--chrome-highlight) / 0.9) 50%, 
+      hsla(var(--chrome-highlight) / 0.6) 55%, 
       transparent 80%
     );
     transform: translateX(-120%) skewX(-25deg);
@@ -339,6 +391,49 @@
   
   .btn-chrome:hover::before {
     transform: translateX(120%) skewX(-25deg);
+  }
+
+  .btn-chrome-mirror {
+    background: var(--gradient-chrome-mirror);
+    @apply text-gray-800 px-8 py-4 rounded-2xl font-bold relative overflow-hidden;
+    box-shadow: var(--shadow-liquid);
+    transition: var(--transition-luxury);
+    border: 2px solid hsl(var(--chrome-platinum));
+  }
+  
+  .btn-chrome-mirror:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: var(--shadow-neon);
+  }
+
+  .btn-liquid-metal {
+    background: var(--gradient-liquid-metal);
+    @apply text-white px-8 py-4 rounded-2xl font-bold relative overflow-hidden;
+    box-shadow: var(--shadow-liquid);
+    transition: var(--transition-spring);
+    border: 1px solid hsla(var(--neon-blue) / 0.5);
+    animation: liquid-flow 3s ease-in-out infinite;
+  }
+  
+  .btn-liquid-metal:hover {
+    transform: translateY(-2px) scale(1.02);
+    animation-duration: 1.5s;
+  }
+
+  .btn-cyber-chrome {
+    background: var(--gradient-cyber-chrome);
+    @apply text-white px-8 py-4 rounded-2xl font-bold relative overflow-hidden;
+    box-shadow: var(--shadow-neon);
+    transition: var(--transition-luxury);
+    border: 1px solid hsl(var(--electric-pink));
+    animation: cyber-pulse 2s ease-in-out infinite;
+  }
+  
+  .btn-cyber-chrome:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+      0 0 100px hsla(var(--electric-pink) / 0.8), 
+      0 0 150px hsla(var(--neon-blue) / 0.6);
   }
   
   .btn-holographic {
@@ -352,6 +447,34 @@
   
   .btn-holographic:hover {
     transform: translateY(-2px) scale(1.02);
+    animation-duration: 2s;
+  }
+
+  /* Premium Chrome Cards */
+  .card-chrome-luxury {
+    background: var(--gradient-chrome-luxury);
+    @apply backdrop-blur-xl rounded-3xl p-8 relative overflow-hidden;
+    box-shadow: var(--shadow-chrome-glow);
+    border: 1px solid hsl(var(--chrome-silver));
+    transition: var(--transition-luxury);
+  }
+  
+  .card-chrome-luxury:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: var(--shadow-neon);
+  }
+
+  .card-liquid-chrome {
+    background: var(--gradient-liquid-metal);
+    @apply backdrop-blur-3xl rounded-3xl p-8 relative overflow-hidden;
+    box-shadow: var(--shadow-liquid);
+    border: 1px solid hsla(var(--neon-blue) / 0.4);
+    transition: var(--transition-spring);
+    animation: liquid-shimmer 4s ease-in-out infinite;
+  }
+  
+  .card-liquid-chrome:hover {
+    transform: translateY(-6px) scale(1.02);
     animation-duration: 2s;
   }
   
@@ -375,6 +498,20 @@
     @apply absolute inset-0 rounded-3xl opacity-20;
     background: var(--gradient-holo);
     animation: crystal-sparkle 3s ease-in-out infinite alternate;
+  }
+
+  /* Creator Profile Chrome Effects */
+  .creator-avatar-chrome {
+    @apply relative rounded-full overflow-hidden;
+    background: var(--gradient-chrome-mirror);
+    padding: 4px;
+    box-shadow: var(--shadow-chrome-glow);
+    animation: chrome-rotate 8s linear infinite;
+  }
+
+  .creator-avatar-chrome img {
+    @apply rounded-full w-full h-full object-cover;
+    border: 2px solid hsl(var(--chrome-platinum));
   }
 
   /* Enhanced Glass Morphism */
@@ -486,6 +623,76 @@
     }
     50% { 
       background-position: 100% 50%;
+    }
+  }
+
+  /* Enhanced Chrome Animations */
+  @keyframes liquid-flow {
+    0%, 100% { 
+      background-position: 0% 50%;
+      filter: hue-rotate(0deg) saturate(1);
+    }
+    25% { 
+      background-position: 25% 25%;
+      filter: hue-rotate(90deg) saturate(1.2);
+    }
+    50% { 
+      background-position: 100% 50%;
+      filter: hue-rotate(180deg) saturate(1.1);
+    }
+    75% { 
+      background-position: 75% 75%;
+      filter: hue-rotate(270deg) saturate(1.2);
+    }
+  }
+
+  @keyframes cyber-pulse {
+    0%, 100% { 
+      box-shadow: var(--shadow-neon);
+      filter: brightness(1);
+    }
+    50% { 
+      box-shadow: 
+        0 0 60px hsla(var(--electric-pink) / 0.8), 
+        0 0 120px hsla(var(--neon-blue) / 0.6);
+      filter: brightness(1.2);
+    }
+  }
+
+  @keyframes liquid-shimmer {
+    0%, 100% { 
+      background-position: 0% 50%;
+      transform: scale(1) rotate(0deg);
+    }
+    25% { 
+      background-position: 50% 0%;
+      transform: scale(1.01) rotate(0.5deg);
+    }
+    50% { 
+      background-position: 100% 50%;
+      transform: scale(1) rotate(0deg);
+    }
+    75% { 
+      background-position: 50% 100%;
+      transform: scale(1.01) rotate(-0.5deg);
+    }
+  }
+
+  @keyframes chrome-rotate {
+    0% { 
+      transform: rotate(0deg);
+    }
+    100% { 
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes chrome-shine {
+    0% { 
+      transform: translateX(-100%) skewX(-25deg);
+    }
+    100% { 
+      transform: translateX(200%) skewX(-25deg);
     }
   }
 
