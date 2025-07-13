@@ -123,8 +123,8 @@ export default function Home() {
             <div className="text-center max-w-5xl mx-auto">
               <div className="animate-fade-up">
                 <h1 className="text-5xl md:text-8xl font-luxury font-bold text-white mb-8 leading-tight">
-                  Welcome to
-                  <span className="block text-holographic mt-2">FansWorld</span>
+                  Enter the
+                  <span className="block text-holographic mt-2">Champagne Room</span>
                 </h1>
               </div>
               
