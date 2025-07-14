@@ -41,39 +41,35 @@ const featuredCreators = [
 const trendingContent = [
   {
     id: "1",
-    type: "video",
+    type: "video" as const,
     src: "/lovable-uploads/bc97ee21-392d-4e4d-8117-27a47a8bed40.png",
     title: "Behind the Scenes: Fashion Week",
-    creator: "Alexandra Grace",
-    views: "45.2K",
-    likes: "3.8K"
+    views: 45200,
+    likes: 3800
   },
   {
     id: "2",
-    type: "image",
+    type: "image" as const,
     src: "/lovable-uploads/bf0fcf1a-8488-4afa-b9ae-463c6a03c31c.png",
     title: "Digital Art Process",
-    creator: "Marcus Thompson",
-    views: "28.1K",
-    likes: "2.1K"
+    views: 28100,
+    likes: 2100
   },
   {
     id: "3",
-    type: "video",
+    type: "video" as const,
     src: "/lovable-uploads/de7e1d60-97a9-4b0d-af11-8f17740ed2ea.png",
     title: "Morning Meditation Guide",
-    creator: "Sofia Martinez",
-    views: "67.3K",
-    likes: "5.2K"
+    views: 67300,
+    likes: 5200
   },
   {
     id: "4",
-    type: "image",
+    type: "image" as const,
     src: "/lovable-uploads/fcb70729-3e74-4ee6-8e5a-c5e0811dfbff.png",
     title: "Lifestyle Photography Tips",
-    creator: "Alexandra Grace",
-    views: "32.4K",
-    likes: "2.7K"
+    views: 32400,
+    likes: 2700
   }
 ];
 
