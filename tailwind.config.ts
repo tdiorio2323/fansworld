@@ -62,43 +62,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				chrome: {
-					platinum: 'hsl(var(--chrome-platinum))',
-					silver: 'hsl(var(--chrome-silver))',
-					dark: 'hsl(var(--chrome-dark))',
-					black: 'hsl(var(--chrome-black))',
-					highlight: 'hsl(var(--chrome-highlight))',
-					accent: 'hsl(var(--chrome-accent))',
-					glow: 'hsl(var(--chrome-glow))'
+				// Brutalist Editorial Palette
+				editorial: {
+					black: 'hsl(var(--solid-black))',
+					white: 'hsl(var(--solid-white))',
+					accent: 'hsl(var(--solid-accent))',
 				},
-				neon: {
-					blue: 'hsl(var(--neon-blue))',
-					pink: 'hsl(var(--electric-pink))',
-					purple: 'hsl(var(--cyber-purple))',
-					orange: 'hsl(var(--vibrant-orange))',
-					green: 'hsl(var(--lime-green))'
-				},
-				metal: {
-					rose: 'hsl(var(--rose-gold))',
-					gold: 'hsl(var(--warm-gold))',
-					platinum: 'hsl(var(--platinum))',
-					titanium: 'hsl(var(--titanium))',
-					obsidian: 'hsl(var(--obsidian))'
-				},
-				glass: {
-					surface: 'hsl(var(--glass-surface))',
-					border: 'hsl(var(--glass-border))',
-					tint: 'hsl(var(--glass-tint))'
-				},
-				holo: {
-					pink: 'hsl(var(--holo-pink))',
-					blue: 'hsl(var(--holo-blue))',
-					purple: 'hsl(var(--holo-purple))',
-					gold: 'hsl(var(--holo-gold))',
-					cyan: 'hsl(var(--holo-cyan))',
-					green: 'hsl(var(--holo-green))',
-					orange: 'hsl(var(--holo-orange))'
-				}
 			},
 			backgroundImage: {
 				'gradient-luxury': 'var(--gradient-luxury)',
@@ -131,10 +100,11 @@ export default {
 				'fast': 'var(--transition-fast)',
 			},
 			fontFamily: {
-				'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-				'display': ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
-				'serif': ['Playfair Display', 'Georgia', 'serif'],
-				'luxury': ['Montserrat', 'Poppins', 'system-ui', 'sans-serif'],
+				sans: ['IBM Plex Sans', 'system-ui', 'sans-serif'],
+				serif: ['Playfair Display', 'serif'],
+				mono: ['IBM Plex Mono', 'Courier New', 'monospace'],
+				editorial: ['IBM Plex Sans', 'system-ui', 'sans-serif'],
+				brutalist: ['Playfair Display', 'serif'],
 			},
 			fontSize: {
 				'xs': ['0.75rem', { lineHeight: '1rem' }],
