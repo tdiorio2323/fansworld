@@ -67,10 +67,10 @@ export default function Register() {
           <div className="space-y-4">
             {/* Creator Interactive Element */}
             <div className="card-luxury group hover:shadow-glow transition-all duration-500 overflow-hidden">
-              <div className="text-center p-6">
+              <div className="text-center p-6 flex flex-col items-center">
                 {/* Circular Progress Ring */}
-                <div className="relative w-24 h-24 mx-auto mb-4">
-                  <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                <div className="relative w-14 h-14 mb-4">
+                  <svg className="w-14 h-14 transform -rotate-90" viewBox="0 0 100 100">
                     <circle
                       cx="50"
                       cy="50"
@@ -100,8 +100,8 @@ export default function Register() {
                     </defs>
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-gradient-primary p-3 rounded-full group-hover:scale-110 transition-transform duration-300">
-                      <DollarSign className="w-8 h-8 text-white" />
+                    <div className="bg-gradient-primary p-2 rounded-full group-hover:scale-110 transition-transform duration-300">
+                      <DollarSign className="w-5 h-5 text-white" />
                     </div>
                   </div>
                 </div>
@@ -151,10 +151,10 @@ export default function Register() {
 
             {/* Fan Interactive Element */}
             <div className="card-luxury group hover:shadow-glow transition-all duration-500 overflow-hidden">
-              <div className="text-center p-6">
+              <div className="text-center p-6 flex flex-col items-center">
                 {/* Circular Community Ring */}
-                <div className="relative w-24 h-24 mx-auto mb-4">
-                  <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                <div className="relative w-14 h-14 mb-4">
+                  <svg className="w-14 h-14 transform -rotate-90" viewBox="0 0 100 100">
                     <circle
                       cx="50"
                       cy="50"
@@ -184,8 +184,8 @@ export default function Register() {
                     </defs>
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-gradient-to-r from-accent to-primary p-3 rounded-full group-hover:scale-110 transition-transform duration-300">
-                      <Users className="w-8 h-8 text-white" />
+                    <div className="bg-gradient-to-r from-accent to-primary p-2 rounded-full group-hover:scale-110 transition-transform duration-300">
+                      <Users className="w-5 h-5 text-white" />
                     </div>
                   </div>
                 </div>
