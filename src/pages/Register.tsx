@@ -64,18 +64,17 @@ export default function Register() {
             </p>
           </div>
 
-          {/* Interactive Preview Elements */}
-          <div className="grid grid-cols-2 gap-4 mb-8">
-            {/* Creator Preview */}
+          <div className="space-y-4">
+            {/* Creator Interactive Element */}
             <div className="card-luxury group hover:shadow-glow transition-all duration-500 overflow-hidden">
               <div className="text-center p-4">
                 <div className="bg-gradient-primary p-3 rounded-full w-16 h-16 mx-auto mb-3 group-hover:rotate-12 transition-transform duration-300">
                   <Sparkles className="w-10 h-10 text-white mx-auto" />
                 </div>
-                <h4 className="font-bold text-gradient mb-2">Creator Stats</h4>
+                <h4 className="font-bold text-gradient mb-2">Creator Earnings Preview</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Avg. Monthly</span>
+                    <span className="text-muted-foreground">Average Monthly</span>
                     <span className="text-primary font-bold">$5,200</span>
                   </div>
                   <div className="flex items-center justify-between">
@@ -89,33 +88,6 @@ export default function Register() {
               </div>
             </div>
 
-            {/* Fan Preview */}
-            <div className="card-luxury group hover:shadow-glow transition-all duration-500 overflow-hidden">
-              <div className="text-center p-4">
-                <div className="bg-gradient-to-r from-accent to-primary p-3 rounded-full w-16 h-16 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                  <Users className="w-10 h-10 text-white mx-auto" />
-                </div>
-                <h4 className="font-bold text-gradient mb-2">Community</h4>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Active Creators</span>
-                    <span className="text-accent font-bold">2,400+</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Content Daily</span>
-                    <span className="text-accent font-bold">1,000+</span>
-                  </div>
-                  <div className="flex justify-center space-x-1">
-                    {[1,2,3,4,5].map((star) => (
-                      <Star key={star} className="w-3 h-3 fill-accent text-accent group-hover:animate-pulse" style={{animationDelay: `${star * 100}ms`}} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-4">
             {/* Creator Option */}
             <div 
               onClick={() => handleRoleSelect('creator')}
@@ -141,6 +113,31 @@ export default function Register() {
                   <div className="flex items-center gap-2 text-sm text-primary">
                     <CheckCircle className="w-4 h-4" />
                     <span>Direct messaging</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Fan Interactive Element */}
+            <div className="card-luxury group hover:shadow-glow transition-all duration-500 overflow-hidden">
+              <div className="text-center p-4">
+                <div className="bg-gradient-to-r from-accent to-primary p-3 rounded-full w-16 h-16 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <Users className="w-10 h-10 text-white mx-auto" />
+                </div>
+                <h4 className="font-bold text-gradient mb-2">Community Highlights</h4>
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">Active Creators</span>
+                    <span className="text-accent font-bold">2,400+</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">Content Daily</span>
+                    <span className="text-accent font-bold">1,000+</span>
+                  </div>
+                  <div className="flex justify-center space-x-1">
+                    {[1,2,3,4,5].map((star) => (
+                      <Star key={star} className="w-3 h-3 fill-accent text-accent group-hover:animate-pulse" style={{animationDelay: `${star * 100}ms`}} />
+                    ))}
                   </div>
                 </div>
               </div>
