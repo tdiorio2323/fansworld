@@ -67,22 +67,53 @@ export default function Register() {
           <div className="space-y-4">
             {/* Creator Interactive Element */}
             <div className="card-luxury group hover:shadow-glow transition-all duration-500 overflow-hidden">
-              <div className="text-center p-4">
-                <div className="bg-gradient-primary p-3 rounded-full w-16 h-16 mx-auto mb-3 group-hover:rotate-12 transition-transform duration-300">
-                  <Sparkles className="w-10 h-10 text-white mx-auto" />
+              <div className="text-center p-6">
+                {/* Circular Progress Ring */}
+                <div className="relative w-24 h-24 mx-auto mb-4">
+                  <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="currentColor"
+                      strokeWidth="8"
+                      fill="none"
+                      className="text-muted/20"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="url(#creator-gradient)"
+                      strokeWidth="8"
+                      fill="none"
+                      strokeDasharray={`${2 * Math.PI * 40}`}
+                      strokeDashoffset={`${2 * Math.PI * 40 * (1 - 0.75)}`}
+                      className="transition-all duration-1000 group-hover:stroke-dashoffset-0"
+                      strokeLinecap="round"
+                    />
+                    <defs>
+                      <linearGradient id="creator-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="hsl(var(--primary))" />
+                        <stop offset="100%" stopColor="hsl(var(--primary-glow))" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-gradient-primary p-3 rounded-full group-hover:scale-110 transition-transform duration-300">
+                      <DollarSign className="w-8 h-8 text-white" />
+                    </div>
+                  </div>
                 </div>
-                <h4 className="font-bold text-gradient mb-2">Creator Earnings Preview</h4>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Average Monthly</span>
-                    <span className="text-primary font-bold">$5,200</span>
+                <h4 className="font-bold text-gradient mb-3">Creator Earnings</h4>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary">$5.2K</div>
+                    <div className="text-muted-foreground">Avg/Month</div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Top Earners</span>
-                    <span className="text-primary font-bold">$50K+</span>
-                  </div>
-                  <div className="w-full bg-muted rounded-full h-2 group-hover:bg-gradient-primary transition-all duration-500">
-                    <div className="bg-gradient-primary h-2 rounded-full w-3/4 group-hover:w-full transition-all duration-1000"></div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary">75%</div>
+                    <div className="text-muted-foreground">Success Rate</div>
                   </div>
                 </div>
               </div>
@@ -120,24 +151,53 @@ export default function Register() {
 
             {/* Fan Interactive Element */}
             <div className="card-luxury group hover:shadow-glow transition-all duration-500 overflow-hidden">
-              <div className="text-center p-4">
-                <div className="bg-gradient-to-r from-accent to-primary p-3 rounded-full w-16 h-16 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                  <Users className="w-10 h-10 text-white mx-auto" />
+              <div className="text-center p-6">
+                {/* Circular Community Ring */}
+                <div className="relative w-24 h-24 mx-auto mb-4">
+                  <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="currentColor"
+                      strokeWidth="8"
+                      fill="none"
+                      className="text-muted/20"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="url(#fan-gradient)"
+                      strokeWidth="8"
+                      fill="none"
+                      strokeDasharray={`${2 * Math.PI * 40}`}
+                      strokeDashoffset={`${2 * Math.PI * 40 * (1 - 0.9)}`}
+                      className="transition-all duration-1000 group-hover:stroke-dashoffset-0"
+                      strokeLinecap="round"
+                    />
+                    <defs>
+                      <linearGradient id="fan-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="hsl(var(--accent))" />
+                        <stop offset="100%" stopColor="hsl(var(--primary))" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-gradient-to-r from-accent to-primary p-3 rounded-full group-hover:scale-110 transition-transform duration-300">
+                      <Users className="w-8 h-8 text-white" />
+                    </div>
+                  </div>
                 </div>
-                <h4 className="font-bold text-gradient mb-2">Community Highlights</h4>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Active Creators</span>
-                    <span className="text-accent font-bold">2,400+</span>
+                <h4 className="font-bold text-gradient mb-3">Community</h4>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-accent">2.4K+</div>
+                    <div className="text-muted-foreground">Creators</div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Content Daily</span>
-                    <span className="text-accent font-bold">1,000+</span>
-                  </div>
-                  <div className="flex justify-center space-x-1">
-                    {[1,2,3,4,5].map((star) => (
-                      <Star key={star} className="w-3 h-3 fill-accent text-accent group-hover:animate-pulse" style={{animationDelay: `${star * 100}ms`}} />
-                    ))}
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-accent">90%</div>
+                    <div className="text-muted-foreground">Active Daily</div>
                   </div>
                 </div>
               </div>
