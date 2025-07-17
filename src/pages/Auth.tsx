@@ -42,16 +42,28 @@ export default function Auth() {
     console.log('Form submitted!', { formData, isSignUp });
     
     if (isSignUp) {
+      console.log('Taking sign-up path');
       if (formData.password !== formData.confirmPassword) {
+        console.log('Passwords do not match, returning early');
         return;
       }
       
+      console.log('Calling signUp with:', { 
+        email: formData.email, 
+        password: formData.password, 
+        metadata: {
+          username: formData.username,
+          display_name: formData.displayName,
+          role: formData.role
+        }
+      });
       await signUp(formData.email, formData.password, {
         username: formData.username,
         display_name: formData.displayName,
         role: formData.role
       });
     } else {
+      console.log('Taking sign-in path');
       await signIn(formData.email, formData.password);
     }
   };
