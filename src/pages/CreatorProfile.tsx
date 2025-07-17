@@ -20,6 +20,8 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/Navbar";
 import { MediaTile } from "@/components/MediaTile";
+import { SubscriptionButton, TipButton } from "@/components/PaymentButtons";
+import { PaymentVerifier } from "@/components/PaymentVerifier";
 
 // Mock data
 const creatorData = {
@@ -131,6 +133,7 @@ export default function CreatorProfile() {
 
   return (
     <div className="min-h-screen bg-background">
+      <PaymentVerifier />
       <Navbar />
       
       <div className="lg:pl-64 pb-20 lg:pb-0">
@@ -214,22 +217,19 @@ export default function CreatorProfile() {
                 {isFollowing ? 'Following' : 'Follow'}
               </Button>
               
-              <Button
-                onClick={handleSubscribe}
-                className={`btn-luxury flex-1 sm:flex-none ${isSubscribed ? 'opacity-75' : ''}`}
-              >
-                {isSubscribed ? (
-                  <>
-                    <Heart className="w-4 h-4 mr-2 fill-current" />
-                    Subscribed
-                  </>
-                ) : (
-                  <>
-                    <DollarSign className="w-4 h-4 mr-2" />
-                    Subscribe ${creatorData.stats.subscriptionPrice}/mo
-                  </>
-                )}
-              </Button>
+              <SubscriptionButton
+                creatorId="mock-creator-id"
+                creatorName={creatorData.displayName}
+                subscriptionPrice={Math.round(creatorData.stats.subscriptionPrice * 100)}
+                isSubscribed={isSubscribed}
+                className="flex-1 sm:flex-none"
+              />
+              
+              <TipButton
+                creatorId="mock-creator-id"
+                creatorName={creatorData.displayName}
+                className="flex-1 sm:flex-none"
+              />
               
               <Button variant="outline" size="icon">
                 <MessageCircle className="w-4 h-4" />

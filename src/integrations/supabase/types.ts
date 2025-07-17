@@ -243,7 +243,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      update_creator_earnings: {
+        Args: { creator_id: string; amount: number; earning_type: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
