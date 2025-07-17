@@ -190,7 +190,7 @@ export default function Auth() {
               
               {/* Debug info */}
               <div className="text-xs text-muted-foreground mt-2">
-                Debug: Loading: {loading.toString()}, Passwords match: {(formData.password === formData.confirmPassword).toString()}
+                Debug: Loading: {loading.toString()}, Passwords match: {(formData.password === formData.confirmPassword).toString()}, isSignUp: {isSignUp.toString()}
               </div>
             </form>
           </CardContent>
