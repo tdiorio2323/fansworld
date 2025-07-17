@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { useLocation, Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Home,
   Search,
@@ -16,13 +17,30 @@ import {
   Menu,
   X,
   LogOut,
-  Plus
+  Plus,
+  Shield
 } from "lucide-react";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
   const { user, signOut } = useAuth();
+
+  // Fetch admin status
+  useEffect(() => {
+    if (user) {
+      const fetchAdminStatus = async () => {
+        const { data } = await supabase
+          .from('profiles')
+          .select('is_admin')
+          .eq('user_id', user.id)
+          .single();
+        setIsAdmin(data?.is_admin || false);
+      };
+      fetchAdminStatus();
+    }
+  }, [user]);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -133,6 +151,19 @@ export default function Navbar() {
             </nav>
             
             <div className="px-6 pb-8 space-y-3 border-t border-border/40 pt-6">
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  className={cn(
+                    "nav-item group",
+                    isActive('/admin') && "active"
+                  )}
+                >
+                  <Shield className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
+                  <span className="font-medium">Admin</span>
+                </Link>
+              )}
+              
               <Link
                 to="/settings"
                 className={cn(
@@ -210,6 +241,20 @@ export default function Navbar() {
                   </Link>
                 );
               })}
+              
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  className={cn(
+                    "nav-item",
+                    isActive('/admin') && "active"
+                  )}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Shield className="w-5 h-5" />
+                  <span className="font-medium">Admin</span>
+                </Link>
+              )}
               
               <Link
                 to="/settings"
