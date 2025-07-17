@@ -102,11 +102,7 @@ serve(async (req) => {
       case "list": {
         const { data: invites, error } = await supabaseClient
           .from("invites")
-          .select(`
-            *,
-            creator:profiles!created_by(display_name, username),
-            user:profiles!used_by(display_name, username)
-          `)
+          .select("*")
           .order("created_at", { ascending: false });
 
         if (error) throw error;
