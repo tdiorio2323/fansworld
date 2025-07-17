@@ -18,7 +18,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Navbar } from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 import { MediaTile } from "@/components/MediaTile";
 
 // Mock data
@@ -81,7 +81,7 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar userRole="creator" username="Lilu" />
+      <Navbar />
       
       <div className="lg:pl-64 pb-20 lg:pb-0">
         <div className="px-4 sm:px-6 lg:px-8 py-8">

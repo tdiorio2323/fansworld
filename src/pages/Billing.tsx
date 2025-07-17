@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Navbar } from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 
 interface PaymentMethod {
   id: string;
@@ -234,7 +234,7 @@ export default function Billing() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar userRole="fan" username="Tyler" />
+      <Navbar />
       
       <div className="lg:pl-64 pb-20 lg:pb-0">
         <div className="px-4 sm:px-6 lg:px-8 py-8">

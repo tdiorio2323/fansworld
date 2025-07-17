@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CreatorCard } from "@/components/CreatorCard";
 import { MediaTile } from "@/components/MediaTile";
-import { Navbar } from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const categories = [

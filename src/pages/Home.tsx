@@ -3,7 +3,7 @@ import { ArrowRight, Star, TrendingUp, Sparkles, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Navbar } from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 import { CreatorCard } from "@/components/CreatorCard";
 import { MediaTile } from "@/components/MediaTile";
 
@@ -95,7 +95,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar userRole="fan" username="Tyler" />
+      <Navbar />
       
       {/* Main Content */}
       <div className="lg:pl-64 pb-20 lg:pb-0">
@@ -130,7 +130,7 @@ export default function Home() {
               <div className="animate-fade-up">
                 <h1 className="text-5xl md:text-8xl font-luxury font-bold text-white mb-8 leading-tight">
                   Enter the
-                  <span className="block text-white mt-2 animate-pulse">Champagne Room</span>
+                  <span className="block text-white mt-2 animate-pulse">Cabana</span>
                 </h1>
               </div>
               

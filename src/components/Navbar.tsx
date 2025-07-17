@@ -1,25 +1,43 @@
+<<<<<<< HEAD
 
   Plus,
   Menu,
   X
 } from "lucide-react";
+=======
+import { useState } from "react";
+>>>>>>> 2f22c6f24cfd8089a834064e240f68ea540b4e52
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { useLocation, Link } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import {
+  Home,
+  Search,
+  User,
+  Settings,
+  MessageCircle,
+  CreditCard,
+  LayoutDashboard,
+  Bell,
+  Menu,
+  X,
+  LogOut,
+  Plus
+} from "lucide-react";
 
-interface NavbarProps {
-  userRole?: 'creator' | 'fan';
-  username?: string;
-}
-
-export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
+export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, signOut } = useAuth();
 
   const isActive = (path: string) => location.pathname === path;
 
   const creatorNavItems = [
     { path: '/home', icon: Home, label: 'Home' },
-    { path: '/dashboard', icon: BarChart3, label: 'Dashboard' },
+    { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+    { path: '/search', icon: Search, label: 'Discover' },
     { path: '/messages', icon: MessageCircle, label: 'Messages' },
     { path: '/billing', icon: CreditCard, label: 'Billing' },
   ];
@@ -31,7 +49,34 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
     { path: '/billing', icon: CreditCard, label: 'Billing' },
   ];
 
-  const navItems = userRole === 'creator' ? creatorNavItems : fanNavItems;
+  const publicNavItems = [
+    { path: '/home', icon: Home, label: 'Home' },
+    { path: '/search', icon: Search, label: 'Discover' },
+  ];
+
+  const getNavItems = () => {
+    if (!user) return publicNavItems;
+    return user.user_metadata?.role === 'creator' ? creatorNavItems : fanNavItems;
+  };
+
+  const navItems = getNavItems();
+
+  if (!user) {
+    // Simplified navbar for non-authenticated users
+    return (
+      <div className="lg:hidden">
+        <div className="flex items-center justify-between h-18 px-6 glass-morphism border-b border-border/60 backdrop-blur-3xl">
+          <div className="text-2xl font-luxury font-bold text-chrome">Cabana</div>
+          
+          <div className="flex items-center gap-4">
+            <Button asChild variant="outline" size="sm">
+              <Link to="/auth">Sign In</Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -48,18 +93,36 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
           </div>
           
           <div className="flex items-center flex-shrink-0 px-6 pt-8 pb-6 relative z-10">
-            <div className="text-3xl font-luxury font-bold text-chrome">Champagne Room</div>
+            <div className="text-3xl font-luxury font-bold text-chrome">Cabana</div>
+          </div>
+          
+          <div className="flex items-center justify-between px-6 py-4 border-b border-border/40">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 bg-gradient-primary rounded-xl flex items-center justify-center text-white font-bold">
+                {user.email?.charAt(0).toUpperCase()}
+              </div>
+              <div>
+                <div className="font-semibold text-chrome">{user.user_metadata?.display_name || 'User'}</div>
+                <div className="text-sm text-muted-foreground">@{user.user_metadata?.username || 'user'}</div>
+              </div>
+            </div>
+            <Badge className="bg-gradient-primary text-white border-0 px-3">
+              {user.user_metadata?.role === 'creator' ? 'Creator' : 'Fan'}
+            </Badge>
           </div>
           
           <div className="flex-grow flex flex-col">
-            <nav className="flex-1 px-6 space-y-3">
+            <nav className="flex-1 px-6 space-y-3 py-6">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 return (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`nav-item group ${isActive(item.path) ? 'active' : ''}`}
+                    className={cn(
+                      "nav-item group",
+                      isActive(item.path) && "active"
+                    )}
                   >
                     <Icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                     <span className="font-medium">{item.label}</span>
@@ -67,46 +130,48 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
                 );
               })}
               
-              {userRole === 'creator' && (
-                <Link
-                  to="/post/create"
-                  className="btn-chrome mt-8 flex items-center justify-center gap-3 text-base"
+              {user.user_metadata?.role === 'creator' && (
+                <Button
+                  className="btn-chrome mt-8 flex items-center justify-center gap-3 text-base w-full"
                 >
                   <Plus className="w-5 h-5" />
                   New Post
-                </Link>
+                </Button>
               )}
             </nav>
             
-            <div className="px-6 pb-8 space-y-3 border-t border-border/40 pt-6 mt-6">
-              <Link
-                to="/notifications"
-                className={`nav-item group ${isActive('/notifications') ? 'active' : ''}`}
-              >
-                <Bell className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
-                <span className="font-medium">Notifications</span>
-              </Link>
-              
+            <div className="px-6 pb-8 space-y-3 border-t border-border/40 pt-6">
               <Link
                 to="/settings"
-                className={`nav-item group ${isActive('/settings') ? 'active' : ''}`}
+                className={cn(
+                  "nav-item group",
+                  isActive('/settings') && "active"
+                )}
               >
                 <Settings className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                 <span className="font-medium">Settings</span>
               </Link>
               
               <Link
-                to={`/creator/${username.toLowerCase()}`}
-                className={`nav-item group ${isActive(`/creator/${username.toLowerCase()}`) ? 'active' : ''}`}
+                to={`/creator/${user.user_metadata?.username || 'user'}`}
+                className={cn(
+                  "nav-item group",
+                  isActive(`/creator/${user.user_metadata?.username || 'user'}`) && "active"
+                )}
               >
-                <Avatar className="w-7 h-7 ring-2 ring-primary/20 transition-all duration-300 group-hover:ring-primary/40">
-                  <AvatarImage src="/placeholder-avatar.jpg" />
-                  <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white font-semibold">
-                    {username[0]?.toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
+                <User className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                 <span className="font-medium">Profile</span>
               </Link>
+              
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={signOut}
+                className="w-full justify-start text-muted-foreground hover:text-destructive nav-item"
+              >
+                <LogOut className="w-5 h-5 mr-3" />
+                Sign Out
+              </Button>
             </div>
           </div>
         </div>
@@ -115,11 +180,11 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
       {/* Mobile Header */}
       <div className="lg:hidden">
         <div className="flex items-center justify-between h-18 px-6 glass-morphism border-b border-border/60 backdrop-blur-3xl">
-          <div className="text-2xl font-luxury font-bold text-chrome">Champagne Room</div>
+          <div className="text-2xl font-luxury font-bold text-chrome">Cabana</div>
           
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="icon">
-              <Bell className="w-5 h-5" />
+              <Bell className="h-5 w-5" />
             </Button>
             
             <Button
@@ -127,7 +192,7 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
@@ -142,7 +207,10 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`nav-item ${isActive(item.path) ? 'active' : ''}`}
+                    className={cn(
+                      "nav-item",
+                      isActive(item.path) && "active"
+                    )}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <Icon className="w-5 h-5" />
@@ -153,7 +221,10 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
               
               <Link
                 to="/settings"
-                className={`nav-item ${isActive('/settings') ? 'active' : ''}`}
+                className={cn(
+                  "nav-item",
+                  isActive('/settings') && "active"
+                )}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Settings className="w-5 h-5" />
@@ -161,13 +232,29 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
               </Link>
               
               <Link
-                to={`/creator/${username.toLowerCase()}`}
-                className={`nav-item ${isActive(`/creator/${username.toLowerCase()}`) ? 'active' : ''}`}
+                to={`/creator/${user.user_metadata?.username || 'user'}`}
+                className={cn(
+                  "nav-item",
+                  isActive(`/creator/${user.user_metadata?.username || 'user'}`) && "active"
+                )}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <User className="w-5 h-5" />
                 <span className="font-medium">Profile</span>
               </Link>
+              
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  signOut();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full justify-start text-muted-foreground hover:text-destructive nav-item"
+              >
+                <LogOut className="w-5 h-5 mr-3" />
+                Sign Out
+              </Button>
             </div>
           </div>
         )}
@@ -182,9 +269,10 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex flex-col items-center p-2 ${
-                  isActive(item.path) ? 'text-primary' : 'text-muted-foreground'
-                }`}
+                className={cn(
+                  "flex flex-col items-center p-2",
+                  isActive(item.path) ? "text-primary" : "text-muted-foreground"
+                )}
               >
                 <Icon className="w-6 h-6" />
                 <span className="text-xs mt-1">{item.label}</span>

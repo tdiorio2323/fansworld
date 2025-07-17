@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Navbar } from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 import { MediaTile } from "@/components/MediaTile";
 
 // Mock data
@@ -131,7 +131,7 @@ export default function CreatorProfile() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar userRole="fan" username="Tyler" />
+      <Navbar />
       
       <div className="lg:pl-64 pb-20 lg:pb-0">
         {/* Cover Image */}
