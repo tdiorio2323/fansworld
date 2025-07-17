@@ -39,31 +39,18 @@ export default function Auth() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted!', { formData, isSignUp });
     
     if (isSignUp) {
-      console.log('Taking sign-up path');
       if (formData.password !== formData.confirmPassword) {
-        console.log('Passwords do not match, returning early');
         return;
       }
       
-      console.log('Calling signUp with:', { 
-        email: formData.email, 
-        password: formData.password, 
-        metadata: {
-          username: formData.username,
-          display_name: formData.displayName,
-          role: formData.role
-        }
-      });
       await signUp(formData.email, formData.password, {
         username: formData.username,
         display_name: formData.displayName,
         role: formData.role
       });
     } else {
-      console.log('Taking sign-in path');
       await signIn(formData.email, formData.password);
     }
   };
@@ -195,15 +182,9 @@ export default function Auth() {
                 type="submit" 
                 className="w-full" 
                 disabled={loading || (isSignUp && formData.password !== formData.confirmPassword)}
-                onClick={() => console.log('Button clicked:', { loading, isSignUp, passwordMatch: formData.password === formData.confirmPassword, formData })}
               >
                 {loading ? 'Please wait...' : (isSignUp ? 'Create Account' : 'Sign In')}
               </Button>
-              
-              {/* Debug info */}
-              <div className="text-xs text-muted-foreground mt-2">
-                Debug: Loading: {loading.toString()}, Passwords match: {(formData.password === formData.confirmPassword).toString()}, isSignUp: {isSignUp.toString()}
-              </div>
             </form>
           </CardContent>
         </Card>
