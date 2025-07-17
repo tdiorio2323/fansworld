@@ -53,75 +53,85 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [toast]);
 
   const signUp = async (email: string, password: string, metadata?: { username?: string; display_name?: string; role?: string }, inviteData?: { inviteCode: string; passcode: string }) => {
-    // Check if invite validation is required
-    if (!inviteData) {
-      return { 
-        error: { 
-          message: "Registration requires a valid invite. Please use your invite link." 
-        } 
-      };
-    }
-
-    const redirectUrl = `${window.location.origin}/`;
+    setLoading(true);
     
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: redirectUrl,
-        data: metadata
-      }
-    });
+    try {
+      const redirectUrl = `${window.location.origin}/`;
+      
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: redirectUrl,
+          data: metadata
+        }
+      });
 
-    if (error) {
+      if (error) {
+        toast({
+          title: "Sign up failed",
+          description: error.message,
+          variant: "destructive",
+        });
+        return { error };
+      }
+
+      // If signup successful and inviteData provided, mark invite as used
+      if (data.user && inviteData) {
+        try {
+          await supabase.functions.invoke('redeem-invite', {
+            body: {
+              action: 'use',
+              invite_code: inviteData.inviteCode,
+              passcode: inviteData.passcode,
+              user_id: data.user.id
+            }
+          });
+        } catch (inviteError) {
+          console.error('Error marking invite as used:', inviteError);
+          // Don't fail the signup for this, just log it
+        }
+      }
+
+      toast({
+        title: "Check your email",
+        description: "We've sent you a confirmation link to complete your registration.",
+      });
+
+      return { error: null };
+    } catch (error) {
       toast({
         title: "Sign up failed",
-        description: error.message,
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive",
       });
       return { error };
+    } finally {
+      setLoading(false);
     }
-
-    // If signup successful, mark invite as used
-    if (data.user && inviteData) {
-      try {
-        await supabase.functions.invoke('redeem-invite', {
-          body: {
-            action: 'use',
-            invite_code: inviteData.inviteCode,
-            passcode: inviteData.passcode,
-            user_id: data.user.id
-          }
-        });
-      } catch (inviteError) {
-        console.error('Error marking invite as used:', inviteError);
-        // Don't fail the signup for this, just log it
-      }
-    }
-
-    toast({
-      title: "Check your email",
-      description: "We've sent you a confirmation link to complete your registration.",
-    });
-
-    return { error: null };
   };
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      toast({
-        title: "Sign in failed",
-        description: error.message,
-        variant: "destructive",
+    setLoading(true);
+    
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
       });
-    }
 
-    return { error };
+      if (error) {
+        toast({
+          title: "Sign in failed",
+          description: error.message,
+          variant: "destructive",
+        });
+      }
+
+      return { error };
+    } finally {
+      setLoading(false);
+    }
   };
 
   const signOut = async () => {
