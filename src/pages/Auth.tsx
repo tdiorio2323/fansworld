@@ -182,9 +182,15 @@ export default function Auth() {
                 type="submit" 
                 className="w-full" 
                 disabled={loading || (isSignUp && formData.password !== formData.confirmPassword)}
+                onClick={() => console.log('Button clicked:', { loading, isSignUp, passwordMatch: formData.password === formData.confirmPassword, formData })}
               >
                 {loading ? 'Please wait...' : (isSignUp ? 'Create Account' : 'Sign In')}
               </Button>
+              
+              {/* Debug info */}
+              <div className="text-xs text-muted-foreground mt-2">
+                Debug: Loading: {loading.toString()}, Passwords match: {(formData.password === formData.confirmPassword).toString()}
+              </div>
             </form>
           </CardContent>
         </Card>
