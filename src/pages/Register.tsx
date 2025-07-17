@@ -1,15 +1,32 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Crown, Heart, ArrowLeft, CheckCircle, Sparkles, Users, DollarSign, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useAuth } from "@/hooks/useAuth";
 
 type Step = 'role' | 'details' | 'verification';
 
 export default function Register() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { signUp } = useAuth();
+  
+  // Check for invite validation
+  const validatedInvite = sessionStorage.getItem('validatedInvite');
+  const inviteData = validatedInvite ? JSON.parse(validatedInvite) : null;
+  
+  // Redirect if no valid invite
+  useEffect(() => {
+    if (!inviteData || !location.state?.fromInvite) {
+      navigate('/');
+      return;
+    }
+  }, [inviteData, location.state, navigate]);
+
   const [step, setStep] = useState<Step>('role');
   const [userRole, setUserRole] = useState<'creator' | 'fan' | ''>('');
   const [showPassword, setShowPassword] = useState(false);

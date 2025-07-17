@@ -7,7 +7,7 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signUp: (email: string, password: string, metadata?: { username?: string; display_name?: string; role?: string }) => Promise<{ error: any }>;
+  signUp: (email: string, password: string, metadata?: { username?: string; display_name?: string; role?: string }, inviteData?: { inviteCode: string; passcode: string }) => Promise<{ error: any }>;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
 }
@@ -52,10 +52,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => subscription.unsubscribe();
   }, [toast]);
 
-  const signUp = async (email: string, password: string, metadata?: { username?: string; display_name?: string; role?: string }) => {
+  const signUp = async (email: string, password: string, metadata?: { username?: string; display_name?: string; role?: string }, inviteData?: { inviteCode: string; passcode: string }) => {
+    // Check if invite validation is required
+    if (!inviteData) {
+      return { 
+        error: { 
+          message: "Registration requires a valid invite. Please use your invite link." 
+        } 
+      };
+    }
+
     const redirectUrl = `${window.location.origin}/`;
     
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -70,14 +79,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         description: error.message,
         variant: "destructive",
       });
-    } else {
-      toast({
-        title: "Check your email",
-        description: "We've sent you a confirmation link to complete your registration.",
-      });
+      return { error };
     }
 
-    return { error };
+    // If signup successful, mark invite as used
+    if (data.user && inviteData) {
+      try {
+        await supabase.functions.invoke('redeem-invite', {
+          body: {
+            action: 'use',
+            invite_code: inviteData.inviteCode,
+            passcode: inviteData.passcode,
+            user_id: data.user.id
+          }
+        });
+      } catch (inviteError) {
+        console.error('Error marking invite as used:', inviteError);
+        // Don't fail the signup for this, just log it
+      }
+    }
+
+    toast({
+      title: "Check your email",
+      description: "We've sent you a confirmation link to complete your registration.",
+    });
+
+    return { error: null };
   };
 
   const signIn = async (email: string, password: string) => {

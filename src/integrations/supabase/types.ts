@@ -94,6 +94,57 @@ export type Database = {
         }
         Relationships: []
       }
+      invites: {
+        Row: {
+          created_at: string
+          created_by: string
+          current_uses: number | null
+          description: string | null
+          expires_at: string | null
+          id: string
+          intended_for: string | null
+          invite_code: string
+          max_uses: number | null
+          passcode: string
+          status: string | null
+          updated_at: string
+          used_at: string | null
+          used_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          current_uses?: number | null
+          description?: string | null
+          expires_at?: string | null
+          id?: string
+          intended_for?: string | null
+          invite_code: string
+          max_uses?: number | null
+          passcode: string
+          status?: string | null
+          updated_at?: string
+          used_at?: string | null
+          used_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          current_uses?: number | null
+          description?: string | null
+          expires_at?: string | null
+          id?: string
+          intended_for?: string | null
+          invite_code?: string
+          max_uses?: number | null
+          passcode?: string
+          status?: string | null
+          updated_at?: string
+          used_at?: string | null
+          used_by?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -101,6 +152,7 @@ export type Database = {
           created_at: string
           display_name: string | null
           id: string
+          is_admin: boolean | null
           is_creator_verified: boolean | null
           role: string | null
           subscription_price: number | null
@@ -114,6 +166,7 @@ export type Database = {
           created_at?: string
           display_name?: string | null
           id?: string
+          is_admin?: boolean | null
           is_creator_verified?: boolean | null
           role?: string | null
           subscription_price?: number | null
@@ -127,6 +180,7 @@ export type Database = {
           created_at?: string
           display_name?: string | null
           id?: string
+          is_admin?: boolean | null
           is_creator_verified?: boolean | null
           role?: string | null
           subscription_price?: number | null
@@ -243,6 +297,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      generate_invite_code: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
+      generate_passcode: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
       update_creator_earnings: {
         Args: { creator_id: string; amount: number; earning_type: string }
         Returns: undefined
