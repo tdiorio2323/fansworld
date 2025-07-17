@@ -130,7 +130,7 @@ export default function Home() {
               <div className="animate-fade-up">
                 <h1 className="text-5xl md:text-8xl font-luxury font-bold text-white mb-8 leading-tight">
                   Enter the
-                  <span className="block text-white mt-2 animate-pulse">Champagne Room</span>
+                  <span className="block text-white mt-2 animate-pulse">Cabana</span>
                 </h1>
               </div>
               

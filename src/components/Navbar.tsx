@@ -58,7 +58,7 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
           </div>
           
           <div className="flex items-center flex-shrink-0 px-6 pt-8 pb-6 relative z-10">
-            <div className="text-3xl font-luxury font-bold text-chrome">Champagne Room</div>
+            <div className="text-3xl font-luxury font-bold text-chrome">Cabana</div>
           </div>
           
           <div className="flex-grow flex flex-col">
@@ -125,7 +125,7 @@ export function Navbar({ userRole = 'fan', username = 'User' }: NavbarProps) {
       {/* Mobile Header */}
       <div className="lg:hidden">
         <div className="flex items-center justify-between h-18 px-6 glass-morphism border-b border-border/60 backdrop-blur-3xl">
-          <div className="text-2xl font-luxury font-bold text-chrome">Champagne Room</div>
+          <div className="text-2xl font-luxury font-bold text-chrome">Cabana</div>
           
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="icon">
