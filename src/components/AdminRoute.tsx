@@ -17,21 +17,52 @@ export function AdminRoute({ children, redirectTo = '/home' }: AdminRouteProps) 
 
   useEffect(() => {
     async function checkAdminStatus() {
+      console.log('AdminRoute: Checking admin status for user:', user?.id);
       if (!user) {
+        console.log('AdminRoute: No user found');
         setCheckingAdmin(false);
         return;
       }
 
       try {
-        const { data: profile } = await supabase
+        console.log('AdminRoute: Querying profiles table for user:', user.id);
+        const { data: profile, error } = await supabase
           .from('profiles')
-          .select('role, is_admin')
+          .select('role, is_admin, username')
           .eq('user_id', user.id)
           .single();
 
-        setIsAdmin(profile?.role === 'admin' || profile?.is_admin === true);
+        console.log('AdminRoute: Profile query result:', { profile, error });
+        
+        if (error) {
+          console.error('AdminRoute: Profile query error:', error);
+          // If no profile exists, create one
+          if (error.code === 'PGRST116') {
+            console.log('AdminRoute: No profile found, creating one...');
+            const { data: newProfile, error: createError } = await supabase
+              .from('profiles')
+              .insert([{
+                user_id: user.id,
+                username: user.email?.split('@')[0] || 'admin',
+                display_name: 'Admin User',
+                is_admin: true,
+                role: 'admin'
+              }])
+              .select()
+              .single();
+            
+            console.log('AdminRoute: Created profile:', { newProfile, createError });
+            setIsAdmin(true);
+          } else {
+            setIsAdmin(false);
+          }
+        } else {
+          const isAdminUser = profile?.role === 'admin' || profile?.is_admin === true;
+          console.log('AdminRoute: Admin check result:', isAdminUser, profile);
+          setIsAdmin(isAdminUser);
+        }
       } catch (error) {
-        console.error('Error checking admin status:', error);
+        console.error('AdminRoute: Unexpected error:', error);
         setIsAdmin(false);
       } finally {
         setCheckingAdmin(false);
