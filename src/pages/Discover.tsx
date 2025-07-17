@@ -1,89 +1,122 @@
-import { useState } from "react";
-import { Search, Filter, Grid, List } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { useState, useEffect } from "react";
+import { Search, Filter, Grid, List, User, Heart, Star, Verified } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CreatorCard } from "@/components/CreatorCard";
-import { MediaTile } from "@/components/MediaTile";
 import Navbar from "@/components/Navbar";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { MediaTile } from "@/components/MediaTile";
+import { CreatorCard } from "@/components/CreatorCard";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 
-const categories = [
-  "All", "Fitness", "Fashion", "Lifestyle", "Gaming", "Music", "Art", "Photography"
-];
+interface Creator {
+  id: string;
+  username: string;
+  display_name: string | null;
+  bio: string | null;
+  avatar_url: string | null;
+  is_creator_verified: boolean | null;
+  subscriber_count?: number;
+  content_count?: number;
+}
 
-const mockCreators = [
-  {
-    username: "sophiarose",
-    displayName: "Sophia Rose",
-    bio: "Fashion enthusiast sharing style tips and exclusive looks",
-    avatar: "/lovable-uploads/0ff59aeb-791c-4e02-b90b-a73ecbcedf9c.png",
-    isVerified: true,
-    subscriberCount: 125000,
-    category: "Fashion"
-  },
-  {
-    username: "alexfitness",
-    displayName: "Alex Martinez",
-    bio: "Fitness coach helping you achieve your best self",
-    avatar: "/lovable-uploads/2db52d3c-95ff-4d97-9f88-8201d599afdf.png",
-    isVerified: true,
-    subscriberCount: 89000,
-    category: "Fitness"
-  },
-  {
-    username: "luna_art",
-    displayName: "Luna Chen",
-    bio: "Digital artist creating stunning visual experiences",
-    avatar: "/lovable-uploads/bf0fcf1a-8488-4afa-b9ae-463c6a03c31c.png",
-    isVerified: true,
-    subscriberCount: 156000,
-    category: "Art"
-  },
-  {
-    username: "musicmaven",
-    displayName: "Riley Thompson",
-    bio: "Musician sharing behind-the-scenes content and exclusive tracks",
-    avatar: "/lovable-uploads/de7e1d60-97a9-4b0d-af11-8f17740ed2ea.png",
-    isVerified: true,
-    subscriberCount: 203000,
-    category: "Music"
-  }
-];
-
-const mockContent = [
-  {
-    id: "1",
-    type: "image" as const,
-    src: "/lovable-uploads/fcb70729-3e74-4ee6-8e5a-c5e0811dfbff.png",
-    thumbnail: "/lovable-uploads/fcb70729-3e74-4ee6-8e5a-c5e0811dfbff.png",
-    title: "Behind the Scenes",
-    isLocked: true,
-    price: 15.99,
-    likes: 2847
-  },
-  {
-    id: "2", 
-    type: "video" as const,
-    src: "/lovable-uploads/bc97ee21-392d-4e4d-8117-27a47a8bed40.png",
-    thumbnail: "/lovable-uploads/bc97ee21-392d-4e4d-8117-27a47a8bed40.png",
-    title: "Morning Routine",
-    isLocked: false,
-    likes: 1923,
-    duration: "3:42"
-  }
-];
+interface Content {
+  id: string;
+  title: string;
+  content_type: string;
+  file_url: string | null;
+  creator_id: string;
+  is_premium: boolean | null;
+  price: number | null;
+  created_at: string;
+}
 
 export default function Discover() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [loading, setLoading] = useState(true);
+  const [creators, setCreators] = useState<Creator[]>([]);
+  const [content, setContent] = useState<Content[]>([]);
 
-  const filteredCreators = mockCreators.filter(creator => {
-    const matchesSearch = creator.displayName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         creator.username.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === "All" || creator.category === selectedCategory;
-    return matchesSearch && matchesCategory;
+  const loadCreators = async () => {
+    try {
+      const { data: profiles } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('role', 'creator')
+        .limit(20);
+
+      const { data: subscriptionCounts } = await supabase
+        .from('subscriptions')
+        .select('creator_id')
+        .eq('status', 'active');
+
+      const creatorsWithStats = profiles?.map(profile => {
+        const subscriberCount = subscriptionCounts?.filter(s => s.creator_id === profile.user_id).length || 0;
+        return {
+          id: profile.id,
+          username: profile.username,
+          display_name: profile.display_name,
+          bio: profile.bio,
+          avatar_url: profile.avatar_url,
+          is_creator_verified: profile.is_creator_verified,
+          subscriber_count: subscriberCount,
+          content_count: 0
+        };
+      }) || [];
+
+      setCreators(creatorsWithStats);
+    } catch (error) {
+      console.error('Error loading creators:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load creators. Please try again.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const loadContent = async () => {
+    try {
+      const { data } = await supabase
+        .from('creator_content')
+        .select(`
+          *,
+          profiles!creator_content_creator_id_fkey(username, display_name, avatar_url)
+        `)
+        .eq('is_premium', false)
+        .order('created_at', { ascending: false })
+        .limit(20);
+
+      setContent(data || []);
+    } catch (error) {
+      console.error('Error loading content:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load content. Please try again.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading(true);
+      await Promise.all([loadCreators(), loadContent()]);
+      setLoading(false);
+    };
+    loadData();
+  }, []);
+
+  const filteredCreators = creators.filter(creator => {
+    const matchesSearch = 
+      creator.display_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      creator.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      creator.bio?.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesSearch;
   });
 
   return (
@@ -102,90 +135,129 @@ export default function Discover() {
         </div>
 
         {/* Search and Filters */}
-        <div className="max-w-4xl mx-auto mb-8">
-          <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="flex gap-4 mb-6">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input
-                placeholder="Search creators and content..."
+                placeholder="Search creators..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-12 text-lg"
+                className="pl-10"
               />
             </div>
+            
             <div className="flex gap-2">
-              <Button variant="outline" size="icon" className="h-12 w-12">
-                <Filter className="w-5 h-5" />
-              </Button>
               <Button
                 variant={viewMode === "grid" ? "default" : "outline"}
                 size="icon"
-                className="h-12 w-12"
                 onClick={() => setViewMode("grid")}
               >
-                <Grid className="w-5 h-5" />
+                <Grid className="w-4 h-4" />
               </Button>
               <Button
                 variant={viewMode === "list" ? "default" : "outline"}
                 size="icon"
-                className="h-12 w-12"
                 onClick={() => setViewMode("list")}
               >
-                <List className="w-5 h-5" />
+                <List className="w-4 h-4" />
               </Button>
             </div>
           </div>
-
-          {/* Categories */}
-          <div className="flex flex-wrap gap-2 mb-8">
-            {categories.map((category) => (
-              <Badge
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                className="cursor-pointer px-4 py-2 text-sm"
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Badge>
-            ))}
-          </div>
         </div>
 
-        {/* Content Tabs */}
-        <Tabs defaultValue="creators" className="max-w-6xl mx-auto">
-          <TabsList className="grid w-full grid-cols-2 mb-8">
-            <TabsTrigger value="creators">Creators</TabsTrigger>
-            <TabsTrigger value="content">Content</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="creators">
-            <div className={`grid gap-6 ${
-              viewMode === "grid" 
-                ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" 
-                : "grid-cols-1"
-            }`}>
-              {filteredCreators.map((creator) => (
-                <CreatorCard key={creator.username} {...creator} />
-              ))}
-            </div>
-            
-            {filteredCreators.length === 0 && (
+        <div className="max-w-6xl mx-auto">
+          {/* Creators Section */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold mb-6">Featured Creators</h2>
+            {loading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {[...Array(8)].map((_, i) => (
+                  <Card key={i} className="overflow-hidden">
+                    <CardContent className="p-6">
+                      <div className="animate-pulse">
+                        <div className="w-16 h-16 bg-muted rounded-full mx-auto mb-4"></div>
+                        <div className="h-4 bg-muted rounded w-3/4 mx-auto mb-2"></div>
+                        <div className="h-3 bg-muted rounded w-1/2 mx-auto mb-4"></div>
+                        <div className="h-8 bg-muted rounded w-full"></div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            ) : filteredCreators.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-xl text-muted-foreground">
-                  No creators found matching your search criteria
+                <User className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
+                <h3 className="text-xl font-semibold mb-2">No creators found</h3>
+                <p className="text-muted-foreground">
+                  {searchQuery ? "Try adjusting your search terms" : "No creators have joined yet"}
                 </p>
               </div>
+            ) : (
+              <div className={`grid gap-6 ${
+                viewMode === "grid" 
+                  ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" 
+                  : "grid-cols-1"
+              }`}>
+                {filteredCreators.map((creator) => (
+                  <CreatorCard
+                    key={creator.id}
+                    username={creator.username}
+                    displayName={creator.display_name || creator.username}
+                    bio={creator.bio || ""}
+                    avatar={creator.avatar_url || ""}
+                    isVerified={creator.is_creator_verified || false}
+                    subscriberCount={creator.subscriber_count || 0}
+                  />
+                ))}
+              </div>
             )}
-          </TabsContent>
+          </div>
 
-          <TabsContent value="content">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {mockContent.map((content) => (
-                <MediaTile key={content.id} {...content} />
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+          {/* Content Section */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold mb-6">Featured Content</h2>
+            {loading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[...Array(6)].map((_, i) => (
+                  <Card key={i} className="overflow-hidden">
+                    <div className="animate-pulse">
+                      <div className="h-48 bg-muted"></div>
+                      <div className="p-4">
+                        <div className="h-4 bg-muted rounded w-3/4 mb-2"></div>
+                        <div className="h-3 bg-muted rounded w-1/2"></div>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            ) : content.length === 0 ? (
+              <div className="text-center py-12">
+                <Heart className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
+                <h3 className="text-xl font-semibold mb-2">No content available</h3>
+                <p className="text-muted-foreground">
+                  Check back later for new content from creators
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {content.map((item) => (
+                  <MediaTile
+                    key={item.id}
+                    id={item.id}
+                    type={item.content_type === 'video' ? 'video' : 'image'}
+                    src={item.file_url || ''}
+                    thumbnail={item.file_url || ''}
+                    title={item.title}
+                    isLocked={item.is_premium || false}
+                    price={item.price ? item.price / 100 : undefined}
+                    likes={0}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
