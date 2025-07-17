@@ -58,8 +58,8 @@ serve(async (req) => {
         let invite_code, passcode;
         let attempts = 0;
         do {
-          const { data: codes } = await supabaseClient.rpc('generate_invite_code');
-          invite_code = codes;
+          const { data: inviteCodeData } = await supabaseClient.rpc('generate_invite_code');
+          invite_code = inviteCodeData;
           const { data: passcodeData } = await supabaseClient.rpc('generate_passcode');
           passcode = passcodeData;
           attempts++;
