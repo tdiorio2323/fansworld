@@ -73,8 +73,8 @@ export function AdminRoute({ children, redirectTo = '/home' }: AdminRouteProps) 
     checkAdminStatus();
   }, [user]);
 
-  if (loading || checkingAdmin) {
-    console.log('AdminRoute: Still loading or checking admin status', { loading, checkingAdmin });
+  if (loading || checkingAdmin || isAdmin === null) {
+    console.log('AdminRoute: Still loading or checking admin status', { loading, checkingAdmin, isAdmin });
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="space-y-4 w-full max-w-md px-4">
