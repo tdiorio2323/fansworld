@@ -61,6 +61,39 @@ export type Database = {
           },
         ]
       }
+      creator_earnings: {
+        Row: {
+          creator_id: string
+          id: string
+          last_payout_date: string | null
+          ppv_earnings: number | null
+          subscription_earnings: number | null
+          tip_earnings: number | null
+          total_earnings: number | null
+          updated_at: string
+        }
+        Insert: {
+          creator_id: string
+          id?: string
+          last_payout_date?: string | null
+          ppv_earnings?: number | null
+          subscription_earnings?: number | null
+          tip_earnings?: number | null
+          total_earnings?: number | null
+          updated_at?: string
+        }
+        Update: {
+          creator_id?: string
+          id?: string
+          last_payout_date?: string | null
+          ppv_earnings?: number | null
+          subscription_earnings?: number | null
+          tip_earnings?: number | null
+          total_earnings?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -68,7 +101,9 @@ export type Database = {
           created_at: string
           display_name: string | null
           id: string
+          is_creator_verified: boolean | null
           role: string | null
+          subscription_price: number | null
           updated_at: string
           user_id: string
           username: string
@@ -79,7 +114,9 @@ export type Database = {
           created_at?: string
           display_name?: string | null
           id?: string
+          is_creator_verified?: boolean | null
           role?: string | null
+          subscription_price?: number | null
           updated_at?: string
           user_id: string
           username: string
@@ -90,7 +127,9 @@ export type Database = {
           created_at?: string
           display_name?: string | null
           id?: string
+          is_creator_verified?: boolean | null
           role?: string | null
+          subscription_price?: number | null
           updated_at?: string
           user_id?: string
           username?: string
@@ -99,27 +138,42 @@ export type Database = {
       }
       subscriptions: {
         Row: {
+          amount: number | null
           created_at: string
           creator_id: string
+          currency: string | null
           expires_at: string | null
           id: string
+          interval_type: string | null
           status: string | null
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
           subscriber_id: string
         }
         Insert: {
+          amount?: number | null
           created_at?: string
           creator_id: string
+          currency?: string | null
           expires_at?: string | null
           id?: string
+          interval_type?: string | null
           status?: string | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
           subscriber_id: string
         }
         Update: {
+          amount?: number | null
           created_at?: string
           creator_id?: string
+          currency?: string | null
           expires_at?: string | null
           id?: string
+          interval_type?: string | null
           status?: string | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
           subscriber_id?: string
         }
         Relationships: [
@@ -138,6 +192,51 @@ export type Database = {
             referencedColumns: ["user_id"]
           },
         ]
+      }
+      transactions: {
+        Row: {
+          amount: number
+          content_id: string | null
+          created_at: string
+          creator_id: string
+          currency: string | null
+          id: string
+          status: string | null
+          stripe_payment_intent_id: string | null
+          stripe_session_id: string | null
+          type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          content_id?: string | null
+          created_at?: string
+          creator_id: string
+          currency?: string | null
+          id?: string
+          status?: string | null
+          stripe_payment_intent_id?: string | null
+          stripe_session_id?: string | null
+          type: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          content_id?: string | null
+          created_at?: string
+          creator_id?: string
+          currency?: string | null
+          id?: string
+          status?: string | null
+          stripe_payment_intent_id?: string | null
+          stripe_session_id?: string | null
+          type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
       }
     }
     Views: {

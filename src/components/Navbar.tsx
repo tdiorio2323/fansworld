@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-
-  Plus,
-  Menu,
-  X
-} from "lucide-react";
-=======
 import { useState } from "react";
->>>>>>> 2f22c6f24cfd8089a834064e240f68ea540b4e52
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
