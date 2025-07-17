@@ -1,15 +1,32 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Eye, EyeOff, Crown, Heart, ArrowLeft, CheckCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Eye, EyeOff, Crown, Heart, ArrowLeft, CheckCircle, Sparkles, Users, DollarSign, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useAuth } from "@/hooks/useAuth";
 
 type Step = 'role' | 'details' | 'verification';
 
 export default function Register() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { signUp } = useAuth();
+  
+  // Check for invite validation
+  const validatedInvite = sessionStorage.getItem('validatedInvite');
+  const inviteData = validatedInvite ? JSON.parse(validatedInvite) : null;
+  
+  // Redirect if no valid invite
+  useEffect(() => {
+    if (!inviteData || !location.state?.fromInvite) {
+      navigate('/');
+      return;
+    }
+  }, [inviteData, location.state, navigate]);
+
   const [step, setStep] = useState<Step>('role');
   const [userRole, setUserRole] = useState<'creator' | 'fan' | ''>('');
   const [showPassword, setShowPassword] = useState(false);
@@ -58,13 +75,67 @@ export default function Register() {
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gradient mb-4">Join FansWorld</h1>
+            <h1 className="text-4xl font-bold text-gradient mb-4">Join Cabana</h1>
             <p className="text-muted-foreground text-lg">
               Choose how you want to experience our premium platform
             </p>
           </div>
 
           <div className="space-y-4">
+            {/* Creator Interactive Element */}
+            <div className="card-luxury group hover:shadow-glow transition-all duration-500 overflow-hidden">
+              <div className="text-center p-6 flex flex-col items-center">
+                {/* Circular Progress Ring */}
+                <div className="relative w-14 h-14 mb-4">
+                  <svg className="w-14 h-14 transform -rotate-90" viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="currentColor"
+                      strokeWidth="8"
+                      fill="none"
+                      className="text-muted/20"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="url(#creator-gradient)"
+                      strokeWidth="8"
+                      fill="none"
+                      strokeDasharray={`${2 * Math.PI * 40}`}
+                      strokeDashoffset={`${2 * Math.PI * 40 * (1 - 0.75)}`}
+                      className="transition-all duration-1000 group-hover:stroke-dashoffset-0"
+                      strokeLinecap="round"
+                    />
+                    <defs>
+                      <linearGradient id="creator-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="hsl(var(--primary))" />
+                        <stop offset="100%" stopColor="hsl(var(--primary-glow))" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-gradient-primary p-2 rounded-full group-hover:scale-110 transition-transform duration-300">
+                      <DollarSign className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                </div>
+                <h4 className="font-bold text-gradient mb-3">Creator Earnings</h4>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary">$5.2K</div>
+                    <div className="text-muted-foreground">Avg/Month</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary">75%</div>
+                    <div className="text-muted-foreground">Success Rate</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Creator Option */}
             <div 
               onClick={() => handleRoleSelect('creator')}
@@ -90,6 +161,60 @@ export default function Register() {
                   <div className="flex items-center gap-2 text-sm text-primary">
                     <CheckCircle className="w-4 h-4" />
                     <span>Direct messaging</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Fan Interactive Element */}
+            <div className="card-luxury group hover:shadow-glow transition-all duration-500 overflow-hidden">
+              <div className="text-center p-6 flex flex-col items-center">
+                {/* Circular Community Ring */}
+                <div className="relative w-14 h-14 mb-4">
+                  <svg className="w-14 h-14 transform -rotate-90" viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="currentColor"
+                      strokeWidth="8"
+                      fill="none"
+                      className="text-muted/20"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="url(#fan-gradient)"
+                      strokeWidth="8"
+                      fill="none"
+                      strokeDasharray={`${2 * Math.PI * 40}`}
+                      strokeDashoffset={`${2 * Math.PI * 40 * (1 - 0.9)}`}
+                      className="transition-all duration-1000 group-hover:stroke-dashoffset-0"
+                      strokeLinecap="round"
+                    />
+                    <defs>
+                      <linearGradient id="fan-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="hsl(var(--accent))" />
+                        <stop offset="100%" stopColor="hsl(var(--primary))" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-gradient-to-r from-accent to-primary p-2 rounded-full group-hover:scale-110 transition-transform duration-300">
+                      <Users className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                </div>
+                <h4 className="font-bold text-gradient mb-3">Community</h4>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-accent">2.4K+</div>
+                    <div className="text-muted-foreground">Creators</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-accent">90%</div>
+                    <div className="text-muted-foreground">Active Daily</div>
                   </div>
                 </div>
               </div>
@@ -338,7 +463,7 @@ export default function Register() {
           </div>
           
           <h1 className="text-3xl font-bold text-gradient mb-4">
-            Welcome to FansWorld!
+            Welcome to Cabana!
           </h1>
           
           <p className="text-muted-foreground mb-8">

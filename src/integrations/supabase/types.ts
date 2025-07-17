@@ -14,13 +14,301 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      creator_content: {
+        Row: {
+          content_type: string
+          created_at: string
+          creator_id: string
+          description: string | null
+          file_url: string | null
+          id: string
+          is_premium: boolean | null
+          price: number | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content_type: string
+          created_at?: string
+          creator_id: string
+          description?: string | null
+          file_url?: string | null
+          id?: string
+          is_premium?: boolean | null
+          price?: number | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content_type?: string
+          created_at?: string
+          creator_id?: string
+          description?: string | null
+          file_url?: string | null
+          id?: string
+          is_premium?: boolean | null
+          price?: number | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "creator_content_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
+      creator_earnings: {
+        Row: {
+          creator_id: string
+          id: string
+          last_payout_date: string | null
+          ppv_earnings: number | null
+          subscription_earnings: number | null
+          tip_earnings: number | null
+          total_earnings: number | null
+          updated_at: string
+        }
+        Insert: {
+          creator_id: string
+          id?: string
+          last_payout_date?: string | null
+          ppv_earnings?: number | null
+          subscription_earnings?: number | null
+          tip_earnings?: number | null
+          total_earnings?: number | null
+          updated_at?: string
+        }
+        Update: {
+          creator_id?: string
+          id?: string
+          last_payout_date?: string | null
+          ppv_earnings?: number | null
+          subscription_earnings?: number | null
+          tip_earnings?: number | null
+          total_earnings?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      invites: {
+        Row: {
+          created_at: string
+          created_by: string
+          current_uses: number | null
+          description: string | null
+          expires_at: string | null
+          id: string
+          intended_for: string | null
+          invite_code: string
+          max_uses: number | null
+          passcode: string
+          status: string | null
+          updated_at: string
+          used_at: string | null
+          used_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          current_uses?: number | null
+          description?: string | null
+          expires_at?: string | null
+          id?: string
+          intended_for?: string | null
+          invite_code: string
+          max_uses?: number | null
+          passcode: string
+          status?: string | null
+          updated_at?: string
+          used_at?: string | null
+          used_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          current_uses?: number | null
+          description?: string | null
+          expires_at?: string | null
+          id?: string
+          intended_for?: string | null
+          invite_code?: string
+          max_uses?: number | null
+          passcode?: string
+          status?: string | null
+          updated_at?: string
+          used_at?: string | null
+          used_by?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          is_admin: boolean | null
+          is_creator_verified: boolean | null
+          role: string | null
+          subscription_price: number | null
+          updated_at: string
+          user_id: string
+          username: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          is_admin?: boolean | null
+          is_creator_verified?: boolean | null
+          role?: string | null
+          subscription_price?: number | null
+          updated_at?: string
+          user_id: string
+          username: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          is_admin?: boolean | null
+          is_creator_verified?: boolean | null
+          role?: string | null
+          subscription_price?: number | null
+          updated_at?: string
+          user_id?: string
+          username?: string
+        }
+        Relationships: []
+      }
+      subscriptions: {
+        Row: {
+          amount: number | null
+          created_at: string
+          creator_id: string
+          currency: string | null
+          expires_at: string | null
+          id: string
+          interval_type: string | null
+          status: string | null
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
+          subscriber_id: string
+        }
+        Insert: {
+          amount?: number | null
+          created_at?: string
+          creator_id: string
+          currency?: string | null
+          expires_at?: string | null
+          id?: string
+          interval_type?: string | null
+          status?: string | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          subscriber_id: string
+        }
+        Update: {
+          amount?: number | null
+          created_at?: string
+          creator_id?: string
+          currency?: string | null
+          expires_at?: string | null
+          id?: string
+          interval_type?: string | null
+          status?: string | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          subscriber_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subscriptions_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "subscriptions_subscriber_id_fkey"
+            columns: ["subscriber_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
+      transactions: {
+        Row: {
+          amount: number
+          content_id: string | null
+          created_at: string
+          creator_id: string
+          currency: string | null
+          id: string
+          status: string | null
+          stripe_payment_intent_id: string | null
+          stripe_session_id: string | null
+          type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          content_id?: string | null
+          created_at?: string
+          creator_id: string
+          currency?: string | null
+          id?: string
+          status?: string | null
+          stripe_payment_intent_id?: string | null
+          stripe_session_id?: string | null
+          type: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          content_id?: string | null
+          created_at?: string
+          creator_id?: string
+          currency?: string | null
+          id?: string
+          status?: string | null
+          stripe_payment_intent_id?: string | null
+          stripe_session_id?: string | null
+          type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_invite_code: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
+      generate_passcode: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
+      update_creator_earnings: {
+        Args: { creator_id: string; amount: number; earning_type: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

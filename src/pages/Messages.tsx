@@ -19,7 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { Navbar } from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 
 interface Conversation {
   id: string;
@@ -175,7 +175,7 @@ export default function Messages() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar userRole="creator" username="Lilu" />
+      <Navbar />
       
       <div className="lg:pl-64 pb-20 lg:pb-0 h-screen">
         <div className="flex h-full">

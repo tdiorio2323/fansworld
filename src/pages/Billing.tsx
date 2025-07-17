@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   CreditCard, 
   Download, 
@@ -12,171 +12,201 @@ import {
   Banknote,
   MoreHorizontal,
   Check,
-  X
+  X,
+  Loader2,
+  AlertCircle
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Navbar } from "@/components/Navbar";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import Navbar from "@/components/Navbar";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
-interface PaymentMethod {
+interface DatabaseTransaction {
   id: string;
-  type: 'card' | 'bank' | 'paypal';
-  last4?: string;
-  brand?: string;
-  expiryMonth?: number;
-  expiryYear?: number;
-  isDefault: boolean;
-  email?: string;
-  bankName?: string;
-  accountNumber?: string;
+  type: string;
+  amount: number;
+  status: string | null;
+  created_at: string;
+  creator_id: string;
+  content_id: string | null;
+  currency: string | null;
+  stripe_payment_intent_id: string | null;
+  stripe_session_id: string | null;
 }
 
-interface Transaction {
+interface DatabaseSubscription {
   id: string;
-  type: 'subscription' | 'tip' | 'ppv' | 'withdrawal' | 'refund';
+  creator_id: string;
+  subscriber_id: string;
+  amount: number | null;
+  status: string | null;
+  created_at: string;
+  expires_at: string | null;
+  currency: string | null;
+  interval_type: string | null;
+  stripe_customer_id: string | null;
+  stripe_subscription_id: string | null;
+}
+
+interface CreatorProfile {
+  user_id: string;
+  username: string;
+  display_name: string | null;
+  avatar_url: string | null;
+}
+
+interface ProcessedTransaction {
+  id: string;
+  type: string;
   amount: number;
-  status: 'completed' | 'pending' | 'failed';
+  status: string;
   date: string;
   description: string;
-  from?: {
-    username: string;
-    displayName: string;
-    avatar: string;
-  };
+  creator?: CreatorProfile;
 }
 
-interface Subscription {
+interface ProcessedSubscription {
   id: string;
-  creator: {
-    username: string;
-    displayName: string;
-    avatar: string;
-  };
+  creator: CreatorProfile;
   price: number;
-  status: 'active' | 'expired' | 'cancelled';
-  nextBilling: string;
+  status: string;
+  nextBilling: string | null;
   startDate: string;
+  currency: string;
 }
-
-const paymentMethods: PaymentMethod[] = [
-  {
-    id: "1",
-    type: "card",
-    brand: "Visa",
-    last4: "4242",
-    expiryMonth: 12,
-    expiryYear: 2027,
-    isDefault: true
-  },
-  {
-    id: "2",
-    type: "paypal",
-    email: "tyler@example.com",
-    isDefault: false
-  },
-  {
-    id: "3",
-    type: "bank",
-    bankName: "Chase Bank",
-    accountNumber: "****1234",
-    isDefault: false
-  }
-];
-
-const transactions: Transaction[] = [
-  {
-    id: "1",
-    type: "subscription",
-    amount: 12.99,
-    status: "completed",
-    date: "2024-01-15",
-    description: "Monthly subscription",
-    from: {
-      username: "lilu_f",
-      displayName: "Lilu ✨",
-      avatar: "/placeholder-avatar.jpg"
-    }
-  },
-  {
-    id: "2",
-    type: "tip",
-    amount: 25.00,
-    status: "completed",
-    date: "2024-01-14",
-    description: "Tip for amazing content",
-    from: {
-      username: "olivia_b",
-      displayName: "Olivia 💖",
-      avatar: "/placeholder-avatar.jpg"
-    }
-  },
-  {
-    id: "3",
-    type: "ppv",
-    amount: 7.99,
-    status: "completed",
-    date: "2024-01-13",
-    description: "Premium photo set",
-    from: {
-      username: "milky_di",
-      displayName: "Milky Di ✨",
-      avatar: "/placeholder-avatar.jpg"
-    }
-  },
-  {
-    id: "4",
-    type: "refund",
-    amount: -5.00,
-    status: "completed",
-    date: "2024-01-12",
-    description: "Refund for cancelled subscription"
-  }
-];
-
-const subscriptions: Subscription[] = [
-  {
-    id: "1",
-    creator: {
-      username: "lilu_f",
-      displayName: "Lilu ✨",
-      avatar: "/placeholder-avatar.jpg"
-    },
-    price: 12.99,
-    status: "active",
-    nextBilling: "2024-02-15",
-    startDate: "2024-01-15"
-  },
-  {
-    id: "2",
-    creator: {
-      username: "olivia_b",
-      displayName: "Olivia 💖",
-      avatar: "/placeholder-avatar.jpg"
-    },
-    price: 9.99,
-    status: "active",
-    nextBilling: "2024-02-10",
-    startDate: "2024-01-10"
-  },
-  {
-    id: "3",
-    creator: {
-      username: "sarah_creator",
-      displayName: "Sarah M",
-      avatar: "/placeholder-avatar.jpg"
-    },
-    price: 14.99,
-    status: "cancelled",
-    nextBilling: "2024-01-28",
-    startDate: "2023-12-28"
-  }
-];
 
 export default function Billing() {
+  const { user } = useAuth();
+  const { toast } = useToast();
+  
   const [activeTab, setActiveTab] = useState("overview");
+  const [transactions, setTransactions] = useState<ProcessedTransaction[]>([]);
+  const [subscriptions, setSubscriptions] = useState<ProcessedSubscription[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (user) {
+      loadBillingData();
+    }
+  }, [user]);
+
+  const loadBillingData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      // Load transactions for the current user
+      const { data: transactionData, error: transactionError } = await supabase
+        .from('transactions')
+        .select('*')
+        .eq('user_id', user?.id)
+        .order('created_at', { ascending: false });
+
+      if (transactionError) {
+        console.error('Error loading transactions:', transactionError);
+      }
+
+      // Load subscriptions where user is the subscriber
+      const { data: subscriptionData, error: subscriptionError } = await supabase
+        .from('subscriptions')
+        .select('*')
+        .eq('subscriber_id', user?.id)
+        .order('created_at', { ascending: false });
+
+      if (subscriptionError) {
+        console.error('Error loading subscriptions:', subscriptionError);
+      }
+
+      // Get creator profiles for transactions and subscriptions
+      const creatorIds = new Set([
+        ...(transactionData?.map(t => t.creator_id) || []),
+        ...(subscriptionData?.map(s => s.creator_id) || [])
+      ]);
+
+      const { data: creatorProfiles, error: profileError } = await supabase
+        .from('profiles')
+        .select('user_id, username, display_name, avatar_url')
+        .in('user_id', Array.from(creatorIds));
+
+      if (profileError) {
+        console.error('Error loading creator profiles:', profileError);
+      }
+
+      // Create creator map for quick lookup
+      const creatorMap = new Map<string, CreatorProfile>();
+      creatorProfiles?.forEach(profile => {
+        creatorMap.set(profile.user_id, profile);
+      });
+
+      // Process transactions
+      const processedTransactions: ProcessedTransaction[] = (transactionData || []).map(transaction => ({
+        id: transaction.id,
+        type: transaction.type,
+        amount: transaction.amount / 100, // Convert from cents
+        status: transaction.status || 'pending',
+        date: new Date(transaction.created_at).toLocaleDateString(),
+        description: getTransactionDescription(transaction.type, creatorMap.get(transaction.creator_id)),
+        creator: creatorMap.get(transaction.creator_id)
+      }));
+
+      // Process subscriptions
+      const processedSubscriptions: ProcessedSubscription[] = (subscriptionData || []).map(subscription => {
+        const creator = creatorMap.get(subscription.creator_id);
+        return {
+          id: subscription.id,
+          creator: creator || {
+            user_id: subscription.creator_id,
+            username: 'Unknown',
+            display_name: 'Unknown Creator',
+            avatar_url: null
+          },
+          price: (subscription.amount || 0) / 100, // Convert from cents
+          status: subscription.status || 'active',
+          nextBilling: subscription.expires_at,
+          startDate: new Date(subscription.created_at).toLocaleDateString(),
+          currency: subscription.currency || 'usd'
+        };
+      });
+
+      setTransactions(processedTransactions);
+      setSubscriptions(processedSubscriptions);
+
+    } catch (err) {
+      console.error('Error loading billing data:', err);
+      setError(err instanceof Error ? err.message : 'Failed to load billing data');
+      toast({
+        title: "Error",
+        description: "Failed to load billing information",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getTransactionDescription = (type: string, creator?: CreatorProfile): string => {
+    const creatorName = creator?.display_name || creator?.username || 'Unknown Creator';
+    
+    switch (type) {
+      case 'subscription':
+        return `Monthly subscription to ${creatorName}`;
+      case 'tip':
+        return `Tip sent to ${creatorName}`;
+      case 'ppv':
+        return `Premium content from ${creatorName}`;
+      case 'refund':
+        return 'Subscription refund';
+      default:
+        return `Payment to ${creatorName}`;
+    }
+  };
 
   const totalSpent = transactions
     .filter(t => t.amount > 0)
@@ -184,19 +214,6 @@ export default function Billing() {
   
   const activeSubscriptions = subscriptions.filter(s => s.status === 'active');
   const monthlySpending = activeSubscriptions.reduce((sum, s) => sum + s.price, 0);
-
-  const getPaymentIcon = (method: PaymentMethod) => {
-    switch (method.type) {
-      case 'card':
-        return <CreditCard className="w-5 h-5" />;
-      case 'paypal':
-        return <Mail className="w-5 h-5" />;
-      case 'bank':
-        return <Banknote className="w-5 h-5" />;
-      default:
-        return <Wallet className="w-5 h-5" />;
-    }
-  };
 
   const getTransactionIcon = (type: string) => {
     switch (type) {
@@ -232,9 +249,70 @@ export default function Billing() {
     }
   };
 
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="lg:pl-64 pb-20 lg:pb-0">
+          <div className="flex items-center justify-center min-h-[60vh]">
+            <Card className="card-luxury p-8">
+              <CardContent className="flex flex-col items-center space-y-4">
+                <AlertCircle className="w-12 h-12 text-muted-foreground" />
+                <h2 className="text-xl font-semibold">Access Denied</h2>
+                <p className="text-muted-foreground text-center">
+                  Please log in to view your billing information.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="lg:pl-64 pb-20 lg:pb-0">
+          <div className="flex items-center justify-center min-h-[60vh]">
+            <Card className="card-luxury p-8">
+              <CardContent className="flex flex-col items-center space-y-4">
+                <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                <p className="text-muted-foreground">Loading billing information...</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="lg:pl-64 pb-20 lg:pb-0">
+          <div className="flex items-center justify-center min-h-[60vh]">
+            <Card className="card-luxury p-8">
+              <CardContent className="flex flex-col items-center space-y-4">
+                <AlertCircle className="w-12 h-12 text-destructive" />
+                <h2 className="text-xl font-semibold">Error Loading Data</h2>
+                <p className="text-muted-foreground text-center">{error}</p>
+                <Button onClick={loadBillingData} variant="outline">
+                  Try Again
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
-      <Navbar userRole="fan" username="Tyler" />
+      <Navbar />
       
       <div className="lg:pl-64 pb-20 lg:pb-0">
         <div className="px-4 sm:px-6 lg:px-8 py-8">
@@ -338,14 +416,14 @@ export default function Billing() {
                             </Badge>
                           </div>
                           <p className="text-sm text-muted-foreground">{transaction.description}</p>
-                          {transaction.from && (
+                          {transaction.creator && (
                             <div className="flex items-center gap-2 mt-1">
                               <Avatar className="w-4 h-4">
-                                <AvatarImage src={transaction.from.avatar} />
-                                <AvatarFallback>{transaction.from.displayName[0]}</AvatarFallback>
+                                <AvatarImage src={transaction.creator.avatar_url || undefined} />
+                                <AvatarFallback>{(transaction.creator.display_name || transaction.creator.username)[0]}</AvatarFallback>
                               </Avatar>
                               <span className="text-xs text-muted-foreground">
-                                {transaction.from.displayName}
+                                {transaction.creator.display_name || transaction.creator.username}
                               </span>
                             </div>
                           )}
@@ -390,13 +468,13 @@ export default function Billing() {
                               </Badge>
                             </div>
                             <p className="text-sm text-muted-foreground">{transaction.description}</p>
-                            {transaction.from && (
+                            {transaction.creator && (
                               <div className="flex items-center gap-2 mt-2">
                                 <Avatar className="w-5 h-5">
-                                  <AvatarImage src={transaction.from.avatar} />
-                                  <AvatarFallback>{transaction.from.displayName[0]}</AvatarFallback>
+                                  <AvatarImage src={transaction.creator.avatar_url || undefined} />
+                                  <AvatarFallback>{(transaction.creator.display_name || transaction.creator.username)[0]}</AvatarFallback>
                                 </Avatar>
-                                <span className="text-sm">{transaction.from.displayName}</span>
+                                <span className="text-sm">{transaction.creator.display_name || transaction.creator.username}</span>
                               </div>
                             )}
                           </div>
@@ -427,12 +505,12 @@ export default function Billing() {
                       <div key={subscription.id} className="flex items-center justify-between p-4 bg-secondary/20 rounded-2xl">
                         <div className="flex items-center gap-4">
                           <Avatar className="w-12 h-12">
-                            <AvatarImage src={subscription.creator.avatar} />
-                            <AvatarFallback>{subscription.creator.displayName[0]}</AvatarFallback>
+                            <AvatarImage src={subscription.creator.avatar_url || undefined} />
+                            <AvatarFallback>{(subscription.creator.display_name || subscription.creator.username)[0]}</AvatarFallback>
                           </Avatar>
                           
                           <div>
-                            <h3 className="font-semibold">{subscription.creator.displayName}</h3>
+                            <h3 className="font-semibold">{subscription.creator.display_name || subscription.creator.username}</h3>
                             <p className="text-sm text-muted-foreground">@{subscription.creator.username}</p>
                             <div className="flex items-center gap-4 mt-1 text-sm text-muted-foreground">
                               <span>Started: {subscription.startDate}</span>
@@ -468,51 +546,17 @@ export default function Billing() {
                   <CardDescription>Manage your saved payment methods</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    {paymentMethods.map((method) => (
-                      <div key={method.id} className="flex items-center justify-between p-4 bg-secondary/20 rounded-2xl">
-                        <div className="flex items-center gap-4">
-                          <div className="p-2 bg-primary/20 rounded-lg">
-                            {getPaymentIcon(method)}
-                          </div>
-                          
-                          <div>
-                            <div className="flex items-center gap-2 mb-1">
-                              <h3 className="font-semibold capitalize">
-                                {method.type === 'card' ? `${method.brand} •••• ${method.last4}` :
-                                 method.type === 'paypal' ? method.email :
-                                 `${method.bankName} •••• ${method.accountNumber}`}
-                              </h3>
-                              {method.isDefault && (
-                                <Badge variant="default">Default</Badge>
-                              )}
-                            </div>
-                            {method.type === 'card' && (
-                              <p className="text-sm text-muted-foreground">
-                                Expires {method.expiryMonth}/{method.expiryYear}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center gap-2">
-                          {!method.isDefault && (
-                            <Button variant="outline" size="sm">
-                              Set Default
-                            </Button>
-                          )}
-                          <Button variant="ghost" size="sm">
-                            <MoreHorizontal className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      </div>
-                    ))}
+                  <div className="text-center py-12">
+                    <CreditCard className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
+                    <h3 className="text-xl font-semibold mb-2">No Payment Methods</h3>
+                    <p className="text-muted-foreground mb-6">
+                      Add a payment method to make purchases and subscribe to creators.
+                    </p>
+                    <Button className="btn-luxury">
+                      <Plus className="w-4 h-4 mr-2" />
+                      Add Payment Method
+                    </Button>
                   </div>
-                  
-                  <Button className="btn-luxury w-full mt-6">
-                    <Plus className="w-4 h-4 mr-2" />
-                    Add New Payment Method
-                  </Button>
                 </CardContent>
               </Card>
             </TabsContent>

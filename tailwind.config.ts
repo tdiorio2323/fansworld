@@ -63,13 +63,32 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				chrome: {
-					light: 'hsl(var(--chrome-light))',
-					medium: 'hsl(var(--chrome-medium))',
-					dark: 'hsl(var(--chrome-dark))'
+					platinum: 'hsl(var(--chrome-platinum))',
+					silver: 'hsl(var(--chrome-silver))',
+					dark: 'hsl(var(--chrome-dark))',
+					black: 'hsl(var(--chrome-black))',
+					highlight: 'hsl(var(--chrome-highlight))',
+					accent: 'hsl(var(--chrome-accent))',
+					glow: 'hsl(var(--chrome-glow))'
+				},
+				neon: {
+					blue: 'hsl(var(--neon-blue))',
+					pink: 'hsl(var(--electric-pink))',
+					purple: 'hsl(var(--cyber-purple))',
+					orange: 'hsl(var(--vibrant-orange))',
+					green: 'hsl(var(--lime-green))'
+				},
+				metal: {
+					rose: 'hsl(var(--rose-gold))',
+					gold: 'hsl(var(--warm-gold))',
+					platinum: 'hsl(var(--platinum))',
+					titanium: 'hsl(var(--titanium))',
+					obsidian: 'hsl(var(--obsidian))'
 				},
 				glass: {
 					surface: 'hsl(var(--glass-surface))',
-					border: 'hsl(var(--glass-border))'
+					border: 'hsl(var(--glass-border))',
+					tint: 'hsl(var(--glass-tint))'
 				},
 				holo: {
 					pink: 'hsl(var(--holo-pink))',
@@ -77,7 +96,8 @@ export default {
 					purple: 'hsl(var(--holo-purple))',
 					gold: 'hsl(var(--holo-gold))',
 					cyan: 'hsl(var(--holo-cyan))',
-					green: 'hsl(var(--holo-green))'
+					green: 'hsl(var(--holo-green))',
+					orange: 'hsl(var(--holo-orange))'
 				}
 			},
 			backgroundImage: {
@@ -86,6 +106,11 @@ export default {
 				'gradient-card': 'var(--gradient-card)',
 				'gradient-glass': 'var(--gradient-glass)',
 				'gradient-chrome': 'var(--gradient-chrome)',
+				'gradient-chrome-luxury': 'var(--gradient-chrome-luxury)',
+				'gradient-chrome-mirror': 'var(--gradient-chrome-mirror)',
+				'gradient-chrome-neon': 'var(--gradient-chrome-neon)',
+				'gradient-liquid-metal': 'var(--gradient-liquid-metal)',
+				'gradient-cyber-chrome': 'var(--gradient-cyber-chrome)',
 				'gradient-holo': 'var(--gradient-holo)',
 				'gradient-crystal': 'var(--gradient-crystal)',
 				'gradient-champagne': 'var(--gradient-champagne)',
@@ -95,6 +120,9 @@ export default {
 				'glow': 'var(--shadow-glow)',
 				'card': 'var(--shadow-card)',
 				'chrome': 'var(--shadow-chrome)',
+				'chrome-glow': 'var(--shadow-chrome-glow)',
+				'neon': 'var(--shadow-neon)',
+				'liquid': 'var(--shadow-liquid)',
 				'glass': 'var(--shadow-glass)',
 				'holo': 'var(--shadow-holo)',
 			},
@@ -106,7 +134,7 @@ export default {
 				'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
 				'display': ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
 				'serif': ['Playfair Display', 'Georgia', 'serif'],
-				'luxury': ['Playfair Display', 'Georgia', 'serif'],
+				'luxury': ['Montserrat', 'Poppins', 'system-ui', 'sans-serif'],
 			},
 			fontSize: {
 				'xs': ['0.75rem', { lineHeight: '1rem' }],
@@ -178,5 +206,8 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		// eslint-disable-next-line @typescript-eslint/no-require-imports
+		require("tailwindcss-animate")
+	],
 } satisfies Config;

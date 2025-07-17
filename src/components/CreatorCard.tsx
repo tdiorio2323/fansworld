@@ -49,20 +49,20 @@ export function CreatorCard({
 
   return (
     <Link to={`/creator/${username}`} className={`block ${className}`}>
-      <div className="card-crystal hover:shadow-holo transition-all duration-300 group">
+      <div className="card-liquid-chrome hover:shadow-neon transition-all duration-300 group">
         {/* Header with Avatar and Badges */}
         <div className="flex items-start gap-4 mb-4">
-          <div className="relative">
-            <Avatar className="w-16 h-16 ring-2 ring-holo-pink/30 group-hover:ring-holo-gold/60 transition-all">
+          <div className="relative creator-avatar-chrome">
+            <Avatar className="w-16 h-16">
               <AvatarImage src={avatar} alt={displayName} />
-              <AvatarFallback className="bg-gradient-holo text-white text-lg">
+              <AvatarFallback className="bg-gradient-cyber-chrome text-white text-lg font-bold">
                 {displayName[0]?.toUpperCase()}
               </AvatarFallback>
             </Avatar>
             
             {isPremium && (
-              <div className="absolute -top-1 -right-1">
-                <Crown className="w-5 h-5 text-holo-gold drop-shadow-lg" />
+              <div className="absolute -top-1 -right-1 animate-pulse">
+                <Crown className="w-5 h-5 text-neon-orange drop-shadow-lg" />
               </div>
             )}
           </div>
@@ -104,7 +104,7 @@ export function CreatorCard({
             variant={following ? "secondary" : "outline"}
             size="sm"
             onClick={handleFollow}
-            className={`flex-1 ${following ? 'btn-chrome' : 'glass-morphism hover:bg-holo-blue/20'}`}
+            className={`flex-1 ${following ? 'btn-chrome-mirror' : 'btn-glass hover:shadow-neon'}`}
           >
             <UserPlus className="w-4 h-4 mr-2" />
             {following ? 'Following' : 'Follow'}
@@ -115,7 +115,7 @@ export function CreatorCard({
               variant="default"
               size="sm"
               onClick={handleSubscribe}
-              className="flex-1 btn-holographic"
+              className="flex-1 btn-cyber-chrome"
             >
               <Heart className="w-4 h-4 mr-2 fill-current" />
               Subscribed
@@ -125,7 +125,7 @@ export function CreatorCard({
               variant="default"
               size="sm"
               onClick={handleSubscribe}
-              className="flex-1 btn-holographic"
+              className="flex-1 btn-liquid-metal"
             >
               Subscribe ${subscriptionPrice}/mo
             </Button>
