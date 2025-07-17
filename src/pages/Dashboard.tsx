@@ -18,8 +18,11 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/Navbar";
 import { MediaTile } from "@/components/MediaTile";
+import { ContentUpload } from "@/components/ContentUpload";
+import { ContentManager } from "@/components/ContentManager";
 
 // Mock data
 const dashboardData = {
@@ -78,6 +81,7 @@ const dashboardData = {
 
 export default function Dashboard() {
   const [timeframe, setTimeframe] = useState<'week' | 'month' | 'year'>('month');
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   return (
     <div className="min-h-screen bg-background">
@@ -99,12 +103,18 @@ export default function Dashboard() {
                 <BarChart3 className="w-4 h-4 mr-2" />
                 Analytics
               </Button>
-              <Button className="btn-luxury">
-                <Plus className="w-4 h-4 mr-2" />
-                Create Content
-              </Button>
             </div>
           </div>
+
+          {/* Dashboard Tabs */}
+          <Tabs defaultValue="overview" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 mb-8">
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="upload">Upload Content</TabsTrigger>
+              <TabsTrigger value="manage">Manage Content</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="overview" className="space-y-8">
 
           {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -317,6 +327,16 @@ export default function Dashboard() {
               </div>
             </CardContent>
           </Card>
+            </TabsContent>
+
+            <TabsContent value="upload">
+              <ContentUpload onUploadComplete={() => setRefreshTrigger(prev => prev + 1)} />
+            </TabsContent>
+
+            <TabsContent value="manage">
+              <ContentManager refreshTrigger={refreshTrigger} />
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>
