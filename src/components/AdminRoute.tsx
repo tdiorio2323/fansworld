@@ -59,6 +59,7 @@ export function AdminRoute({ children, redirectTo = '/home' }: AdminRouteProps) 
         } else {
           const isAdminUser = profile?.role === 'admin' || profile?.is_admin === true;
           console.log('AdminRoute: Admin check result:', isAdminUser, profile);
+          console.log('AdminRoute: Setting isAdmin state to:', isAdminUser);
           setIsAdmin(isAdminUser);
         }
       } catch (error) {
@@ -73,6 +74,7 @@ export function AdminRoute({ children, redirectTo = '/home' }: AdminRouteProps) 
   }, [user]);
 
   if (loading || checkingAdmin) {
+    console.log('AdminRoute: Still loading or checking admin status', { loading, checkingAdmin });
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="space-y-4 w-full max-w-md px-4">
@@ -85,12 +87,16 @@ export function AdminRoute({ children, redirectTo = '/home' }: AdminRouteProps) 
   }
 
   if (!user) {
+    console.log('AdminRoute: No user, redirecting to auth');
     return <Navigate to="/auth" state={{ from: location }} replace />;
   }
 
+  console.log('AdminRoute: Final render check - isAdmin:', isAdmin, 'user:', user?.id);
   if (!isAdmin) {
+    console.log('AdminRoute: User is not admin, redirecting to:', redirectTo);
     return <Navigate to={redirectTo} replace />;
   }
 
+  console.log('AdminRoute: User is admin, rendering children');
   return <>{children}</>;
 }
