@@ -32,7 +32,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Navbar } from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 
 interface ProfileData {
   displayName: string;
@@ -148,7 +148,7 @@ export default function Settings() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar userRole="creator" username="Lilu" />
+      <Navbar />
       
       <div className="lg:pl-64 pb-20 lg:pb-0">
         <div className="px-4 sm:px-6 lg:px-8 py-8">
