@@ -81,3 +81,23 @@ The project implements a luxury content creator platform theme with:
 - Glass morphism effects with backdrop blur
 - Custom animations (fade-in, shimmer, scale-in)
 - Responsive typography with luxury font stacks
+
+## Project Origin
+
+This project was initially generated on [Lovable](https://lovable.dev/projects/ab5a1da0-52c5-455c-ae12-01a7caaf28fe) and uses the following technologies:
+- Vite for fast development and building
+- TypeScript for type safety
+- React for UI components
+- shadcn-ui for pre-built components
+- Tailwind CSS for styling
+
+## Common Issues and Solutions
+
+**ESLint Fast Refresh Warnings:**
+- shadcn/ui components may show fast refresh warnings when exporting both components and variants
+- These warnings don't affect functionality but can be resolved by moving variants to separate files
+
+**TypeScript Configuration:**
+- The project uses relaxed TypeScript settings for faster development
+- Path alias `@/` maps to `./src/` directory
+- No implicit any and strict null checks are disabled for flexibility

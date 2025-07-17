@@ -1,14 +1,4 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { 
-  Home, 
-  Search, 
-  MessageCircle, 
-  Bell, 
-  User, 
-  Settings, 
-  CreditCard,
-  BarChart3,
+
   Plus,
   Menu,
   X
