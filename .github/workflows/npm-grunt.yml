@@ -1,4 +1,4 @@
-name: NodeJS with Grunt
+name: Build and Test
 
 on:
   push:
@@ -21,8 +21,13 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
+        cache: 'npm'
 
-    - name: Build
-      run: |
-        npm install
-        grunt
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run linter
+      run: npm run lint
+
+    - name: Build project
+      run: npm run build
