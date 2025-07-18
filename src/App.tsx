@@ -19,6 +19,8 @@ import Settings from "./pages/Settings";
 import InvitePage from "./pages/InvitePage";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
+import { Agency } from "./pages/Agency";
+import { CreatorApplication } from "./pages/CreatorApplication";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +39,12 @@ const App = () => (
             <Route path="/search" element={<Discover />} />
             <Route path="/creator/:username" element={<CreatorProfile />} />
             <Route path="/invite/:inviteCode" element={<InvitePage />} />
+            <Route path="/agency" element={<Agency />} />
+            <Route path="/creator-application" element={
+              <ProtectedRoute>
+                <CreatorApplication />
+              </ProtectedRoute>
+            } />
             <Route path="/admin" element={
               <AdminRoute>
                 <AdminDashboard />
