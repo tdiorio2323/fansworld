@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
-import Navbar from '@/components/Navbar';
-import { MessagingInterface } from '@/components/messaging/MessagingInterface';
+import React from 'react';
+import InstagramNavbar from '@/components/InstagramNavbar';
+import InstagramMessaging from '@/components/InstagramMessaging';
 import { useMessagingCleanup } from '@/hooks/useMessaging';
 
 export default function Messages() {
-  const [selectedConversationId, setSelectedConversationId] = useState<string>();
-  
   // Cleanup messaging subscriptions when component unmounts
   useMessagingCleanup();
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <div className="min-h-screen bg-gray-50">
+      <InstagramNavbar />
       
-      <div className="lg:pl-64 pb-20 lg:pb-0 h-screen">
-        <MessagingInterface
-          selectedConversationId={selectedConversationId}
-          onConversationSelect={setSelectedConversationId}
-        />
+      <div className="pt-16 lg:pl-64 lg:pt-0 h-screen">
+        <InstagramMessaging />
       </div>
     </div>
   );

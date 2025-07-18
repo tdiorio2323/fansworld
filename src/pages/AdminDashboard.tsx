@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { AdminInviteManager } from "@/components/AdminInviteManager";
+import { ReferralManagement } from "@/components/admin/ReferralManagement";
 import Navbar from "@/components/Navbar";
 import { 
   Users, 
@@ -23,7 +24,8 @@ import {
   Clock,
   Eye,
   Crown,
-  Filter
+  Filter,
+  Gift
 } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -226,7 +228,7 @@ export default function AdminDashboard() {
 
           {/* Main Content */}
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="applications" className="flex items-center gap-2">
                 <FileText className="w-4 h-4" />
                 Applications
@@ -234,6 +236,10 @@ export default function AdminDashboard() {
               <TabsTrigger value="invites" className="flex items-center gap-2">
                 <LinkIcon className="w-4 h-4" />
                 Invites
+              </TabsTrigger>
+              <TabsTrigger value="referrals" className="flex items-center gap-2">
+                <Gift className="w-4 h-4" />
+                Referrals
               </TabsTrigger>
               <TabsTrigger value="users" className="flex items-center gap-2">
                 <Users className="w-4 h-4" />
@@ -426,6 +432,10 @@ export default function AdminDashboard() {
                   </div>
                 </CardContent>
               </Card>
+            </TabsContent>
+
+            <TabsContent value="referrals" className="space-y-6">
+              <ReferralManagement />
             </TabsContent>
 
             <TabsContent value="settings" className="space-y-6">

@@ -34,7 +34,7 @@ import {
   useFileUpload, 
   useMessageReporting 
 } from '@/hooks/useMessaging';
-import { Conversation, Message, MessageReaction } from '@/lib/messaging';
+import { Conversation, Message, MessageReaction, MessageReport } from '@/lib/messaging';
 import { useCurrencyFormatter } from '@/hooks/useStripeConnect';
 import { toast } from '@/components/ui/use-toast';
 
@@ -167,7 +167,7 @@ export const MessagingInterface: React.FC<MessagingInterfaceProps> = ({
     try {
       await reportMessage.mutateAsync({ 
         messageId, 
-        reason: reason as any 
+        reason: reason as MessageReport['reason'] 
       });
       toast({
         title: 'Success',

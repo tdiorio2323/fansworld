@@ -12,7 +12,7 @@ export interface Conversation {
   last_message_id?: string;
   last_message_at: string;
   message_count: number;
-  metadata?: any;
+  metadata?: Record<string, unknown>;
   created_at: string;
   updated_at: string;
   participants?: ConversationParticipant[];
@@ -64,7 +64,7 @@ export interface Message {
   deleted_at?: string;
   reply_to_message_id?: string;
   system_message_type?: 'user_joined' | 'user_left' | 'conversation_created' | 'title_changed' | 'avatar_changed';
-  metadata?: any;
+  metadata?: Record<string, unknown>;
   sent_at: string;
   edited_at?: string;
   created_at: string;

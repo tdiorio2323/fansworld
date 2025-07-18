@@ -30,6 +30,10 @@ import { HTMLGenerator } from "./pages/HTMLGenerator";
 import { ComingSoon } from "./pages/ComingSoon";
 import { AnalyticsDashboard } from "./pages/AnalyticsDashboard";
 import { LinkRedirect } from "./pages/LinkRedirect";
+import ReferralProgram from "./pages/ReferralProgram";
+import TestPayment from "./pages/TestPayment";
+import InstagramHome from "./pages/InstagramHome";
+import Create from "./pages/Create";
 
 const queryClient = new QueryClient();
 
@@ -99,11 +103,17 @@ const App = () => (
               <PasswordProtectedApp>
                 <Routes>
                   <Route path="/" element={<Index />} />
-                  <Route path="/home" element={<Home />} />
+                  <Route path="/home" element={<InstagramHome />} />
+                  <Route path="/home-classic" element={<Home />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />
                   <Route path="/search" element={<Discover />} />
+                  <Route path="/create" element={
+                    <ProtectedRoute>
+                      <Create />
+                    </ProtectedRoute>
+                  } />
                   <Route path="/creator/:username" element={<CreatorProfile />} />
                   <Route path="/invite/:inviteCode" element={<InvitePage />} />
                   <Route path="/agency" element={<Agency />} />
@@ -117,6 +127,16 @@ const App = () => (
                   <Route path="/l/:shortCode" element={<LinkRedirect />} />
                   <Route path="/vip/:shortCode" element={<LinkRedirect />} />
                   <Route path="/analytics" element={<AnalyticsDashboard />} />
+                  <Route path="/referrals" element={
+                    <ProtectedRoute>
+                      <ReferralProgram />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/test-payment" element={
+                    <ProtectedRoute>
+                      <TestPayment />
+                    </ProtectedRoute>
+                  } />
                   <Route path="/admin" element={
                     <AdminRoute>
                       <AdminDashboard />
