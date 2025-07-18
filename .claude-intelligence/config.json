@@ -1,0 +1,32 @@
+{
+  "analysis": {
+    "max_file_size": 1048576,
+    "ignore_patterns": [
+      "node_modules/",
+      ".git/",
+      "dist/",
+      "build/",
+      "target/",
+      "*.min.js",
+      "*.map"
+    ],
+    "language_extensions": {
+      "javascript": [".js", ".jsx", ".mjs"],
+      "typescript": [".ts", ".tsx"],
+      "python": [".py", ".pyx"],
+      "rust": [".rs"],
+      "go": [".go"],
+      "java": [".java"],
+      "cpp": [".cpp", ".cc", ".cxx"],
+      "c": [".c", ".h"]
+    }
+  },
+  "thresholds": {
+    "complexity_warning": 10,
+    "complexity_error": 20,
+    "function_length_warning": 50,
+    "function_length_error": 100,
+    "file_size_warning": 500,
+    "file_size_error": 1000
+  }
+}
