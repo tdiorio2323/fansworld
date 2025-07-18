@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { useAdvancedReferral } from '@/hooks/useAdvancedReferral';
-import { useReferralProgram } from '@/hooks/useReferralProgram';
+
 import { 
   TrendingUp, 
   Users, 

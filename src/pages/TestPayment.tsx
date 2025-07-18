@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { useAuth } from '@/hooks/useAuth';
 import { Navigate } from 'react-router-dom';
-import { Navbar } from '@/components/Navbar';
+import Navbar from '@/components/Navbar';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { CreditCard, AlertCircle, CheckCircle, Loader2 } from 'lucide-react';

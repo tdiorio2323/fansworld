@@ -1,7 +1,7 @@
 import { useAuth } from '@/hooks/useAuth';
 import { Navigate } from 'react-router-dom';
 import { ReferralDashboard } from '@/components/referral/ReferralDashboard';
-import { Navbar } from '@/components/Navbar';
+import Navbar from '@/components/Navbar';
 import { useEffect } from 'react';
 
 export default function ReferralProgram() {
