@@ -22,6 +22,9 @@ import NotFound from "./pages/NotFound";
 import { Agency } from "./pages/Agency";
 import { CreatorApplication } from "./pages/CreatorApplication";
 import { HTMLGenerator } from "./pages/HTMLGenerator";
+import { ComingSoon } from "./pages/ComingSoon";
+import { AnalyticsDashboard } from "./pages/AnalyticsDashboard";
+import { LinkRedirect } from "./pages/LinkRedirect";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +50,10 @@ const App = () => (
               </ProtectedRoute>
             } />
             <Route path="/html-generator" element={<HTMLGenerator />} />
+            <Route path="/coming-soon" element={<ComingSoon />} />
+            <Route path="/l/:shortCode" element={<LinkRedirect />} />
+            <Route path="/vip/:shortCode" element={<LinkRedirect />} />
+            <Route path="/analytics" element={<AnalyticsDashboard />} />
             <Route path="/admin" element={
               <AdminRoute>
                 <AdminDashboard />

@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { 
   Code, 
   Download, 
@@ -15,9 +16,13 @@ import {
   Palette,
   Layout,
   Smartphone,
-  Monitor
+  Monitor,
+  Settings,
+  Zap,
+  Clock
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { generateHTML, getAvailableProviders, type AIGenerationOptions } from "@/lib/ai-html-generator";
 
 const HTML_GENERATOR_PROMPT = `You are an expert HTML/CSS/JavaScript generator. Create beautiful, modern, responsive HTML pages based on user descriptions.
 
@@ -49,10 +54,14 @@ export function HTMLGenerator() {
   const [generatedHTML, setGeneratedHTML] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [previewMode, setPreviewMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
+  const [aiProvider, setAiProvider] = useState<string>('fallback');
+  const [generationTime, setGenerationTime] = useState<number | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const { toast } = useToast();
+  
+  const availableProviders = getAvailableProviders();
 
-  const generateHTML = async () => {
+  const generateHTMLContent = async () => {
     if (!prompt.trim()) {
       toast({
         title: "Empty Prompt",
@@ -63,29 +72,37 @@ export function HTMLGenerator() {
     }
 
     setIsGenerating(true);
+    setGenerationTime(null);
     
     try {
-      // This is a mock implementation - you'll need to integrate with your preferred AI service
-      // Options: OpenAI GPT-4, Anthropic Claude, or local AI models
+      const options: AIGenerationOptions = {
+        provider: aiProvider as any,
+        temperature: 0.7,
+        maxTokens: 4000
+      };
       
-      const mockHTML = generateMockHTML(prompt);
-      setGeneratedHTML(mockHTML);
+      const result = await generateHTML(prompt, options);
+      setGeneratedHTML(result.html);
+      setGenerationTime(result.metadata?.generationTime || null);
       
       // Update preview
       if (iframeRef.current) {
         const iframe = iframeRef.current;
-        iframe.srcdoc = mockHTML;
+        iframe.srcdoc = result.html;
       }
+      
+      const providerName = result.metadata?.provider || aiProvider;
+      const timeText = result.metadata?.generationTime ? ` in ${Math.round(result.metadata.generationTime)}ms` : '';
       
       toast({
         title: "HTML Generated!",
-        description: "Your custom HTML has been generated successfully.",
+        description: `Generated with ${providerName}${timeText}`,
       });
     } catch (error) {
       console.error('Error generating HTML:', error);
       toast({
         title: "Generation Failed",
-        description: "Failed to generate HTML. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to generate HTML. Please try again.",
         variant: "destructive"
       });
     } finally {
@@ -1033,6 +1050,23 @@ export function HTMLGenerator() {
             <Sparkles className="h-4 w-4 mr-1" />
             AI-Powered
           </Badge>
+          
+          {/* AI Provider Status */}
+          {availableProviders.length > 1 ? (
+            <div className="mt-3 text-sm text-green-400">
+              ✅ AI providers configured: {availableProviders.filter(p => p !== 'fallback').join(', ')}
+            </div>
+          ) : (
+            <details className="mt-3 text-sm text-yellow-400">
+              <summary className="cursor-pointer">⚠️ Using template generator (click to configure AI)</summary>
+              <div className="mt-2 p-3 bg-black/20 rounded text-xs">
+                <p className="mb-2">Add AI providers to your environment:</p>
+                <code className="block mb-1">VITE_OPENAI_API_KEY=sk-...</code>
+                <code className="block mb-1">VITE_ANTHROPIC_API_KEY=sk-ant-...</code>
+                <code className="block">VITE_LOCAL_AI_ENDPOINT=http://localhost:1234</code>
+              </div>
+            </details>
+          )}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -1060,8 +1094,45 @@ Examples:
                   className="bg-black/20 border-white/10 text-white placeholder-gray-400 min-h-[200px] resize-none"
                 />
                 
+                {/* AI Provider Selection */}
+                <div className="flex items-center gap-4">
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      <Settings className="h-4 w-4 inline mr-1" />
+                      AI Provider
+                    </label>
+                    <Select value={aiProvider} onValueChange={setAiProvider}>
+                      <SelectTrigger className="bg-black/20 border-white/10 text-white">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {availableProviders.map((provider) => (
+                          <SelectItem key={provider} value={provider}>
+                            <div className="flex items-center gap-2">
+                              {provider === 'openai' && <Zap className="h-4 w-4" />}
+                              {provider === 'anthropic' && <Sparkles className="h-4 w-4" />}
+                              {provider === 'local' && <Monitor className="h-4 w-4" />}
+                              {provider === 'fallback' && <Code className="h-4 w-4" />}
+                              {provider === 'openai' ? 'OpenAI GPT-4' : 
+                               provider === 'anthropic' ? 'Anthropic Claude' :
+                               provider === 'local' ? 'Local AI' : 'Template Generator'}
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  {generationTime && (
+                    <div className="text-sm text-gray-400 flex items-center gap-1">
+                      <Clock className="h-4 w-4" />
+                      {Math.round(generationTime)}ms
+                    </div>
+                  )}
+                </div>
+                
                 <Button
-                  onClick={generateHTML}
+                  onClick={generateHTMLContent}
                   disabled={isGenerating}
                   className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
                 >
