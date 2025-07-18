@@ -21,6 +21,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 import { Agency } from "./pages/Agency";
 import { CreatorApplication } from "./pages/CreatorApplication";
+import { HTMLGenerator } from "./pages/HTMLGenerator";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
                 <CreatorApplication />
               </ProtectedRoute>
             } />
+            <Route path="/html-generator" element={<HTMLGenerator />} />
             <Route path="/admin" element={
               <AdminRoute>
                 <AdminDashboard />

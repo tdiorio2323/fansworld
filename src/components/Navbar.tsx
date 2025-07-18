@@ -19,7 +19,8 @@ import {
   LogOut,
   Plus,
   Shield,
-  Crown
+  Crown,
+  Wand2
 } from "lucide-react";
 
 export default function Navbar() {
@@ -50,6 +51,7 @@ export default function Navbar() {
     { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { path: '/search', icon: Search, label: 'Discover' },
     { path: '/agency', icon: Crown, label: 'Management' },
+    { path: '/html-generator', icon: Wand2, label: 'HTML Generator' },
     { path: '/messages', icon: MessageCircle, label: 'Messages' },
     { path: '/billing', icon: CreditCard, label: 'Billing' },
   ];
@@ -57,6 +59,7 @@ export default function Navbar() {
   const fanNavItems = [
     { path: '/home', icon: Home, label: 'Home' },
     { path: '/search', icon: Search, label: 'Discover' },
+    { path: '/html-generator', icon: Wand2, label: 'HTML Generator' },
     { path: '/messages', icon: MessageCircle, label: 'Messages' },
     { path: '/billing', icon: CreditCard, label: 'Billing' },
   ];
