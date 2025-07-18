@@ -8,7 +8,10 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate:vip-codes": "node scripts/generate-vip-codes.js",
+    "test:waitlist": "node scripts/test-waitlist.js",
+    "test:all": "npm run test:waitlist"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -41,6 +44,7 @@
     "@radix-ui/react-tooltip": "^1.1.4",
     "@supabase/supabase-js": "^2.50.5",
     "@tanstack/react-query": "^5.56.2",
+    "caniuse-lite": "^1.0.30001727",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
