@@ -67,6 +67,7 @@ export default function Navbar() {
   const publicNavItems = [
     { path: '/home', icon: Home, label: 'Home' },
     { path: '/search', icon: Search, label: 'Discover' },
+    { path: '/html-generator', icon: Wand2, label: 'HTML Generator' },
   ];
 
   const getNavItems = () => {
