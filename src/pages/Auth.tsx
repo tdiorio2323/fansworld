@@ -8,6 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Eye, EyeOff, Sparkles } from 'lucide-react';
+import { GoogleSignIn } from '@/components/auth/GoogleSignIn';
+import { AppleSignIn } from '@/components/auth/AppleSignIn';
 
 interface LocationState {
   from?: {
@@ -180,12 +182,28 @@ export default function Auth() {
 
               <Button 
                 type="submit" 
-                className="w-full" 
+                className="w-full btn-chrome hover:scale-105 transition-all" 
                 disabled={loading || (isSignUp && formData.password !== formData.confirmPassword)}
               >
                 {loading ? 'Please wait...' : (isSignUp ? 'Create Account' : 'Sign In')}
               </Button>
             </form>
+
+            <div className="mt-6">
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t border-white/10" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+                </div>
+              </div>
+
+              <div className="mt-6 space-y-3">
+                <GoogleSignIn />
+                <AppleSignIn />
+              </div>
+            </div>
           </CardContent>
         </Card>
 
