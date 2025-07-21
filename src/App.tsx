@@ -33,6 +33,7 @@ import ReferralProgram from "./pages/ReferralProgram";
 import TestPayment from "./pages/TestPayment";
 import InstagramHome from "./pages/InstagramHome";
 import Create from "./pages/Create";
+import AdminTest from "./pages/AdminTest";
 
 const queryClient = new QueryClient();
 
@@ -135,6 +136,7 @@ const App = () => (
                       <TestPayment />
                     </ProtectedRoute>
                   } />
+                  <Route path="/admin-test" element={<AdminTest />} />
                   <Route path="/admin" element={
                     <AdminRoute>
                       <AdminDashboard />
