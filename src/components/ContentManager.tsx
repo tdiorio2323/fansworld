@@ -64,7 +64,7 @@ export const ContentManager: React.FC<ContentManagerProps> = ({ refreshTrigger }
     price: ''
   });
 
-  const loadContent = async () => {
+  const loadContent = useCallback(async () => {
     if (!user) return;
 
     try {
@@ -86,11 +86,11 @@ export const ContentManager: React.FC<ContentManagerProps> = ({ refreshTrigger }
     } finally {
       setLoading(false);
     }
-  };
+  }, [user, toast]);
 
   useEffect(() => {
     loadContent();
-  }, [user, refreshTrigger]);
+  }, [user, refreshTrigger, loadContent]);
 
   const handleEdit = (item: Content) => {
     setEditingContent(item);
