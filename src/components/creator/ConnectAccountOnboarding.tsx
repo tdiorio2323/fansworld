@@ -195,17 +195,17 @@ export const ConnectAccountOnboarding: React.FC<ConnectAccountOnboardingProps> =
     }
   };
 
-  const updateFormData = (path: string, value: any) => {
+  const updateFormData = (path: string, value: unknown) => {
     setFormData(prev => {
       const newData = { ...prev };
       const keys = path.split('.');
-      let current = newData;
+      let current: Record<string, any> = newData;
       
       for (let i = 0; i < keys.length - 1; i++) {
         if (!(keys[i] in current)) {
           current[keys[i]] = {};
         }
-        current = current[keys[i]];
+        current = current[keys[i]] as Record<string, any>;
       }
       
       current[keys[keys.length - 1]] = value;

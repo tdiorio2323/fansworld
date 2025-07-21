@@ -400,16 +400,16 @@ export const useCurrencyFormatter = () => {
  * Hook for getting payout status information
  */
 export const usePayoutStatus = () => {
-  const getStatusColor = (status: string): string => {
+  const getStatusColor = (status: string): "default" | "secondary" | "destructive" | "outline" => {
     switch (status) {
-      case 'pending': return 'orange';
-      case 'approved': return 'blue';
-      case 'processing': return 'blue';
-      case 'completed': return 'green';
-      case 'paid': return 'green';
-      case 'failed': return 'red';
-      case 'rejected': return 'red';
-      default: return 'gray';
+      case 'pending': return 'secondary';
+      case 'approved': return 'default';
+      case 'processing': return 'outline';
+      case 'completed': return 'default';
+      case 'paid': return 'default';
+      case 'failed': return 'destructive';
+      case 'rejected': return 'destructive';
+      default: return 'outline';
     }
   };
 

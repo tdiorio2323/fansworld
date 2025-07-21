@@ -35,86 +35,7 @@ import {
 import { useAdminPayouts, useCurrencyFormatter } from '@/hooks/useStripeConnect';
 import { useAuth } from '@/hooks/useAuth';
 
-export const PayoutApprovalDashboard: React.FC = () => {
-  const [selectedRequest, setSelectedRequest] = useState<string | null>(null);
-  const [rejectionReason, setRejectionReason] = useState('');
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [filterStatus, setFilterStatus] = useState<'all' | 'pending' | 'approved' | 'rejected'>('pending');
-
-  const { user } = useAuth();
-  const { formatCurrency } = useCurrencyFormatter();
-  const {
-    allPendingRequests,
-    allPendingLoading,
-    processRequest,
-    totalPendingAmount,
-    pendingCount
-  } = useAdminPayouts();
-
-  const handleApprove = async (requestId: string) => {
-    if (!user?.id) return;
-    
-    setIsProcessing(true);
-    try {
-      await processRequest.mutateAsync({
-        requestId,
-        approved: true,
-        adminUserId: user.id
-      });
-      setSelectedRequest(null);
-    } catch (error) {
-      console.error('Error approving payout request:', error);
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
-  const handleReject = async (requestId: string) => {
-    if (!user?.id || !rejectionReason.trim()) return;
-    
-    setIsProcessing(true);
-    try {
-      await processRequest.mutateAsync({
-        requestId,
-        approved: false,
-        rejectionReason: rejectionReason.trim(),
-        adminUserId: user.id
-      });
-      setSelectedRequest(null);
-      setRejectionReason('');
-    } catch (error) {
-      console.error('Error rejecting payout request:', error);
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
-  const getRequestTypeColor = (type: string) => {
-    switch (type) {
-      case 'emergency':
-        return 'destructive';
-      case 'automatic':
-        return 'default';
-      default:
-        return 'secondary';
-    }
-  };
-
-  const getRequestTypePriority = (type: string) => {
-    switch (type) {
-      case 'emergency':
-        return 1;
-      case 'manual':
-        return 2;
-      case 'automatic':
-        return 3;
-      default:
-        return 4;
-    }
-  };
-
-  // Sort requests by priority (emergency first) and then by creation date
-  interface PayoutRequest {
+interface PayoutRequest {
   id: string;
   creator_id: string;
   request_type: 'emergency' | 'automatic' | 'manual';
@@ -489,7 +410,7 @@ export const PayoutApprovalDashboard: React.FC = () => {
                                         <CheckCircle className="h-4 w-4 mr-2" />
                                         {isProcessing ? 'Processing...' : 'Approve & Process'}
                                       </Button>
-                                    }
+                                    </div>
 
                                     {/* Warning for emergency requests */}
                                     {selectedRequestData.request_type === 'emergency' && (
