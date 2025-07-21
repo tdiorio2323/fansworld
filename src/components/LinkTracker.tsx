@@ -140,11 +140,11 @@ export function LinkTracker() {
       // Reload data
       loadLinks();
       loadAnalytics();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Link creation error:', error);
       toast({
         title: "Error",
-        description: error.message || "Failed to create link",
+        description: error instanceof Error ? error.message : "Failed to create link",
         variant: "destructive"
       });
     } finally {

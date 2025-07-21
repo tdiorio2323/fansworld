@@ -64,7 +64,7 @@ export function VipCodeTracker() {
     loadData();
   }, [loadData]);
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     try {
       // Load VIP codes
       const { data: codesData, error: codesError } = await supabase
@@ -93,7 +93,7 @@ export function VipCodeTracker() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
 
   const createVipCode = async () => {
     setIsCreatingCode(true);
@@ -112,11 +112,11 @@ export function VipCodeTracker() {
       });
 
       loadData();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('VIP code creation error:', error);
       toast({
         title: "Error",
-        description: error.message || "Failed to create VIP code",
+        description: error instanceof Error ? error.message : "Failed to create VIP code",
         variant: "destructive"
       });
     } finally {
@@ -151,11 +151,11 @@ export function VipCodeTracker() {
       setCampaignName("");
 
       loadData();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('VIP link creation error:', error);
       toast({
         title: "Error",
-        description: error.message || "Failed to create VIP link",
+        description: error instanceof Error ? error.message : "Failed to create VIP link",
         variant: "destructive"
       });
     } finally {
@@ -188,11 +188,11 @@ export function VipCodeTracker() {
 
       setBulkEmails("");
       loadData();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Bulk VIP link creation error:', error);
       toast({
         title: "Error",
-        description: error.message || "Failed to create bulk VIP links",
+        description: error instanceof Error ? error.message : "Failed to create bulk VIP links",
         variant: "destructive"
       });
     } finally {

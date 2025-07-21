@@ -114,13 +114,103 @@ export const PayoutApprovalDashboard: React.FC = () => {
   };
 
   // Sort requests by priority (emergency first) and then by creation date
-  const sortedRequests = [...(allPendingRequests || [])].sort((a, b) => {
+  interface PayoutRequest {
+  id: string;
+  creator_id: string;
+  request_type: 'emergency' | 'automatic' | 'manual';
+  requested_amount: number;
+  created_at: string;
+  net_payout_amount: number;
+  processing_fee: number;
+  notes?: string;
+}
+
+export const PayoutApprovalDashboard: React.FC = () => {
+  const [selectedRequest, setSelectedRequest] = useState<string | null>(null);
+  const [rejectionReason, setRejectionReason] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [filterStatus, setFilterStatus] = useState<'all' | 'pending' | 'approved' | 'rejected'>('pending');
+
+  const { user } = useAuth();
+  const { formatCurrency } = useCurrencyFormatter();
+  const {
+    allPendingRequests,
+    allPendingLoading,
+    processRequest,
+    totalPendingAmount,
+    pendingCount
+  } = useAdminPayouts();
+
+  const handleApprove = async (requestId: string) => {
+    if (!user?.id) return;
+    
+    setIsProcessing(true);
+    try {
+      await processRequest.mutateAsync({
+        requestId,
+        approved: true,
+        adminUserId: user.id
+      });
+      setSelectedRequest(null);
+    } catch (error: unknown) {
+      console.error('Error approving payout request:', error);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const handleReject = async (requestId: string) => {
+    if (!user?.id || !rejectionReason.trim()) return;
+    
+    setIsProcessing(true);
+    try {
+      await processRequest.mutateAsync({
+        requestId,
+        approved: false,
+        rejectionReason: rejectionReason.trim(),
+        adminUserId: user.id
+      });
+      setSelectedRequest(null);
+      setRejectionReason('');
+    } catch (error: unknown) {
+      console.error('Error rejecting payout request:', error);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const getRequestTypeColor = (type: PayoutRequest['request_type']) => {
+    switch (type) {
+      case 'emergency':
+        return 'destructive';
+      case 'automatic':
+        return 'default';
+      default:
+        return 'secondary';
+    }
+  };
+
+  const getRequestTypePriority = (type: PayoutRequest['request_type']) => {
+    switch (type) {
+      case 'emergency':
+        return 1;
+      case 'manual':
+        return 2;
+      case 'automatic':
+        return 3;
+      default:
+        return 4;
+    }
+  };
+
+  // Sort requests by priority (emergency first) and then by creation date
+  const sortedRequests = [...(allPendingRequests || [])].sort((a: PayoutRequest, b: PayoutRequest) => {
     const priorityDiff = getRequestTypePriority(a.request_type) - getRequestTypePriority(b.request_type);
     if (priorityDiff !== 0) return priorityDiff;
     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
   });
 
-  const selectedRequestData = sortedRequests.find(r => r.id === selectedRequest);
+  const selectedRequestData = sortedRequests.find((r: PayoutRequest) => r.id === selectedRequest);
 
   if (allPendingLoading) {
     return (
@@ -182,7 +272,7 @@ export const PayoutApprovalDashboard: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {sortedRequests.filter(r => r.request_type === 'emergency').length}
+              {sortedRequests.filter((r: PayoutRequest) => r.request_type === 'emergency').length}
             </div>
             <p className="text-xs text-muted-foreground">
               Require immediate attention
@@ -197,7 +287,7 @@ export const PayoutApprovalDashboard: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {new Set(sortedRequests.map(r => r.creator_id)).size}
+              {new Set(sortedRequests.map((r: PayoutRequest) => r.creator_id)).size}
             </div>
             <p className="text-xs text-muted-foreground">
               With pending payouts
@@ -223,12 +313,12 @@ export const PayoutApprovalDashboard: React.FC = () => {
           ) : (
             <div className="space-y-4">
               {/* Emergency Requests Alert */}
-              {sortedRequests.some(r => r.request_type === 'emergency') && (
+              {sortedRequests.some((r: PayoutRequest) => r.request_type === 'emergency') && (
                 <Alert className="border-amber-200 bg-amber-50">
                   <AlertCircle className="h-4 w-4 text-amber-600" />
                   <AlertDescription className="text-amber-800">
-                    {sortedRequests.filter(r => r.request_type === 'emergency').length} emergency 
-                    request{sortedRequests.filter(r => r.request_type === 'emergency').length > 1 ? 's' : ''} 
+                    {sortedRequests.filter((r: PayoutRequest) => r.request_type === 'emergency').length} emergency 
+                    request{sortedRequests.filter((r: PayoutRequest) => r.request_type === 'emergency').length > 1 ? 's' : ''} 
                     {' '}require immediate attention.
                   </AlertDescription>
                 </Alert>
@@ -247,7 +337,7 @@ export const PayoutApprovalDashboard: React.FC = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {sortedRequests.map((request) => (
+                    {sortedRequests.map((request: PayoutRequest) => (
                       <TableRow key={request.id}>
                         <TableCell>
                           <div className="flex items-center gap-2">
@@ -269,7 +359,7 @@ export const PayoutApprovalDashboard: React.FC = () => {
                         </TableCell>
                         
                         <TableCell>
-                          <Badge variant={getRequestTypeColor(request.request_type) as any}>
+                          <Badge variant={getRequestTypeColor(request.request_type)}>
                             {request.request_type}
                           </Badge>
                         </TableCell>
@@ -329,7 +419,7 @@ export const PayoutApprovalDashboard: React.FC = () => {
                                           </div>
                                           <div className="flex justify-between">
                                             <span>Type:</span>
-                                            <Badge variant={getRequestTypeColor(selectedRequestData.request_type) as any}>
+                                            <Badge variant={getRequestTypeColor(selectedRequestData.request_type)}>
                                               {selectedRequestData.request_type}
                                             </Badge>
                                           </div>
@@ -399,7 +489,7 @@ export const PayoutApprovalDashboard: React.FC = () => {
                                         <CheckCircle className="h-4 w-4 mr-2" />
                                         {isProcessing ? 'Processing...' : 'Approve & Process'}
                                       </Button>
-                                    </div>
+                                    }
 
                                     {/* Warning for emergency requests */}
                                     {selectedRequestData.request_type === 'emergency' && (
