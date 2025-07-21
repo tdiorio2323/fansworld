@@ -86,7 +86,7 @@ export const ContentManager: React.FC<ContentManagerProps> = ({ refreshTrigger }
     } finally {
       setLoading(false);
     }
-  }, [user, toast]);
+  }, [user]);
 
   useEffect(() => {
     loadContent();

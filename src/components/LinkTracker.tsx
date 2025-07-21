@@ -60,7 +60,7 @@ export function LinkTracker() {
     loadAnalytics();
   }, [loadLinks, loadAnalytics]);
 
-  const loadLinks = async () => {
+  const loadLinks = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('link_tracking')
@@ -91,7 +91,7 @@ export function LinkTracker() {
     }
   };
 
-  const loadAnalytics = async () => {
+  const loadAnalytics = useCallback(async () => {
     try {
       const { data, error } = await supabase.rpc('get_link_analytics');
       
@@ -100,7 +100,7 @@ export function LinkTracker() {
     } catch (error) {
       console.error('Error loading analytics:', error);
     }
-  };
+  }, []);
 
   const createLink = async (e: React.FormEvent) => {
     e.preventDefault();

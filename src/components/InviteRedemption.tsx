@@ -45,7 +45,7 @@ export function InviteRedemption() {
     }
   }, [inviteCode, checkInviteCode]);
 
-  const checkInviteCode = async () => {
+  const checkInviteCode = useCallback(async () => {
     try {
       setCheckingInvite(true);
       const { data, error } = await supabase.functions.invoke('redeem-invite', {
@@ -67,7 +67,7 @@ export function InviteRedemption() {
     } finally {
       setCheckingInvite(false);
     }
-  };
+  }, [inviteCode]);
 
   const validatePasscode = async () => {
     if (!passcode.trim()) {
