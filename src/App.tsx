@@ -98,11 +98,8 @@ const App = () => (
             {/* Password Landing - Always Accessible */}
             <Route path="/landing" element={<PasswordLanding />} />
             
-            {/* All other routes wrapped in password protection */}
-            <Route path="/*" element={
-              <PasswordProtectedApp>
-                <Routes>
-                  <Route path="/" element={<Index />} />
+            {/* All routes now accessible without password */}
+            <Route path="/" element={<Index />} />
                   <Route path="/home" element={<InstagramHome />} />
                   <Route path="/home-classic" element={<Home />} />
                   <Route path="/register" element={<Register />} />
@@ -162,10 +159,7 @@ const App = () => (
                       <Settings />
                     </ProtectedRoute>
                   } />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </PasswordProtectedApp>
-            } />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
