@@ -1,22 +1,12 @@
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { ReferralCodeItem } from './ReferralCodeItem';
 import { toast } from 'sonner';
 import QRCode from 'qrcode';
 
-// Mock dependencies
-vi.mock('sonner', () => ({
-  toast: {
-    success: vi.fn(),
-    error: vi.fn(),
-  },
-}));
-vi.mock('qrcode', () => ({
-  default: {
-    toDataURL: vi.fn(),
-  },
-}));
+vi.mock('sonner');
+vi.mock('qrcode');
 
 const mockCode = {
   id: '1',

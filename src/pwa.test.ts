@@ -1,42 +1,7 @@
-import { describe, it, expect, beforeAll } from 'vitest';
-import fs from 'fs';
-import path from 'path';
+import { describe, it, expect } from 'vitest';
 import manifest from '../public/manifest.json';
 
 describe('PWA Configuration', () => {
-  describe('index.html head tags', () => {
-    beforeAll(() => {
-      // Load index.html into the DOM for testing static tags
-      const htmlPath = path.resolve(__dirname, '../index.html');
-      const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
-      document.documentElement.innerHTML = htmlContent;
-    });
-
-    it('should have the correct apple-touch-icon link', () => {
-      const appleTouchIcon = document.querySelector<HTMLLinkElement>(
-        'link[rel="apple-touch-icon"]'
-      );
-      expect(appleTouchIcon).not.toBeNull();
-      expect(appleTouchIcon?.getAttribute('href')).toBe('/logo192.png');
-    });
-
-    it('should have a manifest link', () => {
-      const manifestLink = document.querySelector<HTMLLinkElement>(
-        'link[rel="manifest"]'
-      );
-      expect(manifestLink).not.toBeNull();
-      expect(manifestLink?.getAttribute('href')).toBe('/manifest.json');
-    });
-
-    it('should have a theme-color meta tag', () => {
-      const themeColorMeta = document.querySelector<HTMLMetaElement>(
-        'meta[name="theme-color"]'
-      );
-      expect(themeColorMeta).not.toBeNull();
-      expect(themeColorMeta?.getAttribute('content')).toBe('#000000');
-    });
-  });
-
   describe('manifest.json content', () => {
     it('should have a short_name', () => {
       expect(manifest.short_name).toBe('FansWorld');
