@@ -1,4 +1,14 @@
+import { renderHook, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { useAdvancedReferral } from './useAdvancedReferral';
+import { createWrapper } from '@/lib/test-utils'; // We will create this utility
+import { supabase } from '@/lib/supabase';
 
+// Mock the entire supabase client
+vi.mock('@/lib/supabase', () => ({
+  supabase: {
+    from: vi.fn().mockReturnThis(),
+    select: vi.fn(),
     rpc: vi.fn(),
   },
 }));
