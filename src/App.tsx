@@ -2,14 +2,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./hooks/useAuth";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AdminRoute } from "./components/AdminRoute";
-import { useEffect, useState } from "react";
 
 // Import pages
-import PasswordLanding from "./pages/PasswordLanding";
 import Index from "./pages/Index";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
@@ -37,11 +35,6 @@ import AdminTest from "./pages/AdminTest";
 
 const queryClient = new QueryClient();
 
-// Password protection wrapper component - DISABLED FOR TESTING
-const PasswordProtectedApp = ({ children }: { children: React.ReactNode }) => {
-  // Always allow access for testing - no password protection
-  return <>{children}</>;
-};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -51,11 +44,9 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            {/* Password Landing - Always Accessible */}
-            <Route path="/landing" element={<PasswordLanding />} />
-            
-            {/* All routes now accessible without password */}
-            <Route path="/" element={<Index />} />
+            {/* All routes */}
+            <Route path="/" element={<Auth />} />
+            <Route path="/landing" element={<Index />} />
             <Route path="/home" element={<InstagramHome />} />
             <Route path="/home-classic" element={<Home />} />
             <Route path="/register" element={<Register />} />

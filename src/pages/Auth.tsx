@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -8,6 +8,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Eye, EyeOff, Sparkles } from 'lucide-react';
+
+// Add holographic animation styles
+const holographicStyles = `
+  @keyframes holographic {
+    0% { background-position: 0% 50%, 100% 50%, 50% 0%, 50% 100%, 50% 50%, center; }
+    25% { background-position: 100% 50%, 0% 50%, 50% 100%, 50% 0%, 75% 25%, center; }
+    50% { background-position: 0% 50%, 100% 50%, 50% 0%, 50% 100%, 25% 75%, center; }
+    75% { background-position: 100% 50%, 0% 50%, 50% 100%, 50% 0%, 75% 25%, center; }
+    100% { background-position: 0% 50%, 100% 50%, 50% 0%, 50% 100%, 50% 50%, center; }
+  }
+  .holographic-bg {
+    animation: holographic 8s ease-in-out infinite;
+  }
+`;
 import { GoogleSignIn } from '@/components/auth/GoogleSignIn';
 import { AppleSignIn } from '@/components/auth/AppleSignIn';
 
@@ -20,6 +34,7 @@ interface LocationState {
 export default function Auth() {
   const { user, signIn, signUp, loading } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const state = location.state as LocationState;
   const from = state?.from?.pathname || '/home';
 
@@ -34,27 +49,16 @@ export default function Auth() {
     role: 'fan' as 'creator' | 'fan'
   });
 
-  // Redirect if already authenticated
-  if (user && !loading) {
-    return <Navigate to={from} replace />;
-  }
+  // Bypass: Don't redirect automatically, let users see the auth page first
+  // if (user && !loading) {
+  //   return <Navigate to={from} replace />;
+  // }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (isSignUp) {
-      if (formData.password !== formData.confirmPassword) {
-        return;
-      }
-      
-      await signUp(formData.email, formData.password, {
-        username: formData.username,
-        display_name: formData.displayName,
-        role: formData.role
-      });
-    } else {
-      await signIn(formData.email, formData.password);
-    }
+    // Bypass authentication - just redirect to home
+    navigate('/home');
   };
 
   const updateFormData = (field: string, value: string) => {
@@ -62,30 +66,63 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background/80 to-background flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center mb-4">
-            <Sparkles className="h-8 w-8 text-primary mr-2" />
-            <h1 className="text-3xl font-luxury font-bold text-gradient">Cabana</h1>
+    <>
+      <style>{holographicStyles}</style>
+      <div className="min-h-screen relative flex items-center justify-center px-4 holographic-bg" style={{
+      background: `
+        radial-gradient(ellipse at top, #ff00ff 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, #00ffff 0%, transparent 50%),
+        radial-gradient(ellipse at left, #ffff00 0%, transparent 50%),
+        radial-gradient(ellipse at right, #ff6600 0%, transparent 50%),
+        conic-gradient(from 0deg at 50% 50%, #ff00ff, #00ffff, #ffff00, #ff6600, #ff00ff),
+        linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%)
+      `,
+      backgroundSize: '400% 400%, 400% 400%, 400% 400%, 400% 400%, 200% 200%, cover',
+      backgroundPosition: 'center',
+      animation: 'holographic 8s ease-in-out infinite'
+    }}>
+      {/* Prismatic glass overlay */}
+      <div className="absolute inset-0" style={{
+        background: `
+          radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 75% 75%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 25% 75%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 75% 25%, rgba(255, 255, 0, 0.1) 0%, transparent 50%)
+        `,
+        backdropFilter: 'blur(1px)'
+      }}></div>
+      <div className="absolute inset-0 bg-black/40"></div>
+      <div className="w-full max-w-lg relative z-10">
+        <div className="text-center mb-10">
+          <div className="flex items-center justify-center mb-6">
+            <Sparkles className="h-10 w-10 text-primary mr-3" />
+            <h1 className="text-5xl font-luxury font-bold text-gradient">Cabana</h1>
           </div>
-          <p className="text-muted-foreground">
+          <p className="text-lg text-muted-foreground">
             {isSignUp ? 'Create your account' : 'Welcome back'}
           </p>
         </div>
 
-        <Card className="glass-morphism border-border/60">
-          <CardHeader>
+        <Card className="p-6 border border-white/20 shadow-2xl" style={{
+          background: 'rgba(255, 255, 255, 0.1)',
+          backdropFilter: 'blur(20px)',
+          borderRadius: '24px'
+        }}>
+          <CardHeader className="pb-6">
             <Tabs value={isSignUp ? 'signup' : 'signin'} onValueChange={(value) => setIsSignUp(value === 'signup')}>
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="signin">Sign In</TabsTrigger>
-                <TabsTrigger value="signup">Sign Up</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 h-12" style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <TabsTrigger value="signin" className="text-base text-white data-[state=active]:bg-white/20 data-[state=active]:text-white">Sign In</TabsTrigger>
+                <TabsTrigger value="signup" className="text-base text-white data-[state=active]:bg-white/20 data-[state=active]:text-white">Sign Up</TabsTrigger>
               </TabsList>
             </Tabs>
           </CardHeader>
           
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+          <CardContent className="pt-0">
+            <form onSubmit={handleSubmit} className="space-y-6">
               {isSignUp && (
                 <>
                   <div className="space-y-2">
@@ -129,19 +166,26 @@ export default function Auth() {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-white">Email</Label>
                 <Input
                   id="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => updateFormData('email', e.target.value)}
                   placeholder="Enter your email"
+                  className="h-12 text-base text-white placeholder:text-white/60"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    borderRadius: '12px'
+                  }}
                   required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-white">Password</Label>
                 <div className="relative">
                   <Input
                     id="password"
@@ -149,6 +193,13 @@ export default function Auth() {
                     value={formData.password}
                     onChange={(e) => updateFormData('password', e.target.value)}
                     placeholder="Enter your password"
+                    className="h-12 text-base text-white placeholder:text-white/60"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.1)',
+                      backdropFilter: 'blur(10px)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      borderRadius: '12px'
+                    }}
                     required
                   />
                   <Button
@@ -182,10 +233,15 @@ export default function Auth() {
 
               <Button 
                 type="submit" 
-                className="w-full btn-chrome hover:scale-105 transition-all" 
-                disabled={loading || (isSignUp && formData.password !== formData.confirmPassword)}
+                className="w-full hover:scale-105 transition-all h-12 text-base font-medium text-white"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.2)',
+                  backdropFilter: 'blur(15px)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  borderRadius: '12px'
+                }}
               >
-                {loading ? 'Please wait...' : (isSignUp ? 'Create Account' : 'Sign In')}
+                {isSignUp ? 'Create Account' : 'Sign In'}
               </Button>
             </form>
 
@@ -195,7 +251,7 @@ export default function Auth() {
                   <span className="w-full border-t border-white/10" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+                  <span className="px-2 text-white/80" style={{ background: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)', borderRadius: '8px' }}>Or continue with</span>
                 </div>
               </div>
 
@@ -214,5 +270,6 @@ export default function Auth() {
         </div>
       </div>
     </div>
+    </>
   );
 }

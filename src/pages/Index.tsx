@@ -47,15 +47,15 @@ function Index() {
               {user ? (
                 <Button asChild size="lg" className="h-14 px-8 text-lg">
                   <Link to="/home">
-                    Go to Dashboard
+                    Enter Cabana
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
               ) : (
                 <>
                   <Button asChild size="lg" className="h-14 px-8 text-lg">
-                    <Link to="/auth">
-                      Get Started
+                    <Link to="/home">
+                      Enter Cabana
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
@@ -96,14 +96,12 @@ function Index() {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Join thousands of creators and fans who are already part of the Cabana community.
           </p>
-          {!user && (
-            <Button asChild size="lg" className="h-12 px-8">
-              <Link to="/auth">
-                Join Cabana Today
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          )}
+          <Button asChild size="lg" className="h-12 px-8">
+            <Link to="/home">
+              Join Cabana Today
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
         </div>
       </div>
     </div>
