@@ -85,11 +85,15 @@ export function ReferralCodeItem({ code }: ReferralCodeItemProps) {
           {code.uses_remaining > 0 && <Badge variant="secondary">{code.uses_remaining} uses left</Badge>}
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" onClick={copyCodeToClipboard}>
+          <Button variant="ghost" size="sm" onClick={copyCodeToClipboard} aria-label="Copy code">
             {isCopied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
           </Button>
-          <Button variant="ghost" size="sm" onClick={shareCode}><Share2 className="h-4 w-4" /></Button>
-          <Button variant="ghost" size="sm" onClick={toggleQRCode}><QrCode className="h-4 w-4" /></Button>
+          <Button variant="ghost" size="sm" onClick={shareCode} aria-label="Share code">
+            <Share2 className="h-4 w-4" />
+          </Button>
+          <Button variant="ghost" size="sm" onClick={toggleQRCode} aria-label="Show QR code">
+            <QrCode className="h-4 w-4" />
+          </Button>
         </div>
       </div>
 

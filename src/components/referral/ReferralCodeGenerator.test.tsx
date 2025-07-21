@@ -1,35 +1,30 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { ReferralCodeGenerator } from './ReferralCodeGenerator';
-import { useAdvancedReferral } from '@/hooks/useAdvancedReferral';
-import { toast } from 'sonner';
-import QRCode from 'qrcode';
 
-// Mock dependencies
-vi.mock('@/hooks/useAdvancedReferral');
-vi.mock('sonner', () => ({
-  toast: {
-    success: vi.fn(),
-    error: vi.fn(),
-  },
-}));
-vi.mock('qrcode', () => ({
-  default: {
-    toDataURL: vi.fn(),
-  },
+// Mock child components to isolate the test to ReferralCodeGenerator
+vi.mock('./NewCodeForm', () => ({
+  NewCodeForm: ({ onCancel }: { onCancel: () => void }) => (
+    <div>
+      <span>NewCodeForm</span>
+      <button onClick={onCancel}>Cancel</button>
+    </div>
+  ),
 }));
 
-// Mock data
+vi.mock('./ReferralCodeItem', () => ({
+  ReferralCodeItem: ({ code }: { code: { id: string; code: string } }) => (
+    <div data-testid={`referral-item-${code.id}`}>{code.code}</div>
+  ),
+}));
+
 const mockActiveCode = {
   id: '1',
   code: 'ACTIVE123',
   uses_remaining: 10,
   total_uses: 5,
   active: true,
-  custom_message: 'Welcome!',
-  landing_page_url: 'https://example.com/active',
-  expires_at: new Date(Date.now() + 86400000).toISOString(), // expires tomorrow
 };
 
 const mockExpiredCode = {
@@ -40,133 +35,51 @@ const mockExpiredCode = {
   active: false,
 };
 
-const mockGenerateCustomCode = {
-  mutateAsync: vi.fn().mockResolvedValue({}),
-  isPending: false,
-};
-
 describe('ReferralCodeGenerator', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-    (useAdvancedReferral as vi.Mock).mockReturnValue({
-      generateCustomCode: mockGenerateCustomCode,
-    });
-    // Mock clipboard and share APIs
-    Object.assign(navigator, {
-      clipboard: {
-        writeText: vi.fn().mockResolvedValue(undefined),
-      },
-      share: vi.fn().mockResolvedValue(undefined),
-    });
-    // Mock window.location
-    Object.defineProperty(window, 'location', {
-      value: {
-        origin: 'http://localhost:3000',
-      },
-      writable: true,
-    });
-  });
-
-  it('renders correctly with no codes', async () => {
+  it('renders correctly with no codes', () => {
     render(<ReferralCodeGenerator existingCodes={[]} />);
     expect(screen.getByText('Your Referral Codes')).toBeInTheDocument();
     expect(screen.getByText('No active referral codes yet')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Create Your First Code/i })).toBeInTheDocument();
   });
 
-  it('renders active and expired codes correctly', () => {
+  it('renders active and expired codes', () => {
     render(<ReferralCodeGenerator existingCodes={[mockActiveCode, mockExpiredCode]} />);
-    // Active code
+
+    // Active code rendered by mock component
+    expect(screen.getByTestId('referral-item-1')).toBeInTheDocument();
     expect(screen.getByText('ACTIVE123')).toBeInTheDocument();
-    expect(screen.getByText('10 uses left')).toBeInTheDocument();
-    expect(screen.getByText('Welcome!')).toBeInTheDocument();
-    expect(screen.getByText('Custom landing page')).toBeInTheDocument();
-    // Expired code
+
+    // Expired code section
     expect(screen.getByText('Expired Codes')).toBeInTheDocument();
     expect(screen.getByText('EXPIRED456')).toBeInTheDocument();
   });
 
-  it('toggles the generator form visibility', async () => {
+  it('toggles the NewCodeForm visibility', async () => {
     const user = userEvent.setup();
     render(<ReferralCodeGenerator existingCodes={[]} />);
-    
-    expect(screen.queryByLabelText(/Code Prefix/i)).not.toBeInTheDocument();
 
+    // Form is initially hidden
+    expect(screen.queryByText('NewCodeForm')).not.toBeInTheDocument();
+
+    // Click "Create Custom Code" to show it
     await user.click(screen.getByRole('button', { name: /Create Custom Code/i }));
-    expect(screen.getByLabelText(/Code Prefix/i)).toBeInTheDocument();
+    expect(screen.getByText('NewCodeForm')).toBeInTheDocument();
 
+    // Click "Cancel" in the mock form to hide it
     await user.click(screen.getByRole('button', { name: /Cancel/i }));
-    expect(screen.queryByLabelText(/Code Prefix/i)).not.toBeInTheDocument();
+    expect(screen.queryByText('NewCodeForm')).not.toBeInTheDocument();
   });
 
-  it('allows generating a new custom code', async () => {
+  it('shows the form when "Create Your First Code" is clicked', async () => {
     const user = userEvent.setup();
     render(<ReferralCodeGenerator existingCodes={[]} />);
 
-    await user.click(screen.getByRole('button', { name: /Create Custom Code/i }));
+    expect(screen.queryByText('NewCodeForm')).not.toBeInTheDocument();
 
-    await user.type(screen.getByLabelText(/Code Prefix/i), 'TEST');
-    await user.type(screen.getByLabelText(/Custom Landing Page/i), 'https://test.com');
-    await user.type(screen.getByLabelText(/Custom Message/i), 'Test message');
+    const createFirstButton = screen.getByRole('button', { name: /Create Your First Code/i });
+    await user.click(createFirstButton);
 
-    await user.click(screen.getByRole('button', { name: /Generate Code/i }));
-
-    await waitFor(() => {
-      expect(mockGenerateCustomCode.mutateAsync).toHaveBeenCalledWith({
-        prefix: 'TEST',
-        landingPage: 'https://test.com',
-        message: 'Test message',
-      });
-    });
-  });
-
-  it('copies code to clipboard and shows a success toast', async () => {
-    const user = userEvent.setup();
-    render(<ReferralCodeGenerator existingCodes={[mockActiveCode]} />);
-
-    const copyButton = screen.getByRole('button', { name: /copy/i });
-    await user.click(copyButton);
-
-    expect(navigator.clipboard.writeText).toHaveBeenCalledWith('ACTIVE123');
-    expect(toast.success).toHaveBeenCalledWith('Code copied to clipboard!');
-  });
-
-  it('shares the code using the Web Share API if available', async () => {
-    const user = userEvent.setup();
-    render(<ReferralCodeGenerator existingCodes={[mockActiveCode]} />);
-
-    const shareButton = screen.getByRole('button', { name: /share/i });
-    await user.click(shareButton);
-
-    expect(navigator.share).toHaveBeenCalledWith({
-      title: 'Join me on Cabana!',
-      text: 'Use my referral code to get exclusive benefits',
-      url: 'http://localhost:3000/invite/ACTIVE123',
-    });
-  });
-
-  it('falls back to copying share URL if Web Share API is not available', async () => {
-    (navigator.share as any) = undefined;
-    const user = userEvent.setup();
-    render(<ReferralCodeGenerator existingCodes={[mockActiveCode]} />);
-
-    const shareButton = screen.getByRole('button', { name: /share/i });
-    await user.click(shareButton);
-
-    expect(navigator.clipboard.writeText).toHaveBeenCalledWith('http://localhost:3000/invite/ACTIVE123');
-    expect(toast.success).toHaveBeenCalledWith('Code copied to clipboard!');
-  });
-
-  it('generates and displays a QR code', async () => {
-    (QRCode.toDataURL as vi.Mock).mockResolvedValue('data:image/png;base64,fake-qr-code');
-    const user = userEvent.setup();
-    render(<ReferralCodeGenerator existingCodes={[mockActiveCode]} />);
-
-    const qrButton = screen.getByRole('button', { name: /qr code/i });
-    await user.click(qrButton);
-
-    const qrImage = await screen.findByAltText('QR code for ACTIVE123');
-    expect(qrImage).toBeInTheDocument();
-    expect(qrImage).toHaveAttribute('src', 'data:image/png;base64,fake-qr-code');
+    expect(screen.getByText('NewCodeForm')).toBeInTheDocument();
   });
 });
