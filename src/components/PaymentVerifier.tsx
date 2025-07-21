@@ -18,7 +18,7 @@ export function PaymentVerifier({ onPaymentVerified }: PaymentVerifierProps) {
     }
   }, [verifyPayment]);
 
-  const verifyPayment = async (sessionId: string) => {
+  const verifyPayment = useCallback(async (sessionId: string) => {
     try {
       const { data, error } = await supabase.functions.invoke('verify-payment', {
         body: { session_id: sessionId }
@@ -51,7 +51,7 @@ export function PaymentVerifier({ onPaymentVerified }: PaymentVerifierProps) {
         variant: "destructive",
       });
     }
-  };
+  }, [onPaymentVerified, toast]);
 
   return null; // This is a utility component, no UI
 }

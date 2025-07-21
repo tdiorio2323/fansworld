@@ -4,6 +4,8 @@
 // vi.mock('@/lib/api/messaging');
 // vi.mock('@/lib/realtime'); // For real-time features like messaging
 
+import { beforeEach } from "node:test";
+
 describe('User Features', () => {
   beforeEach(() => {
     // Reset mocks before each test
