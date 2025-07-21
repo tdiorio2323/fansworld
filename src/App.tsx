@@ -37,53 +37,9 @@ import AdminTest from "./pages/AdminTest";
 
 const queryClient = new QueryClient();
 
-// Password protection wrapper component
+// Password protection wrapper component - DISABLED FOR TESTING
 const PasswordProtectedApp = ({ children }: { children: React.ReactNode }) => {
-  const [hasAccess, setHasAccess] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    // Check if user has valid access
-    const checkAccess = () => {
-      const access = sessionStorage.getItem("fansworld_access");
-      const accessTime = sessionStorage.getItem("fansworld_access_time");
-      
-      if (access === "granted" && accessTime) {
-        // Check if access is still valid (24 hour expiry)
-        const accessDate = new Date(accessTime);
-        const now = new Date();
-        const hoursSinceAccess = (now.getTime() - accessDate.getTime()) / (1000 * 60 * 60);
-        
-        if (hoursSinceAccess < 24) {
-          setHasAccess(true);
-        } else {
-          // Access expired
-          sessionStorage.removeItem("fansworld_access");
-          sessionStorage.removeItem("fansworld_access_time");
-          setHasAccess(false);
-        }
-      } else {
-        setHasAccess(false);
-      }
-    };
-
-    checkAccess();
-  }, []);
-
-  // Show nothing while checking
-  if (hasAccess === null) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
-
-  // Show password landing if no access
-  if (!hasAccess) {
-    return <PasswordLanding />;
-  }
-
-  // Show app if has access
+  // Always allow access for testing - no password protection
   return <>{children}</>;
 };
 
