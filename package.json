@@ -10,6 +10,7 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
+    "test": "vitest",
     "generate:vip-codes": "node scripts/generate-vip-codes.js",
     "test:waitlist": "node scripts/test-waitlist.js",
     "test:all": "npm run test:waitlist"

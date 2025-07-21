@@ -16,7 +16,7 @@ export function PaymentVerifier({ onPaymentVerified }: PaymentVerifierProps) {
     if (sessionId) {
       verifyPayment(sessionId);
     }
-  }, []);
+  }, [verifyPayment]);
 
   const verifyPayment = async (sessionId: string) => {
     try {

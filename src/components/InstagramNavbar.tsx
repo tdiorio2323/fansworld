@@ -190,7 +190,13 @@ export default function InstagramNavbar() {
   );
 
   // Individual navigation item component
-  const NavItem = ({ icon: Icon, label, path }: { icon: any, label: string, path: string }) => {
+  interface NavItemProps {
+  icon: React.ElementType;
+  label: string;
+  path: string;
+}
+
+  const NavItem = ({ icon: Icon, label, path }: NavItemProps) => {
     const active = isActive(path);
     
     return (

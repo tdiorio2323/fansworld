@@ -32,14 +32,18 @@ export function InviteRedemption() {
   const [loading, setLoading] = useState(false);
   const [inviteInfo, setInviteInfo] = useState<InviteInfo | null>(null);
   const [error, setError] = useState("");
-  const [validInvite, setValidInvite] = useState<any>(null);
+  interface ValidInviteInfo {
+  id: string;
+  // Add other properties of the invite object if known
+}
+  const [validInvite, setValidInvite] = useState<ValidInviteInfo | null>(null);
   const [checkingInvite, setCheckingInvite] = useState(true);
 
   useEffect(() => {
     if (inviteCode) {
       checkInviteCode();
     }
-  }, [inviteCode]);
+  }, [inviteCode, checkInviteCode]);
 
   const checkInviteCode = async () => {
     try {

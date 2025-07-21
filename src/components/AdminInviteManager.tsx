@@ -58,11 +58,29 @@ export function AdminInviteManager() {
     max_uses: "1"
   });
 
+  const loadInvites = useCallback(async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke('manage-invites', {
+        body: { action: 'list' }
+      });
+
+      if (error) throw error;
+      setInvites(data.invites || []);
+    } catch (error) {
+      console.error('Error loading invites:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load invites",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, [toast]);
+
   useEffect(() => {
     loadInvites();
-  }, []);
-
-  const loadInvites = async () => {
+  }, [loadInvites]);
     try {
       const { data, error } = await supabase.functions.invoke('manage-invites', {
         body: { action: 'list' }

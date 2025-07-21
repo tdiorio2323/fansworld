@@ -62,7 +62,7 @@ export function VipCodeTracker() {
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
   const loadData = async () => {
     try {

@@ -58,7 +58,7 @@ export function LinkTracker() {
   useEffect(() => {
     loadLinks();
     loadAnalytics();
-  }, []);
+  }, [loadLinks, loadAnalytics]);
 
   const loadLinks = async () => {
     try {
@@ -75,7 +75,7 @@ export function LinkTracker() {
       const formattedLinks = data?.map(link => ({
         ...link,
         clicks: link.link_clicks?.length || 0,
-        unique_clicks: new Set(link.link_clicks?.map((click: any) => click.ip_address) || []).size
+        unique_clicks: new Set(link.link_clicks?.map((click: { ip_address: string }) => click.ip_address) || []).size
       })) || [];
 
       setLinks(formattedLinks);
