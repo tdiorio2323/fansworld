@@ -5,10 +5,10 @@ LIMIT 10;
 
 -- Once you find your user, update them to admin
 -- Replace 'your-email@example.com' with your actual email
-UPDATE profiles 
-SET role = 'admin', 
+UPDATE profiles
+SET role = 'admin',
     is_admin = true
-WHERE email = 'your-email@example.com';
+WHERE email = '!!!-REPLACE-WITH-YOUR-EMAIL-!!!';
 
 -- Or if you're the first/only user, you can update by ID
 -- UPDATE profiles 
