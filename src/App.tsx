@@ -100,65 +100,65 @@ const App = () => (
             
             {/* All routes now accessible without password */}
             <Route path="/" element={<Index />} />
-                  <Route path="/home" element={<InstagramHome />} />
-                  <Route path="/home-classic" element={<Home />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/auth" element={<Auth />} />
-                  <Route path="/auth/callback" element={<AuthCallback />} />
-                  <Route path="/search" element={<Discover />} />
-                  <Route path="/create" element={
-                    <ProtectedRoute>
-                      <Create />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/creator/:username" element={<CreatorProfile />} />
-                  <Route path="/invite/:inviteCode" element={<InvitePage />} />
-                  <Route path="/agency" element={<Agency />} />
-                  <Route path="/creator-application" element={
-                    <ProtectedRoute>
-                      <CreatorApplication />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/coming-soon" element={<ComingSoon />} />
-                  <Route path="/l/:shortCode" element={<LinkRedirect />} />
-                  <Route path="/vip/:shortCode" element={<LinkRedirect />} />
-                  <Route path="/analytics" element={<AnalyticsDashboard />} />
-                  <Route path="/referrals" element={
-                    <ProtectedRoute>
-                      <ReferralProgram />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/test-payment" element={
-                    <ProtectedRoute>
-                      <TestPayment />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/admin-test" element={<AdminTest />} />
-                  <Route path="/admin" element={
-                    <AdminRoute>
-                      <AdminDashboard />
-                    </AdminRoute>
-                  } />
-                  <Route path="/dashboard" element={
-                    <ProtectedRoute>
-                      <Dashboard />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/messages" element={
-                    <ProtectedRoute>
-                      <Messages />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/billing" element={
-                    <ProtectedRoute>
-                      <Billing />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/settings" element={
-                    <ProtectedRoute>
-                      <Settings />
-                    </ProtectedRoute>
-                  } />
+            <Route path="/home" element={<InstagramHome />} />
+            <Route path="/home-classic" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/search" element={<Discover />} />
+            <Route path="/create" element={
+              <ProtectedRoute>
+                <Create />
+              </ProtectedRoute>
+            } />
+            <Route path="/creator/:username" element={<CreatorProfile />} />
+            <Route path="/invite/:inviteCode" element={<InvitePage />} />
+            <Route path="/agency" element={<Agency />} />
+            <Route path="/creator-application" element={
+              <ProtectedRoute>
+                <CreatorApplication />
+              </ProtectedRoute>
+            } />
+            <Route path="/coming-soon" element={<ComingSoon />} />
+            <Route path="/l/:shortCode" element={<LinkRedirect />} />
+            <Route path="/vip/:shortCode" element={<LinkRedirect />} />
+            <Route path="/analytics" element={<AnalyticsDashboard />} />
+            <Route path="/referrals" element={
+              <ProtectedRoute>
+                <ReferralProgram />
+              </ProtectedRoute>
+            } />
+            <Route path="/test-payment" element={
+              <ProtectedRoute>
+                <TestPayment />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin-test" element={<AdminTest />} />
+            <Route path="/admin" element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            } />
+            <Route path="/dashboard" element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/messages" element={
+              <ProtectedRoute>
+                <Messages />
+              </ProtectedRoute>
+            } />
+            <Route path="/billing" element={
+              <ProtectedRoute>
+                <Billing />
+              </ProtectedRoute>
+            } />
+            <Route path="/settings" element={
+              <ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>
+            } />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

@@ -22,12 +22,10 @@ export default function PasswordLanding() {
   const [showWaitlist, setShowWaitlist] = useState(true);
   const { toast } = useToast();
 
-  // Check if user already has access
+  // Check if user already has access - DISABLED FOR TESTING
   useEffect(() => {
-    const hasAccess = sessionStorage.getItem("fansworld_access") === "granted";
-    if (hasAccess) {
-      window.location.href = "/home";
-    }
+    // Always grant access for testing
+    window.location.href = "/home";
   }, []);
 
   const handleWaitlistSubmit = async (e: React.FormEvent) => {
