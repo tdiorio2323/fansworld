@@ -68,19 +68,12 @@ export default function Auth() {
   return (
     <>
       <style>{holographicStyles}</style>
-      <div className="min-h-screen relative flex items-center justify-center px-4 holographic-bg" style={{
-      background: `
-        radial-gradient(ellipse at top, #ff00ff 0%, transparent 50%),
-        radial-gradient(ellipse at bottom, #00ffff 0%, transparent 50%),
-        radial-gradient(ellipse at left, #ffff00 0%, transparent 50%),
-        radial-gradient(ellipse at right, #ff6600 0%, transparent 50%),
-        conic-gradient(from 0deg at 50% 50%, #ff00ff, #00ffff, #ffff00, #ff6600, #ff00ff),
-        linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%)
-      `,
-      backgroundSize: '400% 400%, 400% 400%, 400% 400%, 400% 400%, 200% 200%, cover',
-      backgroundPosition: 'center',
-      animation: 'holographic 8s ease-in-out infinite'
-    }}>
+      <div className="min-h-screen relative flex items-center justify-center px-4" style={{
+        backgroundImage: 'url(/cabana-crystal-bg.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}>
       {/* Prismatic glass overlay */}
       <div className="absolute inset-0" style={{
         background: `
@@ -93,12 +86,20 @@ export default function Auth() {
       }}></div>
       <div className="absolute inset-0 bg-black/40"></div>
       <div className="w-full max-w-lg relative z-10">
-        <div className="text-center mb-10">
-          <div className="flex items-center justify-center mb-6">
-            <Sparkles className="h-10 w-10 text-primary mr-3" />
-            <h1 className="text-5xl font-luxury font-bold text-gradient">Cabana</h1>
-          </div>
-          <p className="text-lg text-muted-foreground">
+        <div className="text-center mb-16">
+          {/* Large Cabana Script Title */}
+          <h1 className="mb-8" style={{
+            fontSize: '7rem',
+            fontFamily: '"Dancing Script", cursive',
+            fontWeight: '600',
+            color: 'white',
+            textShadow: '0 8px 32px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(255, 255, 255, 0.4), 0 2px 8px rgba(0, 0, 0, 0.6)',
+            letterSpacing: '1px',
+            lineHeight: '0.9'
+          }}>
+            Cabana
+          </h1>
+          <p className="text-xl text-white/90 font-light">
             {isSignUp ? 'Create your account' : 'Welcome back'}
           </p>
         </div>

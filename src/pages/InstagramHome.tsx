@@ -159,22 +159,11 @@ export default function InstagramHome() {
   return (
     <>
       <style>{holographicStyles}</style>
-      <div className="min-h-screen holographic-bg" style={{
-        background: `
-          radial-gradient(circle at 20% 20%, rgba(255, 182, 193, 0.6) 0%, transparent 35%),
-          radial-gradient(circle at 80% 30%, rgba(221, 160, 221, 0.5) 0%, transparent 40%),
-          radial-gradient(circle at 30% 70%, rgba(255, 218, 185, 0.4) 0%, transparent 35%),
-          radial-gradient(circle at 70% 80%, rgba(255, 192, 203, 0.6) 0%, transparent 40%),
-          radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.3) 0%, transparent 25%),
-          radial-gradient(circle at 10% 60%, rgba(255, 105, 180, 0.4) 0%, transparent 30%),
-          radial-gradient(circle at 90% 90%, rgba(138, 43, 226, 0.3) 0%, transparent 35%),
-          conic-gradient(from 45deg at 30% 60%, #ff69b4, #ff1493, #dc143c, #ff4500, #ffd700, #ff69b4),
-          conic-gradient(from 180deg at 70% 30%, #ff69b4, #da70d6, #9370db, #4169e1, #00bfff, #ff69b4),
-          linear-gradient(135deg, #ff69b4 0%, #da70d6 15%, #9370db 30%, #6a5acd 45%, #4169e1 60%, #ff1493 75%, #ff69b4 100%)
-        `,
-        backgroundSize: '200% 200%, 250% 250%, 300% 300%, 180% 180%, 400% 400%, 220% 220%, 160% 160%, 150% 150%, 120% 120%, cover',
+      <div className="min-h-screen" style={{
+        backgroundImage: 'url(/cabana-crystal-bg.jpg)',
+        backgroundSize: 'cover',
         backgroundPosition: 'center',
-        animation: 'holographic 8s ease-in-out infinite'
+        backgroundRepeat: 'no-repeat'
       }}>
         {/* Prismatic glass overlay */}
         <div className="absolute inset-0" style={{
