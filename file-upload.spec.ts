@@ -1,14 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-// Let's assume you have a component like this.
-// It's a simple component with a file input and an image tag for previews.
-const FileUploadComponent = ({ onUpload }) => {
-  const [preview, setPreview] = React.useState(null);
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
     if (file) {
       setPreview(URL.createObjectURL(file));
       onUpload(file);
