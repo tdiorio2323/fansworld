@@ -1,39 +1,49 @@
-import { useAuth } from '@/hooks/useAuth';
-import { Navigate, useLocation } from 'react-router-dom';
-import { Skeleton } from '@/components/ui/skeleton';
+import React, { ReactNode } from 'react'
+import { Navigate, useLocation } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
 
 interface ProtectedRouteProps {
-  children: React.ReactNode;
-  redirectTo?: string;
+  children: ReactNode
+  requireVip?: boolean
 }
 
-export function ProtectedRoute({ children, redirectTo = '/auth' }: ProtectedRouteProps) {
-  // TEMPORARY: Bypass authentication check for testing
-  // Remove this bypass when authentication is needed again
-  const BYPASS_AUTH = true;
-  
-  if (BYPASS_AUTH) {
-    return <>{children}</>;
-  }
+export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ 
+  children, 
+  requireVip = false 
+}) => {
+  const { isAuthenticated, user, isLoading } = useAuth()
+  const location = useLocation()
 
-  const { user, loading } = useAuth();
-  const location = useLocation();
-
-  if (loading) {
+  if (isLoading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="space-y-4 w-full max-w-md px-4">
-          <Skeleton className="h-12 w-full" />
-          <Skeleton className="h-4 w-3/4" />
-          <Skeleton className="h-4 w-1/2" />
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="glass-card p-8">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto"></div>
+          <p className="text-white text-center mt-4">Loading...</p>
         </div>
       </div>
-    );
+    )
   }
 
-  if (!user) {
-    return <Navigate to={redirectTo} state={{ from: location }} replace />;
+  if (!isAuthenticated) {
+    return <Navigate to="/auth" state={{ from: location }} replace />
   }
 
-  return <>{children}</>;
+  if (requireVip && !user?.isVip) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="glass-card p-8 text-center max-w-md">
+          <div className="gradient-text text-2xl font-bold mb-4">VIP Access Required</div>
+          <p className="text-gray-300 mb-6">
+            This content is exclusive to VIP members. Upgrade your account to access premium features.
+          </p>
+          <button className="luxury-button px-6 py-3 rounded-full text-white font-semibold">
+            Upgrade to VIP
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  return <>{children}</>
 }
