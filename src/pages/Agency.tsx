@@ -1,0 +1,1 @@
+import React from 'react'; const Agency: React.FC = () => { return <div className="min-h-screen flex items-center justify-center"><h1 className="text-4xl font-bold">Agency Page</h1></div>; }; export default Agency;
