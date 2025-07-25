@@ -1,11 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
-  :root {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+:root {
+  /* Enhanced Font Stack */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-luxury: 'Playfair Display', 'Times New Roman', serif;
+  --font-script: 'Dancing Script', cursive;
+  
+  font-family: var(--font-primary);
   line-height: 1.5;
   font-weight: 400;
 
@@ -17,13 +25,37 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  }
+  text-size-adjust: 100%;
+}
 
-  body {
+body {
   margin: 0;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  background: 
+    radial-gradient(circle at 20% 40%, rgba(147, 51, 234, 0.3) 0%, transparent 60%),
+    radial-gradient(circle at 80% 60%, rgba(236, 72, 153, 0.3) 0%, transparent 60%),
+    radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.3) 0%, transparent 60%),
+    radial-gradient(circle at 60% 80%, rgba(168, 85, 247, 0.3) 0%, transparent 60%),
+    linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f172a 75%, #020617 100%);
+  background-size: 300% 300%, 400% 400%, 350% 350%, 450% 450%, 100% 100%;
+  background-attachment: fixed;
   min-height: 100vh;
   overflow-x: hidden;
+  animation: holographicBackground 20s ease-in-out infinite;
+}
+
+@keyframes holographicBackground {
+  0%, 100% { 
+    background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%, 0% 0%; 
+  }
+  25% { 
+    background-position: 100% 50%, 0% 50%, 100% 0%, 50% 50%, 0% 0%; 
+  }
+  50% { 
+    background-position: 50% 100%, 50% 0%, 0% 100%, 100% 0%, 0% 0%; 
+  }
+  75% { 
+    background-position: 0% 50%, 100% 50%, 50% 50%, 50% 100%, 0% 0%; 
+  }
 }
 
 /* Advanced CABANA Luxury Styles */
@@ -34,6 +66,7 @@
   border-radius: 16px;
   position: relative;
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card::before {
@@ -54,6 +87,7 @@
   box-shadow: 
     0 8px 32px rgba(147, 51, 234, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .gradient-text {
@@ -63,6 +97,8 @@
   background-clip: text;
   background-size: 200% 200%;
   animation: gradient-shift 4s ease-in-out infinite;
+  font-family: var(--font-luxury);
+  font-weight: 700;
 }
 
 @keyframes gradient-shift {
@@ -76,70 +112,87 @@
   box-shadow: 
     0 4px 20px rgba(147, 51, 234, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
 
-.luxury-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.luxury-button:hover::before {
-  left: 100%;
-}
-
 .luxury-button:hover {
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
   box-shadow: 
-    0 8px 30px rgba(147, 51, 234, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 6px 32px rgba(147, 51, 234, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
 }
 
 .luxury-button:active {
   transform: translateY(0);
+  box-shadow: 
+    0 2px 12px rgba(147, 51, 234, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* VIP Exclusive Styling */
+/* VIP Effects */
 .vip-glow {
+  background: linear-gradient(135deg, #ffd700 0%, #ffb000 100%);
   box-shadow: 
-    0 0 20px rgba(255, 215, 0, 0.3),
-    0 0 40px rgba(255, 215, 0, 0.1),
-    inset 0 1px 0 rgba(255, 215, 0, 0.1);
-  border: 1px solid rgba(255, 215, 0, 0.3);
+    0 0 20px rgba(255, 215, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  animation: vip-pulse 3s ease-in-out infinite;
+}
+
+@keyframes vip-pulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 20px rgba(255, 215, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  50% { 
+    box-shadow: 
+      0 0 30px rgba(255, 215, 0, 0.6),
+      0 0 40px rgba(255, 215, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
 }
 
 .vip-text {
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #f59e0b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
-/* Floating Animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
+/* Enhanced Float Animation */
 .float-animation {
-  animation: float 6s ease-in-out infinite;
+  animation: luxuryFloat 6s ease-in-out infinite;
 }
 
-/* Pulse Animation */
+@keyframes luxuryFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+    filter: brightness(1);
+  }
+  33% { 
+    transform: translateY(-10px) rotate(1deg);
+    filter: brightness(1.1);
+  }
+  66% { 
+    transform: translateY(-5px) rotate(-1deg);
+    filter: brightness(1.05);
+  }
+}
+
+/* Enhanced Pulse Glow */
 @keyframes pulse-glow {
   0%, 100% { 
     box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+    transform: scale(1);
   }
   50% { 
-    box-shadow: 0 0 30px rgba(147, 51, 234, 0.6);
+    box-shadow: 
+      0 0 30px rgba(147, 51, 234, 0.5),
+      0 0 50px rgba(147, 51, 234, 0.2);
+    transform: scale(1.02);
   }
 }
 
@@ -147,7 +200,7 @@
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Shimmer Effect */
+/* Enhanced Shimmer Effect */
 @keyframes shimmer {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
@@ -159,14 +212,20 @@
 }
 
 .shimmer::after {
-    content: '';
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    rgba(147, 51, 234, 0.2),
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   animation: shimmer 2s infinite;
 }
 
@@ -256,12 +315,163 @@
 }
 
 /* Typography Enhancements */
-  .text-luxury {
+.text-luxury {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-primary);
 }
 
 .text-glow {
   text-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
+}
+
+/* Ultra-Premium Holographic Effects */
+.holographic-card {
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(255, 255, 255, 0.05) 25%,
+      rgba(147, 51, 234, 0.1) 50%,
+      rgba(236, 72, 153, 0.1) 75%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+  backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid;
+  border-image: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.3),
+    rgba(147, 51, 234, 0.3),
+    rgba(236, 72, 153, 0.3),
+    rgba(255, 255, 255, 0.3)
+  ) 1;
+  border-radius: 24px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.holographic-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    rgba(147, 51, 234, 0.3),
+    rgba(236, 72, 153, 0.3),
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: holographicShimmer 3s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@keyframes holographicShimmer {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.crystal-sparkles {
+  position: relative;
+}
+
+.crystal-sparkles::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(2px 2px at 40% 60%, rgba(147, 51, 234, 0.8), transparent),
+    radial-gradient(1px 1px at 70% 20%, rgba(236, 72, 153, 0.8), transparent),
+    radial-gradient(1px 1px at 80% 80%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(2px 2px at 10% 90%, rgba(59, 130, 246, 0.8), transparent);
+  background-size: 100px 100px, 150px 150px, 80px 80px, 120px 120px, 90px 90px;
+  animation: sparkleFloat 4s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+@keyframes sparkleFloat {
+  0%, 100% { 
+    transform: translateY(0px) scale(1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateY(-10px) scale(1.1);
+    opacity: 1;
+  }
+}
+
+.prismatic-text {
+  background: linear-gradient(45deg, 
+    #ff006e, #ff4081, #ff7043, #ffab00, 
+    #cddc39, #4caf50, #00bcd4, #2196f3, 
+    #3f51b5, #9c27b0, #e91e63, #ff006e
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: prismaticShift 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  font-family: var(--font-luxury);
+  font-weight: 800;
+  will-change: background-position;
+}
+
+@keyframes prismaticShift {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 25%; }
+  50% { background-position: 50% 100%; }
+  75% { background-position: 25% 0%; }
+}
+
+.cabana-logo {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(147, 51, 234, 0.9) 25%,
+    rgba(236, 72, 153, 0.9) 50%,
+    rgba(59, 130, 246, 0.9) 75%,
+    rgba(255, 255, 255, 0.95) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(147, 51, 234, 0.5);
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease;
+}
+
+.cabana-logo:hover {
+  filter: drop-shadow(0 2px 15px rgba(147, 51, 234, 0.4));
+}
+
+h2 {
+  font-family: 'Bebas Neue', cursive;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.bebas-description {
+  font-family: 'Bebas Neue', cursive;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin-bottom: 2rem;
+  line-height: 1.4;
 }
 
 /* Responsive Design */
@@ -289,5 +499,94 @@
       box-shadow: 
       0 4px 20px rgba(147, 51, 234, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Performance Optimizations */
+.interactive-scale,
+.luxury-button,
+.glass-card,
+.content-card {
+  will-change: transform;
+}
+
+.float-animation,
+.pulse-glow,
+.shimmer {
+  will-change: transform, filter, opacity;
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 768px) {
+  .glass-card {
+    border-radius: 12px;
+  }
+  
+  .luxury-button {
+    padding: 12px 16px;
+  }
+  
+  .gradient-text {
+    font-size: 1.5rem;
+  }
+
+  .cabana-logo {
+    font-size: 1.75rem;
+  }
+
+  .holographic-card {
+    backdrop-filter: blur(20px) saturate(150%);
+  }
+
+  /* Reduce animations on mobile for performance */
+  .crystal-sparkles::after {
+    animation-duration: 6s;
+  }
+
+  .prismatic-text {
+    animation-duration: 8s;
+  }
+}
+
+@media (max-width: 480px) {
+  .cabana-logo {
+    font-size: 1.5rem;
+  }
+
+  .holographic-card::before {
+    animation: none; /* Disable shimmer on very small screens */
+  }
+}
+
+/* Dark Mode Optimizations */
+@media (prefers-color-scheme: dark) {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+  }
+  
+  .luxury-button {
+    box-shadow: 
+      0 4px 20px rgba(147, 51, 234, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .float-animation,
+  .pulse-glow,
+  .shimmer,
+  .holographic-card::before,
+  .crystal-sparkles::after,
+  .prismatic-text {
+    animation: none;
+  }
+
+  .interactive-scale:hover {
+    transform: none;
+  }
+
+  body {
+    animation: none;
   }
 }

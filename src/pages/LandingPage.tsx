@@ -4,84 +4,96 @@ import { Star, Users, Zap, Crown, ArrowRight, Shield, Sparkles, Diamond, Gem } f
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen text-white overflow-hidden">
+    <div 
+      className="min-h-screen text-white overflow-hidden crystal-sparkles relative"
+      style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%)',
+      }}
+    >
+      {/* Enhanced Background Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-pink-900/20 pointer-events-none"></div>
+      
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 nav-blur">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="gradient-text text-2xl font-bold flex items-center gap-2">
-              <Diamond className="w-8 h-8" />
-              CABANA
-            </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="hover:text-purple-300 transition-colors text-luxury">Features</a>
-              <a href="#creators" className="hover:text-purple-300 transition-colors text-luxury">For Creators</a>
-              <a href="#pricing" className="hover:text-purple-300 transition-colors text-luxury">Pricing</a>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Link to="/auth" className="text-gray-300 hover:text-white transition-colors">
-                Sign In
-              </Link>
-              <Link to="/auth" className="luxury-button px-6 py-2 rounded-full text-white font-semibold interactive-scale">
-                Get Started
-              </Link>
+      <nav className="fixed top-0 w-full z-50">
+        <div className="holographic-card mx-4 mt-4 rounded-2xl backdrop-blur-xl">
+          <div className="container mx-auto px-4 sm:px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="cabana-logo flex items-center gap-3">
+                <Gem className="w-8 h-8 text-white drop-shadow-lg" />
+                <span className="text-2xl sm:text-3xl font-bold">Cabana</span>
+              </div>
+              <div className="hidden md:flex items-center space-x-8">
+                <a href="#features" className="hover:text-purple-300 transition-colors text-luxury font-medium">Features</a>
+                <a href="#creators" className="hover:text-purple-300 transition-colors text-luxury font-medium">For Creators</a>
+                <a href="#pricing" className="hover:text-purple-300 transition-colors text-luxury font-medium">Pricing</a>
+              </div>
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                <Link to="/auth" className="text-gray-300 hover:text-white transition-colors font-medium hidden sm:block">
+                  Sign In
+                </Link>
+                <Link to="/auth" className="luxury-button px-4 sm:px-6 py-2 sm:py-3 rounded-full text-white font-semibold interactive-scale text-sm sm:text-base">
+                  Get Started
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 relative">
-        {/* Background Effects */}
+      <section className="pt-24 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 relative">
+        {/* Enhanced Background Effects */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl float-animation"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl float-animation" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-20 left-10 w-48 sm:w-72 h-48 sm:h-72 bg-purple-500/20 rounded-full blur-3xl float-animation"></div>
+          <div className="absolute bottom-20 right-10 w-64 sm:w-96 h-64 sm:h-96 bg-pink-500/20 rounded-full blur-3xl float-animation" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl float-animation" style={{animationDelay: '4s'}}></div>
         </div>
         
         <div className="container mx-auto text-center relative z-10">
           <div className="max-w-5xl mx-auto">
-            <div className="mb-8 flex justify-center">
-              <div className="glass-card-premium p-4 rounded-full pulse-glow">
-                <Crown className="w-12 h-12 text-purple-400" />
+            <div className="mb-6 sm:mb-8 flex justify-center">
+              <div className="holographic-card p-4 sm:p-6 rounded-full pulse-glow backdrop-blur-xl">
+                <Crown className="w-12 h-12 sm:w-16 sm:h-16 text-white drop-shadow-lg" />
               </div>
             </div>
             
-            <h1 className="text-6xl md:text-8xl font-bold mb-8 fade-in">
-              Welcome to <span className="gradient-text">CABANA</span>
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 sm:mb-8 fade-in leading-tight">
+              <span className="text-white">CABANA</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto fade-in text-luxury">
-              The ultimate luxury platform for creators and their exclusive communities. 
-              Premium content, VIP experiences, and unparalleled creator tools.
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto drop-shadow-sm bebas-description">
+              The ultimate luxury platform for creators and their exclusive
+              communities. Premium content, VIP experiences, and
+              unparalleled creator tools.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 fade-in">
-              <Link to="/waitlist" className="luxury-button px-10 py-5 rounded-full text-white font-semibold text-lg flex items-center gap-3 interactive-scale shimmer">
-                <Sparkles className="w-6 h-6" />
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 fade-in px-4">
+              <Link to="/waitlist" className="luxury-button px-8 sm:px-10 py-4 sm:py-5 rounded-full text-white font-semibold text-base sm:text-lg flex items-center gap-3 interactive-scale shimmer w-full sm:w-auto justify-center shadow-2xl">
+                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />
                 Join Waitlist
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>
-              <Link to="/auth" className="glass-card px-10 py-5 rounded-full text-white font-semibold text-lg border border-white/20 hover:border-purple-500/50 transition-all interactive-scale">
-                <div className="flex items-center gap-3">
-                  <Gem className="w-5 h-5" />
+              <Link to="/auth" className="holographic-card px-8 sm:px-10 py-4 sm:py-5 rounded-full text-white font-semibold text-base sm:text-lg transition-all interactive-scale w-full sm:w-auto backdrop-blur-xl shadow-xl">
+                <div className="flex items-center gap-3 justify-center">
+                  <Gem className="w-4 h-4 sm:w-5 sm:h-5" />
                   Sign In
                 </div>
               </Link>
             </div>
             
             {/* Trust Indicators */}
-            <div className="mt-16 flex flex-wrap justify-center items-center gap-8 text-gray-400">
-              <div className="flex items-center gap-2">
+            <div className="mt-12 sm:mt-16 flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-gray-300 text-sm sm:text-base px-4">
+              <div className="flex items-center gap-2 glass-card px-4 py-2 rounded-full backdrop-blur-sm">
                 <div className="w-2 h-2 status-online rounded-full"></div>
-                <span>1M+ Active Creators</span>
+                <span className="whitespace-nowrap">1M+ Active Creators</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 glass-card px-4 py-2 rounded-full backdrop-blur-sm">
                 <div className="w-2 h-2 status-vip rounded-full"></div>
-                <span>$50M+ Creator Earnings</span>
+                <span className="whitespace-nowrap">$50M+ Creator Earnings</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 glass-card px-4 py-2 rounded-full backdrop-blur-sm">
                 <Shield className="w-4 h-4 text-green-400" />
-                <span>Bank-Level Security</span>
+                <span className="whitespace-nowrap">Bank-Level Security</span>
               </div>
             </div>
           </div>
@@ -89,44 +101,47 @@ const LandingPage = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-6 relative">
-        <div className="container mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-bold mb-8">
+      <section id="features" className="py-16 sm:py-20 px-4 sm:px-6 relative">
+        {/* Section Background */}
+        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+        
+        <div className="container mx-auto relative z-10">
+          <div className="text-center mb-16 sm:mb-20">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 leading-tight">
               <span className="gradient-text">Premium Features</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto text-luxury">
+            <p className="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto text-luxury px-4 drop-shadow-sm">
               Everything you need to build, manage, and monetize your creator business
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="content-card p-8 rounded-3xl interactive-scale">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="content-card p-6 sm:p-8 rounded-3xl interactive-scale backdrop-blur-xl shadow-2xl">
               <div className="vip-glow w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                <Crown className="w-8 h-8 vip-text" />
+                <Crown className="w-8 h-8 vip-text drop-shadow-lg" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-luxury">VIP Experiences</h3>
-              <p className="text-gray-300 leading-relaxed">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 text-luxury">VIP Experiences</h3>
+              <p className="text-gray-200 leading-relaxed text-sm sm:text-base">
                 Create exclusive VIP tiers with special access, private content, and premium interactions that drive higher engagement and revenue.
               </p>
             </div>
             
-            <div className="content-card p-8 rounded-3xl interactive-scale">
-              <div className="glass-card-premium w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                <Zap className="w-8 h-8 text-purple-400" />
+            <div className="content-card p-6 sm:p-8 rounded-3xl interactive-scale backdrop-blur-xl shadow-2xl">
+              <div className="holographic-card w-16 h-16 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-xl">
+                <Zap className="w-8 h-8 text-white drop-shadow-lg" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-luxury">AI-Powered Analytics</h3>
-              <p className="text-gray-300 leading-relaxed">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 text-luxury">AI-Powered Analytics</h3>
+              <p className="text-gray-200 leading-relaxed text-sm sm:text-base">
                 Advanced insights and automation to optimize your content strategy, predict trends, and maximize revenue potential.
               </p>
             </div>
             
-            <div className="content-card p-8 rounded-3xl interactive-scale">
-              <div className="glass-card-premium w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                <Shield className="w-8 h-8 text-green-400" />
+            <div className="content-card p-6 sm:p-8 rounded-3xl interactive-scale sm:col-span-2 lg:col-span-1 backdrop-blur-xl shadow-2xl">
+              <div className="holographic-card w-16 h-16 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-xl">
+                <Shield className="w-8 h-8 text-white drop-shadow-lg" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-luxury">Premium Security</h3>
-              <p className="text-gray-300 leading-relaxed">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 text-luxury">Premium Security</h3>
+              <p className="text-gray-200 leading-relaxed text-sm sm:text-base">
                 Bank-level security with content protection, secure payments, privacy controls, and advanced fraud prevention.
               </p>
             </div>
@@ -228,7 +243,7 @@ const LandingPage = () => {
             </div>
             
             {/* Premium */}
-            <div className="glass-card-premium p-8 rounded-3xl ring-2 ring-purple-500 relative pulse-glow">
+            <div className="holographic-card p-8 rounded-3xl ring-2 ring-white/30 relative pulse-glow">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full text-sm font-semibold shimmer">
                 Most Popular
               </div>
@@ -311,7 +326,7 @@ const LandingPage = () => {
       {/* CTA Section */}
       <section className="py-20 px-6 bg-gradient-to-r from-purple-900/50 to-pink-900/50 relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239333ea" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-purple-900/20 opacity-20"></div>
         </div>
         
         <div className="container mx-auto text-center relative z-10">

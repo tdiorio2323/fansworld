@@ -1,292 +1,233 @@
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import React from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
 import { 
+  User, 
   TrendingUp, 
-  Users, 
-  DollarSign, 
-  Star, 
   Calendar, 
-  Target,
-  Crown,
-  CheckCircle,
+  Target, 
+  CheckCircle, 
   Clock,
-  AlertCircle
-} from "lucide-react";
-import { useCreatorApplication, useCreatorMilestones, useCreatorGoals } from "@/hooks/useCreatorApplication";
-import { useNavigate } from "react-router-dom";
-
-interface CreatorStats {
-  totalEarnings: number;
-  monthlyEarnings: number;
-  subscribers: number;
-  growthRate: number;
-  applicationStatus: 'pending' | 'approved' | 'rejected' | 'not_applied';
-}
+  Star,
+  Users,
+  DollarSign
+} from 'lucide-react';
+import { useCreatorApplication } from '@/hooks/useCreatorApplication';
 
 export function CreatorDashboard() {
-  const navigate = useNavigate();
-  const { application, isLoading: applicationLoading } = useCreatorApplication();
-  const { milestones, isLoading: milestonesLoading } = useCreatorMilestones();
-  const { goals, isLoading: goalsLoading } = useCreatorGoals();
+  const { 
+    applications,
+    goals,
+    milestones,
+    isLoading,
+    getProgressPercentage,
+    getNextStepMessage,
+    getApplicationStats
+  } = useCreatorApplication();
 
-  const [stats, setStats] = useState<CreatorStats>({
-    totalEarnings: 0,
-    monthlyEarnings: 0,
-    subscribers: 0,
-    growthRate: 0,
-    applicationStatus: 'not_applied'
-  });
+  const currentApplication = applications[0]; // Get the most recent application
+  const stats = getApplicationStats();
 
-  useEffect(() => {
-    if (application) {
-      setStats(prev => ({
-        ...prev,
-        applicationStatus: application.status as CreatorStats['applicationStatus']
-      }));
-    }
-  }, [application]);
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'pending':
-        return <Clock className="h-5 w-5 text-yellow-400" />;
-      case 'approved':
-        return <CheckCircle className="h-5 w-5 text-green-400" />;
-      case 'rejected':
-        return <AlertCircle className="h-5 w-5 text-red-400" />;
-      default:
-        return <Crown className="h-5 w-5 text-purple-400" />;
-    }
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'pending':
-        return 'bg-yellow-600';
-      case 'approved':
-        return 'bg-green-600';
-      case 'rejected':
-        return 'bg-red-600';
-      default:
-        return 'bg-purple-600';
-    }
-  };
-
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'pending':
-        return 'Under Review';
-      case 'approved':
-        return 'Approved';
-      case 'rejected':
-        return 'Rejected';
-      default:
-        return 'Apply Now';
-    }
-  };
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-white text-center">
+          <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
+          <p>Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="space-y-6">
-      {/* Management Status Card */}
-      <Card className="backdrop-blur-xl bg-black/20 border border-white/10">
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <div>
-              <CardTitle className="text-white font-['Playfair_Display'] flex items-center gap-2">
-                <Crown className="h-6 w-6 text-yellow-400" />
-                TD Studios Management
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 p-6">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-white mb-2">Creator Dashboard</h1>
+          <p className="text-gray-300">Welcome to your CABANA creator journey</p>
+        </div>
+
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <Card className="bg-white/10 backdrop-blur-lg border-white/20">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-white flex items-center gap-2">
+                <User className="w-5 h-5" />
+                Applications
               </CardTitle>
-              <CardDescription className="text-gray-300">
-                Premium creator management application status
-              </CardDescription>
-            </div>
-            <div className="flex items-center gap-2">
-              {getStatusIcon(stats.applicationStatus)}
-              <Badge className={`${getStatusColor(stats.applicationStatus)} text-white`}>
-                {getStatusText(stats.applicationStatus)}
-              </Badge>
-            </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-white">{stats.total}</div>
+              <p className="text-gray-300 text-sm">Total submitted</p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white/10 backdrop-blur-lg border-white/20">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-white flex items-center gap-2">
+                <Target className="w-5 h-5" />
+                Goals
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-white">{goals.length}</div>
+              <p className="text-gray-300 text-sm">Active goals</p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white/10 backdrop-blur-lg border-white/20">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-white flex items-center gap-2">
+                <Star className="w-5 h-5" />
+                Milestones
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-white">{milestones.length}</div>
+              <p className="text-gray-300 text-sm">Achieved</p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white/10 backdrop-blur-lg border-white/20">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-white flex items-center gap-2">
+                <DollarSign className="w-5 h-5" />
+                Earnings
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-white">$0</div>
+              <p className="text-gray-300 text-sm">This month</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Application Status */}
+        {currentApplication ? (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <Card className="bg-white/10 backdrop-blur-lg border-white/20">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <Clock className="w-5 h-5" />
+                  Application Status
+                </CardTitle>
+                <CardDescription className="text-gray-300">
+                  Your current application progress
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-white">Status</span>
+                    <Badge 
+                      variant={currentApplication.status === 'approved' ? 'default' : 'secondary'}
+                      className="capitalize"
+                    >
+                      {currentApplication.status}
+                    </Badge>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-300">Progress</span>
+                      <span className="text-white">{getProgressPercentage()}%</span>
+                    </div>
+                    <Progress value={getProgressPercentage()} className="h-2" />
+                  </div>
+                  
+                  <div className="text-sm text-gray-300">
+                    <p>{getNextStepMessage()}</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/10 backdrop-blur-lg border-white/20">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5" />
+                  Quick Actions
+                </CardTitle>
+                <CardDescription className="text-gray-300">
+                  Manage your creator profile
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                    Update Application
+                  </Button>
+                  <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
+                    View Requirements
+                  </Button>
+                  <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
+                    Contact Support
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        </CardHeader>
-        <CardContent>
-          {stats.applicationStatus === 'not_applied' ? (
-            <div className="text-center py-8">
-              <Crown className="h-16 w-16 text-purple-400 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-white mb-2">Ready to Scale Your Career?</h3>
-              <p className="text-gray-300 mb-6">
-                Join elite creators who trust TD Studios to manage and grow their business
-              </p>
-              <Button 
-                size="lg"
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
-                onClick={() => navigate('/creator-application')}
-              >
-                Apply for Management
+        ) : (
+          <Card className="bg-white/10 backdrop-blur-lg border-white/20 mb-8">
+            <CardHeader>
+              <CardTitle className="text-white">Get Started</CardTitle>
+              <CardDescription className="text-gray-300">
+                Begin your CABANA creator journey by submitting your application
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button className="bg-purple-600 hover:bg-purple-700">
+                Start Application
               </Button>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-lg">
-                  <div className="text-2xl font-bold text-white">Stage {application?.progress_stage || 1}</div>
-                  <div className="text-sm text-gray-300">of 5</div>
-                </div>
-                <div className="text-center p-4 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-lg">
-                  <div className="text-2xl font-bold text-white">{application?.estimated_response_days || 3}-5 Days</div>
-                  <div className="text-sm text-gray-300">Est. Response</div>
-                </div>
-                <div className="text-center p-4 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-lg">
-                  <div className="text-2xl font-bold text-white">{Math.round(((application?.progress_stage || 1) / 5) * 100)}%</div>
-                  <div className="text-sm text-gray-300">Complete</div>
-                </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Goals Section */}
+        <Card className="bg-white/10 backdrop-blur-lg border-white/20">
+          <CardHeader>
+            <CardTitle className="text-white flex items-center gap-2">
+              <Target className="w-5 h-5" />
+              Creator Goals
+            </CardTitle>
+            <CardDescription className="text-gray-300">
+              Track your progress and achievements
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {goals.length > 0 ? (
+              <div className="space-y-4">
+                {goals.map((goal) => (
+                  <div key={goal.id} className="p-4 bg-white/5 rounded-lg">
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="text-white font-medium">{goal.goal_type}</h4>
+                      <Badge variant="secondary">{goal.status}</Badge>
+                    </div>
+                    <div className="text-sm text-gray-300 mb-2">
+                      Target: {goal.target_value} | Current: {goal.current_value}
+                    </div>
+                    <Progress 
+                      value={(goal.current_value / goal.target_value) * 100} 
+                      className="h-2" 
+                    />
+                  </div>
+                ))}
               </div>
-              
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-white font-medium">Application Progress</span>
-                  <span className="text-purple-400">{Math.round(((application?.progress_stage || 1) / 5) * 100)}%</span>
-                </div>
-                <Progress value={Math.round(((application?.progress_stage || 1) / 5) * 100)} className="h-2" />
+            ) : (
+              <div className="text-center py-8">
+                <Target className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <p className="text-gray-300 mb-4">No goals set yet</p>
+                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+                  Create Your First Goal
+                </Button>
               </div>
-            </div>
-          )}
-        </CardContent>
-      </Card>
-
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="backdrop-blur-xl bg-black/20 border border-white/10">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-white text-sm font-medium flex items-center gap-2">
-              <DollarSign className="h-4 w-4 text-green-400" />
-              Monthly Earnings
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">${stats.monthlyEarnings.toLocaleString()}</div>
-            <div className="text-sm text-green-400">+15% from last month</div>
-          </CardContent>
-        </Card>
-
-        <Card className="backdrop-blur-xl bg-black/20 border border-white/10">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-white text-sm font-medium flex items-center gap-2">
-              <Users className="h-4 w-4 text-blue-400" />
-              Subscribers
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">{stats.subscribers.toLocaleString()}</div>
-            <div className="text-sm text-blue-400">+{stats.growthRate}% growth</div>
-          </CardContent>
-        </Card>
-
-        <Card className="backdrop-blur-xl bg-black/20 border border-white/10">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-white text-sm font-medium flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-purple-400" />
-              Engagement Rate
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">12.3%</div>
-            <div className="text-sm text-purple-400">+2.1% increase</div>
-          </CardContent>
-        </Card>
-
-        <Card className="backdrop-blur-xl bg-black/20 border border-white/10">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-white text-sm font-medium flex items-center gap-2">
-              <Star className="h-4 w-4 text-yellow-400" />
-              Content Score
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">4.8/5</div>
-            <div className="text-sm text-yellow-400">Excellent rating</div>
+            )}
           </CardContent>
         </Card>
       </div>
-
-      {/* Tabs for Goals and Milestones */}
-      <Tabs defaultValue="goals" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 bg-black/20 border border-white/10">
-          <TabsTrigger value="goals" className="text-white">Growth Goals</TabsTrigger>
-          <TabsTrigger value="milestones" className="text-white">Application Milestones</TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="goals" className="space-y-4">
-          {goalsLoading ? (
-            <div className="text-center text-gray-300">Loading goals...</div>
-          ) : goals && goals.length > 0 ? (
-            goals.map((goal) => (
-              <Card key={goal.id} className="backdrop-blur-xl bg-black/20 border border-white/10">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-white font-medium">{goal.title}</h3>
-                    <Badge variant="outline" className="text-purple-400 border-purple-400">
-                      {goal.progress_percentage}%
-                    </Badge>
-                  </div>
-                  <Progress value={goal.progress_percentage} className="h-2 mb-2" />
-                  <div className="flex justify-between text-sm text-gray-400">
-                    <span>Current: {goal.current_value.toLocaleString()}</span>
-                    <span>Target: {goal.target_value.toLocaleString()}</span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))
-          ) : (
-            <div className="text-center text-gray-300">No goals set yet</div>
-          )}
-        </TabsContent>
-        
-        <TabsContent value="milestones" className="space-y-4">
-          {milestonesLoading ? (
-            <div className="text-center text-gray-300">Loading milestones...</div>
-          ) : milestones && milestones.length > 0 ? (
-            milestones.map((milestone, index) => (
-              <Card key={milestone.id} className="backdrop-blur-xl bg-black/20 border border-white/10">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                      milestone.status === 'completed' 
-                        ? 'bg-green-600 text-white' 
-                        : 'bg-gray-600 text-gray-300'
-                    }`}>
-                      {milestone.status === 'completed' ? (
-                        <CheckCircle className="h-4 w-4" />
-                      ) : (
-                        <span className="text-sm font-bold">{index + 1}</span>
-                      )}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-white font-medium">{milestone.title}</h3>
-                      <p className="text-sm text-gray-400">
-                        {milestone.completed_date ? 
-                          new Date(milestone.completed_date).toLocaleDateString() : 
-                          milestone.due_date ? 
-                            new Date(milestone.due_date).toLocaleDateString() : 
-                            'Pending'
-                        }
-                      </p>
-                    </div>
-                    {milestone.status === 'completed' && (
-                      <Badge className="bg-green-600 text-white">Completed</Badge>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))
-          ) : (
-            <div className="text-center text-gray-300">No milestones available</div>
-          )}
-        </TabsContent>
-      </Tabs>
     </div>
   );
 }
