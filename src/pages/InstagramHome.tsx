@@ -73,44 +73,46 @@ export default function InstagramHome() {
   const [posts, setPosts] = useState<FeedPost[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Mock data for feed posts
+  // Fetch real feed posts from Supabase
   useEffect(() => {
-    const mockPosts: FeedPost[] = [
-      {
-        id: '1',
-        creator: {
-          id: '1',
-          username: 'sophia_rose',
-          display_name: 'Sophia Rose',
-          avatar_url: '/lovable-uploads/2db52d3c-95ff-4d97-9f88-8201d599afdf.png',
-          is_verified: true,
-          subscription_tier: 'premium'
-        },
-        content: {
-          text: 'New exclusive content just dropped! 🔥✨ Only for my VIP subscribers',
-          images: ['/lovable-uploads/bc97ee21-392d-4e4d-8117-27a47a8bed40.png'],
-          type: 'paid'
-        },
-        engagement: {
-          likes: 2547,
-          comments: 189,
-          views: 12800,
-          is_liked: false,
-          is_bookmarked: false
-        },
-        pricing: {
-          amount: 1999,
-          currency: 'USD'
-        },
-        created_at: '2024-01-15T10:30:00Z',
-        is_purchased: false
-      }
-    ];
+    const fetchPosts = async () => {
+      try {
+        const { data: posts, error } = await supabase
+          .from('feed_posts')
+          .select(`
+            id,
+            content,
+            engagement,
+            pricing,
+            created_at,
+            is_purchased,
+            creator:creator_id (
+              id,
+              username,
+              display_name,
+              avatar_url,
+              is_verified,
+              subscription_tier
+            )
+          `)
+          .order('created_at', { ascending: false })
+          .limit(20);
 
-    setTimeout(() => {
-      setPosts(mockPosts);
-      setLoading(false);
-    }, 1000);
+        if (error) {
+          console.error('Error fetching posts:', error);
+          setLoading(false);
+          return;
+        }
+
+        setPosts(posts || []);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
   }, []);
 
   const handleLike = (postId: string) => {

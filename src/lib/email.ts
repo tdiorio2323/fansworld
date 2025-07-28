@@ -26,7 +26,7 @@ interface WelcomeEmailData {
  */
 export async function sendEmail({ to, subject, htmlContent, textContent }: EmailOptions) {
   const apiKey = process.env.SMTP2GO_API_KEY;
-  const senderEmail = process.env.SMTP2GO_SENDER_EMAIL || 'noreply@cabana.tdstudiosny.com';
+  const senderEmail = process.env.SMTP2GO_SENDER_EMAIL || process.env.VITE_CONTACT_EMAIL || 'noreply@cabana.com';
   const senderName = process.env.SMTP2GO_SENDER_NAME || 'FansWorld';
 
   if (!apiKey) {
@@ -107,7 +107,7 @@ export async function sendWaitlistEmail({ email, vipCode }: WaitlistEmailData) {
         </div>
         
         <div style="text-align: center; margin: 30px 0;">
-          <a href="https://cabana.tdstudiosny.com" 
+          <a href="${process.env.VITE_APP_URL || 'https://cabana.com'}" 
              style="background: linear-gradient(45deg, #60a5fa, #a855f7); color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: bold;">
             Visit Landing Page
           </a>
@@ -168,7 +168,7 @@ export async function sendWelcomeEmail({ email, name, inviteCode }: WelcomeEmail
         ` : ''}
         
         <div style="text-align: center; margin: 30px 0;">
-          <a href="https://cabana.tdstudiosny.com/dashboard" 
+          <a href="${process.env.VITE_APP_URL || 'https://cabana.com'}/dashboard" 
              style="background: linear-gradient(45deg, #60a5fa, #a855f7); color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: bold;">
             Go to Dashboard
           </a>
@@ -179,7 +179,7 @@ export async function sendWelcomeEmail({ email, name, inviteCode }: WelcomeEmail
         <h3 style="color: #f8fafc; margin-top: 0;">Need Help?</h3>
         <p style="color: #cbd5e1;">
           Our support team is here to help you succeed. Reach out anytime at 
-          <a href="mailto:support@cabana.tdstudiosny.com" style="color: #60a5fa;">support@cabana.tdstudiosny.com</a>
+          <a href="mailto:${process.env.VITE_CONTACT_EMAIL || 'support@cabana.com'}" style="color: #60a5fa;">${process.env.VITE_CONTACT_EMAIL || 'support@cabana.com'}</a>
         </p>
       </div>
       
@@ -219,7 +219,7 @@ export async function sendCreatorApplicationEmail(email: string, status: 'approv
           </p>
           
           <div style="text-align: center; margin: 30px 0;">
-            <a href="https://cabana.tdstudiosny.com/dashboard" 
+            <a href="${process.env.VITE_APP_URL || 'https://cabana.com'}/dashboard" 
                style="background: linear-gradient(45deg, #10b981, #059669); color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: bold;">
               Start Creating
             </a>

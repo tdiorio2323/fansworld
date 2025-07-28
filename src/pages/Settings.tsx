@@ -87,8 +87,8 @@ export default function Settings() {
     location: "Los Angeles, CA",
     website: "linktr.ee/lilu_f",
     birthDate: "1995-06-15",
-    avatar: "/placeholder-avatar.jpg",
-    coverImage: "/placeholder-cover.jpg",
+    avatar: "/placeholder.svg",
+    coverImage: "/placeholder.svg",
     subscriptionPrice: "12.99",
     isVerified: true,
     isPremium: true

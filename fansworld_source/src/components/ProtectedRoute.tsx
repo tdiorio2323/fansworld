@@ -8,6 +8,10 @@ interface ProtectedRouteProps {
 }
 
 export function ProtectedRoute({ children, redirectTo = '/auth' }: ProtectedRouteProps) {
+  // Always call hooks first - never conditionally
+  const { user, loading } = useAuth();
+  const location = useLocation();
+
   // TEMPORARY: Bypass authentication check for testing
   // Remove this bypass when authentication is needed again
   const BYPASS_AUTH = true;
@@ -15,9 +19,6 @@ export function ProtectedRoute({ children, redirectTo = '/auth' }: ProtectedRout
   if (BYPASS_AUTH) {
     return <>{children}</>;
   }
-
-  const { user, loading } = useAuth();
-  const location = useLocation();
 
   if (loading) {
     return (

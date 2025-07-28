@@ -14,6 +14,21 @@ export default defineConfig(({ mode }) => ({
     react(),
     // Removed componentTagger() - Lovable-specific development tool
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tabs'],
+          'stripe-vendor': ['@stripe/stripe-js', 'stripe'],
+          'supabase-vendor': ['@supabase/supabase-js'],
+          'router-vendor': ['react-router-dom'],
+          'query-vendor': ['@tanstack/react-query'],
+        }
+      }
+    },
+    chunkSizeWarningLimit: 600
+  },
   test: {
     environment: 'happy-dom',
   },

@@ -58,7 +58,7 @@ export function VipCodeTracker() {
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
-  const baseUrl = "https://fansworld.lux/vip/";
+  const baseUrl = `${import.meta.env.VITE_APP_URL || 'https://cabana.com'}/vip/`;
 
   useEffect(() => {
     loadData();

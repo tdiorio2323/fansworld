@@ -60,87 +60,64 @@ export default function InstagramMessaging() {
   const [isMobile, setIsMobile] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Mock data
+  // Fetch real conversations and messages from Supabase
   useEffect(() => {
-    const mockConversations: Conversation[] = [
-      {
-        id: '1',
-        name: 'Sophia Rose',
-        username: 'sophia_luxury',
-        avatar: '/lovable-uploads/2db52d3c-95ff-4d97-9f88-8201d599afdf.png',
-        is_verified: true,
-        is_online: true,
-        last_message: 'Thanks for the tip! 💖',
-        last_message_time: '2m',
-        unread_count: 2,
-        is_creator: true
-      },
-      {
-        id: '2',
-        name: 'Luna Belle',
-        username: 'luna_model',
-        avatar: '/lovable-uploads/bf0fcf1a-8488-4afa-b9ae-463c6a03c31c.png',
-        is_verified: true,
-        is_online: false,
-        last_message: 'New exclusive content available!',
-        last_message_time: '1h',
-        unread_count: 0,
-        is_creator: true
-      },
-      {
-        id: '3',
-        name: 'Alex Fitness',
-        username: 'alex_fit',
-        avatar: '/lovable-uploads/cb53b74b-f714-4e45-a399-b61b2f3de84f.png',
-        is_verified: true,
-        is_online: true,
-        last_message: 'Check out my latest workout video',
-        last_message_time: '3h',
-        unread_count: 1,
-        is_creator: true
-      }
-    ];
+    const fetchConversations = async () => {
+      if (!user) return;
 
-    const mockMessages: Message[] = [
-      {
-        id: '1',
-        sender_id: '1',
-        content: 'Hey! Thanks for subscribing to my content! 💕',
-        timestamp: '10:30 AM',
-        type: 'text',
-        is_read: true
-      },
-      {
-        id: '2',
-        sender_id: user?.id || 'me',
-        content: 'Love your content! Keep it up! 🔥',
-        timestamp: '10:32 AM',
-        type: 'text',
-        is_read: true
-      },
-      {
-        id: '3',
-        sender_id: '1',
-        content: 'I have some exclusive content available for $9.99. Want to see? 😉',
-        timestamp: '10:35 AM',
-        type: 'paid',
-        price: 999,
-        is_purchased: false,
-        is_read: false
-      },
-      {
-        id: '4',
-        sender_id: '1',
-        content: 'Thanks for the tip! 💖',
-        timestamp: '10:37 AM',
-        type: 'text',
-        is_read: false
-      }
-    ];
+      try {
+        const { data: conversations, error } = await supabase
+          .from('conversations')
+          .select(`
+            id,
+            name,
+            username,
+            avatar,
+            is_verified,
+            is_online,
+            last_message,
+            last_message_time,
+            unread_count,
+            is_creator
+          `)
+          .eq('user_id', user.id)
+          .order('last_message_time', { ascending: false });
 
-    setConversations(mockConversations);
-    setMessages(mockMessages);
-    setActiveConversation(mockConversations[0]);
+        if (error) {
+          console.error('Error fetching conversations:', error);
+          return;
+        }
+
+        setConversations(conversations || []);
+        if (conversations && conversations.length > 0) {
+          setActiveConversation(conversations[0]);
+          fetchMessages(conversations[0].id);
+        }
+      } catch (error) {
+        console.error('Error fetching conversations:', error);
+      }
+    };
+
+    const fetchMessages = async (conversationId: string) => {
+      try {
+        const { data: messages, error } = await supabase
+          .from('messages')
+          .select('*')
+          .eq('conversation_id', conversationId)
+          .order('created_at', { ascending: true });
+
+        if (error) {
+          console.error('Error fetching messages:', error);
+          return;
+        }
+
+        setMessages(messages || []);
+      } catch (error) {
+        console.error('Error fetching messages:', error);
+      }
+    };
+
+    fetchConversations();
     
     // Check if mobile
     setIsMobile(window.innerWidth < 768);

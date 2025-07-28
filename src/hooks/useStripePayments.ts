@@ -280,47 +280,84 @@ export const useStripeProducts = () => {
   };
 };
 
-// Mock Stripe functions - replace with actual Stripe API calls
+// Real Stripe API integration
 export const useStripeActions = () => {
   const queryClient = useQueryClient();
+  const { user } = useAuth();
 
   const createCheckoutSession = useMutation({
-    mutationFn: async ({ priceId, successUrl, cancelUrl }: {
+    mutationFn: async ({ priceId, successUrl, cancelUrl, metadata = {} }: {
       priceId: string;
       successUrl: string;
       cancelUrl: string;
+      metadata?: Record<string, string>;
     }) => {
-      // This would call your Stripe API endpoint
-      // For now, returning a mock URL
-      return {
-        url: `https://checkout.stripe.com/pay/cs_mock_${priceId}#fidkdWxOYHwnPyd1blpxYHZxWjA0TVNgPGF8QkNiPUNfVmJkXFBra3JWZ2J1fnJKMn1kQ`
-      };
+      if (!user?.id) throw new Error('User not authenticated');
+
+      const { data, error } = await supabase.functions.invoke('create-subscription-checkout', {
+        body: {
+          price_id: priceId,
+          success_url: successUrl,
+          cancel_url: cancelUrl,
+          user_id: user.id,
+          metadata
+        }
+      });
+
+      if (error) throw error;
+
+      if (!data?.url) {
+        throw new Error('Failed to create checkout session');
+      }
+
+      return data;
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['stripe-subscriptions'] });
+    }
   });
 
   const createSetupIntent = useMutation({
     mutationFn: async () => {
-      // This would create a Stripe SetupIntent for saving payment methods
-      return {
-        client_secret: 'seti_mock_client_secret',
-        setup_intent_id: 'seti_mock_id'
-      };
+      if (!user?.id) throw new Error('User not authenticated');
+
+      const { data, error } = await supabase.functions.invoke('create-setup-intent', {
+        body: {
+          user_id: user.id
+        }
+      });
+
+      if (error) throw error;
+      return data;
     },
   });
 
   const processPayment = useMutation({
-    mutationFn: async ({ amount, paymentMethodId, description }: {
+    mutationFn: async ({ amount, paymentMethodId, description, creatorId }: {
       amount: number;
       paymentMethodId: string;
       description: string;
+      creatorId?: string;
     }) => {
-      // This would create and confirm a PaymentIntent
-      return {
-        payment_intent_id: 'pi_mock_id',
-        status: 'succeeded',
-        amount: amount
-      };
+      if (!user?.id) throw new Error('User not authenticated');
+
+      const { data, error } = await supabase.functions.invoke('process-payment', {
+        body: {
+          amount: Math.round(amount * 100), // Convert to cents
+          payment_method_id: paymentMethodId,
+          description,
+          user_id: user.id,
+          creator_id: creatorId
+        }
+      });
+
+      if (error) throw error;
+      return data;
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['payment-methods'] });
+      queryClient.invalidateQueries({ queryKey: ['stripe-subscriptions'] });
+    }
   });
 
   return {

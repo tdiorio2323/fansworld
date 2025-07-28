@@ -9,15 +9,8 @@ interface AdminRouteProps {
   redirectTo?: string;
 }
 
-export function AdminRoute({ children, redirectTo = '/home' }: AdminRouteProps) {
-  // TEMPORARY: Bypass admin authentication check for testing
-  // Remove this bypass when admin authentication is needed again
-  const BYPASS_ADMIN_AUTH = true;
-  
-  if (BYPASS_ADMIN_AUTH) {
-    return <>{children}</>;
-  }
-
+export const AdminRoute = ({ children }: AdminRouteProps) => {
+  // Always call hooks first - never conditionally
   const { user, loading } = useAuth();
   const location = useLocation();
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
@@ -80,6 +73,13 @@ export function AdminRoute({ children, redirectTo = '/home' }: AdminRouteProps) 
 
     checkAdminStatus();
   }, [user]);
+
+  // Bypass for development - REMOVE FOR PRODUCTION
+  const BYPASS_ADMIN_AUTH = true;
+  
+  if (BYPASS_ADMIN_AUTH) {
+    return <>{children}</>;
+  }
 
   if (loading || checkingAdmin || isAdmin === null) {
     console.log('AdminRoute: Still loading or checking admin status', { loading, checkingAdmin, isAdmin });

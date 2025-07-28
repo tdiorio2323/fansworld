@@ -1,14 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-/* Cabana - Premium Content Creator Platform Design System */
-
-@layer base {
-  :root {
-    /* Premium Dark Luxury Theme */
-    --background: 240 12% 4%;
-    --foreground: 0 0% 98%;
 
     --card: 240 10% 6%;
     --card-foreground: 0 0% 98%;

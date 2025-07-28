@@ -54,50 +54,47 @@ export function LinkTracker() {
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
-  const baseUrl = "https://fansworld.lux/l/";
+  const baseUrl = `${import.meta.env.VITE_APP_URL || 'https://cabana.com'}/l/`;
 
-  // Temporarily commented out to resolve parsing error
-  /*
+  const loadLinks = useCallback(async () => {
+    try {
+      const { data, error } = await supabase
+        .from('link_tracking')
+        .select(`
+          *,
+          link_clicks
+        `)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      const formattedLinks = data?.map((link: any) => {
+        const clicks = link.link_clicks?.length || 0;
+        const uniqueClicks = new Set(link.link_clicks?.map((click: { ip_address: string }) => click.ip_address)).size;
+        return {
+          ...link,
+          clicks,
+          unique_clicks: uniqueClicks
+        };
+      }) || [];
+
+      setLinks(formattedLinks);
+    } catch (error) {
+      console.error('Error loading links:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load links",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, [toast]);
+
   useEffect(() => {
     loadLinks();
     loadAnalytics();
   }, [loadLinks, loadAnalytics]);
-
-  // const loadLinks = useCallback(async () => {
-  //   try {
-  //     const { data, error } = await supabase
-  //       .from('link_tracking')
-  //       .select(`
-  //         *,
-  //         link_clicks
-  //       `)
-  //       .order('created_at', { ascending: false });
-
-  //     if (error) throw error;
-
-  //     const formattedLinks = data?.map((link: any) => {
-  //       const clicks = link.link_clicks?.length || 0;
-  //       const uniqueClicks = new Set(link.link_clicks?.map((click: { ip_address: string }) => click.ip_address)).size;
-  //       return {
-  //         ...link,
-  //         clicks,
-  //         unique_clicks: uniqueClicks
-  //       };
-  //     }) || [];
-
-  //     setLinks(formattedLinks);
-  //   } catch (error) {
-  //     console.error('Error loading links:', error);
-  //     toast({
-  //       title: "Error",
-  //       description: "Failed to load links",
-  //       variant: "destructive"
-  //     });
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }, []);
-  */
 
   const loadAnalytics = useCallback(async () => {
     try {
@@ -138,8 +135,8 @@ export function LinkTracker() {
       setSource("");
 
       // Reload data
-      loadLinks();
-      loadAnalytics();
+      await loadLinks();
+      await loadAnalytics();
     } catch (error: unknown) {
       console.error('Link creation error:', error);
       toast({
