@@ -20,7 +20,7 @@ import {
   Plus
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from '@/integrations/supabase/supabase';
 
 interface VipCode {
   id: string;

@@ -23,7 +23,7 @@ import Navbar from "@/components/Navbar";
 import { MediaTile } from "@/components/MediaTile";
 import { ContentUpload } from "@/components/ContentUpload";
 import { ContentManager } from "@/components/ContentManager";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from '@/integrations/supabase/supabase';
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "@/hooks/use-toast";
 

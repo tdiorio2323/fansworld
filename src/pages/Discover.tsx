@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
 import { MediaTile } from "@/components/MediaTile";
 import { CreatorCard } from "@/components/CreatorCard";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from '@/integrations/supabase/supabase';
 import { toast } from "@/hooks/use-toast";
 
 interface Creator {

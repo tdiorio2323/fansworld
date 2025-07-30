@@ -65,6 +65,7 @@ npm run dev
 - ❌ Any backup directories
 
 **ONLY** work in:
+
 - ✅ `/Users/brandonmitchell/Documents/GitHub/fansworld-lux-starter`
 
 ---

@@ -26,7 +26,7 @@ import Navbar from "@/components/Navbar";
 import { MediaTile } from "@/components/MediaTile";
 import { SubscriptionButton, TipButton } from "@/components/PaymentButtons";
 import { PaymentVerifier } from "@/components/PaymentVerifier";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from '@/integrations/supabase/supabase';
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 

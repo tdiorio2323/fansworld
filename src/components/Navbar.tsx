@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { useLocation, Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from '@/integrations/supabase/supabase';
 import {
   Home,
   Search,

@@ -1,4 +1,4 @@
-import { supabase } from '@/integrations/supabase/client';
+import { supabase } from '@/integrations/supabase/supabase';
 
 // Stripe webhook event types
 interface StripeWebhookEvent {

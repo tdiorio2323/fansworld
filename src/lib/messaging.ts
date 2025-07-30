@@ -1,4 +1,4 @@
-import { supabase } from '@/integrations/supabase/client';
+import { supabase } from '@/integrations/supabase/supabase';
 import { RealtimeChannel } from '@supabase/supabase-js';
 
 export interface Conversation {

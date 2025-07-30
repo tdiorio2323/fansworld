@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { LinkTracker } from "@/components/LinkTracker";
 import { VipCodeTracker } from "@/components/VipCodeTracker";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from '@/integrations/supabase/supabase';
 import { useToast } from "@/hooks/use-toast";
 
 interface DashboardStats {

@@ -16,7 +16,7 @@ import {
   Loader2
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from '@/integrations/supabase/supabase';
 
 export function ComingSoon() {
   const [email, setEmail] = useState("");

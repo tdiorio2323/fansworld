@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-const SITE_PASSWORD = 'td'; // VIP code password
+const SITE_PASSWORD = import.meta.env.VITE_VIP_CODE || 'fallback_password_123'; // VIP code password from environment
 
 interface PasswordGateProps {
   children: React.ReactNode;

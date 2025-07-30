@@ -61,24 +61,71 @@ const LandingPage = () => {
               <span className="text-white">CABANA</span>
             </h1>
             
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto drop-shadow-sm bebas-description">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto drop-shadow-sm bebas-description mb-12">
               The ultimate luxury platform for creators and their exclusive
               communities. Premium content, VIP experiences, and
               unparalleled creator tools.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 fade-in px-4">
-              <Link to="/waitlist" className="luxury-button px-8 sm:px-10 py-4 sm:py-5 rounded-full text-white font-semibold text-base sm:text-lg flex items-center gap-3 interactive-scale shimmer w-full sm:w-auto justify-center shadow-2xl">
-                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />
-                Join Waitlist
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-              </Link>
-              <Link to="/auth" className="holographic-card px-8 sm:px-10 py-4 sm:py-5 rounded-full text-white font-semibold text-base sm:text-lg transition-all interactive-scale w-full sm:w-auto backdrop-blur-xl shadow-xl">
-                <div className="flex items-center gap-3 justify-center">
-                  <Gem className="w-4 h-4 sm:w-5 sm:h-5" />
-                  Sign In
+            {/* Main Action Form */}
+            <div className="max-w-2xl mx-auto space-y-6 fade-in">
+              {/* Email Input */}
+              <div className="glass-card p-2 rounded-full backdrop-blur-xl">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email address"
+                  className="w-full px-6 py-4 bg-transparent text-white placeholder-gray-400 focus:outline-none text-center text-lg"
+                />
+              </div>
+              
+              {/* Instagram Link */}
+              <div className="glass-card p-2 rounded-full backdrop-blur-xl">
+                <input 
+                  type="text" 
+                  placeholder="Instagram username (@yourhandle)"
+                  className="w-full px-6 py-4 bg-transparent text-white placeholder-gray-400 focus:outline-none text-center text-lg"
+                />
+              </div>
+              
+              {/* VIP Code Button/Input */}
+              <div className="relative">
+                <button 
+                  onClick={(e) => {
+                    const button = e.currentTarget;
+                    const input = button.nextElementSibling as HTMLInputElement;
+                    button.classList.add('hidden');
+                    input.classList.remove('hidden');
+                    input.focus();
+                  }}
+                  className="luxury-button w-full px-6 py-4 rounded-full text-white font-semibold text-lg interactive-scale shimmer"
+                >
+                  <div className="flex items-center justify-center gap-3">
+                    <Crown className="w-5 h-5" />
+                    Enter VIP Code
+                  </div>
+                </button>
+                <input 
+                  type="text" 
+                  placeholder="Enter your VIP code"
+                  className="hidden glass-card w-full px-6 py-4 rounded-full bg-transparent text-white placeholder-gray-400 focus:outline-none text-center text-lg backdrop-blur-xl"
+                  onBlur={(e) => {
+                    if (e.target.value === '') {
+                      const input = e.currentTarget;
+                      const button = input.previousElementSibling as HTMLButtonElement;
+                      input.classList.add('hidden');
+                      button.classList.remove('hidden');
+                    }
+                  }}
+                />
+              </div>
+              
+              {/* Contact Me Button */}
+              <button className="holographic-card w-full px-6 py-4 rounded-full text-white font-semibold text-lg transition-all interactive-scale backdrop-blur-xl shadow-xl">
+                <div className="flex items-center justify-center gap-3">
+                  <Sparkles className="w-5 h-5" />
+                  Contact Me
                 </div>
-              </Link>
+              </button>
             </div>
             
             {/* Trust Indicators */}
