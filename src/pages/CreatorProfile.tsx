@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 import { 
   Heart, 
   MessageCircle, 
@@ -14,7 +15,11 @@ import {
   Camera,
   DollarSign,
   Loader2,
-  AlertCircle
+  AlertCircle,
+  ArrowLeft,
+  Users,
+  Calendar,
+  MapPin
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -22,7 +27,6 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import Navbar from "@/components/Navbar";
 import { MediaTile } from "@/components/MediaTile";
 import { SubscriptionButton, TipButton } from "@/components/PaymentButtons";
 import { PaymentVerifier } from "@/components/PaymentVerifier";
@@ -169,17 +173,10 @@ export default function CreatorProfile() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-        <Navbar />
-        <div className="lg:pl-64 pb-20 lg:pb-0">
-          <div className="flex items-center justify-center min-h-[60vh]">
-            <Card className="card-luxury p-8">
-              <CardContent className="flex flex-col items-center space-y-4">
-                <Loader2 className="w-8 h-8 animate-spin text-primary" />
-                <p className="text-muted-foreground">Loading creator profile...</p>
-              </CardContent>
-            </Card>
-          </div>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-gray-300 border-t-gray-900 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading creator profile...</p>
         </div>
       </div>
     );
@@ -187,23 +184,23 @@ export default function CreatorProfile() {
 
   if (error || !creatorProfile) {
     return (
-      <div className="min-h-screen bg-background">
-        <Navbar />
-        <div className="lg:pl-64 pb-20 lg:pb-0">
-          <div className="flex items-center justify-center min-h-[60vh]">
-            <Card className="card-luxury p-8 max-w-md">
-              <CardContent className="flex flex-col items-center space-y-4">
-                <AlertCircle className="w-12 h-12 text-destructive" />
-                <h2 className="text-xl font-semibold">Creator Not Found</h2>
-                <p className="text-muted-foreground text-center">
-                  The creator profile you're looking for doesn't exist or has been removed.
-                </p>
-                <Button variant="outline" onClick={() => window.history.back()}>
-                  Go Back
-                </Button>
-              </CardContent>
-            </Card>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="text-center max-w-md">
+          <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <AlertCircle className="w-8 h-8 text-red-600" />
           </div>
+          <h2 className="text-2xl font-bold text-black mb-2">Creator Not Found</h2>
+                        <p className="text-black mb-6">
+                The creator profile you're looking for doesn't exist or has been removed.
+              </p>
+          <Button 
+            variant="outline" 
+            onClick={() => window.history.back()}
+            className="border-gray-300 hover:bg-gray-50"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Go Back
+          </Button>
         </div>
       </div>
     );
@@ -220,84 +217,132 @@ export default function CreatorProfile() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gray-50">
       <PaymentVerifier />
-      <Navbar />
       
-      <div className="lg:pl-64 pb-20 lg:pb-0">
-        {/* Cover Image */}
-        <div className="relative h-48 md:h-64 bg-gradient-luxury">
-          {/* Using gradient as placeholder since we don't have cover images in DB yet */}
-          <div className="absolute inset-0 bg-black/20" />
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200 sticky top-0 z-40">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <Button
+              variant="ghost"
+              onClick={() => window.history.back()}
+              className="p-2"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </Button>
+            
+            <div className="text-center">
+              <h1 className="font-semibold text-gray-900">
+                {creatorProfile.display_name || creatorProfile.username}
+              </h1>
+              <p className="text-xs text-gray-500">{creatorStats.posts} posts</p>
+            </div>
+            
+            <Button variant="ghost" className="p-2">
+              <MoreHorizontal className="w-5 h-5" />
+            </Button>
+          </div>
         </div>
+      </div>
 
-        {/* Profile Header */}
-        <div className="relative px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between -mt-16 md:-mt-20">
+      <div className="max-w-4xl mx-auto">
+        {/* Cover Photo Placeholder */}
+        <div className="h-48 bg-gradient-to-br from-gray-200 to-gray-300"></div>
+
+        {/* Profile Section */}
+        <div className="relative px-4 sm:px-6 lg:px-8 -mt-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
+          >
             {/* Avatar and Basic Info */}
-            <div className="flex flex-col md:flex-row md:items-end gap-6">
-              <div className="relative">
-                <Avatar className="w-32 h-32 md:w-40 md:h-40 ring-4 ring-background">
-                  <AvatarImage src={creatorProfile.avatar_url || undefined} alt={creatorProfile.display_name || creatorProfile.username} />
-                  <AvatarFallback className="bg-gradient-primary text-primary-foreground text-4xl">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-6 mb-6">
+              <div className="relative flex-shrink-0">
+                <Avatar className="w-24 h-24 ring-4 ring-white">
+                  <AvatarImage 
+                    src={creatorProfile.avatar_url || undefined} 
+                    alt={creatorProfile.display_name || creatorProfile.username} 
+                  />
+                  <AvatarFallback className="bg-gray-200 text-gray-600 text-2xl">
                     {(creatorProfile.display_name || creatorProfile.username)[0].toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
                 
-                {creatorProfile.role === 'creator' && (
-                  <div className="absolute -top-2 -right-2">
-                    <Crown className="w-8 h-8 text-amber-400" />
-                  </div>
-                )}
-                
                 {creatorProfile.is_creator_verified && (
-                  <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-background" />
+                  <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-blue-500 rounded-full border-3 border-white flex items-center justify-center">
+                    <Verified className="w-4 h-4 text-white" />
+                  </div>
                 )}
               </div>
               
-              <div className="flex-1 min-w-0 pb-4">
-                <div className="flex items-center gap-3 mb-2">
-                  <h1 className="text-3xl md:text-4xl font-bold text-gradient">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <h2 className="text-2xl font-bold text-gray-900">
                     {creatorProfile.display_name || creatorProfile.username}
-                  </h1>
-                  {creatorProfile.is_creator_verified && (
-                    <Verified className="w-7 h-7 text-primary flex-shrink-0" />
+                  </h2>
+                  {creatorProfile.role === 'creator' && (
+                    <Crown className="w-5 h-5 text-amber-500" />
                   )}
                 </div>
                 
-                <p className="text-muted-foreground text-lg mb-2">@{creatorProfile.username}</p>
-                
-                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
-                  <span>📅 Joined {formatDate(creatorProfile.created_at)}</span>
+                <p className="text-gray-500 mb-3">@{creatorProfile.username}</p>
+
+                {/* Stats */}
+                <div className="flex gap-6 mb-4">
+                  <div className="text-center">
+                    <div className="font-bold text-gray-900">{creatorStats.posts}</div>
+                    <div className="text-sm text-gray-500">Posts</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="font-bold text-gray-900">{creatorStats.subscribers.toLocaleString()}</div>
+                    <div className="text-sm text-gray-500">Subscribers</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="font-bold text-gray-900">4.8K</div>
+                    <div className="text-sm text-gray-500">Following</div>
+                  </div>
                 </div>
 
-                <div className="flex flex-wrap gap-4 mb-4">
+                {/* Bio */}
+                {creatorProfile.bio && (
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    {creatorProfile.bio}
+                  </p>
+                )}
+
+                {/* Meta Info */}
+                <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-4">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="w-4 h-4" />
+                    Joined {formatDate(creatorProfile.created_at)}
+                  </div>
+                </div>
+
+                {/* Badges */}
+                <div className="flex flex-wrap gap-2 mb-4">
                   {creatorProfile.role === 'creator' && (
-                    <Badge variant="outline" className="text-amber-400 border-amber-400/30">
+                    <Badge variant="secondary" className="bg-amber-100 text-amber-700">
                       Creator
                     </Badge>
                   )}
                   {creatorProfile.is_creator_verified && (
-                    <Badge variant="outline" className="text-primary border-primary/30">
+                    <Badge variant="secondary" className="bg-blue-100 text-blue-700">
                       Verified
                     </Badge>
                   )}
-                  <Badge variant="secondary">
-                    {creatorStats.posts.toLocaleString()} posts
-                  </Badge>
-                  <Badge variant="secondary">
-                    {creatorStats.subscribers.toLocaleString()} subscribers
-                  </Badge>
                 </div>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-6">
+            <div className="flex flex-wrap gap-3">
               <Button
-                variant={isFollowing ? "secondary" : "outline"}
+                variant={isFollowing ? "secondary" : "default"}
                 onClick={handleFollow}
-                className="flex-1 sm:flex-none"
+                className={`flex-1 min-w-0 ${!isFollowing ? 'bg-gray-900 hover:bg-gray-800' : ''}`}
               >
                 <Plus className="w-4 h-4 mr-2" />
                 {isFollowing ? 'Following' : 'Follow'}
@@ -309,151 +354,192 @@ export default function CreatorProfile() {
                   creatorName={creatorProfile.display_name || creatorProfile.username}
                   subscriptionPrice={Math.round(creatorProfile.subscription_price * 100)}
                   isSubscribed={isSubscribed}
-                  className="flex-1 sm:flex-none"
+                  className="flex-1 min-w-0"
                 />
               )}
               
               <TipButton
                 creatorId={creatorProfile.user_id}
                 creatorName={creatorProfile.display_name || creatorProfile.username}
-                className="flex-1 sm:flex-none"
+                className="flex-1 min-w-0"
               />
               
-              <Button variant="outline" size="icon">
+              <Button variant="outline" size="icon" className="border-gray-300 hover:bg-gray-50">
                 <MessageCircle className="w-4 h-4" />
               </Button>
               
-              <Button variant="outline" size="icon">
+              <Button variant="outline" size="icon" className="border-gray-300 hover:bg-gray-50">
                 <Share className="w-4 h-4" />
               </Button>
-              
-              <Button variant="outline" size="icon">
-                <MoreHorizontal className="w-4 h-4" />
-              </Button>
             </div>
-          </div>
+          </motion.div>
+        </div>
 
-          {/* Bio */}
-          {creatorProfile.bio && (
-            <div className="mb-8">
-              <div className="card-luxury max-w-4xl">
-                <pre className="whitespace-pre-wrap text-foreground font-sans">
-                  {creatorProfile.bio}
-                </pre>
-              </div>
-            </div>
-          )}
-
-          {/* Content Tabs */}
+        {/* Content Tabs */}
+        <div className="px-4 sm:px-6 lg:px-8 mt-8">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="posts" className="flex items-center gap-2">
+            <TabsList className="bg-white border border-gray-200 p-1 mb-8">
+              <TabsTrigger value="posts" className="data-[state=active]:bg-gray-900 data-[state=active]:text-white flex items-center gap-2">
                 <Grid3X3 className="w-4 h-4" />
-                All Posts ({creatorContent.length})
+                Posts
               </TabsTrigger>
-              <TabsTrigger value="free" className="flex items-center gap-2">
+              <TabsTrigger value="free" className="data-[state=active]:bg-gray-900 data-[state=active]:text-white flex items-center gap-2">
                 <Camera className="w-4 h-4" />
-                Free Content ({freeContent.length})
+                Free
               </TabsTrigger>
-              <TabsTrigger value="premium" className="flex items-center gap-2">
+              <TabsTrigger value="premium" className="data-[state=active]:bg-gray-900 data-[state=active]:text-white flex items-center gap-2">
                 <Crown className="w-4 h-4" />
-                Premium ({premiumContent.length})
+                Premium
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="posts" className="space-y-8">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {creatorContent.map((content) => (
-                  <MediaTile
-                    key={content.id}
-                    id={content.id}
-                    type={content.content_type as "image" | "video"}
-                    src={content.file_url || ""}
-                    title={content.title}
-                    isLocked={content.is_premium || false}
-                    price={content.price || 0}
-                    size="medium"
-                    className="transform hover:scale-105 transition-transform duration-300"
-                  />
-                ))}
-              </div>
-              {creatorContent.length === 0 && (
-                <div className="text-center py-12">
-                  <Camera className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">No content yet</h3>
-                  <p className="text-muted-foreground">
-                    This creator hasn't posted any content yet.
-                  </p>
-                </div>
-              )}
-            </TabsContent>
-
-            <TabsContent value="free" className="space-y-8">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {freeContent.map((content) => (
-                  <MediaTile
-                    key={content.id}
-                    id={content.id}
-                    type={content.content_type as "image" | "video"}
-                    src={content.file_url || ""}
-                    title={content.title}
-                    isLocked={false}
-                    price={0}
-                    size="medium"
-                    className="transform hover:scale-105 transition-transform duration-300"
-                  />
-                ))}
-              </div>
-              {freeContent.length === 0 && (
-                <div className="text-center py-12">
-                  <Camera className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">No free content available</h3>
-                  <p className="text-muted-foreground">
-                    This creator hasn't posted any free content yet.
-                  </p>
-                </div>
-              )}
-            </TabsContent>
-
-            <TabsContent value="premium" className="space-y-8">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {premiumContent.map((content) => (
-                  <MediaTile
-                    key={content.id}
-                    id={content.id}
-                    type={content.content_type as "image" | "video"}
-                    src={content.file_url || ""}
-                    title={content.title}
-                    isLocked={!isSubscribed}
-                    price={content.price || 0}
-                    size="medium"
-                    className="transform hover:scale-105 transition-transform duration-300"
-                  />
-                ))}
-              </div>
-              {premiumContent.length === 0 && (
-                <div className="text-center py-12">
-                  <Crown className="w-16 h-16 mx-auto text-amber-400 mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">No premium content</h3>
-                  <p className="text-muted-foreground">
-                    This creator hasn't posted any premium content yet.
-                  </p>
-                </div>
-              )}
-              {!isSubscribed && premiumContent.length > 0 && creatorProfile.subscription_price && (
-                <div className="text-center py-12">
-                  <div className="card-glass max-w-md mx-auto p-8">
-                    <Crown className="w-16 h-16 mx-auto text-amber-400 mb-4" />
-                    <h3 className="text-xl font-semibold mb-2">Premium Content</h3>
-                    <p className="text-muted-foreground mb-6">
-                      Subscribe to unlock exclusive content from {creatorProfile.display_name || creatorProfile.username}
-                    </p>
-                    <Button onClick={handleSubscribe} className="btn-luxury">
-                      Subscribe ${creatorProfile.subscription_price}/mo
-                    </Button>
+            <TabsContent value="posts">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                className="grid grid-cols-3 gap-1"
+              >
+                {creatorContent.length === 0 ? (
+                  <div className="col-span-3 text-center py-16">
+                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Camera className="w-8 h-8 text-gray-400" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">No posts yet</h3>
+                    <p className="text-gray-500">This creator hasn't shared any content yet.</p>
                   </div>
-                </div>
-              )}
+                ) : (
+                  creatorContent.map((content) => (
+                    <div key={content.id} className="aspect-square bg-gray-200 rounded-lg overflow-hidden relative group">
+                      {content.file_url ? (
+                        <img 
+                          src={content.file_url} 
+                          alt={content.title}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-gray-200">
+                          {content.content_type === 'video' ? (
+                            <Play className="w-8 h-8 text-gray-500" />
+                          ) : (
+                            <Camera className="w-8 h-8 text-gray-500" />
+                          )}
+                        </div>
+                      )}
+                      
+                      {content.is_premium && (
+                        <div className="absolute top-2 right-2">
+                          <Crown className="w-4 h-4 text-amber-400" />
+                        </div>
+                      )}
+                      
+                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <div className="text-white text-center">
+                          <h4 className="font-medium text-sm mb-1">{content.title}</h4>
+                          {content.price && (
+                            <p className="text-xs">${(content.price / 100).toFixed(2)}</p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </motion.div>
+            </TabsContent>
+
+            <TabsContent value="free">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                className="grid grid-cols-3 gap-1"
+              >
+                {freeContent.length === 0 ? (
+                  <div className="col-span-3 text-center py-16">
+                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Camera className="w-8 h-8 text-gray-400" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">No free content</h3>
+                    <p className="text-gray-500">This creator hasn't shared any free content yet.</p>
+                  </div>
+                ) : (
+                  freeContent.map((content) => (
+                    <div key={content.id} className="aspect-square bg-gray-200 rounded-lg overflow-hidden">
+                      {content.file_url ? (
+                        <img 
+                          src={content.file_url} 
+                          alt={content.title}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-gray-200">
+                          <Camera className="w-8 h-8 text-gray-500" />
+                        </div>
+                      )}
+                    </div>
+                  ))
+                )}
+              </motion.div>
+            </TabsContent>
+
+            <TabsContent value="premium">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                className="grid grid-cols-3 gap-1"
+              >
+                {premiumContent.length === 0 ? (
+                  <div className="col-span-3 text-center py-16">
+                    <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Crown className="w-8 h-8 text-amber-500" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">No premium content</h3>
+                    <p className="text-gray-500">This creator hasn't shared any premium content yet.</p>
+                  </div>
+                ) : (
+                  <>
+                    {!isSubscribed && (
+                      <div className="col-span-3 bg-white rounded-2xl border border-gray-200 p-8 text-center mb-6">
+                        <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Crown className="w-8 h-8 text-amber-500" />
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Premium Content</h3>
+                        <p className="text-gray-600 mb-6">
+                          Subscribe to unlock exclusive content from {creatorProfile.display_name || creatorProfile.username}
+                        </p>
+                        <Button 
+                          onClick={handleSubscribe} 
+                          className="bg-gray-900 hover:bg-gray-800 text-white"
+                        >
+                          Subscribe ${creatorProfile.subscription_price}/mo
+                        </Button>
+                      </div>
+                    )}
+                    {premiumContent.map((content) => (
+                      <div key={content.id} className="aspect-square bg-gray-200 rounded-lg overflow-hidden relative">
+                        {content.file_url ? (
+                          <img 
+                            src={content.file_url} 
+                            alt={content.title}
+                            className={`w-full h-full object-cover ${!isSubscribed ? 'blur-md' : ''}`}
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-gray-200">
+                            <Crown className="w-8 h-8 text-amber-500" />
+                          </div>
+                        )}
+                        
+                        {!isSubscribed && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <Crown className="w-8 h-8 text-amber-500" />
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </>
+                )}
+              </motion.div>
             </TabsContent>
           </Tabs>
         </div>

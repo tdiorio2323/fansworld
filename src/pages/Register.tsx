@@ -297,7 +297,7 @@ export default function Register() {
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
-                    className="mt-1"
+                    className="mt-1 text-black"
                     required
                   />
                 </div>
@@ -310,7 +310,7 @@ export default function Register() {
                     type="text"
                     value={formData.username}
                     onChange={(e) => handleInputChange('username', e.target.value)}
-                    className="mt-1"
+                    className="mt-1 text-black"
                     placeholder="@username"
                     required
                   />
@@ -325,7 +325,7 @@ export default function Register() {
                       type="text"
                       value={formData.firstName}
                       onChange={(e) => handleInputChange('firstName', e.target.value)}
-                      className="mt-1"
+                      className="mt-1 text-black"
                       required
                     />
                   </div>
@@ -336,7 +336,7 @@ export default function Register() {
                       type="text"
                       value={formData.lastName}
                       onChange={(e) => handleInputChange('lastName', e.target.value)}
-                      className="mt-1"
+                      className="mt-1 text-black"
                       required
                     />
                   </div>
@@ -350,7 +350,7 @@ export default function Register() {
                     type="date"
                     value={formData.dateOfBirth}
                     onChange={(e) => handleInputChange('dateOfBirth', e.target.value)}
-                    className="mt-1"
+                    className="mt-1 text-black"
                     required
                   />
                 </div>
@@ -364,7 +364,7 @@ export default function Register() {
                       type={showPassword ? "text" : "password"}
                       value={formData.password}
                       onChange={(e) => handleInputChange('password', e.target.value)}
-                      className="pr-10"
+                      className="pr-10 text-black"
                       required
                     />
                     <Button
@@ -388,7 +388,7 @@ export default function Register() {
                       type={showConfirmPassword ? "text" : "password"}
                       value={formData.confirmPassword}
                       onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-                      className="pr-10"
+                      className="pr-10 text-black"
                       required
                     />
                     <Button

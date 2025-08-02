@@ -34,6 +34,7 @@ import Create from "./pages/Create";
 import AdminTest from "./pages/AdminTest";
 import VipEntry from "./pages/VipEntry";
 import Debug from "./pages/Debug";
+import SimpleTest from "./pages/SimpleTest";
 
 const queryClient = new QueryClient();
 
@@ -107,6 +108,11 @@ const App = () => (
               </ProtectedRoute>
             } />
             <Route path="/settings" element={
+              <ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>
+            } />
+            <Route path="/profile" element={
               <ProtectedRoute>
                 <Settings />
               </ProtectedRoute>

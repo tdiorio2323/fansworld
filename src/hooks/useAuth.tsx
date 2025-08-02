@@ -167,7 +167,7 @@ export function useAuth() {
   
   // TEMPORARY: Mock user for development
   // Remove this when authentication is needed
-  const BYPASS_AUTH = true;
+  const BYPASS_AUTH = false;
   
   if (BYPASS_AUTH) {
     const mockUser = {

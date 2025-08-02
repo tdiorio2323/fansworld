@@ -287,7 +287,7 @@ export default function CreatorDashboard() {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">Response Time</span>
-                  <span className="font-semibold">< 2 hrs</span>
+                  <span className="font-semibold">&lt; 2 hrs</span>
                 </div>
               </CardContent>
             </Card>

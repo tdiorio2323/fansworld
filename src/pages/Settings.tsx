@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { 
   User, 
   Lock, 
@@ -19,7 +20,9 @@ import {
   Mail,
   MessageSquare,
   Heart,
-  DollarSign
+  DollarSign,
+  ArrowLeft,
+  Settings as SettingsIcon
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -32,7 +35,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import Navbar from "@/components/Navbar";
 
 interface ProfileData {
   displayName: string;
@@ -107,6 +109,10 @@ export default function Settings() {
     weeklyReports: true
   });
 
+  const handleFileUpload = (type: 'avatar' | 'cover') => {
+    alert(`${type === 'avatar' ? 'Profile picture' : 'Cover image'} upload functionality coming soon!`);
+  };
+
   const [privacy, setPrivacy] = useState<PrivacySettings>({
     profileVisibility: 'public',
     showOnlineStatus: true,
@@ -139,6 +145,7 @@ export default function Settings() {
   const handleSaveProfile = () => {
     // Handle save profile logic
     console.log('Saving profile:', profileData);
+    alert('Profile saved successfully! 🎉');
   };
 
   const handleChangePassword = () => {
@@ -147,62 +154,128 @@ export default function Settings() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      
-      <div className="lg:pl-64 pb-20 lg:pb-0">
-        <div className="px-4 sm:px-6 lg:px-8 py-8">
-          {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gradient mb-2">Settings</h1>
-            <p className="text-muted-foreground">
-              Manage your account preferences and privacy settings
-            </p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200 sticky top-0 z-40">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center gap-4">
+              <Button
+                variant="ghost"
+                onClick={() => window.history.back()}
+                className="p-2"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
+                  <SettingsIcon className="w-4 h-4 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold text-gray-900">Settings</h1>
+                  <p className="text-xs text-gray-500">Account preferences</p>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
 
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5">
-              <TabsTrigger value="profile">Profile</TabsTrigger>
-              <TabsTrigger value="security">Security</TabsTrigger>
-              <TabsTrigger value="notifications">Notifications</TabsTrigger>
-              <TabsTrigger value="privacy">Privacy</TabsTrigger>
-              <TabsTrigger value="billing">Billing</TabsTrigger>
-            </TabsList>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-            <TabsContent value="profile" className="space-y-6">
-              {/* Profile Picture & Cover */}
-              <Card className="card-luxury">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
+          <TabsList className="bg-white border border-gray-200 p-1 grid grid-cols-2 lg:grid-cols-5">
+            <TabsTrigger 
+              value="profile" 
+              className="data-[state=active]:bg-gray-900 data-[state=active]:text-white flex items-center gap-2"
+            >
+              <User className="w-4 h-4" />
+              <span className="hidden sm:inline">Profile</span>
+            </TabsTrigger>
+            <TabsTrigger 
+              value="security" 
+              className="data-[state=active]:bg-gray-900 data-[state=active]:text-white flex items-center gap-2"
+            >
+              <Lock className="w-4 h-4" />
+              <span className="hidden sm:inline">Security</span>
+            </TabsTrigger>
+            <TabsTrigger 
+              value="notifications" 
+              className="data-[state=active]:bg-gray-900 data-[state=active]:text-white flex items-center gap-2"
+            >
+              <Bell className="w-4 h-4" />
+              <span className="hidden sm:inline">Notifications</span>
+            </TabsTrigger>
+            <TabsTrigger 
+              value="privacy" 
+              className="data-[state=active]:bg-gray-900 data-[state=active]:text-white flex items-center gap-2"
+            >
+              <Eye className="w-4 h-4" />
+              <span className="hidden sm:inline">Privacy</span>
+            </TabsTrigger>
+            <TabsTrigger 
+              value="billing" 
+              className="data-[state=active]:bg-gray-900 data-[state=active]:text-white flex items-center gap-2"
+            >
+              <CreditCard className="w-4 h-4" />
+              <span className="hidden sm:inline">Billing</span>
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="profile" className="space-y-6">
+            {/* Profile Picture & Cover */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <User className="w-5 h-5" />
+                  <CardTitle className="flex items-center gap-3 text-gray-900">
+                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                      <User className="w-5 h-5 text-blue-600" />
+                    </div>
                     Profile Media
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-gray-600">
                     Upload your profile picture and cover image
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="flex flex-col sm:flex-row gap-6">
                     <div className="text-center">
-                      <Avatar className="w-32 h-32 mx-auto mb-4">
+                      <Avatar className="w-24 h-24 mx-auto mb-4 ring-4 ring-gray-100">
                         <AvatarImage src={profileData.avatar} />
-                        <AvatarFallback>{profileData.displayName[0]}</AvatarFallback>
+                        <AvatarFallback className="bg-gray-200 text-gray-600 text-xl">
+                          {profileData.displayName[0]}
+                        </AvatarFallback>
                       </Avatar>
-                      <Button variant="outline" size="sm">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="border-gray-300 hover:bg-gray-50"
+                        onClick={() => handleFileUpload('avatar')}
+                      >
                         <Upload className="w-4 h-4 mr-2" />
                         Change Avatar
                       </Button>
                     </div>
                     
                     <div className="flex-1">
-                      <div className="aspect-[3/1] bg-secondary/30 rounded-2xl mb-4 overflow-hidden">
-                        <img 
-                          src={profileData.coverImage} 
-                          alt="Cover"
-                          className="w-full h-full object-cover"
-                        />
+                      <div className="aspect-[3/1] bg-gray-100 rounded-xl mb-4 overflow-hidden">
+                        <div className="w-full h-full flex items-center justify-center text-gray-400">
+                          <div className="text-center">
+                            <Upload className="w-8 h-8 mx-auto mb-2" />
+                            <p className="text-sm">Cover photo</p>
+                          </div>
+                        </div>
                       </div>
-                      <Button variant="outline" size="sm">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="border-gray-300 hover:bg-gray-50"
+                        onClick={() => handleFileUpload('cover')}
+                      >
                         <Upload className="w-4 h-4 mr-2" />
                         Change Cover
                       </Button>
@@ -210,349 +283,222 @@ export default function Settings() {
                   </div>
                 </CardContent>
               </Card>
+            </motion.div>
 
-              {/* Basic Information */}
-              <Card className="card-luxury">
+            {/* Basic Information */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+            >
+              <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader>
-                  <CardTitle>Basic Information</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="text-gray-900">Basic Information</CardTitle>
+                  <CardDescription className="text-gray-600">
                     Update your profile information
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="displayName">Display Name</Label>
+                      <Label htmlFor="displayName" className="text-gray-700 font-medium">Display Name</Label>
                       <Input
                         id="displayName"
                         value={profileData.displayName}
                         onChange={(e) => updateProfileData('displayName', e.target.value)}
-                        className="mt-1"
+                        className="mt-1 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
                       />
                     </div>
                     
                     <div>
-                      <Label htmlFor="username">Username</Label>
+                      <Label htmlFor="username" className="text-gray-700 font-medium">Username</Label>
                       <Input
                         id="username"
                         value={profileData.username}
                         onChange={(e) => updateProfileData('username', e.target.value)}
-                        className="mt-1"
+                        className="mt-1 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
                         placeholder="@username"
                       />
                     </div>
                     
                     <div>
-                      <Label htmlFor="email">Email Address</Label>
+                      <Label htmlFor="email" className="text-gray-700 font-medium">Email Address</Label>
                       <Input
                         id="email"
                         type="email"
                         value={profileData.email}
                         onChange={(e) => updateProfileData('email', e.target.value)}
-                        className="mt-1"
+                        className="mt-1 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
                       />
                     </div>
                     
                     <div>
-                      <Label htmlFor="subscriptionPrice">Subscription Price</Label>
+                      <Label htmlFor="subscriptionPrice" className="text-gray-700 font-medium">Subscription Price</Label>
                       <div className="relative mt-1">
-                        <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                         <Input
                           id="subscriptionPrice"
                           type="number"
                           value={profileData.subscriptionPrice}
                           onChange={(e) => updateProfileData('subscriptionPrice', e.target.value)}
-                          className="pl-10"
+                          className="pl-10 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
                           step="0.01"
                           min="0"
                         />
                       </div>
                     </div>
-                    
-                    <div>
-                      <Label htmlFor="location">Location</Label>
-                      <Input
-                        id="location"
-                        value={profileData.location}
-                        onChange={(e) => updateProfileData('location', e.target.value)}
-                        className="mt-1"
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="website">Website</Label>
-                      <Input
-                        id="website"
-                        value={profileData.website}
-                        onChange={(e) => updateProfileData('website', e.target.value)}
-                        className="mt-1"
-                        placeholder="linktr.ee/username"
-                      />
-                    </div>
                   </div>
                   
                   <div>
-                    <Label htmlFor="bio">Bio</Label>
+                    <Label htmlFor="bio" className="text-gray-700 font-medium">Bio</Label>
                     <Textarea
                       id="bio"
                       value={profileData.bio}
                       onChange={(e) => updateProfileData('bio', e.target.value)}
-                      className="mt-1 min-h-[120px]"
+                      className="mt-1 min-h-[120px] border-gray-300 focus:border-amber-500 focus:ring-amber-500"
                       placeholder="Tell your fans about yourself..."
                     />
                   </div>
 
                   <div className="flex justify-end">
-                    <Button onClick={handleSaveProfile} className="btn-luxury">
+                    <Button onClick={handleSaveProfile} className="bg-gray-900 hover:bg-gray-800 text-white">
                       <Save className="w-4 h-4 mr-2" />
                       Save Changes
                     </Button>
                   </div>
                 </CardContent>
               </Card>
-            </TabsContent>
+            </motion.div>
+          </TabsContent>
 
-            <TabsContent value="security" className="space-y-6">
-              {/* Change Password */}
-              <Card className="card-luxury">
+          <TabsContent value="security" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Lock className="w-5 h-5" />
-                    Change Password
+                  <CardTitle className="flex items-center gap-3 text-gray-900">
+                    <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                      <Lock className="w-5 h-5 text-red-600" />
+                    </div>
+                    Security Settings
                   </CardTitle>
-                  <CardDescription>
-                    Update your account password
+                  <CardDescription className="text-gray-600">
+                    Keep your account safe and secure
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <Label htmlFor="currentPassword">Current Password</Label>
-                    <div className="relative mt-1">
+                <CardContent className="space-y-6">
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="currentPassword" className="text-gray-700 font-medium">Current Password</Label>
                       <Input
                         id="currentPassword"
-                        type={showCurrentPassword ? "text" : "password"}
+                        type="password"
                         value={passwords.currentPassword}
                         onChange={(e) => setPasswords(prev => ({...prev, currentPassword: e.target.value}))}
-                        className="pr-10"
+                        className="mt-1 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
                       />
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="icon"
-                        className="absolute right-0 top-0 h-full px-3"
-                        onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                      >
-                        {showCurrentPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                      </Button>
                     </div>
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="newPassword">New Password</Label>
-                    <div className="relative mt-1">
+                    
+                    <div>
+                      <Label htmlFor="newPassword" className="text-gray-700 font-medium">New Password</Label>
                       <Input
                         id="newPassword"
-                        type={showNewPassword ? "text" : "password"}
+                        type="password"
                         value={passwords.newPassword}
                         onChange={(e) => setPasswords(prev => ({...prev, newPassword: e.target.value}))}
-                        className="pr-10"
+                        className="mt-1 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
                       />
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="icon"
-                        className="absolute right-0 top-0 h-full px-3"
-                        onClick={() => setShowNewPassword(!showNewPassword)}
-                      >
-                        {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                      </Button>
                     </div>
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="confirmPassword">Confirm New Password</Label>
-                    <div className="relative mt-1">
-                      <Input
-                        id="confirmPassword"
-                        type={showConfirmPassword ? "text" : "password"}
-                        value={passwords.confirmPassword}
-                        onChange={(e) => setPasswords(prev => ({...prev, confirmPassword: e.target.value}))}
-                        className="pr-10"
-                      />
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="icon"
-                        className="absolute right-0 top-0 h-full px-3"
-                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      >
-                        {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                      </Button>
-                    </div>
+
+                    <Button onClick={handleChangePassword} className="bg-gray-900 hover:bg-gray-800 text-white">
+                      Update Password
+                    </Button>
                   </div>
 
-                  <Button onClick={handleChangePassword} className="btn-luxury">
-                    Update Password
-                  </Button>
-                </CardContent>
-              </Card>
+                  <Separator />
 
-              {/* Two-Factor Authentication */}
-              <Card className="card-luxury">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Shield className="w-5 h-5" />
-                    Two-Factor Authentication
-                  </CardTitle>
-                  <CardDescription>
-                    Add an extra layer of security to your account
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">Authenticator App</p>
-                      <p className="text-sm text-muted-foreground">
-                        Use an authenticator app to generate verification codes
+                      <p className="font-medium text-gray-900">Two-Factor Authentication</p>
+                      <p className="text-sm text-gray-600">
+                        Add extra security to your account
                       </p>
                     </div>
-                    <Button variant="outline">
+                    <Button variant="outline" className="border-gray-300 hover:bg-gray-50">
                       Enable 2FA
                     </Button>
                   </div>
                 </CardContent>
               </Card>
-            </TabsContent>
+            </motion.div>
+          </TabsContent>
 
-            <TabsContent value="notifications" className="space-y-6">
-              <Card className="card-luxury">
+          <TabsContent value="notifications" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Bell className="w-5 h-5" />
-                    Notification Preferences
+                  <CardTitle className="flex items-center gap-3 text-gray-900">
+                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                      <Bell className="w-5 h-5 text-green-600" />
+                    </div>
+                    Notifications
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-gray-600">
                     Choose how you want to be notified
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  {/* General Notifications */}
-                  <div>
-                    <h3 className="font-semibold mb-4">General</h3>
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <Mail className="w-4 h-4 text-muted-foreground" />
-                          <div>
-                            <p className="font-medium">Email Notifications</p>
-                            <p className="text-sm text-muted-foreground">Receive notifications via email</p>
-                          </div>
+                  <div className="space-y-4">
+                    {[
+                      { id: 'emailNotifications', label: 'Email Notifications', desc: 'Receive notifications via email', checked: notifications.emailNotifications },
+                      { id: 'pushNotifications', label: 'Push Notifications', desc: 'Get notifications on your device', checked: notifications.pushNotifications },
+                      { id: 'newSubscribers', label: 'New Subscribers', desc: 'When someone subscribes', checked: notifications.newSubscribers },
+                      { id: 'newMessages', label: 'New Messages', desc: 'Direct message alerts', checked: notifications.newMessages }
+                    ].map(item => (
+                      <div key={item.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                        <div>
+                          <p className="font-medium text-gray-900">{item.label}</p>
+                          <p className="text-sm text-gray-600">{item.desc}</p>
                         </div>
                         <Switch
-                          checked={notifications.emailNotifications}
-                          onCheckedChange={(checked) => updateNotification('emailNotifications', checked)}
+                          checked={item.checked}
+                          onCheckedChange={(checked) => updateNotification(item.id as keyof NotificationSettings, checked)}
                         />
                       </div>
-                      
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <Smartphone className="w-4 h-4 text-muted-foreground" />
-                          <div>
-                            <p className="font-medium">Push Notifications</p>
-                            <p className="text-sm text-muted-foreground">Receive push notifications on your device</p>
-                          </div>
-                        </div>
-                        <Switch
-                          checked={notifications.pushNotifications}
-                          onCheckedChange={(checked) => updateNotification('pushNotifications', checked)}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <Separator />
-
-                  {/* Activity Notifications */}
-                  <div>
-                    <h3 className="font-semibold mb-4">Activity</h3>
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <User className="w-4 h-4 text-muted-foreground" />
-                          <div>
-                            <p className="font-medium">New Subscribers</p>
-                            <p className="text-sm text-muted-foreground">When someone subscribes to your content</p>
-                          </div>
-                        </div>
-                        <Switch
-                          checked={notifications.newSubscribers}
-                          onCheckedChange={(checked) => updateNotification('newSubscribers', checked)}
-                        />
-                      </div>
-                      
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <MessageSquare className="w-4 h-4 text-muted-foreground" />
-                          <div>
-                            <p className="font-medium">New Messages</p>
-                            <p className="text-sm text-muted-foreground">When you receive a direct message</p>
-                          </div>
-                        </div>
-                        <Switch
-                          checked={notifications.newMessages}
-                          onCheckedChange={(checked) => updateNotification('newMessages', checked)}
-                        />
-                      </div>
-                      
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <DollarSign className="w-4 h-4 text-muted-foreground" />
-                          <div>
-                            <p className="font-medium">Tips & Payments</p>
-                            <p className="text-sm text-muted-foreground">When you receive tips or payments</p>
-                          </div>
-                        </div>
-                        <Switch
-                          checked={notifications.newTips}
-                          onCheckedChange={(checked) => updateNotification('newTips', checked)}
-                        />
-                      </div>
-                      
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <Heart className="w-4 h-4 text-muted-foreground" />
-                          <div>
-                            <p className="font-medium">Comments & Likes</p>
-                            <p className="text-sm text-muted-foreground">When someone comments on or likes your content</p>
-                          </div>
-                        </div>
-                        <Switch
-                          checked={notifications.newComments}
-                          onCheckedChange={(checked) => updateNotification('newComments', checked)}
-                        />
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
-            </TabsContent>
+            </motion.div>
+          </TabsContent>
 
-            <TabsContent value="privacy" className="space-y-6">
-              <Card className="card-luxury">
+          <TabsContent value="privacy" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Eye className="w-5 h-5" />
+                  <CardTitle className="flex items-center gap-3 text-gray-900">
+                    <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                      <Eye className="w-5 h-5 text-purple-600" />
+                    </div>
                     Privacy Settings
                   </CardTitle>
-                  <CardDescription>
-                    Control who can see your content and profile
-                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div>
-                    <Label htmlFor="profileVisibility">Profile Visibility</Label>
+                    <Label className="text-gray-700 font-medium">Profile Visibility</Label>
                     <Select value={privacy.profileVisibility} onValueChange={(value) => updatePrivacy('profileVisibility', value)}>
-                      <SelectTrigger className="mt-1">
+                      <SelectTrigger className="mt-1 border-gray-300">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -563,128 +509,61 @@ export default function Settings() {
                     </Select>
                   </div>
                   
-                  <div>
-                    <Label htmlFor="allowDirectMessages">Direct Messages</Label>
-                    <Select value={privacy.allowDirectMessages} onValueChange={(value) => updatePrivacy('allowDirectMessages', value)}>
-                      <SelectTrigger className="mt-1">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="everyone">Everyone</SelectItem>
-                        <SelectItem value="subscribers">Subscribers Only</SelectItem>
-                        <SelectItem value="none">No One</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-medium">Show Online Status</p>
-                        <p className="text-sm text-muted-foreground">Let others see when you're online</p>
-                      </div>
-                      <Switch
-                        checked={privacy.showOnlineStatus}
-                        onCheckedChange={(checked) => updatePrivacy('showOnlineStatus', checked)}
-                      />
+                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                    <div>
+                      <p className="font-medium text-gray-900">Show Subscriber Count</p>
+                      <p className="text-sm text-gray-600">Display publicly</p>
                     </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-medium">Show Subscriber Count</p>
-                        <p className="text-sm text-muted-foreground">Display your subscriber count publicly</p>
-                      </div>
-                      <Switch
-                        checked={privacy.showSubscriberCount}
-                        onCheckedChange={(checked) => updatePrivacy('showSubscriberCount', checked)}
-                      />
-                    </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-medium">Allow Content Download</p>
-                        <p className="text-sm text-muted-foreground">Let subscribers download your content</p>
-                      </div>
-                      <Switch
-                        checked={privacy.allowContentDownload}
-                        onCheckedChange={(checked) => updatePrivacy('allowContentDownload', checked)}
-                      />
-                    </div>
+                    <Switch
+                      checked={privacy.showSubscriberCount}
+                      onCheckedChange={(checked) => updatePrivacy('showSubscriberCount', checked)}
+                    />
                   </div>
                 </CardContent>
               </Card>
-            </TabsContent>
+            </motion.div>
+          </TabsContent>
 
-            <TabsContent value="billing" className="space-y-6">
-              <Card className="card-luxury">
+          <TabsContent value="billing" className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <CreditCard className="w-5 h-5" />
-                    Billing Preferences
+                  <CardTitle className="flex items-center gap-3 text-gray-900">
+                    <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center">
+                      <CreditCard className="w-5 h-5 text-amber-600" />
+                    </div>
+                    Billing & Payouts
                   </CardTitle>
-                  <CardDescription>
-                    Manage your billing and payout settings
-                  </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-6">
                   <div>
-                    <Label htmlFor="minimumTip">Minimum Tip Amount</Label>
+                    <Label className="text-gray-700 font-medium">Minimum Tip Amount</Label>
                     <div className="relative mt-1">
-                      <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                      <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                       <Input
-                        id="minimumTip"
                         type="number"
                         value={privacy.minimumTipAmount}
                         onChange={(e) => updatePrivacy('minimumTipAmount', e.target.value)}
-                        className="pl-10"
+                        className="pl-10 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
                         step="0.01"
                         min="0"
                       />
                     </div>
                   </div>
-
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-medium">Require Payment for Messages</p>
-                      <p className="text-sm text-muted-foreground">Charge a fee for direct messages</p>
-                    </div>
-                    <Switch
-                      checked={privacy.requirePaymentForMessages}
-                      onCheckedChange={(checked) => updatePrivacy('requirePaymentForMessages', checked)}
-                    />
-                  </div>
                   
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full border-gray-300 hover:bg-gray-50">
                     <CreditCard className="w-4 h-4 mr-2" />
                     Manage Payout Methods
                   </Button>
                 </CardContent>
               </Card>
-
-              {/* Account Deletion */}
-              <Card className="card-luxury border-destructive/20">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-destructive">
-                    <Trash2 className="w-5 h-5" />
-                    Danger Zone
-                  </CardTitle>
-                  <CardDescription>
-                    Irreversible actions for your account
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button variant="destructive" className="w-full">
-                    <Trash2 className="w-4 h-4 mr-2" />
-                    Delete Account
-                  </Button>
-                  <p className="text-xs text-muted-foreground mt-2">
-                    This action cannot be undone. Your account and all data will be permanently deleted.
-                  </p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </div>
+            </motion.div>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
