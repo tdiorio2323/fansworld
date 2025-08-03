@@ -1,88 +1,107 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // CABANA FansWorld Platform - VS Code Debug Configuration
+    // Optimized for React + TypeScript + Vite development
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "🚀 Launch CABANA Dev Server",
             "type": "node",
             "request": "launch",
-            "name": "Run esbuild",
-            "runtimeExecutable": "esbuild",
-            "cwd": "${workspaceFolder}/node_modules/vite",
-            "args": []
-        },
-        {
-            "name": "Launch and Debug Standalone Blazor WebAssembly App",
-            "type": "blazorwasm",
-            "request": "launch",
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Run tailwindcss",
-            "runtimeExecutable": "tailwindcss",
+            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "args": ["--host", "0.0.0.0", "--port", "5173"],
             "cwd": "${workspaceFolder}",
-            "args": []
+            "console": "integratedTerminal",
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "skipFiles": ["<node_internals>/**"]
         },
         {
+            "name": "🔍 Debug CABANA in Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:5173",
+            "webRoot": "${workspaceFolder}/src",
+            "sourceMaps": true,
+            "trace": true
+        },
+        {
+            "name": "🧪 Run CABANA Tests",
             "type": "node",
             "request": "launch",
-            "name": "Run esbuild",
-            "runtimeExecutable": "esbuild",
-            "cwd": "${workspaceFolder}/node_modules/lovable-tagger",
-            "args": []
+            "program": "${workspaceFolder}/node_modules/.bin/vitest",
+            "args": ["run"],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "skipFiles": ["<node_internals>/**"]
         },
         {
+            "name": "🔨 Build CABANA Production",
             "type": "node",
             "request": "launch",
-            "name": "Run esbuild",
-            "runtimeExecutable": "esbuild",
-            "cwd": "${workspaceFolder}/node_modules/lovable-tagger",
-            "args": []
+            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "args": ["build"],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "skipFiles": ["<node_internals>/**"]
         },
         {
-            "name": "Python Debugger: Current File",
+            "name": "🎯 ESLint Fix All",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/.bin/eslint",
+            "args": [".", "--fix"],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            "name": "🌐 Preview Production Build",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "args": ["preview", "--host", "0.0.0.0", "--port", "4173"],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            "name": "🐍 Python Script Debugger",
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}"
         },
         {
+            "name": "🤖 Creator Automation Script",
             "type": "node",
             "request": "launch",
-            "name": "Run eslint",
-            "runtimeExecutable": "eslint",
+            "program": "${workspaceFolder}/scripts/creator-automation.js",
+            "args": ["status"],
+            "cwd": "${workspaceFolder}/scripts",
+            "console": "integratedTerminal",
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            "name": "💎 Tailwind CSS Watch",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/.bin/tailwindcss",
+            "args": ["-i", "./src/index.css", "-o", "./dist/output.css", "--watch"],
             "cwd": "${workspaceFolder}",
-            "args": []
+            "console": "integratedTerminal",
+            "skipFiles": ["<node_internals>/**"]
         },
         {
-            "name": "Launch index.html",
-            "type": "firefox",
+            "name": "🔧 TypeScript Type Check",
+            "type": "node",
             "request": "launch",
-            "reAttach": true,
-            "file": "${workspaceFolder}/index.html"
-        },
-        {
-            "name": "Launch localhost",
-            "type": "firefox",
-            "request": "launch",
-            "reAttach": true,
-            "url": "http://localhost/index.html",
-            "webRoot": "${workspaceFolder}"
-        },
-        {
-            "name": "Attach",
-            "type": "firefox",
-            "request": "attach"
-        },
-        {
-            "name": "Launch WebExtension",
-            "type": "firefox",
-            "request": "launch",
-            "reAttach": true,
-            "addonPath": "${workspaceFolder}"
+            "program": "${workspaceFolder}/node_modules/.bin/tsc",
+            "args": ["--noEmit", "--watch"],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "skipFiles": ["<node_internals>/**"]
         }
     ]
 }

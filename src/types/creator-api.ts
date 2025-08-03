@@ -476,7 +476,7 @@ export interface ApiResponse<T> {
 export interface ApiError {
   code: string;
   message: string;
-  details?: any;
+  details?: unknown;
   timestamp: string;
 }
 
@@ -565,10 +565,10 @@ export interface GenerateReportRequest {
 // Webhook Types
 // =============================================================================
 
-export interface WebhookEvent {
+export interface WebhookEvent<T = unknown> {
   id: string;
   type: WebhookEventType;
-  data: any;
+  data: T;
   timestamp: string;
   source: Platform | 'internal';
   creator_id?: string;

@@ -22,7 +22,7 @@ describe('App Component', () => {
     );
     
     // Check if the app renders without errors
-    expect(document.body).toBeInTheDocument();
+    expect(screen.getByTestId('app-root')).toBeInTheDocument();
   });
 
   it('shows loading state initially', () => {

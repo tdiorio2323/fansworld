@@ -80,11 +80,11 @@ class CreatorMetricsSync {
 
       // Process creators in batches
       for (let i = 0; i < (creators?.length || 0); i += this.batchSize) {
-        const batch = creators!.slice(i, i + this.batchSize);
+        const batch = (creators || []).slice(i, i + this.batchSize);
         await Promise.all(batch.map(creator => this.syncCreatorMetrics(creator, forceSync)));
         
         // Rate limiting - wait between batches
-        if (i + this.batchSize < creators!.length) {
+        if (i + this.batchSize < (creators || []).length) {
           await this.sleep(2000);
         }
       }
