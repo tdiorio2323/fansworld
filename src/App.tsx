@@ -35,6 +35,7 @@ import AdminTest from "./pages/AdminTest";
 import VipEntry from "./pages/VipEntry";
 import Debug from "./pages/Debug";
 import SimpleTest from "./pages/SimpleTest";
+import Reels from "./pages/Reels";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,11 @@ const App = () => (
             <Route path="/vip" element={<VipEntry />} />
             <Route path="/landing" element={<Index />} />
             <Route path="/home" element={<InstagramHome />} />
+            <Route path="/reels" element={
+              <ProtectedRoute>
+                <Reels />
+              </ProtectedRoute>
+            } />
             <Route path="/home-classic" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/auth" element={<Auth />} />

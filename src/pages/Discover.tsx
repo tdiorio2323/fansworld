@@ -88,6 +88,7 @@ export default function Discover() {
           profiles!creator_content_creator_id_fkey(username, display_name, avatar_url)
         `)
         .eq('is_premium', false)
+        .eq('moderation_status', 'approved') // Only show approved content
         .order('created_at', { ascending: false })
         .limit(20);
 

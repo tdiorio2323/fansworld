@@ -72,6 +72,7 @@ export const ContentManager: React.FC<ContentManagerProps> = ({ refreshTrigger }
         .from('creator_content')
         .select('*')
         .eq('creator_id', user.id)
+        .eq('moderation_status', 'approved') // Only show approved content
         .order('created_at', { ascending: false });
 
       if (error) throw error;

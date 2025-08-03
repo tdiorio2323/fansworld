@@ -111,6 +111,7 @@ export default function CreatorProfile() {
         .from('creator_content')
         .select('*')
         .eq('creator_id', profile.user_id)
+        .eq('moderation_status', 'approved') // Only show approved content
         .order('created_at', { ascending: false });
 
       if (contentError) {

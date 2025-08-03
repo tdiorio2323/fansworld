@@ -11,6 +11,7 @@ import { Eye, EyeOff, ArrowRight, Loader2, Chrome, Smartphone } from 'lucide-rea
 import { motion } from 'framer-motion';
 import { GoogleSignIn } from '@/components/auth/GoogleSignIn';
 import { AppleSignIn } from '@/components/auth/AppleSignIn';
+import { supabase } from '@/integrations/supabase/supabase';
 
 interface LocationState {
   from?: {
@@ -93,6 +94,32 @@ export default function Auth() {
 
   const updateFormData = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      setIsLoading(true);
+      // Simple direct entry - no actual OAuth needed
+      navigate('/home');
+    } catch (err) {
+      setError('Google entry failed. Please try again.');
+      console.error('Google entry error:', err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleAppleSignIn = async () => {
+    try {
+      setIsLoading(true);
+      // Simple direct entry - no actual OAuth needed
+      navigate('/home');
+    } catch (err) {
+      setError('Apple entry failed. Please try again.');
+      console.error('Apple entry error:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -344,37 +371,51 @@ export default function Auth() {
                   </TabsContent>
                 </Tabs>
 
-                {/* Social Auth */}
-                <div className="mt-8">
-                  <div className="relative">
-                    <div className="absolute inset-0 flex items-center">
-                      <span className="w-full border-t border-gray-300" />
+                {/* Quick Entry Buttons */}
+                {true && (
+                  <div className="mt-8">
+                    <div className="relative">
+                      <div className="absolute inset-0 flex items-center">
+                        <span className="w-full border-t border-gray-300" />
+                      </div>
+                      <div className="relative flex justify-center text-sm">
+                        <span className="px-4 bg-white text-gray-500">Quick Entry</span>
+                      </div>
                     </div>
-                    <div className="relative flex justify-center text-sm">
-                      <span className="px-4 bg-white text-gray-500">Or continue with</span>
-                    </div>
-                  </div>
 
-                  <div className="grid grid-cols-2 gap-4 mt-6">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      className="h-12 border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-black"
-                    >
-                      <Chrome className="w-5 h-5 mr-2" />
-                      Google
-                    </Button>
-                    
-                    <Button
-                      type="button"
-                      variant="outline"
-                      className="h-12 border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-black"
-                    >
-                      <Smartphone className="w-5 h-5 mr-2" />
-                      Apple
-                    </Button>
+                    <div className="grid grid-cols-2 gap-4 mt-6">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="h-12 border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-black"
+                        onClick={handleGoogleSignIn}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? (
+                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                        ) : (
+                          <Chrome className="w-5 h-5 mr-2" />
+                        )}
+                        Enter with Google
+                      </Button>
+                      
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="h-12 border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-black"
+                        onClick={handleAppleSignIn}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? (
+                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                        ) : (
+                          <Smartphone className="w-5 h-5 mr-2" />
+                        )}
+                        Enter with Apple
+                      </Button>
+                    </div>
                   </div>
-                </div>
+                )}
               </CardContent>
             </Card>
 

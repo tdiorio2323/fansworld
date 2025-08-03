@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "run_terminal_cmd",
+      "read_file",
+      "write_file",
+      "search_replace",
+      "grep_search",
+      "codebase_search",
+      "file_search",
+      "list_dir",
+      "create_diagram",
+      "MultiEdit",
+      "todo_write",
+      "read_lints",
+      "update_memory",
+      "web_search",
+      "fetch_pull_request",
+      "edit_notebook",
+      "delete_file",
+      "Bash(npm run build:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(*)"
+    ],
+    "deny": []
+  }
+}

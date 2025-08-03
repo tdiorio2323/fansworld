@@ -23,6 +23,10 @@ export type Database = {
           file_url: string | null
           id: string
           is_premium: boolean | null
+          moderation_status: string | null
+          moderated_at: string | null
+          moderated_by: string | null
+          moderation_notes: string | null
           price: number | null
           title: string
           updated_at: string
@@ -35,6 +39,10 @@ export type Database = {
           file_url?: string | null
           id?: string
           is_premium?: boolean | null
+          moderation_status?: string | null
+          moderated_at?: string | null
+          moderated_by?: string | null
+          moderation_notes?: string | null
           price?: number | null
           title: string
           updated_at?: string
@@ -47,6 +55,10 @@ export type Database = {
           file_url?: string | null
           id?: string
           is_premium?: boolean | null
+          moderation_status?: string | null
+          moderated_at?: string | null
+          moderated_by?: string | null
+          moderation_notes?: string | null
           price?: number | null
           title?: string
           updated_at?: string

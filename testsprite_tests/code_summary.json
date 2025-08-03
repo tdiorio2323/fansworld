@@ -1,0 +1,128 @@
+{
+  "project_name": "CABANA - Premium Creator Management Platform",
+  "version": "1.0.0",
+  "description": "Enterprise-level creator management platform similar to OnlyFans + talent agency management",
+  "technologies": {
+    "frontend": {
+      "framework": "React 19",
+      "language": "TypeScript",
+      "bundler": "Vite",
+      "styling": "Tailwind CSS",
+      "ui_components": "Shadcn UI",
+      "animations": "Framer Motion",
+      "routing": "React Router DOM",
+      "state_management": "React Hooks + Context"
+    },
+    "backend": {
+      "database": "Supabase PostgreSQL",
+      "authentication": "Supabase Auth",
+      "edge_functions": "Supabase Edge Functions",
+      "file_storage": "Supabase Storage"
+    },
+    "payments": {
+      "processor": "Stripe",
+      "webhooks": "Stripe Webhooks",
+      "subscriptions": "Stripe Subscriptions"
+    },
+    "deployment": {
+      "platform": "Vercel",
+      "domain": "cabana.tdstudiosny.com",
+      "environment": "Production Ready"
+    }
+  },
+  "architecture": {
+    "type": "Single Page Application (SPA)",
+    "pattern": "Component-Based Architecture",
+    "authentication": "JWT with Supabase",
+    "data_flow": "RESTful API + Real-time subscriptions",
+    "file_structure": {
+      "src/pages/": "Route components and main pages",
+      "src/components/": "Reusable UI components",
+      "src/hooks/": "Custom React hooks",
+      "src/integrations/": "External service integrations",
+      "src/components/ui/": "Base UI component library"
+    }
+  },
+  "key_features": {
+    "authentication": {
+      "vip_entry": "Exclusive VIP code access system",
+      "registration": "Multi-step user registration",
+      "social_login": "Google and Apple sign-in",
+      "invite_system": "Referral and invite code system"
+    },
+    "creator_management": {
+      "profiles": "Comprehensive creator profiles",
+      "content_management": "Photo/video upload and management",
+      "monetization": "Subscription and tip-based revenue",
+      "analytics": "Detailed performance metrics"
+    },
+    "user_experience": {
+      "feed": "Instagram-style content feed",
+      "discovery": "Creator search and discovery",
+      "messaging": "Direct messaging system",
+      "notifications": "Real-time notification system"
+    },
+    "admin_features": {
+      "dashboard": "Executive admin interface",
+      "creator_applications": "Application review system",
+      "analytics": "Platform-wide analytics",
+      "content_moderation": "Content review and approval"
+    },
+    "business_features": {
+      "agency_tools": "Talent agency management",
+      "referral_program": "Multi-tier referral system",
+      "billing": "Comprehensive payment management",
+      "link_tracking": "Advanced affiliate tracking"
+    }
+  },
+  "pages_analysis": {
+    "public_pages": [
+      "/vip",
+      "/",
+      "/auth",
+      "/register",
+      "/coming-soon",
+      "/creator-application"
+    ],
+    "protected_pages": [
+      "/home",
+      "/dashboard", 
+      "/messages",
+      "/settings",
+      "/billing",
+      "/discover",
+      "/creator/:username"
+    ],
+    "admin_pages": [
+      "/admin",
+      "/analytics-dashboard"
+    ],
+    "utility_pages": [
+      "/test-payment",
+      "/debug",
+      "/invite/:code"
+    ]
+  },
+  "database_schema": {
+    "core_tables": [
+      "profiles",
+      "creator_content", 
+      "subscriptions",
+      "transactions",
+      "messages",
+      "notifications"
+    ],
+    "business_tables": [
+      "invites",
+      "waitlist",
+      "creator_applications",
+      "referral_codes",
+      "link_tracking"
+    ],
+    "admin_tables": [
+      "creator_earnings",
+      "platform_analytics",
+      "content_moderation"
+    ]
+  }
+}

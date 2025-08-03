@@ -1,0 +1,33 @@
+{
+  "project": {
+    "name": "CABANA",
+    "type": "web_application",
+    "framework": "React",
+    "language": "TypeScript",
+    "test_environment": "http://localhost:8080"
+  },
+  "scan_settings": {
+    "depth": "comprehensive",
+    "include_dependencies": true,
+    "analyze_security": true,
+    "performance_testing": true,
+    "accessibility_testing": true,
+    "mobile_testing": true
+  },
+  "directories_to_scan": [
+    "src/",
+    "public/",
+    "package.json",
+    "vite.config.ts",
+    "tailwind.config.ts"
+  ],
+  "test_types": [
+    "unit",
+    "integration", 
+    "e2e",
+    "performance",
+    "security",
+    "accessibility",
+    "mobile_responsive"
+  ]
+}
