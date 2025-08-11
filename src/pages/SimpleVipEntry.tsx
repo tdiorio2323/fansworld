@@ -51,15 +51,24 @@ const SimpleVipEntry = () => {
           </div>
 
           {/* Simple Form */}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} noValidate>
             <div className="mb-6">
               <input
                 type="text"
+                name="vip-access-code"
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
                 placeholder="ENTER VIP CODE"
+                autoComplete="one-time-code"
+                autoCapitalize="characters"
+                autoCorrect="off"
+                spellCheck={false}
+                inputMode="text"
+                pattern="[A-Za-z0-9]*"
+                maxLength={20}
                 className="w-full px-4 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 text-center tracking-widest uppercase font-medium"
                 style={{ textTransform: 'uppercase' }}
+                data-testid="vip-code-input"
               />
             </div>
             
