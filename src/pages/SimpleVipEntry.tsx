@@ -17,11 +17,16 @@ const SimpleVipEntry = () => {
 
     // Quick access codes
     if (trimmedCode === 'TD') {
-      navigate('/discover')
+      console.log('TD code entered, navigating to /discover')
+      alert('TD code accepted! Redirecting to platform...')
+      setTimeout(() => {
+        navigate('/discover')
+      }, 1000)
       return
     }
 
     // Redirect to VIP entry page with code
+    console.log('Navigating to VIP entry with code:', trimmedCode)
     navigate(`/vip?code=${trimmedCode}`)
   }
 
@@ -84,6 +89,14 @@ const SimpleVipEntry = () => {
           <div className="text-center mt-6">
             <p className="text-white/60 text-xs">
               Try "TD" for quick access
+            </p>
+            <p className="text-white/50 text-xs mt-2">
+              Or <button 
+                onClick={() => navigate('/discover')} 
+                className="underline text-white/70 hover:text-white"
+              >
+                click here to go directly to platform
+              </button>
             </p>
           </div>
           

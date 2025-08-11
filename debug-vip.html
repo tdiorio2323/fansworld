@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Code Test</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0A0B14 0%, #C77DFF 50%, #FF006E 100%);
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        input:focus {
+            outline: none;
+            ring: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #C77DFF, #FF006E);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(0, 255, 0, 0.2);
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔷 Cabana VIP Test</h1>
+        <p>Test VIP code input</p>
+        
+        <form id="vipForm" novalidate>
+            <input
+                id="vipInput"
+                type="text"
+                name="vip-access-code"
+                autocomplete="one-time-code"
+                autocapitalize="characters"
+                autocorrect="off"
+                spellcheck="false"
+                inputmode="text"
+                pattern="[A-Za-z0-9]*"
+                maxlength="20"
+                placeholder="ENTER VIP CODE"
+                value=""
+            />
+            <button type="submit">ACCESS PLATFORM →</button>
+        </form>
+        
+        <div id="result" class="result"></div>
+        
+        <p style="font-size: 12px; margin-top: 20px; opacity: 0.7;">
+            Try typing: TD, FOUNDER123, GOLD123, or any code
+        </p>
+    </div>
+    
+    <script>
+        const form = document.getElementById('vipForm');
+        const input = document.getElementById('vipInput');
+        const result = document.getElementById('result');
+        
+        // Force uppercase on input
+        input.addEventListener('input', function(e) {
+            e.target.value = e.target.value.toUpperCase();
+        });
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const code = input.value.trim();
+            
+            result.style.display = 'block';
+            
+            if (!code) {
+                result.innerHTML = '❌ Please enter a VIP code';
+                result.style.background = 'rgba(255, 0, 0, 0.2)';
+                return;
+            }
+            
+            if (code === 'TD') {
+                result.innerHTML = '✅ SUCCESS! TD code accepted - would redirect to platform';
+                result.style.background = 'rgba(0, 255, 0, 0.2)';
+            } else {
+                result.innerHTML = `✅ Code "${code}" would be processed - redirecting to VIP entry`;
+                result.style.background = 'rgba(0, 255, 0, 0.2)';
+            }
+            
+            console.log('Submitted VIP code:', code);
+        });
+        
+        console.log('VIP Test page loaded');
+        console.log('Input element:', input);
+        console.log('Input type:', input.type);
+        console.log('Input autocomplete:', input.autocomplete);
+    </script>
+</body>
+</html>
