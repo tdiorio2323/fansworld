@@ -1,107 +1,144 @@
 {
-    // CABANA FansWorld Platform - VS Code Debug Configuration
-    // Optimized for React + TypeScript + Vite development
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "🚀 Launch CABANA Dev Server",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
-            "args": ["--host", "0.0.0.0", "--port", "5173"],
-            "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal",
-            "env": {
-                "NODE_ENV": "development"
-            },
-            "skipFiles": ["<node_internals>/**"]
-        },
-        {
-            "name": "🔍 Debug CABANA in Chrome",
-            "type": "chrome",
-            "request": "launch",
-            "url": "http://localhost:5173",
-            "webRoot": "${workspaceFolder}/src",
-            "sourceMaps": true,
-            "trace": true
-        },
-        {
-            "name": "🧪 Run CABANA Tests",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceFolder}/node_modules/.bin/vitest",
-            "args": ["run"],
-            "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal",
-            "skipFiles": ["<node_internals>/**"]
-        },
-        {
-            "name": "🔨 Build CABANA Production",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
-            "args": ["build"],
-            "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal",
-            "skipFiles": ["<node_internals>/**"]
-        },
-        {
-            "name": "🎯 ESLint Fix All",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceFolder}/node_modules/.bin/eslint",
-            "args": [".", "--fix"],
-            "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal",
-            "skipFiles": ["<node_internals>/**"]
-        },
-        {
-            "name": "🌐 Preview Production Build",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
-            "args": ["preview", "--host", "0.0.0.0", "--port", "4173"],
-            "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal",
-            "skipFiles": ["<node_internals>/**"]
-        },
-        {
-            "name": "🐍 Python Script Debugger",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "name": "🤖 Creator Automation Script",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceFolder}/scripts/creator-automation.js",
-            "args": ["status"],
-            "cwd": "${workspaceFolder}/scripts",
-            "console": "integratedTerminal",
-            "skipFiles": ["<node_internals>/**"]
-        },
-        {
-            "name": "💎 Tailwind CSS Watch",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceFolder}/node_modules/.bin/tailwindcss",
-            "args": ["-i", "./src/index.css", "-o", "./dist/output.css", "--watch"],
-            "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal",
-            "skipFiles": ["<node_internals>/**"]
-        },
-        {
-            "name": "🔧 TypeScript Type Check",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceFolder}/node_modules/.bin/tsc",
-            "args": ["--noEmit", "--watch"],
-            "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal",
-            "skipFiles": ["<node_internals>/**"]
-        }
-    ]
+  // CABANA FansWorld Platform - VS Code Debug Configuration
+  // Optimized for React + TypeScript + Vite development
+  "version": "0.2.0",
+  "configurations": [
+    
+
+    {
+        "name": "Launch Chrome",
+        "request": "launch",
+        "type": "chrome",
+        "url": "http://localhost:8080",
+        "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Python Debugger: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+
+    {
+      "command": "npm start",
+      "name": "Run npm start",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "name": "Python Debugger: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Python Debugger: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "🚀 Launch CABANA Dev Server",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/vite",
+      "args": ["--host", "0.0.0.0", "--port", "5173"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "🔍 Debug CABANA in Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/src",
+      "sourceMaps": true,
+      "trace": true
+    },
+    {
+      "name": "🧪 Run CABANA Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/vitest",
+      "args": ["run"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "🔨 Build CABANA Production",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/vite",
+      "args": ["build"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "🎯 ESLint Fix All",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/eslint",
+      "args": [".", "--fix"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "🌐 Preview Production Build",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/vite",
+      "args": ["preview", "--host", "0.0.0.0", "--port", "4173"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "🐍 Python Script Debugger",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "🤖 Creator Automation Script",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/creator-automation.js",
+      "args": ["status"],
+      "cwd": "${workspaceFolder}/scripts",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "💎 Tailwind CSS Watch",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/tailwindcss",
+      "args": ["-i", "./src/index.css", "-o", "./dist/output.css", "--watch"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "🔧 TypeScript Type Check",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/tsc",
+      "args": ["--noEmit", "--watch"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
 }

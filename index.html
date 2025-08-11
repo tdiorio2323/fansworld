@@ -2,15 +2,159 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cabana</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    
+    <!-- PWA Meta Tags -->
+    <title>Cabana - Luxury Creator Platform</title>
+    <meta name="description" content="Premium creator management platform with luxury design and powerful features" />
+    <meta name="theme-color" content="#C77DFF" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Cabana" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <!-- PWA Icons -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/logo192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/logo512.png" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Mobile Optimizations -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-TileColor" content="#C77DFF" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    
+    <!-- Splash Screen for iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/sw.js" as="script" />
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+              
+              // Update available
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // Show update notification to user
+                    console.log('New version available! Please refresh.');
+                  }
+                });
+              });
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+
+        // Handle service worker updates
+        navigator.serviceWorker.addEventListener('message', (event) => {
+          if (event.data && event.data.type === 'SW_UPDATE_AVAILABLE') {
+            // Notify user about update
+            if (confirm('A new version is available! Refresh now?')) {
+              window.location.reload();
+            }
+          }
+        });
+      }
+
+      // PWA Install Prompt
+      let deferredPrompt;
+      
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later
+        deferredPrompt = e;
+        
+        // Show custom install button/banner
+        console.log('PWA install prompt available');
+        
+        // You can show a custom install button here
+        const installButton = document.createElement('button');
+        installButton.textContent = 'Install Cabana App';
+        installButton.style.cssText = `
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background: linear-gradient(135deg, #C77DFF 0%, #FF006E 100%);
+          color: white;
+          border: none;
+          padding: 12px 20px;
+          border-radius: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          z-index: 10000;
+          box-shadow: 0 4px 20px rgba(199, 125, 255, 0.4);
+        `;
+        
+        installButton.addEventListener('click', () => {
+          // Show the prompt
+          deferredPrompt.prompt();
+          // Wait for the user to respond to the prompt
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the PWA install prompt');
+            } else {
+              console.log('User dismissed the PWA install prompt');
+            }
+            deferredPrompt = null;
+            installButton.remove();
+          });
+        });
+        
+        // Add to DOM after a delay
+        setTimeout(() => {
+          if (deferredPrompt && !window.matchMedia('(display-mode: standalone)').matches) {
+            document.body.appendChild(installButton);
+            
+            // Auto-hide after 10 seconds
+            setTimeout(() => {
+              if (installButton.parentNode) {
+                installButton.remove();
+              }
+            }, 10000);
+          }
+        }, 3000);
+      });
+
+      // Track PWA usage
+      window.addEventListener('appinstalled', (evt) => {
+        console.log('Cabana PWA was installed');
+        // Track install event
+      });
+
+      // Handle network status
+      window.addEventListener('online', () => {
+        console.log('Back online');
+        // You can show a notification or refresh data
+      });
+
+      window.addEventListener('offline', () => {
+        console.log('Gone offline');
+        // You can show offline notification
+      });
+    </script>
   </body>
 </html>21

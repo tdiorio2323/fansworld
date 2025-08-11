@@ -730,4 +730,101 @@
     transform: translateZ(0);
     transition: transform 0.1s ease-out;
   }
+
+  /* Luxury Component Classes */
+  .luxury-button {
+    background: var(--gradient-luxury);
+    box-shadow: var(--shadow-luxury);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .luxury-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .luxury-button-chrome {
+    background: var(--gradient-chrome);
+    box-shadow: var(--shadow-chrome);
+    border: none;
+    color: hsl(var(--chrome-black));
+    transition: all 0.3s ease;
+  }
+
+  .luxury-button-chrome:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-chrome-glow);
+  }
+
+  .luxury-button-glow {
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-glow);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .glass-morphism {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(24px);
+    border: 1px solid hsla(var(--glass-border) / 0.4);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .luxury-card-chrome {
+    background: var(--gradient-chrome-mirror);
+    box-shadow: var(--shadow-chrome);
+    border: 1px solid hsla(var(--chrome-silver) / 0.3);
+  }
+
+  .holographic-card {
+    background: var(--gradient-crystal);
+    box-shadow: var(--shadow-holo);
+    border: 1px solid hsla(var(--holo-pink) / 0.3);
+  }
+
+  .gradient-text-luxury {
+    background: var(--gradient-luxury);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gradient-text-chrome {
+    background: var(--gradient-chrome);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gradient-text-holo {
+    background: var(--gradient-holo);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .neon-button {
+    background: hsl(var(--neon-blue));
+    box-shadow: var(--shadow-neon);
+    border: none;
+    color: white;
+  }
+
+  .crystal-button {
+    background: var(--gradient-champagne);
+    box-shadow: var(--shadow-holo);
+    border: none;
+    color: white;
+  }
+
+  .gradient-showcase {
+    transition: all 0.3s ease;
+  }
+
+  .gradient-showcase:hover {
+    transform: scale(1.05);
+  }
 }

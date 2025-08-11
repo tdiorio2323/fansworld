@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import holographicBg from "@/assets/holographic-background.jpg";
 import { 
   User, 
   Lock, 
@@ -154,26 +155,36 @@ export default function Settings() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-40">
+    <div 
+      className="min-h-screen bg-background relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${holographicBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Background Overlay */}
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-[2px]" />
+      
+      <div className="glass-morphism border-b border-border/60 sticky top-0 z-40 backdrop-blur-3xl">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-4">
               <Button
                 variant="ghost"
                 onClick={() => window.history.back()}
-                className="p-2"
+                className="p-2 text-foreground hover:bg-accent"
               >
                 <ArrowLeft className="w-5 h-5" />
               </Button>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
                   <SettingsIcon className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-gray-900">Settings</h1>
-                  <p className="text-xs text-gray-500">Account preferences</p>
+                  <h1 className="text-xl font-bold text-foreground">Settings</h1>
+                  <p className="text-xs text-muted-foreground">Account preferences</p>
                 </div>
               </div>
             </div>
@@ -181,41 +192,41 @@ export default function Settings() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
-          <TabsList className="bg-white border border-gray-200 p-1 grid grid-cols-2 lg:grid-cols-5">
+          <TabsList className="glass-morphism border border-border/60 p-1 grid grid-cols-2 lg:grid-cols-5 backdrop-blur-2xl bg-background/75">
             <TabsTrigger 
               value="profile" 
-              className="data-[state=active]:bg-gray-900 data-[state=active]:text-white flex items-center gap-2"
+              className="data-[state=active]:bg-gradient-primary data-[state=active]:text-white flex items-center gap-2 text-foreground"
             >
               <User className="w-4 h-4" />
               <span className="hidden sm:inline">Profile</span>
             </TabsTrigger>
             <TabsTrigger 
               value="security" 
-              className="data-[state=active]:bg-gray-900 data-[state=active]:text-white flex items-center gap-2"
+              className="data-[state=active]:bg-gradient-primary data-[state=active]:text-white flex items-center gap-2 text-foreground"
             >
               <Lock className="w-4 h-4" />
               <span className="hidden sm:inline">Security</span>
             </TabsTrigger>
             <TabsTrigger 
               value="notifications" 
-              className="data-[state=active]:bg-gray-900 data-[state=active]:text-white flex items-center gap-2"
+              className="data-[state=active]:bg-gradient-primary data-[state=active]:text-white flex items-center gap-2 text-foreground"
             >
               <Bell className="w-4 h-4" />
               <span className="hidden sm:inline">Notifications</span>
             </TabsTrigger>
             <TabsTrigger 
               value="privacy" 
-              className="data-[state=active]:bg-gray-900 data-[state=active]:text-white flex items-center gap-2"
+              className="data-[state=active]:bg-gradient-primary data-[state=active]:text-white flex items-center gap-2 text-foreground"
             >
               <Eye className="w-4 h-4" />
               <span className="hidden sm:inline">Privacy</span>
             </TabsTrigger>
             <TabsTrigger 
               value="billing" 
-              className="data-[state=active]:bg-gray-900 data-[state=active]:text-white flex items-center gap-2"
+              className="data-[state=active]:bg-gradient-primary data-[state=active]:text-white flex items-center gap-2 text-foreground"
             >
               <CreditCard className="w-4 h-4" />
               <span className="hidden sm:inline">Billing</span>
@@ -229,31 +240,31 @@ export default function Settings() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <Card className="bg-white border border-gray-200 shadow-sm">
+              <Card className="glass-morphism border border-border/60 backdrop-blur-2xl bg-background/75">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-gray-900">
-                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                      <User className="w-5 h-5 text-blue-600" />
+                  <CardTitle className="flex items-center gap-3 text-foreground">
+                    <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center">
+                      <User className="w-5 h-5 text-white" />
                     </div>
                     Profile Media
                   </CardTitle>
-                  <CardDescription className="text-gray-600">
+                  <CardDescription className="text-muted-foreground">
                     Upload your profile picture and cover image
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="flex flex-col sm:flex-row gap-6">
                     <div className="text-center">
-                      <Avatar className="w-24 h-24 mx-auto mb-4 ring-4 ring-gray-100">
+                      <Avatar className="w-24 h-24 mx-auto mb-4 ring-4 ring-border/40">
                         <AvatarImage src={profileData.avatar} />
-                        <AvatarFallback className="bg-gray-200 text-gray-600 text-xl">
+                        <AvatarFallback className="bg-muted text-muted-foreground text-xl">
                           {profileData.displayName[0]}
                         </AvatarFallback>
                       </Avatar>
                       <Button 
                         variant="outline" 
                         size="sm" 
-                        className="border-gray-300 hover:bg-gray-50"
+                        className="border-border/60 hover:bg-accent text-foreground"
                         onClick={() => handleFileUpload('avatar')}
                       >
                         <Upload className="w-4 h-4 mr-2" />
@@ -262,8 +273,8 @@ export default function Settings() {
                     </div>
                     
                     <div className="flex-1">
-                      <div className="aspect-[3/1] bg-gray-100 rounded-xl mb-4 overflow-hidden">
-                        <div className="w-full h-full flex items-center justify-center text-gray-400">
+                      <div className="aspect-[3/1] bg-muted rounded-xl mb-4 overflow-hidden">
+                        <div className="w-full h-full flex items-center justify-center text-muted-foreground">
                           <div className="text-center">
                             <Upload className="w-8 h-8 mx-auto mb-2" />
                             <p className="text-sm">Cover photo</p>
@@ -273,7 +284,7 @@ export default function Settings() {
                       <Button 
                         variant="outline" 
                         size="sm" 
-                        className="border-gray-300 hover:bg-gray-50"
+                        className="border-border/60 hover:bg-accent text-foreground"
                         onClick={() => handleFileUpload('cover')}
                       >
                         <Upload className="w-4 h-4 mr-2" />
@@ -291,57 +302,57 @@ export default function Settings() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1 }}
             >
-              <Card className="bg-white border border-gray-200 shadow-sm">
+              <Card className="glass-morphism border border-border/60 backdrop-blur-2xl bg-background/75">
                 <CardHeader>
-                  <CardTitle className="text-gray-900">Basic Information</CardTitle>
-                  <CardDescription className="text-gray-600">
+                  <CardTitle className="text-foreground">Basic Information</CardTitle>
+                  <CardDescription className="text-muted-foreground">
                     Update your profile information
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="displayName" className="text-gray-700 font-medium">Display Name</Label>
+                      <Label htmlFor="displayName" className="text-foreground font-medium">Display Name</Label>
                       <Input
                         id="displayName"
                         value={profileData.displayName}
                         onChange={(e) => updateProfileData('displayName', e.target.value)}
-                        className="mt-1 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
+                        className="mt-1 border-border/60 focus:border-primary focus:ring-primary bg-background text-foreground"
                       />
                     </div>
                     
                     <div>
-                      <Label htmlFor="username" className="text-gray-700 font-medium">Username</Label>
+                      <Label htmlFor="username" className="text-foreground font-medium">Username</Label>
                       <Input
                         id="username"
                         value={profileData.username}
                         onChange={(e) => updateProfileData('username', e.target.value)}
-                        className="mt-1 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
+                        className="mt-1 border-border/60 focus:border-primary focus:ring-primary bg-background text-foreground"
                         placeholder="@username"
                       />
                     </div>
                     
                     <div>
-                      <Label htmlFor="email" className="text-gray-700 font-medium">Email Address</Label>
+                      <Label htmlFor="email" className="text-foreground font-medium">Email Address</Label>
                       <Input
                         id="email"
                         type="email"
                         value={profileData.email}
                         onChange={(e) => updateProfileData('email', e.target.value)}
-                        className="mt-1 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
+                        className="mt-1 border-border/60 focus:border-primary focus:ring-primary bg-background text-foreground"
                       />
                     </div>
                     
                     <div>
-                      <Label htmlFor="subscriptionPrice" className="text-gray-700 font-medium">Subscription Price</Label>
+                      <Label htmlFor="subscriptionPrice" className="text-foreground font-medium">Subscription Price</Label>
                       <div className="relative mt-1">
-                        <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                         <Input
                           id="subscriptionPrice"
                           type="number"
                           value={profileData.subscriptionPrice}
                           onChange={(e) => updateProfileData('subscriptionPrice', e.target.value)}
-                          className="pl-10 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
+                          className="pl-10 border-border/60 focus:border-primary focus:ring-primary bg-background text-foreground"
                           step="0.01"
                           min="0"
                         />
@@ -350,18 +361,18 @@ export default function Settings() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="bio" className="text-gray-700 font-medium">Bio</Label>
+                    <Label htmlFor="bio" className="text-foreground font-medium">Bio</Label>
                     <Textarea
                       id="bio"
                       value={profileData.bio}
                       onChange={(e) => updateProfileData('bio', e.target.value)}
-                      className="mt-1 min-h-[120px] border-gray-300 focus:border-amber-500 focus:ring-amber-500"
+                      className="mt-1 min-h-[120px] border-border/60 focus:border-primary focus:ring-primary bg-background text-foreground"
                       placeholder="Tell your fans about yourself..."
                     />
                   </div>
 
                   <div className="flex justify-end">
-                    <Button onClick={handleSaveProfile} className="bg-gray-900 hover:bg-gray-800 text-white">
+                    <Button onClick={handleSaveProfile} className="btn-chrome">
                       <Save className="w-4 h-4 mr-2" />
                       Save Changes
                     </Button>
@@ -377,43 +388,43 @@ export default function Settings() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <Card className="bg-white border border-gray-200 shadow-sm">
+              <Card className="glass-morphism border border-border/60 backdrop-blur-2xl bg-background/75">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-gray-900">
-                    <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-                      <Lock className="w-5 h-5 text-red-600" />
+                  <CardTitle className="flex items-center gap-3 text-foreground">
+                    <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center">
+                      <Lock className="w-5 h-5 text-white" />
                     </div>
                     Security Settings
                   </CardTitle>
-                  <CardDescription className="text-gray-600">
+                  <CardDescription className="text-muted-foreground">
                     Keep your account safe and secure
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="space-y-4">
                     <div>
-                      <Label htmlFor="currentPassword" className="text-gray-700 font-medium">Current Password</Label>
+                      <Label htmlFor="currentPassword" className="text-foreground font-medium">Current Password</Label>
                       <Input
                         id="currentPassword"
                         type="password"
                         value={passwords.currentPassword}
                         onChange={(e) => setPasswords(prev => ({...prev, currentPassword: e.target.value}))}
-                        className="mt-1 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
+                        className="mt-1 border-border/60 focus:border-primary focus:ring-primary bg-background text-foreground"
                       />
                     </div>
                     
                     <div>
-                      <Label htmlFor="newPassword" className="text-gray-700 font-medium">New Password</Label>
+                      <Label htmlFor="newPassword" className="text-foreground font-medium">New Password</Label>
                       <Input
                         id="newPassword"
                         type="password"
                         value={passwords.newPassword}
                         onChange={(e) => setPasswords(prev => ({...prev, newPassword: e.target.value}))}
-                        className="mt-1 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
+                        className="mt-1 border-border/60 focus:border-primary focus:ring-primary bg-background text-foreground"
                       />
                     </div>
 
-                    <Button onClick={handleChangePassword} className="bg-gray-900 hover:bg-gray-800 text-white">
+                    <Button onClick={handleChangePassword} className="btn-chrome">
                       Update Password
                     </Button>
                   </div>
@@ -427,7 +438,7 @@ export default function Settings() {
                         Add extra security to your account
                       </p>
                     </div>
-                    <Button variant="outline" className="border-gray-300 hover:bg-gray-50">
+                    <Button variant="outline" className="border-border/60 hover:bg-accent text-foreground">
                       Enable 2FA
                     </Button>
                   </div>
@@ -442,15 +453,15 @@ export default function Settings() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <Card className="bg-white border border-gray-200 shadow-sm">
+              <Card className="glass-morphism border border-border/60 backdrop-blur-2xl bg-background/75">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-gray-900">
-                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                      <Bell className="w-5 h-5 text-green-600" />
+                  <CardTitle className="flex items-center gap-3 text-foreground">
+                    <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center">
+                      <Bell className="w-5 h-5 text-white" />
                     </div>
                     Notifications
                   </CardTitle>
-                  <CardDescription className="text-gray-600">
+                  <CardDescription className="text-muted-foreground">
                     Choose how you want to be notified
                   </CardDescription>
                 </CardHeader>
@@ -462,10 +473,10 @@ export default function Settings() {
                       { id: 'newSubscribers', label: 'New Subscribers', desc: 'When someone subscribes', checked: notifications.newSubscribers },
                       { id: 'newMessages', label: 'New Messages', desc: 'Direct message alerts', checked: notifications.newMessages }
                     ].map(item => (
-                      <div key={item.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                      <div key={item.id} className="flex items-center justify-between p-4 bg-muted/30 rounded-xl">
                         <div>
-                          <p className="font-medium text-gray-900">{item.label}</p>
-                          <p className="text-sm text-gray-600">{item.desc}</p>
+                          <p className="font-medium text-foreground">{item.label}</p>
+                          <p className="text-sm text-muted-foreground">{item.desc}</p>
                         </div>
                         <Switch
                           checked={item.checked}
@@ -485,20 +496,20 @@ export default function Settings() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <Card className="bg-white border border-gray-200 shadow-sm">
+              <Card className="glass-morphism border border-border/60 backdrop-blur-2xl bg-background/75">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-gray-900">
-                    <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                      <Eye className="w-5 h-5 text-purple-600" />
+                  <CardTitle className="flex items-center gap-3 text-foreground">
+                    <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
+                      <Eye className="w-5 h-5 text-white" />
                     </div>
                     Privacy Settings
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div>
-                    <Label className="text-gray-700 font-medium">Profile Visibility</Label>
+                    <Label className="text-foreground font-medium">Profile Visibility</Label>
                     <Select value={privacy.profileVisibility} onValueChange={(value) => updatePrivacy('profileVisibility', value)}>
-                      <SelectTrigger className="mt-1 border-gray-300">
+                      <SelectTrigger className="mt-1 border-border/60 bg-background text-foreground">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -509,10 +520,10 @@ export default function Settings() {
                     </Select>
                   </div>
                   
-                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                  <div className="flex items-center justify-between p-4 bg-muted/30 rounded-xl">
                     <div>
-                      <p className="font-medium text-gray-900">Show Subscriber Count</p>
-                      <p className="text-sm text-gray-600">Display publicly</p>
+                      <p className="font-medium text-foreground">Show Subscriber Count</p>
+                      <p className="text-sm text-muted-foreground">Display publicly</p>
                     </div>
                     <Switch
                       checked={privacy.showSubscriberCount}
@@ -530,11 +541,11 @@ export default function Settings() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <Card className="bg-white border border-gray-200 shadow-sm">
+              <Card className="glass-morphism border border-border/60 backdrop-blur-2xl bg-background/75">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-gray-900">
-                    <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center">
-                      <CreditCard className="w-5 h-5 text-amber-600" />
+                  <CardTitle className="flex items-center gap-3 text-foreground">
+                    <div className="w-10 h-10 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
+                      <CreditCard className="w-5 h-5 text-white" />
                     </div>
                     Billing & Payouts
                   </CardTitle>
@@ -543,19 +554,19 @@ export default function Settings() {
                   <div>
                     <Label className="text-gray-700 font-medium">Minimum Tip Amount</Label>
                     <div className="relative mt-1">
-                      <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                       <Input
                         type="number"
                         value={privacy.minimumTipAmount}
                         onChange={(e) => updatePrivacy('minimumTipAmount', e.target.value)}
-                        className="pl-10 border-gray-300 focus:border-amber-500 focus:ring-amber-500"
+                        className="pl-10 border-border/60 focus:border-primary focus:ring-primary bg-background text-foreground"
                         step="0.01"
                         min="0"
                       />
                     </div>
                   </div>
                   
-                  <Button variant="outline" className="w-full border-gray-300 hover:bg-gray-50">
+                  <Button variant="outline" className="w-full border-border/60 hover:bg-accent text-foreground">
                     <CreditCard className="w-4 h-4 mr-2" />
                     Manage Payout Methods
                   </Button>

@@ -7,35 +7,28 @@ import { AuthProvider } from "./hooks/useAuth";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AdminRoute } from "./components/AdminRoute";
 
-// Import pages
-import Index from "./pages/Index";
-import Home from "./pages/Home";
+// Import pages - CLEAN VERSION (only existing pages)
 import Register from "./pages/Register";
-import Auth from "./pages/Auth";
 import AuthCallback from "./pages/AuthCallback";
 import Discover from "./pages/Discover";
 import CreatorProfile from "./pages/CreatorProfile";
-import Dashboard from "./pages/Dashboard";
 import Messages from "./pages/Messages";
 import Billing from "./pages/Billing";
 import Settings from "./pages/Settings";
-import InvitePage from "./pages/InvitePage";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 import { Agency } from "./pages/Agency";
 import { CreatorApplication } from "./pages/CreatorApplication";
-import { ComingSoon } from "./pages/ComingSoon";
 import { AnalyticsDashboard } from "./pages/AnalyticsDashboard";
-import { LinkRedirect } from "./pages/LinkRedirect";
 import ReferralProgram from "./pages/ReferralProgram";
-import TestPayment from "./pages/TestPayment";
-import InstagramHome from "./pages/InstagramHome";
-import Create from "./pages/Create";
-import AdminTest from "./pages/AdminTest";
 import VipEntry from "./pages/VipEntry";
-import Debug from "./pages/Debug";
-import SimpleTest from "./pages/SimpleTest";
 import Reels from "./pages/Reels";
+import LandingPage from "./pages/LandingPage";
+import Feed from "./pages/Feed";
+import CreatorDashboard from "./pages/CreatorDashboard";
+import ContentManager from "./pages/ContentManager";
+import SubscriptionPlans from "./pages/SubscriptionPlans";
+import PaymentSuccess from "./pages/PaymentSuccess";
 
 const queryClient = new QueryClient();
 
@@ -48,61 +41,49 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            {/* VIP Entry Point for cabana.tdstudiosny.com */}
-            <Route path="/" element={<VipEntry />} />
-            <Route path="/debug" element={<Debug />} />
+            {/* Simple Home as Homepage */}
+            {/* CLEAN ROUTES - Only existing pages */}
+            <Route path="/" element={<LandingPage />} />
             <Route path="/vip" element={<VipEntry />} />
-            <Route path="/landing" element={<Index />} />
-            <Route path="/home" element={<InstagramHome />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/discover" element={<Discover />} />
+            <Route path="/feed" element={<Feed />} />
             <Route path="/reels" element={
               <ProtectedRoute>
                 <Reels />
               </ProtectedRoute>
             } />
-            <Route path="/home-classic" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/login" element={<Auth />} />
-            <Route path="/auth/callback" element={<AuthCallback />} />
-            <Route path="/search" element={<Discover />} />
-            <Route path="/create" element={
-              <ProtectedRoute>
-                <Create />
-              </ProtectedRoute>
-            } />
             <Route path="/creator/:username" element={<CreatorProfile />} />
-            <Route path="/invite/:inviteCode" element={<InvitePage />} />
             <Route path="/agency" element={<Agency />} />
             <Route path="/creator-application" element={
               <ProtectedRoute>
                 <CreatorApplication />
               </ProtectedRoute>
             } />
-            <Route path="/coming-soon" element={<ComingSoon />} />
-            <Route path="/l/:shortCode" element={<LinkRedirect />} />
-            <Route path="/vip/:shortCode" element={<LinkRedirect />} />
             <Route path="/analytics" element={<AnalyticsDashboard />} />
             <Route path="/referrals" element={
               <ProtectedRoute>
                 <ReferralProgram />
               </ProtectedRoute>
             } />
-            <Route path="/test-payment" element={
-              <ProtectedRoute>
-                <TestPayment />
-              </ProtectedRoute>
-            } />
-            <Route path="/admin-test" element={<AdminTest />} />
             <Route path="/admin" element={
               <AdminRoute>
                 <AdminDashboard />
               </AdminRoute>
             } />
-            <Route path="/dashboard" element={
+            <Route path="/creator-dashboard" element={
               <ProtectedRoute>
-                <Dashboard />
+                <CreatorDashboard />
               </ProtectedRoute>
             } />
+            <Route path="/content-manager" element={
+              <ProtectedRoute>
+                <ContentManager />
+              </ProtectedRoute>
+            } />
+            <Route path="/subscription-plans" element={<SubscriptionPlans />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
             <Route path="/messages" element={
               <ProtectedRoute>
                 <Messages />
@@ -114,11 +95,6 @@ const App = () => (
               </ProtectedRoute>
             } />
             <Route path="/settings" element={
-              <ProtectedRoute>
-                <Settings />
-              </ProtectedRoute>
-            } />
-            <Route path="/profile" element={
               <ProtectedRoute>
                 <Settings />
               </ProtectedRoute>

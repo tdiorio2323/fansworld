@@ -1,6 +1,15 @@
 {
-  "short_name": "FansWorld",
-  "name": "FansWorld - Premium Creator Platform",
+  "name": "Cabana - Luxury Creator Platform",
+  "short_name": "Cabana",
+  "description": "Premium creator management platform with luxury design and powerful features",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0B14",
+  "theme_color": "#C77DFF",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": ["business", "social", "lifestyle", "entertainment"],
   "icons": [
     {
       "src": "favicon.ico",
@@ -9,17 +18,70 @@
     },
     {
       "src": "logo192.png",
+      "sizes": "192x192",
       "type": "image/png",
-      "sizes": "192x192"
+      "purpose": "any maskable"
     },
     {
-      "src": "logo512.png",
+      "src": "logo512.png", 
+      "sizes": "512x512",
       "type": "image/png",
-      "sizes": "512x512"
+      "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#111111"
+  "shortcuts": [
+    {
+      "name": "Discover Creators",
+      "short_name": "Discover",
+      "description": "Browse and discover new creators",
+      "url": "/discover",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "My Feed",
+      "short_name": "Feed", 
+      "description": "View your personalized content feed",
+      "url": "/feed",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Creator Dashboard",
+      "short_name": "Dashboard",
+      "description": "Access creator management tools",
+      "url": "/creator-dashboard",
+      "icons": [
+        {
+          "src": "logo192.png", 
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Messages",
+      "short_name": "Messages",
+      "description": "Check your messages",
+      "url": "/messages",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "edge_side_panel": {
+    "preferred_width": 400
+  }
 }

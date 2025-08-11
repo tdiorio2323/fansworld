@@ -478,3 +478,22 @@ export const useAdminPayments = () => {
     processCommissionPayment,
   };
 };
+
+// Main hook that combines all stripe functionality
+export const useStripePayments = () => {
+  const customer = useStripeCustomer();
+  const subscriptions = useStripeSubscriptions();
+  const paymentMethods = usePaymentMethods();
+  const transactions = usePaymentTransactions();
+  const products = useStripeProducts();
+  const actions = useStripeActions();
+
+  return {
+    customer,
+    subscriptions,
+    paymentMethods,
+    transactions,
+    products,
+    actions,
+  };
+};
