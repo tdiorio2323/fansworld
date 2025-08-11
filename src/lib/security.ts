@@ -116,3 +116,32 @@ export const generateSessionToken = (): string => {
   crypto.getRandomValues(array)
   return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('')
 }
+
+/**
+ * Generates a secure session ID
+ * @returns {string} Session ID
+ */
+export const generateSecureSessionId = (): string => {
+  const array = new Uint8Array(16)
+  crypto.getRandomValues(array)
+  return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('')
+}
+
+/**
+ * Validates VIP code format
+ * @param {string} code - VIP code to validate
+ * @returns {boolean} Whether code format is valid
+ */
+export const isValidVipCodeFormat = (code: string): boolean => {
+  // Allow various formats: FOUNDER123456, PLATINUM123, GOLD123, EARLY123, or 8-character alphanumeric
+  const patterns = [
+    /^FOUNDER[A-Z0-9]{6}$/,
+    /^PLATINUM[A-Z0-9]{3,6}$/,
+    /^GOLD[A-Z0-9]{3,6}$/,
+    /^EARLY[A-Z0-9]{3,6}$/,
+    /^[A-Z0-9]{8}$/,
+    /^[A-Z0-9]{6,12}$/
+  ]
+  
+  return patterns.some(pattern => pattern.test(code))
+}
