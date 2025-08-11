@@ -17,10 +17,10 @@ const SimpleVipEntry = () => {
 
     // Quick access codes
     if (trimmedCode === 'TD') {
-      console.log('TD code entered, navigating to /discover')
-      alert('TD code accepted! Redirecting to platform...')
+      console.log('TD code entered, navigating to /test')
+      alert('TD code accepted! Redirecting...')
       setTimeout(() => {
-        navigate('/discover')
+        navigate('/test')
       }, 1000)
       return
     }
@@ -92,10 +92,10 @@ const SimpleVipEntry = () => {
             </p>
             <p className="text-white/50 text-xs mt-2">
               Or <button 
-                onClick={() => navigate('/discover')} 
+                onClick={() => navigate('/test')} 
                 className="underline text-white/70 hover:text-white"
               >
-                click here to go directly to platform
+                click here to test navigation
               </button>
             </p>
           </div>

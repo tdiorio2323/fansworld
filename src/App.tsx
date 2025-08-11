@@ -25,6 +25,7 @@ import VipEntry from "./pages/VipEntry";
 import Reels from "./pages/Reels";
 import LandingPage from "./pages/LandingPage";
 import SimpleVipEntry from "./pages/SimpleVipEntry";
+import TestPage from "./pages/TestPage";
 import Feed from "./pages/Feed";
 import CreatorDashboard from "./pages/CreatorDashboard";
 import ContentManager from "./pages/ContentManager";
@@ -45,6 +46,7 @@ const App = () => (
             {/* Simple Home as Homepage */}
             {/* CLEAN ROUTES - Only existing pages */}
             <Route path="/" element={<SimpleVipEntry />} />
+            <Route path="/test" element={<TestPage />} />
             <Route path="/vip" element={<VipEntry />} />
             <Route path="/register" element={<Register />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
