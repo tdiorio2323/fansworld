@@ -55,7 +55,7 @@ const LandingPage = () => {
           </div>
 
           {/* VIP Access Form */}
-          <form onSubmit={handleVipSubmit} className="space-y-6">
+          <form onSubmit={handleVipSubmit} className="space-y-6" noValidate>
             <div>
               <label className="block text-white/80 text-sm font-medium mb-3">
                 VIP Access Code
@@ -63,12 +63,16 @@ const LandingPage = () => {
               <div className="relative">
                 <input 
                   type="text" 
+                  name="vipcode"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="characters"
+                  spellCheck="false"
                   value={vipCode}
                   onChange={(e) => setVipCode(e.target.value.toUpperCase())}
                   placeholder="ENTER VIP CODE"
                   className="w-full px-4 py-4 bg-white/10 backdrop-blur-sm rounded-2xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 border border-white/20 text-center tracking-widest uppercase text-sm font-medium"
                   maxLength={12}
-                  required
                   disabled={isLoading}
                   onKeyPress={(e) => e.key === 'Enter' && handleVipSubmit(e)}
                 />
