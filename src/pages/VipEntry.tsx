@@ -466,7 +466,7 @@ const VipEntry = () => {
                     ← Back to member login
                   </button>
                 </div>
-              </div>
+              </motion.div>
             )}
             
             {/* Footer */}
