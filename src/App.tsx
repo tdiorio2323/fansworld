@@ -9,6 +9,7 @@ import { AdminRoute } from "./components/AdminRoute";
 
 // Import pages - CLEAN VERSION (only existing pages)
 import Register from "./pages/Register";
+import SignIn from "./pages/SignIn";
 import AuthCallback from "./pages/AuthCallback";
 import Discover from "./pages/Discover";
 import CreatorProfile from "./pages/CreatorProfile";
@@ -48,7 +49,10 @@ const App = () => (
             <Route path="/" element={<SimpleVipEntry />} />
             <Route path="/test" element={<TestPage />} />
             <Route path="/vip" element={<VipEntry />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/login" element={<SignIn />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/signup" element={<Register />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
             <Route path="/discover" element={<Discover />} />
             <Route path="/feed" element={<Feed />} />
