@@ -8,63 +8,23 @@ import { Button } from '@/components/ui/button'
 import { CrystalSpinner } from '@/components/ui/loading'
 
 const LandingPage = () => {
-  const [email, setEmail] = useState('')
+  const [vipCode, setVipCode] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  const handleEmailSubmit = async (e: React.FormEvent) => {
+  const handleVipSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email) return
+    if (!vipCode.trim()) return
 
-    // Rate limiting check
-    if (!checkRateLimit(`email-${email}`, 3, 300000)) { // 3 attempts per 5 minutes
-      setError('Too many attempts. Please try again in a few minutes.')
+    // For quick development access
+    if (vipCode.trim().toUpperCase() === 'TD') {
+      navigate('/discover')
       return
     }
 
-    setIsLoading(true)
-    setError('')
-
-    try {
-      // Generate cryptographically secure VIP code with collision detection
-      const vipCode = await generateSecureVipCode()
-      
-      // Generate secure passcode
-      const passcode = crypto.randomUUID().substring(0, 10)
-      
-      // Create invite in the existing invites table
-      const { error: supabaseError } = await supabase
-        .from('invites')
-        .insert([
-          { 
-            invite_code: vipCode,
-            passcode: passcode,
-            created_by: 'system',
-            intended_for: email,
-            description: `Email capture invite for ${email}`,
-            max_uses: 1,
-            current_uses: 0,
-            status: 'active',
-            expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-          }
-        ])
-
-      if (supabaseError) {
-        setError(sanitizeErrorMessage(supabaseError))
-        return
-      }
-
-      // Redirect to VIP entry with code
-      navigate(`/vip?code=${vipCode}`)
-      
-    } catch (err) {
-      setError(sanitizeErrorMessage(err))
-    } finally {
-      setIsLoading(false)
-    }
+    // Redirect to VIP entry page with the code
+    navigate(`/vip?code=${vipCode.trim().toUpperCase()}`)
   }
   return (
     <div 
@@ -95,21 +55,22 @@ const LandingPage = () => {
           </div>
 
           {/* VIP Access Form */}
-          <form onSubmit={handleEmailSubmit} className="space-y-6">
+          <form onSubmit={handleVipSubmit} className="space-y-6">
             <div>
               <label className="block text-white/80 text-sm font-medium mb-3">
                 VIP Access Code
               </label>
               <div className="relative">
                 <input 
-                  type="email" 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="VIP ACCESS CODE"
+                  type="text" 
+                  value={vipCode}
+                  onChange={(e) => setVipCode(e.target.value.toUpperCase())}
+                  placeholder="ENTER VIP CODE"
                   className="w-full px-4 py-4 bg-white/10 backdrop-blur-sm rounded-2xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 border border-white/20 text-center tracking-widest uppercase text-sm font-medium"
-                  maxLength={100}
+                  maxLength={12}
                   required
                   disabled={isLoading}
+                  onKeyPress={(e) => e.key === 'Enter' && handleVipSubmit(e)}
                 />
                 <button 
                   type="button"
@@ -133,7 +94,7 @@ const LandingPage = () => {
             {/* Access Platform Button */}
             <Button 
               type="submit"
-              disabled={isLoading || !email}
+              disabled={isLoading || !vipCode.trim()}
               variant="luxury"
               size="lg"
               className="w-full tracking-wide text-base font-semibold"
@@ -154,17 +115,14 @@ const LandingPage = () => {
             </Button>
           </form>
           
-          {/* Back Link */}
+          {/* Instructions */}
           <div className="text-center mt-6">
-            <Link 
-              to="/auth" 
-              className="text-white/60 hover:text-white/80 text-sm flex items-center justify-center gap-2 transition-colors"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              Back to member login
-            </Link>
+            <p className="text-white/60 text-xs">
+              Enter your VIP access code above
+            </p>
+            <p className="text-white/50 text-xs mt-1">
+              Try "TD" for quick development access
+            </p>
           </div>
           
           {/* Footer */}
