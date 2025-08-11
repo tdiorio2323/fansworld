@@ -3,7 +3,7 @@
  * Provides reactive access to feature flags throughout the application
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { 
   FeatureFlagConfig, 
   isFeatureEnabled, 
@@ -144,8 +144,8 @@ export function useFeatureGate(flag: keyof FeatureFlagConfig) {
   }: { 
     children: React.ReactNode; 
     fallback?: React.ReactNode;
-  }) => {
-    return isEnabled ? <>{children}</> : <>{fallback}</>;
+  }): React.ReactElement => {
+    return isEnabled ? React.createElement(React.Fragment, null, children) : React.createElement(React.Fragment, null, fallback);
   }, [isEnabled]);
   
   return {
