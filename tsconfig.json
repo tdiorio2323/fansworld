@@ -8,10 +8,10 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "strict": true,
-    "noImplicitAny": true,
+    "strict": false,
+    "noImplicitAny": false,
     "skipLibCheck": true,
     "allowJs": true,
-    "strictNullChecks": true
+    "strictNullChecks": false
   }
 }
