@@ -165,27 +165,7 @@ export function useAuth() {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   
-  // TEMPORARY: Mock user for development
-  // Remove this when authentication is needed
-  const BYPASS_AUTH = false;
-  
-  if (BYPASS_AUTH) {
-    const mockUser = {
-      id: 'mock-user-id',
-      email: 'test@example.com',
-      user_metadata: {
-        username: 'testuser',
-        display_name: 'Test User',
-        avatar_url: '/lovable-uploads/2db52d3c-95ff-4d97-9f88-8201d599afdf.png'
-      }
-    } as User;
-    
-    return {
-      ...context,
-      user: mockUser,
-      loading: false
-    };
-  }
+  // Authentication is now properly enforced - no bypass logic
   
   return context;
 }

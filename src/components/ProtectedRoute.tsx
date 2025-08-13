@@ -12,13 +12,7 @@ export function ProtectedRoute({ children, redirectTo = '/auth' }: ProtectedRout
   const { user, loading } = useAuth();
   const location = useLocation();
 
-  // TEMPORARY: Bypass authentication for development
-  // Remove this when authentication is needed
-  const BYPASS_AUTH = true;
-  
-  if (BYPASS_AUTH) {
-    return <>{children}</>;
-  }
+  // Authentication is now properly enforced
 
   if (loading) {
     return (
