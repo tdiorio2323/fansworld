@@ -11,6 +11,7 @@ import { AdminRoute } from "./components/AdminRoute";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
 import AuthCallback from "./pages/AuthCallback";
+import SimpleAuthCallback from "./components/SimpleAuthCallback";
 import Discover from "./pages/Discover";
 import CreatorProfile from "./pages/CreatorProfile";
 import Messages from "./pages/Messages";
