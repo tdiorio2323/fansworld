@@ -49,6 +49,7 @@ const App = () => (
             {/* Simple Home as Homepage */}
             {/* CLEAN ROUTES - Only existing pages */}
             <Route path="/" element={<SimpleVipEntry />} />
+            <Route path="/SimpleVipEntry" element={<SimpleVipEntry />} />
             <Route path="/test" element={<TestPage />} />
             <Route path="/vip" element={<VipEntry />} />
             <Route path="/signin" element={<SignIn />} />
