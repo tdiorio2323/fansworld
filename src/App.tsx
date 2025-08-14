@@ -22,6 +22,7 @@ import NotFound from "./pages/NotFound";
 import { Agency } from "./pages/Agency";
 import { CreatorApplication } from "./pages/CreatorApplication";
 import { AnalyticsDashboard } from "./pages/AnalyticsDashboard";
+import { DemoAnalyticsDashboard } from "./pages/DemoAnalyticsDashboard";
 import ReferralProgram from "./pages/ReferralProgram";
 import VipEntry from "./pages/VipEntry";
 import Reels from "./pages/Reels";
