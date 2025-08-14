@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "concurrently \"npm run server:dev\" \"vite\"",
     "server:dev": "tsx watch api/server.ts",
-    "server:build": "tsc api/server.ts --outDir dist/api",
-    "build": "npm run server:build && vite build",
+    "server:build": "tsc --project tsconfig.server.json",
+    "build": "vite build",
     "lint": "eslint . && tsc --noEmit",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
