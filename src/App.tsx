@@ -96,7 +96,15 @@ const App = () => (
             } />
             <Route path="/subscription-plans" element={<SubscriptionPlans />} />
             <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/PaymentSuccess" element={<PaymentSuccess />} />
+            <Route path="/landing" element={<LandingPage />} />
+            <Route path="/LandingPage" element={<LandingPage />} />
             <Route path="/messages" element={
+              <ProtectedRoute>
+                <Messages />
+              </ProtectedRoute>
+            } />
+            <Route path="/Messages" element={
               <ProtectedRoute>
                 <Messages />
               </ProtectedRoute>
@@ -106,7 +114,17 @@ const App = () => (
                 <Billing />
               </ProtectedRoute>
             } />
+            <Route path="/Billing" element={
+              <ProtectedRoute>
+                <Billing />
+              </ProtectedRoute>
+            } />
             <Route path="/settings" element={
+              <ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>
+            } />
+            <Route path="/Settings" element={
               <ProtectedRoute>
                 <Settings />
               </ProtectedRoute>
