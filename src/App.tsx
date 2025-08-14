@@ -71,6 +71,7 @@ const App = () => (
               </ProtectedRoute>
             } />
             <Route path="/analytics" element={<AnalyticsDashboard />} />
+            <Route path="/AnalyticsDashboard" element={<AnalyticsDashboard />} />
             <Route path="/referrals" element={
               <ProtectedRoute>
                 <ReferralProgram />
