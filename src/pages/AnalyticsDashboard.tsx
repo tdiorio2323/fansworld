@@ -56,29 +56,71 @@ export function AnalyticsDashboard() {
   const loadDashboardStats = async () => {
     try {
       setLoading(true);
-      
-      // Load waitlist stats
-      const { data: waitlistStats, error: waitlistError } = await supabase.rpc('get_waitlist_stats');
-      if (waitlistError) throw waitlistError;
 
-      // Load invite stats  
-      const { data: inviteStats, error: inviteError } = await supabase.rpc('get_invite_stats');
-      if (inviteError) throw inviteError;
+      // Try to load RPC functions, fallback to direct table queries
+      let waitlistStats, inviteStats, linkStats;
 
-      // Load link analytics
-      const { data: linkStats, error: linkError } = await supabase.rpc('get_link_analytics');
-      if (linkError) throw linkError;
+      try {
+        // Try RPC functions first
+        const { data: rpcWaitlistStats, error: waitlistError } = await supabase.rpc('get_waitlist_stats');
+        if (!waitlistError) waitlistStats = rpcWaitlistStats;
+      } catch (error) {
+        // Fallback to direct table queries
+        const { data: waitlistData } = await supabase.from('waitlist').select('*');
+        waitlistStats = {
+          total_signups: waitlistData?.length || 0,
+          recent_signups: waitlistData?.filter(item =>
+            new Date(item.created_at) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+          ).length || 0,
+          sources: {}
+        };
+      }
+
+      try {
+        const { data: rpcInviteStats, error: inviteError } = await supabase.rpc('get_invite_stats');
+        if (!inviteError) inviteStats = rpcInviteStats;
+      } catch (error) {
+        // Fallback for invites
+        const { data: inviteData } = await supabase.from('invites').select('*');
+        inviteStats = {
+          total_invites: inviteData?.length || 0,
+          used_invites: inviteData?.filter(invite => invite.used_at).length || 0,
+          active_invites: inviteData?.filter(invite => !invite.used_at && !invite.expired_at).length || 0,
+          expired_invites: inviteData?.filter(invite => invite.expired_at).length || 0,
+          by_type: {}
+        };
+      }
+
+      try {
+        const { data: rpcLinkStats, error: linkError } = await supabase.rpc('get_link_analytics');
+        if (!linkError) linkStats = rpcLinkStats;
+      } catch (error) {
+        // Fallback for links
+        linkStats = {
+          total_links: 0,
+          total_clicks: 0,
+          unique_clicks: 0,
+          recent_clicks: 0
+        };
+      }
 
       setStats({
         waitlist: waitlistStats || { total_signups: 0, recent_signups: 0, sources: {} },
         invites: inviteStats || { total_invites: 0, used_invites: 0, active_invites: 0, expired_invites: 0, by_type: {} },
         links: linkStats || { total_links: 0, total_clicks: 0, unique_clicks: 0, recent_clicks: 0 }
       });
+
+      if (!waitlistStats && !inviteStats && !linkStats) {
+        toast({
+          title: "No Data",
+          description: "Database tables not set up yet. Using empty state.",
+        });
+      }
     } catch (error) {
       console.error('Error loading dashboard stats:', error);
       toast({
         title: "Error",
-        description: "Failed to load dashboard statistics",
+        description: `Failed to load dashboard statistics: ${error.message}`,
         variant: "destructive"
       });
     } finally {

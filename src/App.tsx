@@ -11,6 +11,7 @@ import { AdminRoute } from "./components/AdminRoute";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
 import AuthCallback from "./pages/AuthCallback";
+import SimpleAuthCallback from "./components/SimpleAuthCallback";
 import Discover from "./pages/Discover";
 import CreatorProfile from "./pages/CreatorProfile";
 import Messages from "./pages/Messages";
@@ -21,6 +22,7 @@ import NotFound from "./pages/NotFound";
 import { Agency } from "./pages/Agency";
 import { CreatorApplication } from "./pages/CreatorApplication";
 import { AnalyticsDashboard } from "./pages/AnalyticsDashboard";
+import { DemoAnalyticsDashboard } from "./pages/DemoAnalyticsDashboard";
 import ReferralProgram from "./pages/ReferralProgram";
 import VipEntry from "./pages/VipEntry";
 import Reels from "./pages/Reels";
@@ -47,13 +49,15 @@ const App = () => (
             {/* Simple Home as Homepage */}
             {/* CLEAN ROUTES - Only existing pages */}
             <Route path="/" element={<SimpleVipEntry />} />
+            <Route path="/SimpleVipEntry" element={<SimpleVipEntry />} />
             <Route path="/test" element={<TestPage />} />
             <Route path="/vip" element={<VipEntry />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/register" element={<Register />} />
             <Route path="/signup" element={<Register />} />
-            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/auth/callback" element={<SimpleAuthCallback />} />
+            <Route path="/AuthCallback" element={<SimpleAuthCallback />} />
             <Route path="/discover" element={<Discover />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/reels" element={
@@ -69,6 +73,7 @@ const App = () => (
               </ProtectedRoute>
             } />
             <Route path="/analytics" element={<AnalyticsDashboard />} />
+            <Route path="/AnalyticsDashboard" element={<AnalyticsDashboard />} />
             <Route path="/referrals" element={
               <ProtectedRoute>
                 <ReferralProgram />
@@ -91,7 +96,15 @@ const App = () => (
             } />
             <Route path="/subscription-plans" element={<SubscriptionPlans />} />
             <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/PaymentSuccess" element={<PaymentSuccess />} />
+            <Route path="/landing" element={<LandingPage />} />
+            <Route path="/LandingPage" element={<LandingPage />} />
             <Route path="/messages" element={
+              <ProtectedRoute>
+                <Messages />
+              </ProtectedRoute>
+            } />
+            <Route path="/Messages" element={
               <ProtectedRoute>
                 <Messages />
               </ProtectedRoute>
@@ -101,7 +114,17 @@ const App = () => (
                 <Billing />
               </ProtectedRoute>
             } />
+            <Route path="/Billing" element={
+              <ProtectedRoute>
+                <Billing />
+              </ProtectedRoute>
+            } />
             <Route path="/settings" element={
+              <ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>
+            } />
+            <Route path="/Settings" element={
               <ProtectedRoute>
                 <Settings />
               </ProtectedRoute>
