@@ -1,0 +1,137 @@
+name: Multi-Platform Deployment
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: 'Choose deployment target'
+        required: true
+        default: 'digitalocean'
+        type: choice
+        options:
+          - digitalocean
+          - vercel
+          - both
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      deployment-target: ${{ steps.determine-target.outputs.target }}
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Determine deployment target
+        id: determine-target
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "target=${{ github.event.inputs.deployment_target }}" >> $GITHUB_OUTPUT
+          else
+            echo "target=digitalocean" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
+          path: dist/
+          retention-days: 7
+
+  deploy-digitalocean:
+    runs-on: ubuntu-latest
+    needs: build
+    if: needs.build.outputs.deployment-target == 'digitalocean' || needs.build.outputs.deployment-target == 'both'
+    
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-files
+          path: dist/
+
+      - name: Deploy to DigitalOcean via SCP
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.DO_SERVER_IP }}
+          username: ${{ secrets.DO_SERVER_USER }}
+          key: ${{ secrets.DO_SSH_PRIVATE_KEY }}
+          source: "dist/*"
+          target: "/var/www/fansworld"
+          strip_components: 1
+
+      - name: Restart services on DigitalOcean
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DO_SERVER_IP }}
+          username: ${{ secrets.DO_SERVER_USER }}
+          key: ${{ secrets.DO_SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/fansworld
+            # Set proper permissions
+            sudo chown -R www-data:www-data /var/www/fansworld
+            sudo chmod -R 755 /var/www/fansworld
+            # Reload nginx
+            sudo systemctl reload nginx
+            # Optional: restart PM2 processes if using Node.js backend
+            # pm2 restart all
+            echo "✅ DigitalOcean deployment completed successfully!"
+
+  deploy-vercel:
+    runs-on: ubuntu-latest
+    needs: build
+    if: needs.build.outputs.deployment-target == 'vercel' || needs.build.outputs.deployment-target == 'both'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: '--prod'
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+
+  notify-deployment:
+    runs-on: ubuntu-latest
+    needs: [deploy-digitalocean, deploy-vercel]
+    if: always()
+    
+    steps:
+      - name: Notify deployment status
+        run: |
+          echo "🚀 Deployment Summary:"
+          echo "- DigitalOcean: ${{ needs.deploy-digitalocean.result }}"
+          echo "- Vercel: ${{ needs.deploy-vercel.result }}"
+          
+          if [[ "${{ needs.deploy-digitalocean.result }}" == "success" || "${{ needs.deploy-vercel.result }}" == "success" ]]; then
+            echo "✅ At least one deployment succeeded!"
+          else
+            echo "❌ All deployments failed!"
+            exit 1
+          fi

@@ -62,7 +62,48 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/ab5a1da0-52c5-455c-ae12-01a7caaf28fe) and click on Share -> Publish.
+This project supports multiple deployment methods:
+
+### GitHub Actions (Recommended)
+Automated deployment workflows are configured for:
+- **DigitalOcean**: Automated deployment via SSH and SCP
+- **Vercel**: Integration with Vercel platform
+- **Multi-platform**: Deploy to both platforms simultaneously
+
+See [GitHub Actions Documentation](.github/workflows/README.md) for setup instructions.
+
+### Manual Deployment
+
+**Vercel (Quick)**:
+```sh
+npm install -g vercel
+vercel --prod
+```
+
+**DigitalOcean or Custom Server**:
+```sh
+npm run build
+# Upload dist/ folder to your server
+```
+
+**Using Deploy Script**:
+```sh
+./deploy.sh
+```
+
+## GitHub Actions Workflows
+
+This repository includes automated CI/CD workflows:
+
+- ✅ **Pull Request Validation**: Automatic code validation on PRs
+- ✅ **DigitalOcean Deployment**: Deploy to your server on main branch pushes  
+- ✅ **Multi-Platform Deployment**: Flexible deployment options
+- ✅ **Continuous Integration**: Build, test, and lint automation
+
+Configure deployment by adding these secrets to your GitHub repository:
+- `DO_SERVER_IP` - Your DigitalOcean server IP
+- `DO_SERVER_USER` - Server username
+- `DO_SSH_PRIVATE_KEY` - SSH private key for server access
 
 ## Can I connect a custom domain to my Lovable project?
 
@@ -71,4 +112,3 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
-# Trigger GitHub Actions build
