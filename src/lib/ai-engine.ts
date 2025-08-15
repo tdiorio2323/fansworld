@@ -191,6 +191,10 @@ export class AIEngine {
         metadata: {
           generatedAt: new Date().toISOString(),
           model: result.model,
+          provider: result.provider,
+          processingTime: result.processingTime,
+          reason: result.reason,
+          cached: result.cached,
           tierName,
           price,
           parsed
