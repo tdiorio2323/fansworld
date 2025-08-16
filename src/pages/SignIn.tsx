@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
 import { supabase } from '@/integrations/supabase/supabase'
 import { useToast } from '@/hooks/use-toast'
+import { ParallaxBackground } from '@/components/ParallaxBackground'
 
 const SignIn = () => {
   const [email, setEmail] = useState('')
@@ -89,15 +90,12 @@ const SignIn = () => {
   }
 
   return (
-    <div 
-      className="min-h-screen flex items-center justify-center text-white px-4"
-      style={{
-        background: 'linear-gradient(135deg, #0A0B14 0%, #1A0B2E 20%, #C77DFF 40%, #FF006E 60%, #B400FF 80%, #0A0B14 100%)',
-      }}
-    >
+    <div className="relative min-h-screen flex items-center justify-center text-white px-4 overflow-hidden">
+      <ParallaxBackground />
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="w-full max-w-md"
       >

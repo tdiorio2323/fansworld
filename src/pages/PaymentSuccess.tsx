@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { CheckCircle, Crown, Gift, Sparkles, ArrowRight, Home, User } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuthSystem'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { ParallaxBackground } from '@/components/ParallaxBackground'
 
 export default function PaymentSuccess() {
   const navigate = useNavigate()
@@ -44,8 +46,14 @@ export default function PaymentSuccess() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background/80 to-background flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl space-y-8">
+    <div className="relative min-h-screen flex items-center justify-center p-4 text-white overflow-hidden">
+      <ParallaxBackground />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="w-full max-w-2xl space-y-8"
+      >
         
         {/* Success Animation */}
         <div className="text-center">
@@ -188,7 +196,7 @@ export default function PaymentSuccess() {
             📧 A receipt has been sent to your email address
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }
