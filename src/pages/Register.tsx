@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Eye, EyeOff, Crown, Heart, ArrowLeft, CheckCircle, Sparkles, Users, DollarSign, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useAuth } from "@/hooks/useAuth";
+import { ParallaxBackground } from "@/components/ParallaxBackground";
 
 type Step = 'role' | 'details' | 'verification';
 
@@ -72,8 +74,14 @@ export default function Register() {
 
   if (step === 'role') {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center px-4">
-        <div className="w-full max-w-md">
+      <div className="relative min-h-screen bg-background flex items-center justify-center px-4 overflow-hidden">
+        <ParallaxBackground />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="w-full max-w-md"
+        >
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-gradient mb-4">Join Cabana</h1>
             <p className="text-muted-foreground text-lg">
@@ -259,15 +267,21 @@ export default function Register() {
               </Link>
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     );
   }
 
   if (step === 'details') {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
-        <div className="w-full max-w-md">
+      <div className="relative min-h-screen bg-background flex items-center justify-center px-4 py-8 overflow-hidden">
+        <ParallaxBackground />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="w-full max-w-md"
+        >
           <div className="flex items-center gap-4 mb-8">
             <Button 
               variant="ghost" 
@@ -448,15 +462,21 @@ export default function Register() {
               Create Account
             </Button>
           </form>
-        </div>
+        </motion.div>
       </div>
     );
   }
 
   // Verification step
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4">
-      <div className="w-full max-w-md text-center">
+    <div className="relative min-h-screen bg-background flex items-center justify-center px-4 overflow-hidden">
+      <ParallaxBackground />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="w-full max-w-md text-center"
+      >
         <div className="card-luxury">
           <div className="bg-gradient-primary p-4 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
             <CheckCircle className="w-10 h-10 text-white" />
@@ -481,7 +501,7 @@ export default function Register() {
             </Button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
