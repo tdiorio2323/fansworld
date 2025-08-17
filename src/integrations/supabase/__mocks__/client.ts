@@ -1,6 +1,6 @@
 // Mock environment variables
-export const SUPABASE_URL = 'https://test.supabase.co';
-export const SUPABASE_PUBLISHABLE_KEY = 'test-key';
+export const SUPABASE_URL = 'https://test-project.supabase.co';
+export const SUPABASE_PUBLISHABLE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlc3QtcHJvamVjdCIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNjQ5NzU4NjcyLCJleHAiOjE5NjUzMzQ2NzJ9.test-key-for-testing-purposes-only';
 
 export const supabase = {
   from: vi.fn(() => ({
