@@ -18,6 +18,7 @@
     "test:e2e": "playwright test tests/",
     "smoke": "playwright test tests/smoke.spec.ts",
     "generate:vip-codes": "node scripts/generate-vip-codes.js",
+    "generate:sitemap": "node scripts/generate-sitemap.js",
     "deploy": "vercel --prod",
     "deploy:preview": "vercel"
   },
