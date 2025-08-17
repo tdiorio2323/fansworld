@@ -22,3 +22,6 @@ if (SUPABASE_PUBLISHABLE_KEY.length < 50) {
   throw new Error('VITE_SUPABASE_ANON_KEY appears to be malformed');
 }
 
+// Re-export the supabase client for consistency
+export { supabase } from './supabase';
+

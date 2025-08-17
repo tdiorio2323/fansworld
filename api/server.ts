@@ -16,7 +16,9 @@ import {
   secureErrorHandler 
 } from '../src/lib/security'
 
-// Load environment variables
+// Load environment variables from multiple files
+config({ path: '.env.local' })
+config({ path: '.env' })
 config()
 
 // SECURITY: Validate all API keys on startup
