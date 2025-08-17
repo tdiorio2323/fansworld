@@ -2,12 +2,13 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session, AuthError } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/supabase';
 import { useToast } from '@/hooks/use-toast';
+import { handleError } from '@/lib/compact-utils';
 
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signUp: (email: string, password: string, metadata?: { username?: string; display_name?: string; role?: string }, inviteData?: { inviteCode: string; passcode: string }) => Promise<{ error: AuthError | null }>;
+  signUp: (email: string, password: string, metadata?: Record<string, string>, inviteData?: { inviteCode: string; passcode: string }) => Promise<{ error: AuthError | null }>;
   signIn: (email: string, password: string) => Promise<{ error: AuthError | null }>;
   signOut: () => Promise<void>;
 }
@@ -52,59 +53,40 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => subscription.unsubscribe();
   }, [toast]);
 
-  const signUp = async (email: string, password: string, metadata?: { username?: string; display_name?: string; role?: string }, inviteData?: { inviteCode: string; passcode: string }) => {
+  const signUp = async (email: string, password: string, metadata?: Record<string, string>, inviteData?: { inviteCode: string; passcode: string }) => {
     setLoading(true);
     
     try {
-      const redirectUrl = `${window.location.origin}/`;
-      
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: redirectUrl,
+          emailRedirectTo: `${window.location.origin}/`,
           data: metadata
         }
       });
 
       if (error) {
-        toast({
-          title: "Sign up failed",
-          description: error.message,
-          variant: "destructive",
-        });
+        toast({ title: "Sign up failed", description: error.message, variant: "destructive" });
         return { error };
       }
 
-      // If signup successful and inviteData provided, mark invite as used
+      // Mark invite as used if provided
       if (data.user && inviteData) {
         try {
           await supabase.functions.invoke('redeem-invite', {
-            body: {
-              action: 'use',
-              invite_code: inviteData.inviteCode,
-              passcode: inviteData.passcode,
-              user_id: data.user.id
-            }
+            body: { action: 'use', ...inviteData, user_id: data.user.id }
           });
         } catch (inviteError) {
-          console.error('Error marking invite as used:', inviteError);
-          // Don't fail the signup for this, just log it
+          console.error('Invite redemption failed:', inviteError);
         }
       }
 
-      toast({
-        title: "Check your email",
-        description: "We've sent you a confirmation link to complete your registration.",
-      });
-
+      toast({ title: "Check your email", description: "We've sent you a confirmation link to complete your registration." });
       return { error: null };
     } catch (error) {
-      toast({
-        title: "Sign up failed",
-        description: "An unexpected error occurred. Please try again.",
-        variant: "destructive",
-      });
+      const message = handleError(error, "An unexpected error occurred. Please try again.");
+      toast({ title: "Sign up failed", description: message, variant: "destructive" });
       return { error };
     } finally {
       setLoading(false);
@@ -115,19 +97,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLoading(true);
     
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) {
-        toast({
-          title: "Sign in failed",
-          description: error.message,
-          variant: "destructive",
-        });
+        toast({ title: "Sign in failed", description: error.message, variant: "destructive" });
       }
-
       return { error };
     } finally {
       setLoading(false);
@@ -137,11 +110,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
-      toast({
-        title: "Error signing out",
-        description: error.message,
-        variant: "destructive",
-      });
+      toast({ title: "Error signing out", description: error.message, variant: "destructive" });
     }
   };
 
@@ -165,27 +134,7 @@ export function useAuth() {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   
-  // TEMPORARY: Mock user for development
-  // Remove this when authentication is needed
-  const BYPASS_AUTH = false;
-  
-  if (BYPASS_AUTH) {
-    const mockUser = {
-      id: 'mock-user-id',
-      email: 'test@example.com',
-      user_metadata: {
-        username: 'testuser',
-        display_name: 'Test User',
-        avatar_url: '/lovable-uploads/2db52d3c-95ff-4d97-9f88-8201d599afdf.png'
-      }
-    } as User;
-    
-    return {
-      ...context,
-      user: mockUser,
-      loading: false
-    };
-  }
+  // Authentication is now properly enforced - no bypass logic
   
   return context;
 }

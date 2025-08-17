@@ -74,13 +74,7 @@ export const AdminRoute = ({ children }: AdminRouteProps) => {
     checkAdminStatus();
   }, [user]);
 
-  // TEMPORARY: Bypass admin auth for development
-  // Remove this when admin authentication is needed  
-  const BYPASS_ADMIN_AUTH = true;
-  
-  if (BYPASS_ADMIN_AUTH) {
-    return <>{children}</>;
-  }
+  // Admin authentication is now properly enforced
 
   if (loading || checkingAdmin || isAdmin === null) {
     

@@ -1,17 +1,18 @@
 import { supabase } from '@/integrations/supabase/supabase';
+import { SafeRecord, JsonValue } from '@/types/safe-types';
 
 // Stripe webhook event types
 interface StripeWebhookEvent {
   id: string;
   type: string;
   data: {
-    object: any;
+    object: SafeRecord;
   };
   created: number;
 }
 
 // Handle customer subscription created
-export const handleSubscriptionCreated = async (subscription: any) => {
+export const handleSubscriptionCreated = async (subscription: SafeRecord) => {
   console.log('Processing subscription created:', subscription.id);
   
   try {

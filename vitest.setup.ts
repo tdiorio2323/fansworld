@@ -28,3 +28,19 @@ Object.defineProperty(window, 'localStorage', {
   value: localStorageMock,
   writable: true // Ensure it's writable for tests
 });
+
+// Mock navigator.clipboard globally for tests
+Object.defineProperty(navigator, 'clipboard', {
+  value: {
+    writeText: vi.fn().mockResolvedValue(undefined),
+  },
+  writable: true,
+  configurable: true,
+});
+
+// Mock navigator.share for tests
+Object.defineProperty(navigator, 'share', {
+  value: vi.fn().mockResolvedValue(undefined),
+  writable: true,
+  configurable: true,
+});

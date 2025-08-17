@@ -1,42 +1,8 @@
-import { Anthropic } from '@anthropic-ai/sdk'
-import OpenAI from 'openai'
+// SECURE AI ENGINE - All API calls now go through secure server
+import { aiClient } from './ai-client'
 
-// AI clients initialized with environment variables
-let claude: Anthropic | null = null
-let openai: OpenAI | null = null
-
-// Initialize AI clients with environment variables
-async function initializeClients() {
-  try {
-    const anthropicKey = import.meta.env.VITE_ANTHROPIC_API_KEY
-    const openaiKey = import.meta.env.VITE_OPENAI_API_KEY
-
-    if (anthropicKey) {
-      claude = new Anthropic({
-        apiKey: anthropicKey,
-        dangerouslyAllowBrowser: true // For client-side usage
-      })
-      console.log('Claude client initialized')
-    } else {
-      console.warn('Anthropic API key not available')
-    }
-
-    if (openaiKey) {
-      openai = new OpenAI({
-        apiKey: openaiKey,
-        dangerouslyAllowBrowser: true // For client-side usage
-      })
-      console.log('OpenAI client initialized')
-    } else {
-      console.warn('OpenAI API key not available')
-    }
-  } catch (error) {
-    console.error('AI engine initialization error:', error)
-  }
-}
-
-// Initialize clients on module load
-initializeClients()
+// Remove direct API clients for security
+// All AI operations now go through secure server endpoints
 
 export interface AIMessage {
   role: 'user' | 'assistant'
@@ -52,7 +18,7 @@ export interface ContentGeneration {
     wordCount?: number
     generatedAt?: string
     model?: string
-    [key: string]: any
+    [key: string]: string | number | boolean | string[] | undefined
   }
 }
 
@@ -96,12 +62,10 @@ export class AIEngine {
 
     try {
       let response: string
-      if (provider === 'claude' && claude) {
-        response = await this.chatWithClaude([{ role: 'user', content: prompt }], model)
-      } else if (provider === 'openai' && openai) {
-        response = await this.chatWithGPT([{ role: 'user', content: prompt }], model)
+      if (provider === 'claude') {
+        response = await aiClient.chatWithClaude([{ role: 'user', content: prompt }])
       } else {
-        throw new Error(`${provider} client not available`)
+        response = await aiClient.chatWithGPT([{ role: 'user', content: prompt }])
       }
 
       return {
@@ -117,12 +81,10 @@ export class AIEngine {
       const fallbackProvider = provider === 'claude' ? 'openai' : 'claude'
       let fallbackResponse: string
       
-      if (fallbackProvider === 'claude' && claude) {
-        fallbackResponse = await this.chatWithClaude([{ role: 'user', content: prompt }])
-      } else if (fallbackProvider === 'openai' && openai) {
-        fallbackResponse = await this.chatWithGPT([{ role: 'user', content: prompt }])
+      if (fallbackProvider === 'claude') {
+        fallbackResponse = await aiClient.chatWithClaude([{ role: 'user', content: prompt }])
       } else {
-        throw new Error('Both AI providers unavailable')
+        fallbackResponse = await aiClient.chatWithGPT([{ role: 'user', content: prompt }])
       }
 
       return {
@@ -134,50 +96,14 @@ export class AIEngine {
     }
   }
 
-  // Claude API integration
+  // Secure Claude API integration via server
   async chatWithClaude(messages: AIMessage[], model: string = 'claude-3-5-sonnet-20241022'): Promise<string> {
-    if (!claude) {
-      throw new Error('Claude client not initialized')
-    }
-
-    try {
-      const response = await claude.messages.create({
-        model,
-        max_tokens: 4000,
-        messages: messages.map(msg => ({
-          role: msg.role,
-          content: msg.content
-        }))
-      })
-
-      return response.content[0].type === 'text' ? response.content[0].text : 'No response'
-    } catch (error) {
-      console.error('Claude API error:', error)
-      throw error
-    }
+    return await aiClient.chatWithClaude(messages)
   }
 
-  // OpenAI API integration  
+  // Secure OpenAI API integration via server
   async chatWithGPT(messages: AIMessage[], model: string = 'gpt-4'): Promise<string> {
-    if (!openai) {
-      throw new Error('OpenAI client not initialized')
-    }
-
-    try {
-      const response = await openai.chat.completions.create({
-        model,
-        messages: messages.map(msg => ({
-          role: msg.role,
-          content: msg.content
-        })),
-        max_tokens: 4000
-      })
-
-      return response.choices[0]?.message?.content || 'No response'
-    } catch (error) {
-      console.error('OpenAI API error:', error)
-      throw error
-    }
+    return await aiClient.chatWithGPT(messages)
   }
 
   // CREATOR-SPECIFIC AI FEATURES FOR CABANA
@@ -265,6 +191,10 @@ export class AIEngine {
         metadata: {
           generatedAt: new Date().toISOString(),
           model: result.model,
+          provider: result.provider,
+          processingTime: result.processingTime,
+          reason: result.reason,
+          cached: result.cached,
           tierName,
           price,
           parsed

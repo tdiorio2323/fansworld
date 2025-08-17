@@ -1,0 +1,22 @@
+name: CI
+on:
+  push:
+    branches: [ main, fix/**, feat/** ]
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - name: Smoke (optional)
+        run: |
+          if [ -n "${{ secrets.BASE_URL_STAGING }}" ]; then
+            BASE_URL="${{ secrets.BASE_URL_STAGING }}" npx tsx scripts/smoke-webhooks.ts || true
+          fi
