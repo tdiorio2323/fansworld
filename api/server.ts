@@ -6,6 +6,7 @@ import { config } from 'dotenv'
 import { Anthropic } from '@anthropic-ai/sdk'
 import OpenAI from 'openai'
 import { z } from 'zod'
+import { createClient } from '@supabase/supabase-js'
 import { authRateLimit, apiRateLimit, paymentRateLimit, adminRateLimit } from '../src/lib/rate-limit'
 import { 
   securityHeaders, 
@@ -44,6 +45,12 @@ const openai = new OpenAI({
   apiKey: env.OPENAI_API_KEY,
   // No dangerouslyAllowBrowser - secure server-side only
 })
+
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.VITE_SUPABASE_URL || '',
+  process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+)
 
 // SECURITY: Enhanced CORS configuration with strict origin checking
 const corsOptions = {
@@ -394,6 +401,29 @@ app.get('/api/cache/stats', (req, res) => {
     success: true, 
     stats: aiCache.getStats()
   })
+})
+
+// Visitor tracking endpoint
+app.post('/api/visitor/ping', async (req, res) => {
+  try {
+    const { data: last } = await supabase
+      .from('metrics_visitors')
+      .select('id,count')
+      .order('id', { ascending: false })
+      .limit(1)
+      .maybeSingle()
+    
+    const nextCount = (last?.count ?? 0) + 1
+    
+    await supabase
+      .from('metrics_visitors')
+      .insert({ count: nextCount })
+    
+    res.json({ count: nextCount })
+  } catch (error) {
+    console.error('Visitor tracking error:', error)
+    res.status(500).json({ error: 'Failed to track visitor' })
+  }
 })
 
 // SECURITY: Enhanced error handling

@@ -1,3 +1,4 @@
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,6 +8,9 @@ import { AnimatePresence } from "framer-motion";
 import { AuthProvider } from "./hooks/useAuth";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AdminRoute } from "./components/AdminRoute";
+import { AccessibilityProvider } from "./components/AccessibilityProvider";
+import ExitIntent from "./components/ExitIntent";
+import { performanceMonitor } from "./lib/performance";
 
 // Import pages - CLEAN VERSION (only existing pages)
 import Register from "./pages/Register";
@@ -133,18 +137,30 @@ const AppRoutes = () => {
 };
 
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  // Initialize performance monitoring
+  React.useEffect(() => {
+    performanceMonitor.markFeatureUsage('app_startup');
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AccessibilityProvider>
+        <AuthProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <main id="main-content">
+                <AppRoutes />
+              </main>
+              <ExitIntent />
+            </BrowserRouter>
+          </TooltipProvider>
+        </AuthProvider>
+      </AccessibilityProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

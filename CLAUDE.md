@@ -4,100 +4,180 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-- `npm run dev` - Start development server with hot reload
-- `npm run build` - Build for production
-- `npm run build:dev` - Build for development environment
-- `npm run lint` - Run ESLint to check code quality
-- `npm run preview` - Preview production build locally
+### Main Development
+- `npm run dev` - Start both frontend (Vite dev server on port 8080) and backend (Express API server)
+- `npm run server:dev` - Start only the Express API server with hot reload using tsx
+- `vite` - Start only the frontend development server
 
-## Tech Stack & Architecture
+### Building & Deployment  
+- `npm run build` - Build the frontend for production
+- `npm run server:build` - Build the Express backend using TypeScript compiler
+- `npm run preview` - Preview the production build locally
+- `npm run deploy` - Deploy to Vercel production
+- `npm run deploy:preview` - Deploy to Vercel preview environment
 
-This is a React-based content creator platform built with modern web technologies:
+### Testing
+- `npm test` - Run all unit tests (excludes /tests/ directory and *.spec.ts files)
+- `npm run test:unit` - Run unit tests in src/ directory only
+- `npm run test:watch` - Run tests in watch mode
+- `npm run test:coverage` - Run tests with coverage report
+- `npm run test:e2e` - Run Playwright end-to-end tests
+- `npm run smoke` - Run smoke tests specifically
 
-**Core Framework:**
-- **Vite** - Build tool and dev server
-- **React 18** with TypeScript for type safety
-- **React Router DOM** for client-side routing
+### Code Quality
+- `npm run lint` - Run ESLint and TypeScript compiler checks
+- `npm run typecheck` - Run TypeScript type checking only
 
-**UI & Styling:**
-- **shadcn/ui** - Component library built on Radix UI primitives
-- **Tailwind CSS** - Utility-first CSS framework with extensive custom design system
-- **Lucide React** - Icon library
-- Custom luxury/premium design system with chrome, neon, metal, and glass themes
+### Utilities
+- `npm run generate:vip-codes` - Generate VIP access codes using the script
 
-**State Management & Data:**
-- **TanStack Query** - Server state management and caching
-- **Supabase** - Backend-as-a-Service for database and authentication
-- **React Hook Form** with Zod validation for form handling
+## Architecture Overview
 
-**Key Features:**
-- Creator profile pages with subscription management
-- Content discovery and media galleries
-- User dashboard and messaging system
-- Premium subscription billing integration
-- Responsive design with mobile-first approach
+### Dual-Server Architecture
+This is a **full-stack application** with two servers:
+1. **Vite Dev Server** (port 8080) - Serves the React frontend with HMR
+2. **Express API Server** (port 3001) - Handles backend API, AI integrations, and database operations
 
-## Project Structure
+Both servers run concurrently during development via `npm run dev`.
 
+### Frontend Architecture (React + Vite)
+- **React 18** with TypeScript and React Router v6 for client-side routing
+- **Vite** as build tool with SWC for fast compilation
+- **Tailwind CSS** + **shadcn/ui** components for styling
+- **Framer Motion** for animations and transitions
+- **TanStack React Query** for data fetching and caching
+- **Zod** for runtime type validation
+
+### Backend Architecture (Express + AI)
+- **Express.js** server with comprehensive security middleware (CORS, rate limiting, CSRF protection)
+- **AI Integrations**: Anthropic Claude SDK and OpenAI SDK for content generation
+- **Database**: Supabase (PostgreSQL) with real-time subscriptions
+- **Authentication**: Supabase Auth
+- **Payments**: Stripe Connect integration
+- **File Structure**: `/api/server.ts` contains the entire Express application
+
+### Feature System - Modular Addon Architecture
+The codebase implements a **sophisticated addon system** located in `src/features/addons/`:
+
+#### Core Addon Components:
+- **`addon-registry.ts`** - Central registry managing all features with lazy loading
+- **`feature-flags.ts`** - Feature flag system for enabling/disabling addons
+- **`AddonManager`** - Runtime management of addon loading and dependencies
+
+#### Available Addons:
+- **Virtual Gifts** (`/virtual-gifts/`) - Monetary gift system
+- **PPV Messages** (`/ppv-messages/`) - Pay-per-view messaging
+- **Flash Sales** (`/flash-sales/`) - Time-limited promotional campaigns
+- **Stories & Highlights** (`/stories-highlights/`) - Instagram-style content
+- **Polls & Voting** (`/polls-voting/`) - Interactive fan engagement
+- **Custom Requests** (`/custom-requests/`) - Commissioned content system
+- **AI Content Tagging** (`/ai-content-tagging/`) - Automated content analysis
+- **One-Click Upsells** (`/one-click-upsells/`) - Smart upselling system
+- **Loyalty Program** (`/loyalty-program/`) - Points and rewards system
+
+Each addon follows a consistent structure:
 ```
-src/
-├── components/          # Reusable React components
-│   ├── ui/             # shadcn/ui components (buttons, cards, etc.)
-│   ├── CreatorCard.tsx # Creator profile cards
-│   ├── MediaTile.tsx   # Content media display
-│   └── Navbar.tsx      # Navigation component
-├── pages/              # Route-based page components
-│   ├── Home.tsx        # Landing/home page
-│   ├── Dashboard.tsx   # User dashboard
-│   ├── CreatorProfile.tsx # Creator profile pages
-│   └── ...
-├── hooks/              # Custom React hooks
-├── integrations/       # External service integrations
-│   └── supabase/       # Supabase client and types
-├── lib/                # Utility functions
-└── main.tsx           # App entry point
+/addon-name/
+  ├── components/     # React components
+  ├── services/      # Business logic and API calls  
+  ├── types.ts       # TypeScript definitions
+  ├── config.ts      # Configuration and settings
+  └── index.ts       # Main export
 ```
 
-## Configuration Files
+### State Management Pattern
+- **React Query** for server state and caching
+- **Context Providers** for global state (Auth, Accessibility)
+- **Local React State** with hooks for component state
+- **Supabase Realtime** for live data updates (visitor tracking, signups)
 
-- `tailwind.config.ts` - Extensive Tailwind configuration with custom design system
-- `components.json` - shadcn/ui configuration
-- `tsconfig.json` - TypeScript configuration with path aliases (`@/*` → `./src/*`)
-- `vite.config.ts` - Vite build configuration
+### Security Architecture
+Implements enterprise-grade security:
+- **CSRF Protection** with token validation
+- **Rate Limiting** (tiered: auth, payment, admin, general API)
+- **Input Sanitization** for all requests
+- **Security Headers** (HSTS, CSP, X-Frame-Options)
+- **Environment Validation** using Zod schemas
+- **API Key Validation** on server startup
 
-## Development Notes
+### Performance Optimization
+- **Code Splitting** with manual chunks for vendor libraries (React, UI, Stripe, Supabase)
+- **Performance Monitoring** with Core Web Vitals tracking
+- **Caching Strategy** with TTL-based AI response caching
+- **Bundle Optimization** with tree shaking and dead code elimination
 
-- Uses TypeScript with relaxed settings (noImplicitAny: false, strict null checks disabled)
-- Imports use `@/` path alias for src directory
-- Custom CSS variables defined for luxury design themes (chrome, neon, metal, glass, holo)
-- Supabase integration with pre-configured client setup
-- shadcn/ui components are customizable and follow design system patterns
+## Important Development Notes
 
-## Design System
+### Path Resolution
+- Uses `@/` alias pointing to `./src/` directory
+- Configured in both Vite config and TypeScript config
 
-The project implements a luxury content creator platform theme with:
-- Chrome/metallic aesthetic with gradients and shadows
-- Neon accent colors (blue, pink, purple, orange, green)
-- Glass morphism effects with backdrop blur
-- Custom animations (fade-in, shimmer, scale-in)
-- Responsive typography with luxury font stacks
+### Environment Variables Required
+```bash
+# AI Services
+ANTHROPIC_API_KEY=sk-ant-api03-...
+OPENAI_API_KEY=sk-...
 
-## Project Origin
+# Database
+VITE_SUPABASE_URL=https://...
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI...
 
-This project was initially generated on [Lovable](https://lovable.dev/projects/ab5a1da0-52c5-455c-ae12-01a7caaf28fe) and uses the following technologies:
-- Vite for fast development and building
-- TypeScript for type safety
-- React for UI components
-- shadcn-ui for pre-built components
-- Tailwind CSS for styling
+# Payments  
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_PUBLISHABLE_KEY=pk_test_...
 
-## Common Issues and Solutions
+# Application
+VITE_SITE_URL=http://localhost:5173
+NODE_ENV=development
+PORT=3001
+```
 
-**ESLint Fast Refresh Warnings:**
-- shadcn/ui components may show fast refresh warnings when exporting both components and variants
-- These warnings don't affect functionality but can be resolved by moving variants to separate files
+### Testing Strategy
+- **Unit Tests**: Vitest with Happy DOM environment for component testing
+- **E2E Tests**: Playwright for full user journey testing  
+- **Smoke Tests**: Quick production health checks
+- **Test Exclusions**: Excludes `/tests/` directory and `*.spec.ts` files from unit test runs
 
-**TypeScript Configuration:**
-- The project uses relaxed TypeScript settings for faster development
-- Path alias `@/` maps to `./src/` directory
-- No implicit any and strict null checks are disabled for flexibility
+### TypeScript Configuration
+- **Relaxed Settings**: `strict: false`, `noImplicitAny: false` for rapid development
+- **References Setup**: Uses project references with separate app config
+- **Skip Lib Check**: Enabled for faster compilation
+
+### Deployment Architecture
+- **Frontend**: Static deployment to Vercel with automatic deployments
+- **Backend**: Express server deployment (likely Vercel functions)
+- **Database**: Hosted Supabase instance
+- **CDN**: Vercel Edge Network for global distribution
+
+## Claude Code Templates
+
+This project is configured with advanced Claude Code templates and agents:
+
+### Available Agents
+- **`fullstack-developer`** - Expert in React + Express.js full-stack development
+- **`security-auditor`** - Security specialist for vulnerability assessment
+- **`file-system-organizer`** - Advanced file organization and project restructuring
+
+### Available Commands
+- **`generate-tests`** - Automatically generate comprehensive test suites
+- Use standard commands: `/agents`, `/commands`, `/mcps` to explore more
+
+### Template Usage
+```bash
+# Use specialized agents
+/agent fullstack-developer
+/agent security-auditor
+
+# Generate comprehensive tests
+/command generate-tests
+
+# Organize project files
+/agent file-system-organizer
+```
+
+## Community Guidelines
+
+- **Code of Conduct**: `CODE_OF_CONDUCT.md` - Community behavior standards
+- **Contributing**: `CONTRIBUTING.md` - Development and contribution guidelines
+- **Issues**: Use GitHub Issues for bug reports and feature requests
