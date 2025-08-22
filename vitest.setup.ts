@@ -1,6 +1,12 @@
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 
+// Mock Supabase client before any imports
+vi.mock('@/integrations/supabase/client', async () => {
+  const actual = await vi.importActual('@/integrations/supabase/__mocks__/client');
+  return actual;
+});
+
 // Ensure vi is globally available
 if (typeof global.vi === 'undefined') {
   global.vi = vi;
@@ -44,3 +50,25 @@ Object.defineProperty(navigator, 'share', {
   writable: true,
   configurable: true,
 });
+
+// Mock window.matchMedia for tests (needed by Sonner toasts and responsive components)
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: vi.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: vi.fn(), // deprecated
+    removeListener: vi.fn(), // deprecated
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+});
+
+// Mock ResizeObserver for tests (needed by some UI components)
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));

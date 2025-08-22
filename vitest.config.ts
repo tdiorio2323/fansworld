@@ -13,8 +13,9 @@ export default defineConfig({
     },
     env: {
       VITE_SUPABASE_URL: 'https://test.supabase.co',
-      VITE_SUPABASE_ANON_KEY: 'test-key',
+      VITE_SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0',
       VITE_VIP_CODE: 'TEST123',
+      VITE_BYPASS_AUTH: 'true',
       NODE_ENV: 'test',
     },
     timeout: 10000,
