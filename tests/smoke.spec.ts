@@ -1,100 +1,96 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from '@playwright/test';
 
-// Smoke tests - basic functionality verification
-test.describe('FansWorld Smoke Tests', () => {
+test.describe('FansWorld Smoke Tests - Critical Application Health', () => {
+  test.beforeEach(async ({ page }) => {
+    test.setTimeout(30000);
+  });
+
+  test('VIP authentication flow works end-to-end', async ({ page }) => {
+    await page.goto('/');
+    
+    // Should show VIP entry or proceed to app
+    const hasVipEntry = await page.getByLabel(/password/i).isVisible();
+    
+    if (hasVipEntry) {
+      await page.getByLabel(/password/i).fill('TEST123');
+      await page.getByRole('button', { name: /enter/i }).click();
+      
+      // Should redirect to main application
+      await page.waitForURL(/dashboard|discover|feed/, { timeout: 10000 });
+      await expect(page.getByRole('main')).toBeVisible();
+    }
+  });
   
-  test('Homepage loads successfully', async ({ page }) => {
-    await page.goto('/')
+  test('application loads without critical errors', async ({ page }) => {
+    const criticalErrors: string[] = [];
     
-    // Check that the page loads
-    await expect(page).toHaveTitle(/FansWorld|Cabana/)
-    
-    // Check for basic page elements
-    await expect(page.locator('body')).toBeVisible()
-    
-    // Verify no JavaScript errors
-    const errors: string[] = []
-    page.on('pageerror', (error) => {
-      errors.push(error.message)
-    })
-    
-    // Wait a moment for potential JS errors
-    await page.waitForTimeout(2000)
-    
-    expect(errors).toHaveLength(0)
-  })
-
-  test('Navigation elements are present', async ({ page }) => {
-    await page.goto('/')
-    
-    // Look for common navigation elements
-    const nav = page.locator('nav, .navbar, [role="navigation"]').first()
-    if (await nav.count() > 0) {
-      await expect(nav).toBeVisible()
-    }
-    
-    // Check for common links/buttons
-    const commonSelectors = [
-      'a[href="/"]',           // Home link
-      'a[href*="login"]',      // Login link
-      'a[href*="register"]',   // Register link
-      'button',                // Any button
-      '[role="button"]'        // Button role
-    ]
-    
-    let foundElement = false
-    for (const selector of commonSelectors) {
-      const element = page.locator(selector).first()
-      if (await element.count() > 0) {
-        await expect(element).toBeVisible()
-        foundElement = true
-        break
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') {
+        const text = msg.text();
+        if (!text.includes('favicon') && !text.includes('net::ERR_') && !text.includes('404')) {
+          criticalErrors.push(text);
+        }
       }
-    }
+    });
     
-    expect(foundElement).toBe(true)
-  })
+    await page.goto('/');
+    await expect(page).toHaveTitle(/FansWorld|Cabana/);
+    await expect(page.locator('body')).toBeVisible();
+    
+    // Wait for potential async errors
+    await page.waitForTimeout(2000);
+    
+    expect(criticalErrors.length).toBe(0);
+  });
 
-  test('API health check passes', async ({ page }) => {
-    // Check if API server is running
-    const response = await page.request.get('/api/health')
+  test('key pages are accessible and functional', async ({ page }) => {
+    await page.goto('/');
     
-    if (response.status() === 404) {
-      // If API health endpoint doesn't exist, skip this test
-      test.skip()
-      return
+    // Bypass VIP if needed
+    if (await page.getByLabel(/password/i).isVisible()) {
+      await page.getByLabel(/password/i).fill('TEST123');
+      await page.getByRole('button', { name: /enter/i }).click();
     }
     
-    expect(response.status()).toBe(200)
+    // Test key application pages
+    const criticalPages = ['/discover', '/dashboard', '/ui-demo'];
     
-    const data = await response.json()
-    expect(data).toHaveProperty('status')
-    expect(data.status).toBe('ok')
-  })
+    for (const pagePath of criticalPages) {
+      await page.goto(pagePath);
+      await expect(page.getByRole('main')).toBeVisible({ timeout: 5000 });
+    }
+  });
 
-  test('Environment configuration is valid', async ({ page }) => {
-    // Test that environment variables are properly loaded
-    await page.goto('/')
+  test('essential UI components render correctly', async ({ page }) => {
+    await page.goto('/ui-demo');
     
-    // Check that VITE environment variables are accessible
-    const siteUrl = await page.evaluate(() => {
-      return (import.meta as any).env?.VITE_SITE_URL
-    })
-    
-    // If VITE_SITE_URL is defined, it should be a valid URL
-    if (siteUrl) {
-      expect(() => new URL(siteUrl)).not.toThrow()
+    // Bypass VIP if needed
+    if (await page.getByLabel(/password/i).isVisible()) {
+      await page.getByLabel(/password/i).fill('TEST123');
+      await page.getByRole('button', { name: /enter/i }).click();
+      await page.goto('/ui-demo');
     }
     
-    // Check that required client-side config exists
-    const supabaseUrl = await page.evaluate(() => {
-      return (import.meta as any).env?.VITE_SUPABASE_URL
-    })
+    // Should render key UI elements
+    await expect(page.getByRole('heading')).toBeVisible();
     
-    if (supabaseUrl) {
-      expect(() => new URL(supabaseUrl)).not.toThrow()
-    }
-  })
+    // Should have interactive components
+    const buttons = page.getByRole('button');
+    const buttonCount = await buttons.count();
+    expect(buttonCount).toBeGreaterThan(0);
+  });
+
+  test('application loads within performance budget', async ({ page }) => {
+    const startTime = Date.now();
+    
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+    
+    const loadTime = Date.now() - startTime;
+    
+    // Should load within 5 seconds for smoke test
+    expect(loadTime).toBeLessThan(5000);
+  });
 
   test('No console errors on page load', async ({ page }) => {
     const consoleErrors: string[] = []

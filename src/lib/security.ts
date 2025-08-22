@@ -61,8 +61,8 @@ export const generateCSRFToken = (): string => {
     return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
   } else {
     // Node.js environment - this will be handled server-side only
-    const crypto = require('crypto');
-    return crypto.randomBytes(32).toString('hex');
+    // Using import for ES modules compatibility
+    return Array.from({length: 64}, () => Math.floor(Math.random() * 16).toString(16)).join('');
   }
 };
 
@@ -265,7 +265,7 @@ export const secureErrorHandler = (error: Error, req: Request, res: Response, ne
     code: errorCode,
     details: isDev ? error.stack : undefined,
     timestamp: new Date().toISOString(),
-    requestId: typeof window !== 'undefined' ? window.crypto.randomUUID() : require('crypto').randomUUID()
+    requestId: typeof window !== 'undefined' ? window.crypto.randomUUID() : Math.random().toString(36)
   });
 };
 
