@@ -31,6 +31,7 @@ import CreatorDashboard from "./pages/CreatorDashboard";
 import ContentManager from "./pages/ContentManager";
 import SubscriptionPlans from "./pages/SubscriptionPlans";
 import PaymentSuccess from "./pages/PaymentSuccess";
+import { EnhancedUIDemo } from "./pages/EnhancedUIDemo";
 
 const queryClient = new QueryClient();
 
@@ -102,6 +103,7 @@ const App = () => (
                 <Settings />
               </ProtectedRoute>
             } />
+            <Route path="/ui-demo" element={<EnhancedUIDemo />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

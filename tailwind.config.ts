@@ -1,5 +1,9 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
+import tailwindTypography from "@tailwindcss/typography";
+import tailwindForms from "@tailwindcss/forms";
+import tailwindAspectRatio from "@tailwindcss/aspect-ratio";
+import tailwindContainerQueries from "@tailwindcss/container-queries";
 
 export default {
 	darkMode: ["class"],
@@ -207,5 +211,11 @@ export default {
 			}
 		}
 	},
-	plugins: [tailwindcssAnimate],
+	plugins: [
+		tailwindcssAnimate,
+		tailwindTypography,
+		tailwindForms,
+		tailwindAspectRatio,
+		tailwindContainerQueries,
+	],
 } satisfies Config;
