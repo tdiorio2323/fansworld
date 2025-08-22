@@ -251,3 +251,5 @@ export const EnhancedSidebar: React.FC<EnhancedSidebarProps> = ({
     </motion.aside>
   );
 };
+
+export default EnhancedSidebar;

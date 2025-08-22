@@ -13,8 +13,14 @@ jobs:
           node-version: '20'
           cache: 'npm'
       - run: npm ci
+      - run: npm run typecheck
       - run: npm run lint
-      - run: npm test
+      - run: npm run test:coverage
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
       - name: Smoke (optional)
         run: |
           if [ -n "${{ secrets.BASE_URL_STAGING }}" ]; then
