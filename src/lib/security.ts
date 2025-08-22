@@ -3,8 +3,17 @@
 // CRITICAL: Server-side security implementation
 
 import { Request, Response, NextFunction } from 'express';
-import crypto from 'crypto';
 import { z } from 'zod';
+
+// Safe crypto import for both browser and Node.js
+const getCrypto = async () => {
+  if (typeof window !== 'undefined' && window.crypto) {
+    return window.crypto;
+  } else {
+    const crypto = await import('crypto');
+    return crypto.default;
+  }
+};
 
 // SECURITY: Comprehensive security middleware for TD Studios ecosystem
 
@@ -46,7 +55,15 @@ const csrfTokens = new Map<string, { token: string; expires: number; used: boole
 const CSRF_EXPIRY = 30 * 60 * 1000; // 30 minutes
 
 export const generateCSRFToken = (): string => {
-  return crypto.randomBytes(32).toString('hex');
+  if (typeof window !== 'undefined' && window.crypto) {
+    const array = new Uint8Array(32);
+    window.crypto.getRandomValues(array);
+    return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
+  } else {
+    // Node.js environment - this will be handled server-side only
+    const crypto = require('crypto');
+    return crypto.randomBytes(32).toString('hex');
+  }
 };
 
 export const setCSRFToken = (req: Request, res: Response, next: NextFunction) => {
@@ -248,7 +265,7 @@ export const secureErrorHandler = (error: Error, req: Request, res: Response, ne
     code: errorCode,
     details: isDev ? error.stack : undefined,
     timestamp: new Date().toISOString(),
-    requestId: crypto.randomUUID()
+    requestId: typeof window !== 'undefined' ? window.crypto.randomUUID() : require('crypto').randomUUID()
   });
 };
 
