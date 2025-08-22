@@ -149,7 +149,8 @@ export const validateApiKeys = () => {
     'OPENAI_API_KEY',
     'SUPABASE_SERVICE_ROLE_KEY',
     'STRIPE_SECRET_KEY',
-    'JWT_SECRET'
+    'JWT_SECRET',
+    'ADMIN_SECRET_KEY'
   ];
   
   const missing: string[] = [];
@@ -173,6 +174,43 @@ export const validateApiKeys = () => {
   }
   
   console.log('✅ All API keys validated');
+};
+
+// Admin authentication middleware
+export const requireAdminAuth = (req: Request, res: Response, next: NextFunction) => {
+  const authHeader = req.headers.authorization;
+  const adminKey = process.env.ADMIN_SECRET_KEY;
+  
+  if (!adminKey) {
+    console.error('🚨 ADMIN_SECRET_KEY not configured');
+    return res.status(500).json({
+      success: false,
+      error: 'Admin authentication not configured',
+      code: 'ADMIN_CONFIG_ERROR'
+    });
+  }
+  
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({
+      success: false,
+      error: 'Admin authentication required',
+      code: 'ADMIN_AUTH_MISSING'
+    });
+  }
+  
+  const token = authHeader.slice(7); // Remove 'Bearer ' prefix
+  
+  if (token !== adminKey) {
+    console.warn(`🚨 SECURITY: Invalid admin authentication attempt from IP: ${req.ip}`);
+    return res.status(403).json({
+      success: false,
+      error: 'Invalid admin credentials',
+      code: 'ADMIN_AUTH_INVALID'
+    });
+  }
+  
+  console.log(`✅ Admin authenticated for ${req.method} ${req.path}`);
+  next();
 };
 
 // Enhanced error handler

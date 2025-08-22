@@ -13,7 +13,8 @@ import {
   validateCSRFToken, 
   sanitizeRequest, 
   validateApiKeys, 
-  secureErrorHandler 
+  secureErrorHandler,
+  requireAdminAuth 
 } from '../src/lib/security'
 
 // Load environment variables from multiple files
@@ -384,18 +385,40 @@ app.post('/api/ai/generate', validateCSRFToken, async (req, res) => {
 })
 
 // SECURITY: Cache management endpoints with admin protection
-app.post('/api/cache/clear', validateCSRFToken, (req, res) => {
-  // TODO: Add admin authentication check
-  aiCache.clear()
-  console.log('🧹 Cache cleared by admin request')
-  res.json({ success: true, message: 'Cache cleared successfully' })
+app.post('/api/cache/clear', requireAdminAuth, validateCSRFToken, (req, res) => {
+  try {
+    aiCache.clear()
+    console.log('🧹 Cache cleared by authenticated admin')
+    res.json({ 
+      success: true, 
+      message: 'Cache cleared successfully',
+      timestamp: new Date().toISOString()
+    })
+  } catch (error) {
+    console.error('Cache clear error:', error)
+    res.status(500).json({
+      success: false,
+      error: 'Failed to clear cache',
+      code: 'CACHE_CLEAR_ERROR'
+    })
+  }
 })
 
-app.get('/api/cache/stats', (req, res) => {
-  res.json({ 
-    success: true, 
-    stats: aiCache.getStats()
-  })
+app.get('/api/cache/stats', requireAdminAuth, (req, res) => {
+  try {
+    res.json({ 
+      success: true, 
+      stats: aiCache.getStats(),
+      timestamp: new Date().toISOString()
+    })
+  } catch (error) {
+    console.error('Cache stats error:', error)
+    res.status(500).json({
+      success: false,
+      error: 'Failed to get cache stats',
+      code: 'CACHE_STATS_ERROR'
+    })
+  }
 })
 
 // SECURITY: Enhanced error handling
