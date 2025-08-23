@@ -12,6 +12,7 @@ import { AccessibilityProvider } from "./components/AccessibilityProvider";
 import ExitIntent from "./components/ExitIntent";
 import { performanceMonitor } from "./lib/performance";
 
+
 // Import pages - COMPREHENSIVE VERSION
 // Core Pages
 import HomePage from "./pages/HomePage";
@@ -70,8 +71,9 @@ import NotFoundPage from "./pages/errors/NotFoundPage";
 
 const queryClient = new QueryClient();
 
-const AppRoutes = () => {
+function AppRoutes() {
   const location = useLocation();
+  
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
@@ -182,10 +184,9 @@ const AppRoutes = () => {
       </Routes>
     </AnimatePresence>
   );
-};
+}
 
-
-const App = () => {
+function App() {
   // Initialize performance monitoring
   React.useEffect(() => {
     performanceMonitor.markFeatureUsage('app_startup');
@@ -211,6 +212,6 @@ const App = () => {
       </AccessibilityProvider>
     </QueryClientProvider>
   );
-};
+}
 
 export default App;
