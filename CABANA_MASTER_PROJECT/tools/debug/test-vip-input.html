@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Input Test - Cabana</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0A0B14 0%, #1A0B2E 20%, #C77DFF 40%, #FF006E 60%, #B400FF 80%, #0A0B14 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 32px 64px -12px rgba(199, 125, 255, 0.4);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: 300;
+        }
+        .test-section {
+            margin-bottom: 30px;
+        }
+        .test-section h2 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        input {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            outline: none;
+            box-sizing: border-box;
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+        }
+        input:focus {
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+        }
+        .instructions {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            margin-top: 20px;
+        }
+        .test-results {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 12px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 VIP Input Test</h1>
+        
+        <div class="test-section">
+            <h2>Fixed VIP Code Input</h2>
+            <input
+                type="text"
+                name="vip-access-code"
+                placeholder="ENTER VIP CODE"
+                autocomplete="one-time-code"
+                autocapitalize="characters"
+                autocorrect="off"
+                spellcheck="false"
+                inputmode="text"
+                pattern="[A-Za-z0-9]*"
+                maxlength="20"
+                style="text-transform: uppercase;"
+                data-testid="vip-code-input"
+                id="fixed-input"
+            />
+        </div>
+
+        <div class="test-section">
+            <h2>Original Input (for comparison)</h2>
+            <input
+                type="text"
+                placeholder="ENTER VIP CODE"
+                style="text-transform: uppercase;"
+                id="original-input"
+            />
+        </div>
+
+        <div class="instructions">
+            <p><strong>Test Instructions:</strong></p>
+            <p>1. Try typing "TD" in both inputs</p>
+            <p>2. Check if browser suggests email completion</p>
+            <p>3. Test on mobile devices for PWA behavior</p>
+            <p>4. Open browser dev tools to check for warnings</p>
+        </div>
+
+        <div class="test-results">
+            <p><strong>Expected Behavior:</strong></p>
+            <p>✅ No email autocomplete suggestions</p>
+            <p>✅ Text should appear in uppercase</p>
+            <p>✅ Should accept alphanumeric characters only</p>
+            <p>✅ Mobile keyboard should show text input mode</p>
+        </div>
+    </div>
+
+    <script>
+        // Log input events for debugging
+        document.getElementById('fixed-input').addEventListener('input', function(e) {
+            console.log('Fixed input value:', e.target.value);
+            console.log('Input type detected by browser:', e.target.type);
+            console.log('Autocomplete attribute:', e.target.autocomplete);
+        });
+
+        document.getElementById('original-input').addEventListener('input', function(e) {
+            console.log('Original input value:', e.target.value);
+            console.log('Input type detected by browser:', e.target.type);
+        });
+
+        // Check for any browser validation warnings
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔬 VIP Input Test Loaded');
+            console.log('Fixed input autocomplete:', document.getElementById('fixed-input').autocomplete);
+            console.log('Fixed input inputMode:', document.getElementById('fixed-input').inputMode);
+            console.log('Fixed input pattern:', document.getElementById('fixed-input').pattern);
+        });
+    </script>
+</body>
+</html>

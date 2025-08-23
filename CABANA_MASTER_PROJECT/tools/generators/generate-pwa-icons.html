@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Cabana PWA Icons</title>
+</head>
+<body style="background: #C77DFF; display: flex; flex-direction: column; align-items: center; padding: 40px;">
+    <h1 style="color: white; font-family: Arial, sans-serif;">Cabana PWA Icon Generator</h1>
+    
+    <!-- 192x192 Icon -->
+    <canvas id="icon192" width="192" height="192" style="border: 2px solid white; margin: 20px;"></canvas>
+    
+    <!-- 512x512 Icon -->
+    <canvas id="icon512" width="512" height="512" style="border: 2px solid white; margin: 20px;"></canvas>
+    
+    <div style="margin-top: 20px;">
+        <button onclick="downloadIcon('icon192', 'logo192.png')" style="padding: 10px 20px; font-size: 16px; margin: 10px;">Download 192x192</button>
+        <button onclick="downloadIcon('icon512', 'logo512.png')" style="padding: 10px 20px; font-size: 16px; margin: 10px;">Download 512x512</button>
+    </div>
+
+    <script>
+        function drawIcon(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            const size = canvas.width;
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#C77DFF');
+            gradient.addColorStop(0.5, '#FF006E');
+            gradient.addColorStop(1, '#B400FF');
+            
+            // Draw background
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Draw diamond shape (Cabana logo)
+            ctx.save();
+            ctx.translate(size / 2, size / 2);
+            ctx.rotate(Math.PI / 4);
+            
+            const diamondSize = size * 0.35;
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = size * 0.02;
+            ctx.strokeRect(-diamondSize / 2, -diamondSize / 2, diamondSize, diamondSize);
+            
+            // Inner diamond
+            const innerSize = diamondSize * 0.7;
+            ctx.lineWidth = size * 0.015;
+            ctx.strokeRect(-innerSize / 2, -innerSize / 2, innerSize, innerSize);
+            
+            ctx.restore();
+            
+            // Add "C" text in center
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.25}px Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('C', size / 2, size / 2);
+            
+            // Add subtle shadow effect
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+            ctx.shadowBlur = size * 0.05;
+            ctx.shadowOffsetX = size * 0.02;
+            ctx.shadowOffsetY = size * 0.02;
+        }
+        
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Draw both icons on page load
+        drawIcon('icon192');
+        drawIcon('icon512');
+    </script>
+    
+    <div style="color: white; margin-top: 40px; text-align: center; font-family: Arial, sans-serif;">
+        <p>Icons generated with Cabana luxury purple gradient (#C77DFF → #FF006E → #B400FF)</p>
+        <p>Click the download buttons to save the icons, then copy them to the public folder</p>
+    </div>
+</body>
+</html>

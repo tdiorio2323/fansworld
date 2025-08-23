@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Cabana</title>
+    <meta name="description" content="Transparent pricing for creators and subscribers on Cabana platform.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .glass-effect { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-effect p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/index.html" class="text-white text-2xl font-bold">Cabana</a>
+            <div class="space-x-4">
+                <a href="/pricing.html" class="text-purple-300 hover:text-white">Pricing</a>
+                <a href="/about.html" class="text-white hover:text-purple-200">About</a>
+                <a href="/contact.html" class="text-white hover:text-purple-200">Contact</a>
+                <a href="/auth/login.html" class="bg-white text-purple-600 px-4 py-2 rounded-lg hover:bg-purple-100">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <main class="container mx-auto px-4 py-20">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-bold text-white mb-6">Simple, Transparent Pricing</h1>
+            <p class="text-xl text-purple-100 max-w-2xl mx-auto">Choose the plan that works best for you. No hidden fees, no surprises.</p>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Fan Plan -->
+            <div class="glass-effect p-8 rounded-lg">
+                <h3 class="text-2xl font-bold text-white mb-4">Fan</h3>
+                <div class="mb-6">
+                    <span class="text-4xl font-bold text-white">Free</span>
+                </div>
+                <ul class="text-purple-100 space-y-3 mb-8">
+                    <li>✓ Browse public creator profiles</li>
+                    <li>✓ Follow favorite creators</li>
+                    <li>✓ Basic messaging</li>
+                    <li>✓ Community access</li>
+                </ul>
+                <a href="/auth/register.html" class="block w-full text-center bg-white text-purple-600 py-3 rounded-lg font-semibold hover:bg-purple-100 transition duration-300">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Premium Fan Plan -->
+            <div class="glass-effect p-8 rounded-lg border-2 border-purple-300 relative">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white px-4 py-1 rounded-full text-sm">
+                    Most Popular
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">Premium Fan</h3>
+                <div class="mb-6">
+                    <span class="text-4xl font-bold text-white">$9.99</span>
+                    <span class="text-purple-100">/month</span>
+                </div>
+                <ul class="text-purple-100 space-y-3 mb-8">
+                    <li>✓ Everything in Fan</li>
+                    <li>✓ Access premium content</li>
+                    <li>✓ Priority messaging</li>
+                    <li>✓ Exclusive live streams</li>
+                    <li>✓ Custom emojis & badges</li>
+                </ul>
+                <a href="/auth/register.html" class="block w-full text-center bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition duration-300">
+                    Subscribe
+                </a>
+            </div>
+
+            <!-- Creator Plan -->
+            <div class="glass-effect p-8 rounded-lg">
+                <h3 class="text-2xl font-bold text-white mb-4">Creator</h3>
+                <div class="mb-6">
+                    <span class="text-4xl font-bold text-white">20%</span>
+                    <span class="text-purple-100"> platform fee</span>
+                </div>
+                <ul class="text-purple-100 space-y-3 mb-8">
+                    <li>✓ Upload unlimited content</li>
+                    <li>✓ Subscription management</li>
+                    <li>✓ Analytics dashboard</li>
+                    <li>✓ Direct fan messaging</li>
+                    <li>✓ Live streaming tools</li>
+                    <li>✓ Payout management</li>
+                </ul>
+                <a href="/auth/creator-application.html" class="block w-full text-center bg-white text-purple-600 py-3 rounded-lg font-semibold hover:bg-purple-100 transition duration-300">
+                    Apply Now
+                </a>
+            </div>
+        </div>
+
+        <!-- Features Comparison -->
+        <div class="mt-20">
+            <h2 class="text-3xl font-bold text-white text-center mb-12">Feature Comparison</h2>
+            <div class="glass-effect rounded-lg overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-purple-600">
+                        <tr>
+                            <th class="text-left p-4 text-white">Feature</th>
+                            <th class="text-center p-4 text-white">Fan</th>
+                            <th class="text-center p-4 text-white">Premium Fan</th>
+                            <th class="text-center p-4 text-white">Creator</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-purple-100">
+                        <tr class="border-b border-purple-300/20">
+                            <td class="p-4">Browse Creators</td>
+                            <td class="text-center p-4">✓</td>
+                            <td class="text-center p-4">✓</td>
+                            <td class="text-center p-4">✓</td>
+                        </tr>
+                        <tr class="border-b border-purple-300/20">
+                            <td class="p-4">Basic Messaging</td>
+                            <td class="text-center p-4">✓</td>
+                            <td class="text-center p-4">✓</td>
+                            <td class="text-center p-4">✓</td>
+                        </tr>
+                        <tr class="border-b border-purple-300/20">
+                            <td class="p-4">Premium Content Access</td>
+                            <td class="text-center p-4">-</td>
+                            <td class="text-center p-4">✓</td>
+                            <td class="text-center p-4">✓</td>
+                        </tr>
+                        <tr class="border-b border-purple-300/20">
+                            <td class="p-4">Content Upload</td>
+                            <td class="text-center p-4">-</td>
+                            <td class="text-center p-4">-</td>
+                            <td class="text-center p-4">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4">Analytics Dashboard</td>
+                            <td class="text-center p-4">-</td>
+                            <td class="text-center p-4">-</td>
+                            <td class="text-center p-4">✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-effect p-8 mt-20">
+        <div class="container mx-auto text-center text-purple-100">
+            <p>&copy; 2024 Cabana. All rights reserved. | <a href="/legal/terms-of-service.html" class="hover:text-white">Terms</a> | <a href="/legal/privacy-policy.html" class="hover:text-white">Privacy</a></p>
+        </div>
+    </footer>
+</body>
+</html>

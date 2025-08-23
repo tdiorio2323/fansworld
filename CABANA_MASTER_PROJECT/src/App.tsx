@@ -65,6 +65,11 @@ import ForumCategoriesPage from "./pages/forum/categories/ForumCategoriesPage";
 
 // Creator Dashboard Pages
 import CreatorDashboardOverview from "./pages/creator/dashboard/CreatorDashboardOverview";
+import CreatorAnalyticsPage from "./pages/creator/analytics/CreatorAnalyticsPage";
+import CreatorToolsPage from "./pages/creator/tools/CreatorToolsPage";
+import CreatorContentPage from "./pages/creator/content/CreatorContentPage";
+import CreatorEarningsPage from "./pages/creator/earnings/CreatorEarningsPage";
+import CreatorFansPage from "./pages/creator/fans/CreatorFansPage";
 
 // Error Pages
 import NotFoundPage from "./pages/errors/NotFoundPage";
@@ -173,6 +178,33 @@ function AppRoutes() {
         <Route path="/creator/dashboard" element={
           <ProtectedRoute>
             <CreatorDashboardOverview />
+          </ProtectedRoute>
+        } />
+        
+        {/* Creator Management Pages */}
+        <Route path="/creator/analytics" element={
+          <ProtectedRoute>
+            <CreatorAnalyticsPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/creator/tools" element={
+          <ProtectedRoute>
+            <CreatorToolsPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/creator/content" element={
+          <ProtectedRoute>
+            <CreatorContentPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/creator/earnings" element={
+          <ProtectedRoute>
+            <CreatorEarningsPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/creator/fans" element={
+          <ProtectedRoute>
+            <CreatorFansPage />
           </ProtectedRoute>
         } />
         
