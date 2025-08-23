@@ -196,7 +196,7 @@ const App = () => {
       <AccessibilityProvider>
         <AuthProvider>
           <TooltipProvider>
-            <div className="cabana-gradient-fixed">
+            <div>
               <Toaster />
               <Sonner />
               <BrowserRouter>
