@@ -9,25 +9,28 @@ CABANA is a comprehensive creator economy platform built with React, TypeScript,
 ## Common Commands
 
 ### Development
-- `npm run dev` - Start development server (runs both frontend Vite server on port 8080 and backend Express server)
+- `npm run dev` - Start development server (runs both frontend Vite server on port 8080 and backend Express server on port 3001)
 - `npm run server:dev` - Start backend development server only (Express with tsx watch)
 - `npm run build` - Build production frontend
 - `npm run server:build` - Build production backend
 
-### Code Quality
+### Code Quality  
 - `npm run lint` - Run ESLint and TypeScript checks
 - `npm run typecheck` - Run TypeScript type checking only
 
 ### Testing
-- `npm test` - Run unit tests
-- `npm run test:unit` - Run unit tests in src/ directory
+- `npm test` - Run unit tests (excludes e2e tests in tests/ directory)
+- `npm run test:unit` - Run unit tests in src/ directory only
 - `npm run test:integration` - Run integration tests
 - `npm run test:watch` - Run tests in watch mode
 - `npm run test:coverage` - Run tests with coverage report
-- `npm run test:e2e` - Run Playwright end-to-end tests
+- `npm run test:all` - Run all tests including coverage and e2e
+- `npm run test:e2e` - Run Playwright end-to-end tests in tests/ directory
 - `npm run smoke` - Run smoke tests
 
-### Utility Scripts
+### Deployment & Utilities
+- `npm run deploy` - Deploy to production via Vercel
+- `npm run deploy:preview` - Deploy preview via Vercel
 - `npm run export:html` - Export static HTML pages
 - `npm run generate:vip-codes` - Generate VIP access codes
 - `npm run generate:sitemap` - Generate sitemap
@@ -75,11 +78,18 @@ CABANA is a comprehensive creator economy platform built with React, TypeScript,
 - `/functions` - Edge functions for server-side logic
 
 ### Layout System
-The application uses a nested layout system with React Router:
-- `MainLayout` - Standard public/user pages
-- `AuthLayout` - Authentication pages
-- `CreatorLayout` - Creator dashboard
-- `AdminLayout` - Admin panel
+The application uses a nested layout system with React Router v6:
+- `MainLayout` - Standard public/user pages with navigation
+- `AuthLayout` - Authentication pages (clean layout for login/register)
+- `CreatorLayout` - Creator dashboard with specialized navigation
+- `AdminLayout` - Admin panel with system management tools
+
+### Routing Architecture
+The routing system in `/src/routes/AppRoutes.tsx` provides:
+- **Hierarchical Routing**: Nested layouts with shared components
+- **Dynamic Routes**: Parameters for user profiles, content IDs, etc.
+- **Error Boundaries**: 404, 403, 500, and maintenance page handling
+- **Role-based Access**: Different layouts for different user types
 
 ### Feature System
 The codebase includes a modular addon system in `/src/features/addons/`:
@@ -123,10 +133,16 @@ Each addon follows a consistent structure with components, services, types, and 
 - Test files located alongside components or in `__tests__` directories
 
 ### Performance Optimizations
-- Code splitting configured in Vite with manual chunks
+- Code splitting configured in Vite with manual chunks:
+  - `react-vendor`: React core libraries
+  - `ui-vendor`: Radix UI components  
+  - `stripe-vendor`: Stripe payment libraries
+  - `supabase-vendor`: Supabase client
+  - `router-vendor`: React Router
+  - `query-vendor`: React Query
 - Lazy loading for heavy components
 - React Query for efficient data fetching and caching
-- Optimized bundle size with vendor chunk splitting
+- Optimized bundle size (600KB chunk warning limit)
 
 ## API Integration Patterns
 
@@ -160,6 +176,16 @@ Each addon follows a consistent structure with components, services, types, and 
 ## Important Notes
 
 - The project is currently on the `nextjs-conversion` branch
-- Development server runs on port 8080 (frontend) and 3001 (backend)
+- Development server runs on port 8080 (frontend) and 3001 (backend)  
 - All sensitive operations are handled server-side with proper validation
 - The codebase includes comprehensive error handling and user feedback systems
+- AI integrations (Anthropic Claude and OpenAI) are server-side only for security
+- Test environment uses jsdom with globals enabled and 10-second timeout
+- Comprehensive page architecture with 200+ routes across 10 major sections
+
+## Branch & Git Information
+
+- **Current Branch**: `nextjs-conversion` 
+- **Main Branch**: Not specified (likely `main` or `master`)
+- Recent commits focus on NextJS conversion and CABANA platform cleanup
+- Project includes comprehensive documentation in `/docs` directory
