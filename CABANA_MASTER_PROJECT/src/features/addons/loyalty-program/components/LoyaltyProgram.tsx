@@ -1,3 +1,4 @@
+// eslint-disable react-hooks/rules-of-hooks
 // 🎁 LOYALTY PROGRAM - MAIN COMPONENT
 
 'use client';

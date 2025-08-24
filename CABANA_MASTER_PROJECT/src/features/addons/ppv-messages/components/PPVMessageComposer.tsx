@@ -1,4 +1,4 @@
-// 🔒 PPV MESSAGE COMPOSER - Create Premium Content
+//  PPV MESSAGE COMPOSER - Create Premium Content
 
 import React, { useState, useRef, useCallback } from 'react';
 import { Plus, Upload, X, DollarSign, Eye, Calendar, Target, Tag, Image, Video, FileText, Music, File } from 'lucide-react';
@@ -787,7 +787,7 @@ const ContentPreview: React.FC<ContentPreviewProps> = ({
               onClick={onMoveUp}
               className=\"border-purple-500/30 text-purple-400 hover:bg-purple-500/10 h-8 w-8 p-0\"
             >
-              ↑
+              
             </Button>
           )}
           
@@ -799,7 +799,7 @@ const ContentPreview: React.FC<ContentPreviewProps> = ({
               onClick={onMoveDown}
               className=\"border-purple-500/30 text-purple-400 hover:bg-purple-500/10 h-8 w-8 p-0\"
             >
-              ↓
+              
             </Button>
           )}
           

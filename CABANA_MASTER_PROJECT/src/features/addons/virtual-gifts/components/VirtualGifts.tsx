@@ -1,4 +1,4 @@
-// 🎁 VIRTUAL GIFTS - MAIN COMPONENT
+//  VIRTUAL GIFTS - MAIN COMPONENT
 
 import React, { useState, useEffect } from 'react';
 import { ADDON_FLAGS } from '../../feature-flags';
@@ -105,7 +105,7 @@ export const VirtualGifts: React.FC<VirtualGiftsProps> = ({
       
       // Success feedback
       toast({
-        title: '🎁 Gift sent successfully!',
+        title: ' Gift sent successfully!',
         description: `Sent ${quantity}x ${selectedGift.name} to ${recipientName || 'recipient'}`,
       });
 

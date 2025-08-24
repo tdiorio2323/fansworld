@@ -1,4 +1,4 @@
-// 🎁 GIFT CATALOG - Browse and Select Gifts
+//  GIFT CATALOG - Browse and Select Gifts
 
 import React, { useState, useEffect } from 'react';
 import { Search, Filter, Grid, List, Star, Crown, Heart, Sparkles } from 'lucide-react';
@@ -105,8 +105,8 @@ export const GiftCatalog: React.FC<GiftCatalogProps> = ({
       case 'hearts': return <Heart className=\"w-4 h-4\" />;
       case 'stars': return <Sparkles className=\"w-4 h-4\" />;
       case 'luxury': return <Crown className=\"w-4 h-4\" />;
-      case 'seasonal': return <div className=\"text-pink-400\">🌸</div>;
-      case 'custom': return <div className=\"text-indigo-400\">🎨</div>;
+      case 'seasonal': return <div className=\"text-pink-400\"></div>;
+      case 'custom': return <div className=\"text-indigo-400\"></div>;
     }
   };
 
@@ -139,11 +139,11 @@ export const GiftCatalog: React.FC<GiftCatalogProps> = ({
             className=\"bg-black/20 border border-purple-500/30 rounded-lg px-3 py-1 text-white text-sm\"
           >
             <option value=\"all\">All Categories</option>
-            <option value=\"hearts\">💕 Hearts</option>
-            <option value=\"stars\">✨ Stars</option>
-            <option value=\"luxury\">💎 Luxury</option>
-            <option value=\"seasonal\">🌸 Seasonal</option>
-            <option value=\"custom\">🎨 Custom</option>
+            <option value=\"hearts\"> Hearts</option>
+            <option value=\"stars\"> Stars</option>
+            <option value=\"luxury\"> Luxury</option>
+            <option value=\"seasonal\"> Seasonal</option>
+            <option value=\"custom\"> Custom</option>
           </select>
 
           {/* Rarity Filter */}
@@ -204,7 +204,7 @@ export const GiftCatalog: React.FC<GiftCatalogProps> = ({
                   onClick={() => setSearchQuery('')}
                   className=\"ml-2 text-purple-400 hover:text-white\"
                 >
-                  ×
+                  
                 </button>
               </Badge>
             )}
@@ -216,7 +216,7 @@ export const GiftCatalog: React.FC<GiftCatalogProps> = ({
                   onClick={() => setSelectedCategory('all')}
                   className=\"ml-2 text-purple-400 hover:text-white\"
                 >
-                  ×
+                  
                 </button>
               </Badge>
             )}
@@ -228,7 +228,7 @@ export const GiftCatalog: React.FC<GiftCatalogProps> = ({
                   onClick={() => setSelectedRarity('all')}
                   className=\"ml-2 text-purple-400 hover:text-white\"
                 >
-                  ×
+                  
                 </button>
               </Badge>
             )}
@@ -240,7 +240,7 @@ export const GiftCatalog: React.FC<GiftCatalogProps> = ({
                   onClick={() => setPriceRange('all')}
                   className=\"ml-2 text-purple-400 hover:text-white\"
                 >
-                  ×
+                  
                 </button>
               </Badge>
             )}
@@ -272,7 +272,7 @@ export const GiftCatalog: React.FC<GiftCatalogProps> = ({
       {/* Gift Grid/List */}
       {filteredGifts.length === 0 ? (
         <div className=\"text-center py-12\">
-          <div className=\"text-6xl mb-4\">🎁</div>
+          <div className=\"text-6xl mb-4\"></div>
           <h3 className=\"text-lg font-semibold text-white mb-2\">No gifts found</h3>
           <p className=\"text-gray-400\">Try adjusting your search or filters</p>
         </div>
@@ -417,7 +417,7 @@ const getCategoryIcon = (category: VirtualGift['category']) => {
     case 'hearts': return <Heart className=\"w-3 h-3\" />;
     case 'stars': return <Sparkles className=\"w-3 h-3\" />;
     case 'luxury': return <Crown className=\"w-3 h-3\" />;
-    case 'seasonal': return <span className=\"text-xs\">🌸</span>;
-    case 'custom': return <span className=\"text-xs\">🎨</span>;
+    case 'seasonal': return <span className=\"text-xs\"></span>;
+    case 'custom': return <span className=\"text-xs\"></span>;
   }
 };

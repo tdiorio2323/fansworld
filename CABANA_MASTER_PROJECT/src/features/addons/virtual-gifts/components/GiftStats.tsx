@@ -1,4 +1,4 @@
-// 🎁 GIFT STATISTICS - Analytics Dashboard
+//  GIFT STATISTICS - Analytics Dashboard
 
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, TrendingDown, Gift, DollarSign, Users, Star, Crown, Heart, Sparkles, Calendar, Award } from 'lucide-react';
@@ -55,7 +55,7 @@ export const GiftStats: React.FC<GiftStatsProps> = ({ userId }) => {
   if (!hasActivity) {
     return (
       <div className=\"text-center py-12\">
-        <div className=\"text-6xl mb-6\">📊</div>
+        <div className=\"text-6xl mb-6\"></div>
         <h3 className=\"text-xl font-semibold text-white mb-2\">No gift activity yet</h3>
         <p className=\"text-gray-400 mb-4\">Start sending or receiving gifts to see your statistics</p>
         <div className=\"text-sm text-purple-200\">
@@ -172,7 +172,7 @@ export const GiftStats: React.FC<GiftStatsProps> = ({ userId }) => {
                 <p className=\"text-purple-200\">
                   {stats.topSender.totalSent} gift{stats.topSender.totalSent !== 1 ? 's' : ''} sent
                 </p>
-                <div className=\"text-sm text-gray-400\">Your biggest supporter! 🎉</div>
+                <div className=\"text-sm text-gray-400\">Your biggest supporter! </div>
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-// 🔒 PPV MESSAGES - MAIN COMPONENT
+//  PPV MESSAGES - MAIN COMPONENT
 
 import React, { useState, useEffect } from 'react';
 import { ADDON_FLAGS } from '../../feature-flags';
@@ -123,7 +123,7 @@ export const PPVMessages: React.FC<PPVMessagesProps> = ({
     loadStats(); // Refresh stats
     
     toast({
-      title: '🎉 PPV Message Created!',
+      title: ' PPV Message Created!',
       description: `Your message "${newMessage.title}" is now live`,
     });
   };
@@ -139,7 +139,7 @@ export const PPVMessages: React.FC<PPVMessagesProps> = ({
     setIsViewerOpen(false);
     
     toast({
-      title: '🔓 Access Granted!',
+      title: ' Access Granted!',
       description: 'You now have access to this premium content',
     });
   };
@@ -611,7 +611,7 @@ const EmptyState: React.FC<{ viewMode: 'creator' | 'consumer'; onCreateClick: ()
   onCreateClick 
 }) => (
   <div className=\"text-center py-12\">
-    <div className=\"text-6xl mb-6\">🔒</div>
+    <div className=\"text-6xl mb-6\"></div>
     <h3 className=\"text-xl font-semibold text-white mb-2\">
       {viewMode === 'creator' ? 'No PPV messages yet' : 'No premium content available'}
     </h3>
@@ -679,7 +679,7 @@ const EarningsOverview: React.FC<{ stats: PPVMessageStats }> = ({ stats }) => (
     
     {stats.topPerformingMessage && (
       <div className=\"p-6 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-xl border border-purple-500/30\">
-        <h3 className=\"text-lg font-semibold text-white mb-3\">🏆 Top Performing Message</h3>
+        <h3 className=\"text-lg font-semibold text-white mb-3\"> Top Performing Message</h3>
         <div className=\"flex items-center gap-4\">
           <div className=\"w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center\">
             <Lock className=\"w-8 h-8 text-white\" />

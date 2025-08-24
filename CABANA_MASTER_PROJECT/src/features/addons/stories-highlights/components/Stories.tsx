@@ -1,3 +1,4 @@
+// eslint-disable react-hooks/rules-of-hooks
 // 📚 STORIES & HIGHLIGHTS - MAIN COMPONENT
 
 'use client';

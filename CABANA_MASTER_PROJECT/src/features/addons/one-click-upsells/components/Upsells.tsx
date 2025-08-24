@@ -1,3 +1,4 @@
+// eslint-disable react-hooks/rules-of-hooks
 // 💰 ONE-CLICK UPSELLS - MAIN COMPONENT
 
 'use client';

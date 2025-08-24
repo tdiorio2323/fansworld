@@ -1,4 +1,4 @@
-// 🔒 PPV MESSAGE VIEWER - View and Purchase Premium Content
+//  PPV MESSAGE VIEWER - View and Purchase Premium Content
 
 import React, { useState, useEffect } from 'react';
 import { Lock, Eye, DollarSign, Clock, Users, Share2, Flag, X, CreditCard, Wallet, Coins, Play, Download, Image as ImageIcon, FileText, Music, File } from 'lucide-react';
@@ -417,13 +417,13 @@ export const PPVMessageViewer: React.FC<PPVMessageViewerProps> = ({
           {purchase && purchase.status === 'completed' && (
             <div className=\"p-4 bg-green-500/10 rounded-xl border border-green-500/20\">
               <div className=\"flex items-center justify-between\">
-                <div className=\"text-green-400 font-semibold\">✅ Purchased</div>
+                <div className=\"text-green-400 font-semibold\"> Purchased</div>
                 <div className=\"text-sm text-gray-400\">
                   {new Date(purchase.createdAt).toLocaleDateString()}
                 </div>
               </div>
               <div className=\"text-sm text-green-300 mt-1\">
-                Paid {formatPrice(purchase.amount)} • Viewed {purchase.viewCount} time{purchase.viewCount !== 1 ? 's' : ''}
+                Paid {formatPrice(purchase.amount)}  Viewed {purchase.viewCount} time{purchase.viewCount !== 1 ? 's' : ''}
               </div>
             </div>
           )}

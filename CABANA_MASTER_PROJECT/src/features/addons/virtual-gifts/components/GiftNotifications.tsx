@@ -1,4 +1,4 @@
-// 🎁 GIFT NOTIFICATIONS - Real-time Gift Alerts
+//  GIFT NOTIFICATIONS - Real-time Gift Alerts
 
 import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '@/integrations/supabase/client';
@@ -101,7 +101,7 @@ export const GiftNotifications: React.FC<GiftNotificationsProps> = ({
     
     // Show toast
     toast({
-      title: `🎁 Gift Received!`,
+      title: ` Gift Received!`,
       description: `${transaction.quantity}x ${transaction.gift?.name} from ${
         transaction.isAnonymous ? 'Anonymous' : `@${transaction.sender?.username}`
       }`,
@@ -134,7 +134,7 @@ export const GiftNotifications: React.FC<GiftNotificationsProps> = ({
     
     // Show toast (lighter feedback for sent gifts)
     toast({
-      title: `Gift Sent ✨`,
+      title: `Gift Sent `,
       description: `${transaction.quantity}x ${transaction.gift?.name} sent successfully`,
       duration: 3000,
     });
@@ -299,7 +299,7 @@ const NotificationCard: React.FC<NotificationCardProps> = ({ notification, onClo
   
   const isReceived = type === 'received';
   const bgColor = isReceived ? 'bg-gradient-to-r from-green-600/90 to-emerald-600/90' : 'bg-gradient-to-r from-blue-600/90 to-indigo-600/90';
-  const icon = isReceived ? '🎁' : '✨';
+  const icon = isReceived ? '' : '';
 
   return (
     <div className={`${bgColor} backdrop-blur-md border border-white/20 rounded-xl p-4 shadow-lg pointer-events-auto transform transition-all duration-500 ease-out animate-in slide-in-from-right`}>

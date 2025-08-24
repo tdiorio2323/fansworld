@@ -1,4 +1,4 @@
-// 🔒 PPV ANALYTICS - Creator Dashboard & Insights
+//  PPV ANALYTICS - Creator Dashboard & Insights
 
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, TrendingDown, DollarSign, Eye, Users, MessageSquare, Calendar, Target, Award, BarChart3 } from 'lucide-react';
@@ -72,7 +72,7 @@ export const PPVAnalytics: React.FC<PPVAnalyticsProps> = ({ creatorId }) => {
   if (!hasData) {
     return (
       <div className=\"text-center py-12\">
-        <div className=\"text-6xl mb-6\">📊</div>
+        <div className=\"text-6xl mb-6\"></div>
         <h3 className=\"text-xl font-semibold text-white mb-2\">No analytics data yet</h3>
         <p className=\"text-gray-400 mb-4\">Create your first PPV message to start seeing analytics</p>
         <div className=\"text-sm text-purple-200\">

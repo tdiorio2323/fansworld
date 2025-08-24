@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, type Location } from 'react-router-dom'
 
 // Layout Components
 import MainLayout from '@/components/layout/MainLayout'
@@ -129,9 +129,29 @@ import DiscoverPage from '@/pages/DiscoverPage'
 import CategoriesPage from '@/pages/CategoriesPage'
 import CreatorProfilePage from '@/pages/CreatorProfilePage'
 
-const AppRoutes = () => {
+/**
+ * Props for the AppRoutes component.
+ * @remarks
+ * - `location` (optional): Allows overriding the current location for advanced routing scenarios.
+ */
+interface AppRoutesProps {
+  location?: Location;
+}
+
+/**
+ * Main application route configuration component.
+ *
+ * @param props - {@link AppRoutesProps}
+ * @returns The set of application routes for all major sections, layouts, and error handling.
+ *
+ * @remarks
+ * - Uses React Router v6 for route definitions.
+ * - Handles public, authentication, creator, user, admin, forum, community, legal, support, marketing, campaign, analytics, mobile, SEO, and error routes.
+ * - Supports nested layouts and dynamic route parameters.
+ */
+const AppRoutes: React.FC<AppRoutesProps> = ({ location }) => {
   return (
-    <Routes>
+    <Routes location={location}>
       {/* Public Routes */}
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
