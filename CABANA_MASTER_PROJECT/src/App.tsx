@@ -229,7 +229,7 @@ function App() {
       <AccessibilityProvider>
         <AuthProvider>
           <TooltipProvider>
-            <div>
+            <div data-testid="app-root">
               <Toaster />
               <Sonner />
               <BrowserRouter>

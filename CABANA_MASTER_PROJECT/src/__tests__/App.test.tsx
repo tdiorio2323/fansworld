@@ -5,6 +5,8 @@ import App from '../App';
 
 // Mock Supabase client
 vi.mock('@/integrations/supabase/client', () => ({
+  SUPABASE_URL: 'https://test.supabase.co',
+  SUPABASE_PUBLISHABLE_KEY: 'test-key',
   supabase: {
     auth: {
       getSession: vi.fn().mockResolvedValue({ data: { session: null }, error: null }),
