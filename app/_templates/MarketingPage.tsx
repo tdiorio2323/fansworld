@@ -13,7 +13,7 @@ export default function MarketingPage({
     return (
         <section className="py-16 md:py-24">
             <div className="max-w-3xl space-y-4">
-                <h1 className="text-4xl md:text-5xl font-semibold">{title}</h1>
+                <h1 className="text-4xl md:text-5xl font-semibold text-white">{title}</h1>
                 <p className="text-white/80 text-lg">{subtitle}</p>
                 <Link href={cta.href} className="inline-block">
                     <Button>{cta.label}</Button>
@@ -23,7 +23,7 @@ export default function MarketingPage({
             <div className="mt-12 grid gap-6 md:grid-cols-3">
                 {[1, 2, 3].map(i => (
                     <GlassCard key={i}>
-                        <h3 className="text-xl font-semibold mb-2">Feature {i}</h3>
+                        <h3 className="text-xl font-semibold mb-2 text-white">Feature {i}</h3>
                         <p className="text-white/80">Short value statement.</p>
                     </GlassCard>
                 ))}

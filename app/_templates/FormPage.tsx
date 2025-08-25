@@ -9,7 +9,7 @@ export default function FormPage({
 }) {
     return (
         <section className="py-16 md:py-24">
-            <h1 className="text-3xl md:text-4xl font-semibold mb-6">{title}</h1>
+            <h1 className="text-3xl md:text-4xl font-semibold mb-6 text-white">{title}</h1>
             <GlassCard>
                 <form className="space-y-5" action={onSubmitHref}>
                     <div>
