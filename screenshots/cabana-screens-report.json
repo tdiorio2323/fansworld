@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-08-23T23:17:09.789Z",
+  "screenshots": [
+    "auth-login-desktop.png",
+    "auth-login-mobile.png",
+    "pricing-desktop.png",
+    "pricing-mobile.png",
+    "creator-page-desktop.png",
+    "creator-page-mobile.png",
+    "paywalled-content-desktop.png",
+    "creator-content-desktop.png"
+  ],
+  "description": "CABANA platform screen captures for login, pricing, creator pages, and paywalled content"
+}

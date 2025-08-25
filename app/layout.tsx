@@ -1,6 +1,4 @@
 import './globals.css';
-import Navbar from '@/components/ui/navbar';
-import Footer from '@/components/ui/footer';
 import { ReactNode } from 'react';
 
 export const metadata = {
@@ -14,8 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className="relative min-h-screen">
-        {children}
+      <body className="min-h-dvh text-white antialiased">
+        <main className="container mx-auto px-4 py-8">
+          {children}
+        </main>
       </body>
     </html>
   );

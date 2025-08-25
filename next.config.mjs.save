@@ -1,0 +1,39 @@
+grep -R "next/dist/pages" -n .
+cd ~/CABANA_MASTER_PROJECT
+
+# ensure wget exists (macOS)
+command -v wget >/dev/null || brew install wget
+
+# 1) crawl the built site
+mkdir -p exported_pages
+wget --mirror --convert-links --adjust-extension --page-requisites \
+     --no-parent --level=2 \
+     http://localhost:8080/ \
+     -P exported_pages
+
+TARGET="exported_pages/localhost:8080"
+
+# 2) add SPA routes not linked in DOM (edit list as needed)
+cat > routes.seed <<'EOF'
+/
+/explore
+/pricing
+/auth/login
+/auth/register
+/creator/demo
+EOF
+xargs -I % wget -x -nH -P "$TARGET" "http://localhost:8080%" < routes.seed
+
+# 3) make a clickable index
+INDEX="$TARGET/all_pages.html"
+echo '<!doctype html><meta charset="utf-8"><title>Cabana pages</title><h1>Cabana pages</h1><ul>' > "$INDEX"
+find "$TARGET" -type f -name "*.html" | sed "s#^$TARGET/##" \
+ | awk '{printf "<li><a href=\"%s\">%s</a></li>\n",$0,$0}' >> "$INDEX"
+echo '</ul>' >> "$INDEX"
+open "$INDEX"
+
+# 4) optional: stop dev servers
+lsof -ti :8080,:3001 | xargs kill
+
+npm run export:html
+

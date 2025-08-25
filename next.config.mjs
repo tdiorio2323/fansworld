@@ -8,6 +8,15 @@ const nextConfig = {
   output: 'export',
   images: { unoptimized: true },
   outputFileTracingRoot: __dirname,
+  async redirects() {
+    return [
+      {
+        source: '/:path*.html',
+        destination: '/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

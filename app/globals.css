@@ -39,7 +39,10 @@ body,
 
 body {
   margin: 0;
-  background: var(--gradient-primary);
+  background: 
+    radial-gradient(60% 120% at 80% 50%, #ff1493 0%, transparent 70%),
+    radial-gradient(60% 120% at 20% 80%, #8b5cf6 0%, transparent 60%),
+    linear-gradient(135deg, #1a0b2e 0%, #2d1b69 30%, #6b46c1 60%, #ec4899 100%);
   background-attachment: fixed;
   color: var(--pearl-white);
   font-family: 'Inter', sans-serif;

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="vite.svg.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cabana - Premium Creator Platform</title>
+    <meta name="description" content="The luxury platform for creators and their fans. Join the exclusive community.">
+    <style>
+      .cabana-gradient-fixed {
+        background: linear-gradient(135deg, #e91e63 0%, #9c27b0 50%, #673ab7 100%);
+        background-attachment: fixed;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,3998 @@
+{
+  "routerType": "React Router v6 + Vite",
+  "routes": [
+    {
+      "route": "/",
+      "file": "src/pages/HomePage.tsx",
+      "linkSources": [
+        "/"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/*",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/403",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/500",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/about",
+      "file": "src/pages/public/AboutPage.tsx",
+      "linkSources": [
+        "/about"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/achievements",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/admin",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/admin"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/admin/analytics",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/admin/content",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/admin/content/moderation",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/admin/creators",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/admin/creators/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/admin/dashboard",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/admin/payments",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/admin/payments/disputes",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/admin/reports",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/admin/settings",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/admin/system",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/admin/users",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/admin/users/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/affiliates",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/analytics",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/analytics/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/analytics/insights",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/analytics/reports",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/analytics/tracking",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/app",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/auth",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/auth"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/auth/callback/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/auth/forgot-password",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/auth/forgot-password"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/auth/login",
+      "file": "src/pages/auth/LoginPage.tsx",
+      "linkSources": [
+        "/auth/login"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/auth/register",
+      "file": "src/pages/auth/RegisterPage.tsx",
+      "linkSources": [
+        "/auth/register"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/auth/reset-password",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/auth/two-factor",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/auth/verify-email",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/auth/verify-email"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/blog",
+      "file": "src/pages/public/BlogPage.tsx",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/callback/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/campaigns",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/campaigns/events/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/campaigns/partnerships/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/campaigns/seasonal/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/careers",
+      "file": "src/pages/public/CareersPage.tsx",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/categories",
+      "file": "src/pages/CategoriesPage.tsx",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/categories/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/challenges",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/challenges/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/community",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/community/achievements",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/community/challenges",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/community/challenges/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/community/events",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/community/events/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/community/groups",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/community/groups/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/community/leaderboards",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/compliance",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/contact",
+      "file": "src/pages/public/ContactPage.tsx",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/content",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/content/edit/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/content/moderation",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/content/new",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/content/scheduler",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/cookies",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/[param]",
+      "file": "src/pages/CreatorProfilePage.tsx",
+      "linkSources": [
+        "/creator/analytics",
+        "/creator/dashboard",
+        "/creator/earnings",
+        "/creator/fans",
+        "/creator/messaging",
+        "/creator/notifications",
+        "/creator/settings"
+      ],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/creator/analytics",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/creator/analytics"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/analytics/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/creator/content",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/content/edit/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/creator/content/new",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/creator/content/new"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/content/scheduler",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/dashboard",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/creator/dashboard"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/earnings",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/creator/earnings"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/earnings/history",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/earnings/taxes",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/fans",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/creator/fans"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/fans/analytics",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/fans/tiers",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/messaging",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/creator/messaging"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/messaging/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/creator/settings",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/creator/settings"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/settings/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/creator/tools",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creator/tools/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/creators",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/creators/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/dashboard",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/dashboard"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/discover",
+      "file": "src/pages/DiscoverPage.tsx",
+      "linkSources": [
+        "/discover"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/dmca",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/earnings",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/earnings/history",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/earnings/taxes",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/error",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/error/403",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/error/500",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/error/maintenance",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/error/offline",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/events",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/events/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/fans",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/fans/analytics",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/fans/tiers",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/faq",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/favorites",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/features",
+      "file": "src/pages/public/FeaturesPage.tsx",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/forgot-password",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/forgot-password"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/forum",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/forum/categories",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/forum/categories/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/forum/moderation",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/forum/moderation"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/forum/search",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/forum/search"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/forum/topics/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/forum/topics/new"
+      ],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/forum/topics/new",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/forum/topics/new"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/groups",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/groups/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/guides",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/guides/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/help",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/help/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/help/contact"
+      ],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/help/articles/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/history",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/insights",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/investors",
+      "file": "src/pages/public/InvestorsPage.tsx",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/landing/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/leaderboards",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/legal",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/legal/compliance",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/legal/cookies",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/legal/dmca",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/legal/privacy",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/legal/privacy"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/legal/terms",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/legal/terms"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/login",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/login"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/maintenance",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/marketing",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/marketing/affiliates",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/marketing/campaigns",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/marketing/landing/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/marketing/partnerships",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/marketing/promotions",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/marketing/referrals",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/messaging",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/messaging/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/mobile",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/mobile/app",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/mobile/responsive",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/moderation",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/notifications",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/notifications"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/offline",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/partnerships",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/partnerships/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/payments",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/payments/disputes",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/press",
+      "file": "src/pages/public/PressPage.tsx",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/pricing",
+      "file": "src/pages/public/PricingPage.tsx",
+      "linkSources": [
+        "/pricing"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/privacy",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/privacy"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/profile",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/profile"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/profile/edit",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/promotions",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/referrals",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/register",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/register"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/reports",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/reset-password",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/responsive",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/robots.txt",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/search",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/seasonal/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/settings",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/settings"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/settings/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/sitemap.xml",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/subscriptions",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/support",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/support"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/support/contact",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/support/contact"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/support/faq",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/support/faq"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/support/guides",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/support/guides/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/support/help",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/support/help"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/support/help/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/support/help/all"
+      ],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/support/help/articles/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/support/tickets",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/support/tickets"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/support/tickets/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/support/tickets/new",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/support/troubleshooting",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/support/tutorials",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/support/tutorials/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/system",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/terms",
+      "file": "UNKNOWN",
+      "linkSources": [
+        "/terms"
+      ],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/tickets",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/tickets/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/tickets/new",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/tools",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/tools/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/topics/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/topics/new",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/tracking",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/troubleshooting",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/tutorials",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/tutorials/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/two-factor",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/user",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/user/favorites",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/user/history",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/user/notifications",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/user/profile",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/user/profile/edit",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/user/settings",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/user/subscriptions",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/users",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    },
+    {
+      "route": "/users/[param]",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": "NOT_TESTED",
+      "ok": false
+    },
+    {
+      "route": "/verify-email",
+      "file": "UNKNOWN",
+      "linkSources": [],
+      "httpStatus": 404,
+      "ok": false
+    }
+  ],
+  "orphanLinks": [
+    "/creator-application",
+    "/demo",
+    "/forum/rules",
+    "/home",
+    "/messages",
+    "/onboarding",
+    "/user/home",
+    "/vip-access"
+  ],
+  "missingFiles": [
+    {
+      "route": "/*",
+      "expectedPaths": [
+        "src/pages/*/*Page.tsx",
+        "src/pages/*/*Page.jsx",
+        "src/pages/*/*.tsx",
+        "src/pages/*/*.jsx",
+        "src/pages/*/index.tsx",
+        "src/pages/*/index.jsx"
+      ]
+    },
+    {
+      "route": "/403",
+      "expectedPaths": [
+        "src/pages/403/403Page.tsx",
+        "src/pages/403/403Page.jsx",
+        "src/pages/403/403.tsx",
+        "src/pages/403/403.jsx",
+        "src/pages/403/index.tsx",
+        "src/pages/403/index.jsx"
+      ]
+    },
+    {
+      "route": "/500",
+      "expectedPaths": [
+        "src/pages/500/500Page.tsx",
+        "src/pages/500/500Page.jsx",
+        "src/pages/500/500.tsx",
+        "src/pages/500/500.jsx",
+        "src/pages/500/index.tsx",
+        "src/pages/500/index.jsx"
+      ]
+    },
+    {
+      "route": "/about",
+      "expectedPaths": [
+        "src/pages/about/AboutPage.tsx",
+        "src/pages/about/AboutPage.jsx",
+        "src/pages/about/About.tsx",
+        "src/pages/about/About.jsx",
+        "src/pages/about/index.tsx",
+        "src/pages/about/index.jsx"
+      ]
+    },
+    {
+      "route": "/achievements",
+      "expectedPaths": [
+        "src/pages/achievements/AchievementsPage.tsx",
+        "src/pages/achievements/AchievementsPage.jsx",
+        "src/pages/achievements/Achievements.tsx",
+        "src/pages/achievements/Achievements.jsx",
+        "src/pages/achievements/index.tsx",
+        "src/pages/achievements/index.jsx"
+      ]
+    },
+    {
+      "route": "/admin",
+      "expectedPaths": [
+        "src/pages/admin/AdminPage.tsx",
+        "src/pages/admin/AdminPage.jsx",
+        "src/pages/admin/Admin.tsx",
+        "src/pages/admin/Admin.jsx",
+        "src/pages/admin/index.tsx",
+        "src/pages/admin/index.jsx"
+      ]
+    },
+    {
+      "route": "/admin/analytics",
+      "expectedPaths": [
+        "src/pages/admin/analytics/AnalyticsPage.tsx",
+        "src/pages/admin/analytics/AnalyticsPage.jsx",
+        "src/pages/admin/analytics/Analytics.tsx",
+        "src/pages/admin/analytics/Analytics.jsx",
+        "src/pages/admin/analytics/index.tsx",
+        "src/pages/admin/analytics/index.jsx"
+      ]
+    },
+    {
+      "route": "/admin/content",
+      "expectedPaths": [
+        "src/pages/admin/content/ContentPage.tsx",
+        "src/pages/admin/content/ContentPage.jsx",
+        "src/pages/admin/content/Content.tsx",
+        "src/pages/admin/content/Content.jsx",
+        "src/pages/admin/content/index.tsx",
+        "src/pages/admin/content/index.jsx"
+      ]
+    },
+    {
+      "route": "/admin/content/moderation",
+      "expectedPaths": [
+        "src/pages/admin/content/moderation/ModerationPage.tsx",
+        "src/pages/admin/content/moderation/ModerationPage.jsx",
+        "src/pages/admin/content/moderation/Moderation.tsx",
+        "src/pages/admin/content/moderation/Moderation.jsx",
+        "src/pages/admin/content/moderation/index.tsx",
+        "src/pages/admin/content/moderation/index.jsx"
+      ]
+    },
+    {
+      "route": "/admin/creators",
+      "expectedPaths": [
+        "src/pages/admin/creators/CreatorsPage.tsx",
+        "src/pages/admin/creators/CreatorsPage.jsx",
+        "src/pages/admin/creators/Creators.tsx",
+        "src/pages/admin/creators/Creators.jsx",
+        "src/pages/admin/creators/index.tsx",
+        "src/pages/admin/creators/index.jsx"
+      ]
+    },
+    {
+      "route": "/admin/dashboard",
+      "expectedPaths": [
+        "src/pages/admin/dashboard/DashboardPage.tsx",
+        "src/pages/admin/dashboard/DashboardPage.jsx",
+        "src/pages/admin/dashboard/Dashboard.tsx",
+        "src/pages/admin/dashboard/Dashboard.jsx",
+        "src/pages/admin/dashboard/index.tsx",
+        "src/pages/admin/dashboard/index.jsx"
+      ]
+    },
+    {
+      "route": "/admin/payments",
+      "expectedPaths": [
+        "src/pages/admin/payments/PaymentsPage.tsx",
+        "src/pages/admin/payments/PaymentsPage.jsx",
+        "src/pages/admin/payments/Payments.tsx",
+        "src/pages/admin/payments/Payments.jsx",
+        "src/pages/admin/payments/index.tsx",
+        "src/pages/admin/payments/index.jsx"
+      ]
+    },
+    {
+      "route": "/admin/payments/disputes",
+      "expectedPaths": [
+        "src/pages/admin/payments/disputes/DisputesPage.tsx",
+        "src/pages/admin/payments/disputes/DisputesPage.jsx",
+        "src/pages/admin/payments/disputes/Disputes.tsx",
+        "src/pages/admin/payments/disputes/Disputes.jsx",
+        "src/pages/admin/payments/disputes/index.tsx",
+        "src/pages/admin/payments/disputes/index.jsx"
+      ]
+    },
+    {
+      "route": "/admin/reports",
+      "expectedPaths": [
+        "src/pages/admin/reports/ReportsPage.tsx",
+        "src/pages/admin/reports/ReportsPage.jsx",
+        "src/pages/admin/reports/Reports.tsx",
+        "src/pages/admin/reports/Reports.jsx",
+        "src/pages/admin/reports/index.tsx",
+        "src/pages/admin/reports/index.jsx"
+      ]
+    },
+    {
+      "route": "/admin/settings",
+      "expectedPaths": [
+        "src/pages/admin/settings/SettingsPage.tsx",
+        "src/pages/admin/settings/SettingsPage.jsx",
+        "src/pages/admin/settings/Settings.tsx",
+        "src/pages/admin/settings/Settings.jsx",
+        "src/pages/admin/settings/index.tsx",
+        "src/pages/admin/settings/index.jsx"
+      ]
+    },
+    {
+      "route": "/admin/system",
+      "expectedPaths": [
+        "src/pages/admin/system/SystemPage.tsx",
+        "src/pages/admin/system/SystemPage.jsx",
+        "src/pages/admin/system/System.tsx",
+        "src/pages/admin/system/System.jsx",
+        "src/pages/admin/system/index.tsx",
+        "src/pages/admin/system/index.jsx"
+      ]
+    },
+    {
+      "route": "/admin/users",
+      "expectedPaths": [
+        "src/pages/admin/users/UsersPage.tsx",
+        "src/pages/admin/users/UsersPage.jsx",
+        "src/pages/admin/users/Users.tsx",
+        "src/pages/admin/users/Users.jsx",
+        "src/pages/admin/users/index.tsx",
+        "src/pages/admin/users/index.jsx"
+      ]
+    },
+    {
+      "route": "/affiliates",
+      "expectedPaths": [
+        "src/pages/affiliates/AffiliatesPage.tsx",
+        "src/pages/affiliates/AffiliatesPage.jsx",
+        "src/pages/affiliates/Affiliates.tsx",
+        "src/pages/affiliates/Affiliates.jsx",
+        "src/pages/affiliates/index.tsx",
+        "src/pages/affiliates/index.jsx"
+      ]
+    },
+    {
+      "route": "/analytics",
+      "expectedPaths": [
+        "src/pages/analytics/AnalyticsPage.tsx",
+        "src/pages/analytics/AnalyticsPage.jsx",
+        "src/pages/analytics/Analytics.tsx",
+        "src/pages/analytics/Analytics.jsx",
+        "src/pages/analytics/index.tsx",
+        "src/pages/analytics/index.jsx"
+      ]
+    },
+    {
+      "route": "/analytics/insights",
+      "expectedPaths": [
+        "src/pages/analytics/insights/InsightsPage.tsx",
+        "src/pages/analytics/insights/InsightsPage.jsx",
+        "src/pages/analytics/insights/Insights.tsx",
+        "src/pages/analytics/insights/Insights.jsx",
+        "src/pages/analytics/insights/index.tsx",
+        "src/pages/analytics/insights/index.jsx"
+      ]
+    },
+    {
+      "route": "/analytics/reports",
+      "expectedPaths": [
+        "src/pages/analytics/reports/ReportsPage.tsx",
+        "src/pages/analytics/reports/ReportsPage.jsx",
+        "src/pages/analytics/reports/Reports.tsx",
+        "src/pages/analytics/reports/Reports.jsx",
+        "src/pages/analytics/reports/index.tsx",
+        "src/pages/analytics/reports/index.jsx"
+      ]
+    },
+    {
+      "route": "/analytics/tracking",
+      "expectedPaths": [
+        "src/pages/analytics/tracking/TrackingPage.tsx",
+        "src/pages/analytics/tracking/TrackingPage.jsx",
+        "src/pages/analytics/tracking/Tracking.tsx",
+        "src/pages/analytics/tracking/Tracking.jsx",
+        "src/pages/analytics/tracking/index.tsx",
+        "src/pages/analytics/tracking/index.jsx"
+      ]
+    },
+    {
+      "route": "/app",
+      "expectedPaths": [
+        "src/pages/app/AppPage.tsx",
+        "src/pages/app/AppPage.jsx",
+        "src/pages/app/App.tsx",
+        "src/pages/app/App.jsx",
+        "src/pages/app/index.tsx",
+        "src/pages/app/index.jsx"
+      ]
+    },
+    {
+      "route": "/auth",
+      "expectedPaths": [
+        "src/pages/auth/AuthPage.tsx",
+        "src/pages/auth/AuthPage.jsx",
+        "src/pages/auth/Auth.tsx",
+        "src/pages/auth/Auth.jsx",
+        "src/pages/auth/index.tsx",
+        "src/pages/auth/index.jsx"
+      ]
+    },
+    {
+      "route": "/auth/forgot-password",
+      "expectedPaths": [
+        "src/pages/auth/forgot-password/Forgot-passwordPage.tsx",
+        "src/pages/auth/forgot-password/Forgot-passwordPage.jsx",
+        "src/pages/auth/forgot-password/Forgot-password.tsx",
+        "src/pages/auth/forgot-password/Forgot-password.jsx",
+        "src/pages/auth/forgot-password/index.tsx",
+        "src/pages/auth/forgot-password/index.jsx"
+      ]
+    },
+    {
+      "route": "/auth/login",
+      "expectedPaths": [
+        "src/pages/auth/login/LoginPage.tsx",
+        "src/pages/auth/login/LoginPage.jsx",
+        "src/pages/auth/login/Login.tsx",
+        "src/pages/auth/login/Login.jsx",
+        "src/pages/auth/login/index.tsx",
+        "src/pages/auth/login/index.jsx"
+      ]
+    },
+    {
+      "route": "/auth/register",
+      "expectedPaths": [
+        "src/pages/auth/register/RegisterPage.tsx",
+        "src/pages/auth/register/RegisterPage.jsx",
+        "src/pages/auth/register/Register.tsx",
+        "src/pages/auth/register/Register.jsx",
+        "src/pages/auth/register/index.tsx",
+        "src/pages/auth/register/index.jsx"
+      ]
+    },
+    {
+      "route": "/auth/reset-password",
+      "expectedPaths": [
+        "src/pages/auth/reset-password/Reset-passwordPage.tsx",
+        "src/pages/auth/reset-password/Reset-passwordPage.jsx",
+        "src/pages/auth/reset-password/Reset-password.tsx",
+        "src/pages/auth/reset-password/Reset-password.jsx",
+        "src/pages/auth/reset-password/index.tsx",
+        "src/pages/auth/reset-password/index.jsx"
+      ]
+    },
+    {
+      "route": "/auth/two-factor",
+      "expectedPaths": [
+        "src/pages/auth/two-factor/Two-factorPage.tsx",
+        "src/pages/auth/two-factor/Two-factorPage.jsx",
+        "src/pages/auth/two-factor/Two-factor.tsx",
+        "src/pages/auth/two-factor/Two-factor.jsx",
+        "src/pages/auth/two-factor/index.tsx",
+        "src/pages/auth/two-factor/index.jsx"
+      ]
+    },
+    {
+      "route": "/auth/verify-email",
+      "expectedPaths": [
+        "src/pages/auth/verify-email/Verify-emailPage.tsx",
+        "src/pages/auth/verify-email/Verify-emailPage.jsx",
+        "src/pages/auth/verify-email/Verify-email.tsx",
+        "src/pages/auth/verify-email/Verify-email.jsx",
+        "src/pages/auth/verify-email/index.tsx",
+        "src/pages/auth/verify-email/index.jsx"
+      ]
+    },
+    {
+      "route": "/blog",
+      "expectedPaths": [
+        "src/pages/blog/BlogPage.tsx",
+        "src/pages/blog/BlogPage.jsx",
+        "src/pages/blog/Blog.tsx",
+        "src/pages/blog/Blog.jsx",
+        "src/pages/blog/index.tsx",
+        "src/pages/blog/index.jsx"
+      ]
+    },
+    {
+      "route": "/campaigns",
+      "expectedPaths": [
+        "src/pages/campaigns/CampaignsPage.tsx",
+        "src/pages/campaigns/CampaignsPage.jsx",
+        "src/pages/campaigns/Campaigns.tsx",
+        "src/pages/campaigns/Campaigns.jsx",
+        "src/pages/campaigns/index.tsx",
+        "src/pages/campaigns/index.jsx"
+      ]
+    },
+    {
+      "route": "/careers",
+      "expectedPaths": [
+        "src/pages/careers/CareersPage.tsx",
+        "src/pages/careers/CareersPage.jsx",
+        "src/pages/careers/Careers.tsx",
+        "src/pages/careers/Careers.jsx",
+        "src/pages/careers/index.tsx",
+        "src/pages/careers/index.jsx"
+      ]
+    },
+    {
+      "route": "/categories",
+      "expectedPaths": [
+        "src/pages/categories/CategoriesPage.tsx",
+        "src/pages/categories/CategoriesPage.jsx",
+        "src/pages/categories/Categories.tsx",
+        "src/pages/categories/Categories.jsx",
+        "src/pages/categories/index.tsx",
+        "src/pages/categories/index.jsx"
+      ]
+    },
+    {
+      "route": "/challenges",
+      "expectedPaths": [
+        "src/pages/challenges/ChallengesPage.tsx",
+        "src/pages/challenges/ChallengesPage.jsx",
+        "src/pages/challenges/Challenges.tsx",
+        "src/pages/challenges/Challenges.jsx",
+        "src/pages/challenges/index.tsx",
+        "src/pages/challenges/index.jsx"
+      ]
+    },
+    {
+      "route": "/community",
+      "expectedPaths": [
+        "src/pages/community/CommunityPage.tsx",
+        "src/pages/community/CommunityPage.jsx",
+        "src/pages/community/Community.tsx",
+        "src/pages/community/Community.jsx",
+        "src/pages/community/index.tsx",
+        "src/pages/community/index.jsx"
+      ]
+    },
+    {
+      "route": "/community/events",
+      "expectedPaths": [
+        "src/pages/community/events/EventsPage.tsx",
+        "src/pages/community/events/EventsPage.jsx",
+        "src/pages/community/events/Events.tsx",
+        "src/pages/community/events/Events.jsx",
+        "src/pages/community/events/index.tsx",
+        "src/pages/community/events/index.jsx"
+      ]
+    },
+    {
+      "route": "/community/leaderboards",
+      "expectedPaths": [
+        "src/pages/community/leaderboards/LeaderboardsPage.tsx",
+        "src/pages/community/leaderboards/LeaderboardsPage.jsx",
+        "src/pages/community/leaderboards/Leaderboards.tsx",
+        "src/pages/community/leaderboards/Leaderboards.jsx",
+        "src/pages/community/leaderboards/index.tsx",
+        "src/pages/community/leaderboards/index.jsx"
+      ]
+    },
+    {
+      "route": "/compliance",
+      "expectedPaths": [
+        "src/pages/compliance/CompliancePage.tsx",
+        "src/pages/compliance/CompliancePage.jsx",
+        "src/pages/compliance/Compliance.tsx",
+        "src/pages/compliance/Compliance.jsx",
+        "src/pages/compliance/index.tsx",
+        "src/pages/compliance/index.jsx"
+      ]
+    },
+    {
+      "route": "/contact",
+      "expectedPaths": [
+        "src/pages/contact/ContactPage.tsx",
+        "src/pages/contact/ContactPage.jsx",
+        "src/pages/contact/Contact.tsx",
+        "src/pages/contact/Contact.jsx",
+        "src/pages/contact/index.tsx",
+        "src/pages/contact/index.jsx"
+      ]
+    },
+    {
+      "route": "/content",
+      "expectedPaths": [
+        "src/pages/content/ContentPage.tsx",
+        "src/pages/content/ContentPage.jsx",
+        "src/pages/content/Content.tsx",
+        "src/pages/content/Content.jsx",
+        "src/pages/content/index.tsx",
+        "src/pages/content/index.jsx"
+      ]
+    },
+    {
+      "route": "/content/moderation",
+      "expectedPaths": [
+        "src/pages/content/moderation/ModerationPage.tsx",
+        "src/pages/content/moderation/ModerationPage.jsx",
+        "src/pages/content/moderation/Moderation.tsx",
+        "src/pages/content/moderation/Moderation.jsx",
+        "src/pages/content/moderation/index.tsx",
+        "src/pages/content/moderation/index.jsx"
+      ]
+    },
+    {
+      "route": "/content/new",
+      "expectedPaths": [
+        "src/pages/content/new/NewPage.tsx",
+        "src/pages/content/new/NewPage.jsx",
+        "src/pages/content/new/New.tsx",
+        "src/pages/content/new/New.jsx",
+        "src/pages/content/new/index.tsx",
+        "src/pages/content/new/index.jsx"
+      ]
+    },
+    {
+      "route": "/content/scheduler",
+      "expectedPaths": [
+        "src/pages/content/scheduler/SchedulerPage.tsx",
+        "src/pages/content/scheduler/SchedulerPage.jsx",
+        "src/pages/content/scheduler/Scheduler.tsx",
+        "src/pages/content/scheduler/Scheduler.jsx",
+        "src/pages/content/scheduler/index.tsx",
+        "src/pages/content/scheduler/index.jsx"
+      ]
+    },
+    {
+      "route": "/cookies",
+      "expectedPaths": [
+        "src/pages/cookies/CookiesPage.tsx",
+        "src/pages/cookies/CookiesPage.jsx",
+        "src/pages/cookies/Cookies.tsx",
+        "src/pages/cookies/Cookies.jsx",
+        "src/pages/cookies/index.tsx",
+        "src/pages/cookies/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator",
+      "expectedPaths": [
+        "src/pages/creator/CreatorPage.tsx",
+        "src/pages/creator/CreatorPage.jsx",
+        "src/pages/creator/Creator.tsx",
+        "src/pages/creator/Creator.jsx",
+        "src/pages/creator/index.tsx",
+        "src/pages/creator/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/analytics",
+      "expectedPaths": [
+        "src/pages/creator/analytics/AnalyticsPage.tsx",
+        "src/pages/creator/analytics/AnalyticsPage.jsx",
+        "src/pages/creator/analytics/Analytics.tsx",
+        "src/pages/creator/analytics/Analytics.jsx",
+        "src/pages/creator/analytics/index.tsx",
+        "src/pages/creator/analytics/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/content",
+      "expectedPaths": [
+        "src/pages/creator/content/ContentPage.tsx",
+        "src/pages/creator/content/ContentPage.jsx",
+        "src/pages/creator/content/Content.tsx",
+        "src/pages/creator/content/Content.jsx",
+        "src/pages/creator/content/index.tsx",
+        "src/pages/creator/content/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/content/new",
+      "expectedPaths": [
+        "src/pages/creator/content/new/NewPage.tsx",
+        "src/pages/creator/content/new/NewPage.jsx",
+        "src/pages/creator/content/new/New.tsx",
+        "src/pages/creator/content/new/New.jsx",
+        "src/pages/creator/content/new/index.tsx",
+        "src/pages/creator/content/new/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/content/scheduler",
+      "expectedPaths": [
+        "src/pages/creator/content/scheduler/SchedulerPage.tsx",
+        "src/pages/creator/content/scheduler/SchedulerPage.jsx",
+        "src/pages/creator/content/scheduler/Scheduler.tsx",
+        "src/pages/creator/content/scheduler/Scheduler.jsx",
+        "src/pages/creator/content/scheduler/index.tsx",
+        "src/pages/creator/content/scheduler/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/dashboard",
+      "expectedPaths": [
+        "src/pages/creator/dashboard/DashboardPage.tsx",
+        "src/pages/creator/dashboard/DashboardPage.jsx",
+        "src/pages/creator/dashboard/Dashboard.tsx",
+        "src/pages/creator/dashboard/Dashboard.jsx",
+        "src/pages/creator/dashboard/index.tsx",
+        "src/pages/creator/dashboard/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/earnings",
+      "expectedPaths": [
+        "src/pages/creator/earnings/EarningsPage.tsx",
+        "src/pages/creator/earnings/EarningsPage.jsx",
+        "src/pages/creator/earnings/Earnings.tsx",
+        "src/pages/creator/earnings/Earnings.jsx",
+        "src/pages/creator/earnings/index.tsx",
+        "src/pages/creator/earnings/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/earnings/history",
+      "expectedPaths": [
+        "src/pages/creator/earnings/history/HistoryPage.tsx",
+        "src/pages/creator/earnings/history/HistoryPage.jsx",
+        "src/pages/creator/earnings/history/History.tsx",
+        "src/pages/creator/earnings/history/History.jsx",
+        "src/pages/creator/earnings/history/index.tsx",
+        "src/pages/creator/earnings/history/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/earnings/taxes",
+      "expectedPaths": [
+        "src/pages/creator/earnings/taxes/TaxesPage.tsx",
+        "src/pages/creator/earnings/taxes/TaxesPage.jsx",
+        "src/pages/creator/earnings/taxes/Taxes.tsx",
+        "src/pages/creator/earnings/taxes/Taxes.jsx",
+        "src/pages/creator/earnings/taxes/index.tsx",
+        "src/pages/creator/earnings/taxes/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/fans",
+      "expectedPaths": [
+        "src/pages/creator/fans/FansPage.tsx",
+        "src/pages/creator/fans/FansPage.jsx",
+        "src/pages/creator/fans/Fans.tsx",
+        "src/pages/creator/fans/Fans.jsx",
+        "src/pages/creator/fans/index.tsx",
+        "src/pages/creator/fans/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/fans/analytics",
+      "expectedPaths": [
+        "src/pages/creator/fans/analytics/AnalyticsPage.tsx",
+        "src/pages/creator/fans/analytics/AnalyticsPage.jsx",
+        "src/pages/creator/fans/analytics/Analytics.tsx",
+        "src/pages/creator/fans/analytics/Analytics.jsx",
+        "src/pages/creator/fans/analytics/index.tsx",
+        "src/pages/creator/fans/analytics/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/fans/tiers",
+      "expectedPaths": [
+        "src/pages/creator/fans/tiers/TiersPage.tsx",
+        "src/pages/creator/fans/tiers/TiersPage.jsx",
+        "src/pages/creator/fans/tiers/Tiers.tsx",
+        "src/pages/creator/fans/tiers/Tiers.jsx",
+        "src/pages/creator/fans/tiers/index.tsx",
+        "src/pages/creator/fans/tiers/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/messaging",
+      "expectedPaths": [
+        "src/pages/creator/messaging/MessagingPage.tsx",
+        "src/pages/creator/messaging/MessagingPage.jsx",
+        "src/pages/creator/messaging/Messaging.tsx",
+        "src/pages/creator/messaging/Messaging.jsx",
+        "src/pages/creator/messaging/index.tsx",
+        "src/pages/creator/messaging/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/settings",
+      "expectedPaths": [
+        "src/pages/creator/settings/SettingsPage.tsx",
+        "src/pages/creator/settings/SettingsPage.jsx",
+        "src/pages/creator/settings/Settings.tsx",
+        "src/pages/creator/settings/Settings.jsx",
+        "src/pages/creator/settings/index.tsx",
+        "src/pages/creator/settings/index.jsx"
+      ]
+    },
+    {
+      "route": "/creator/tools",
+      "expectedPaths": [
+        "src/pages/creator/tools/ToolsPage.tsx",
+        "src/pages/creator/tools/ToolsPage.jsx",
+        "src/pages/creator/tools/Tools.tsx",
+        "src/pages/creator/tools/Tools.jsx",
+        "src/pages/creator/tools/index.tsx",
+        "src/pages/creator/tools/index.jsx"
+      ]
+    },
+    {
+      "route": "/creators",
+      "expectedPaths": [
+        "src/pages/creators/CreatorsPage.tsx",
+        "src/pages/creators/CreatorsPage.jsx",
+        "src/pages/creators/Creators.tsx",
+        "src/pages/creators/Creators.jsx",
+        "src/pages/creators/index.tsx",
+        "src/pages/creators/index.jsx"
+      ]
+    },
+    {
+      "route": "/dashboard",
+      "expectedPaths": [
+        "src/pages/dashboard/DashboardPage.tsx",
+        "src/pages/dashboard/DashboardPage.jsx",
+        "src/pages/dashboard/Dashboard.tsx",
+        "src/pages/dashboard/Dashboard.jsx",
+        "src/pages/dashboard/index.tsx",
+        "src/pages/dashboard/index.jsx"
+      ]
+    },
+    {
+      "route": "/discover",
+      "expectedPaths": [
+        "src/pages/discover/DiscoverPage.tsx",
+        "src/pages/discover/DiscoverPage.jsx",
+        "src/pages/discover/Discover.tsx",
+        "src/pages/discover/Discover.jsx",
+        "src/pages/discover/index.tsx",
+        "src/pages/discover/index.jsx"
+      ]
+    },
+    {
+      "route": "/dmca",
+      "expectedPaths": [
+        "src/pages/dmca/DmcaPage.tsx",
+        "src/pages/dmca/DmcaPage.jsx",
+        "src/pages/dmca/Dmca.tsx",
+        "src/pages/dmca/Dmca.jsx",
+        "src/pages/dmca/index.tsx",
+        "src/pages/dmca/index.jsx"
+      ]
+    },
+    {
+      "route": "/earnings",
+      "expectedPaths": [
+        "src/pages/earnings/EarningsPage.tsx",
+        "src/pages/earnings/EarningsPage.jsx",
+        "src/pages/earnings/Earnings.tsx",
+        "src/pages/earnings/Earnings.jsx",
+        "src/pages/earnings/index.tsx",
+        "src/pages/earnings/index.jsx"
+      ]
+    },
+    {
+      "route": "/earnings/history",
+      "expectedPaths": [
+        "src/pages/earnings/history/HistoryPage.tsx",
+        "src/pages/earnings/history/HistoryPage.jsx",
+        "src/pages/earnings/history/History.tsx",
+        "src/pages/earnings/history/History.jsx",
+        "src/pages/earnings/history/index.tsx",
+        "src/pages/earnings/history/index.jsx"
+      ]
+    },
+    {
+      "route": "/earnings/taxes",
+      "expectedPaths": [
+        "src/pages/earnings/taxes/TaxesPage.tsx",
+        "src/pages/earnings/taxes/TaxesPage.jsx",
+        "src/pages/earnings/taxes/Taxes.tsx",
+        "src/pages/earnings/taxes/Taxes.jsx",
+        "src/pages/earnings/taxes/index.tsx",
+        "src/pages/earnings/taxes/index.jsx"
+      ]
+    },
+    {
+      "route": "/error",
+      "expectedPaths": [
+        "src/pages/error/ErrorPage.tsx",
+        "src/pages/error/ErrorPage.jsx",
+        "src/pages/error/Error.tsx",
+        "src/pages/error/Error.jsx",
+        "src/pages/error/index.tsx",
+        "src/pages/error/index.jsx"
+      ]
+    },
+    {
+      "route": "/error/403",
+      "expectedPaths": [
+        "src/pages/error/403/403Page.tsx",
+        "src/pages/error/403/403Page.jsx",
+        "src/pages/error/403/403.tsx",
+        "src/pages/error/403/403.jsx",
+        "src/pages/error/403/index.tsx",
+        "src/pages/error/403/index.jsx"
+      ]
+    },
+    {
+      "route": "/error/500",
+      "expectedPaths": [
+        "src/pages/error/500/500Page.tsx",
+        "src/pages/error/500/500Page.jsx",
+        "src/pages/error/500/500.tsx",
+        "src/pages/error/500/500.jsx",
+        "src/pages/error/500/index.tsx",
+        "src/pages/error/500/index.jsx"
+      ]
+    },
+    {
+      "route": "/error/maintenance",
+      "expectedPaths": [
+        "src/pages/error/maintenance/MaintenancePage.tsx",
+        "src/pages/error/maintenance/MaintenancePage.jsx",
+        "src/pages/error/maintenance/Maintenance.tsx",
+        "src/pages/error/maintenance/Maintenance.jsx",
+        "src/pages/error/maintenance/index.tsx",
+        "src/pages/error/maintenance/index.jsx"
+      ]
+    },
+    {
+      "route": "/error/offline",
+      "expectedPaths": [
+        "src/pages/error/offline/OfflinePage.tsx",
+        "src/pages/error/offline/OfflinePage.jsx",
+        "src/pages/error/offline/Offline.tsx",
+        "src/pages/error/offline/Offline.jsx",
+        "src/pages/error/offline/index.tsx",
+        "src/pages/error/offline/index.jsx"
+      ]
+    },
+    {
+      "route": "/events",
+      "expectedPaths": [
+        "src/pages/events/EventsPage.tsx",
+        "src/pages/events/EventsPage.jsx",
+        "src/pages/events/Events.tsx",
+        "src/pages/events/Events.jsx",
+        "src/pages/events/index.tsx",
+        "src/pages/events/index.jsx"
+      ]
+    },
+    {
+      "route": "/fans",
+      "expectedPaths": [
+        "src/pages/fans/FansPage.tsx",
+        "src/pages/fans/FansPage.jsx",
+        "src/pages/fans/Fans.tsx",
+        "src/pages/fans/Fans.jsx",
+        "src/pages/fans/index.tsx",
+        "src/pages/fans/index.jsx"
+      ]
+    },
+    {
+      "route": "/fans/analytics",
+      "expectedPaths": [
+        "src/pages/fans/analytics/AnalyticsPage.tsx",
+        "src/pages/fans/analytics/AnalyticsPage.jsx",
+        "src/pages/fans/analytics/Analytics.tsx",
+        "src/pages/fans/analytics/Analytics.jsx",
+        "src/pages/fans/analytics/index.tsx",
+        "src/pages/fans/analytics/index.jsx"
+      ]
+    },
+    {
+      "route": "/fans/tiers",
+      "expectedPaths": [
+        "src/pages/fans/tiers/TiersPage.tsx",
+        "src/pages/fans/tiers/TiersPage.jsx",
+        "src/pages/fans/tiers/Tiers.tsx",
+        "src/pages/fans/tiers/Tiers.jsx",
+        "src/pages/fans/tiers/index.tsx",
+        "src/pages/fans/tiers/index.jsx"
+      ]
+    },
+    {
+      "route": "/faq",
+      "expectedPaths": [
+        "src/pages/faq/FaqPage.tsx",
+        "src/pages/faq/FaqPage.jsx",
+        "src/pages/faq/Faq.tsx",
+        "src/pages/faq/Faq.jsx",
+        "src/pages/faq/index.tsx",
+        "src/pages/faq/index.jsx"
+      ]
+    },
+    {
+      "route": "/favorites",
+      "expectedPaths": [
+        "src/pages/favorites/FavoritesPage.tsx",
+        "src/pages/favorites/FavoritesPage.jsx",
+        "src/pages/favorites/Favorites.tsx",
+        "src/pages/favorites/Favorites.jsx",
+        "src/pages/favorites/index.tsx",
+        "src/pages/favorites/index.jsx"
+      ]
+    },
+    {
+      "route": "/features",
+      "expectedPaths": [
+        "src/pages/features/FeaturesPage.tsx",
+        "src/pages/features/FeaturesPage.jsx",
+        "src/pages/features/Features.tsx",
+        "src/pages/features/Features.jsx",
+        "src/pages/features/index.tsx",
+        "src/pages/features/index.jsx"
+      ]
+    },
+    {
+      "route": "/forgot-password",
+      "expectedPaths": [
+        "src/pages/forgot-password/Forgot-passwordPage.tsx",
+        "src/pages/forgot-password/Forgot-passwordPage.jsx",
+        "src/pages/forgot-password/Forgot-password.tsx",
+        "src/pages/forgot-password/Forgot-password.jsx",
+        "src/pages/forgot-password/index.tsx",
+        "src/pages/forgot-password/index.jsx"
+      ]
+    },
+    {
+      "route": "/forum",
+      "expectedPaths": [
+        "src/pages/forum/ForumPage.tsx",
+        "src/pages/forum/ForumPage.jsx",
+        "src/pages/forum/Forum.tsx",
+        "src/pages/forum/Forum.jsx",
+        "src/pages/forum/index.tsx",
+        "src/pages/forum/index.jsx"
+      ]
+    },
+    {
+      "route": "/forum/categories",
+      "expectedPaths": [
+        "src/pages/forum/categories/CategoriesPage.tsx",
+        "src/pages/forum/categories/CategoriesPage.jsx",
+        "src/pages/forum/categories/Categories.tsx",
+        "src/pages/forum/categories/Categories.jsx",
+        "src/pages/forum/categories/index.tsx",
+        "src/pages/forum/categories/index.jsx"
+      ]
+    },
+    {
+      "route": "/forum/moderation",
+      "expectedPaths": [
+        "src/pages/forum/moderation/ModerationPage.tsx",
+        "src/pages/forum/moderation/ModerationPage.jsx",
+        "src/pages/forum/moderation/Moderation.tsx",
+        "src/pages/forum/moderation/Moderation.jsx",
+        "src/pages/forum/moderation/index.tsx",
+        "src/pages/forum/moderation/index.jsx"
+      ]
+    },
+    {
+      "route": "/forum/search",
+      "expectedPaths": [
+        "src/pages/forum/search/SearchPage.tsx",
+        "src/pages/forum/search/SearchPage.jsx",
+        "src/pages/forum/search/Search.tsx",
+        "src/pages/forum/search/Search.jsx",
+        "src/pages/forum/search/index.tsx",
+        "src/pages/forum/search/index.jsx"
+      ]
+    },
+    {
+      "route": "/forum/topics/new",
+      "expectedPaths": [
+        "src/pages/forum/topics/new/NewPage.tsx",
+        "src/pages/forum/topics/new/NewPage.jsx",
+        "src/pages/forum/topics/new/New.tsx",
+        "src/pages/forum/topics/new/New.jsx",
+        "src/pages/forum/topics/new/index.tsx",
+        "src/pages/forum/topics/new/index.jsx"
+      ]
+    },
+    {
+      "route": "/groups",
+      "expectedPaths": [
+        "src/pages/groups/GroupsPage.tsx",
+        "src/pages/groups/GroupsPage.jsx",
+        "src/pages/groups/Groups.tsx",
+        "src/pages/groups/Groups.jsx",
+        "src/pages/groups/index.tsx",
+        "src/pages/groups/index.jsx"
+      ]
+    },
+    {
+      "route": "/guides",
+      "expectedPaths": [
+        "src/pages/guides/GuidesPage.tsx",
+        "src/pages/guides/GuidesPage.jsx",
+        "src/pages/guides/Guides.tsx",
+        "src/pages/guides/Guides.jsx",
+        "src/pages/guides/index.tsx",
+        "src/pages/guides/index.jsx"
+      ]
+    },
+    {
+      "route": "/help",
+      "expectedPaths": [
+        "src/pages/help/HelpPage.tsx",
+        "src/pages/help/HelpPage.jsx",
+        "src/pages/help/Help.tsx",
+        "src/pages/help/Help.jsx",
+        "src/pages/help/index.tsx",
+        "src/pages/help/index.jsx"
+      ]
+    },
+    {
+      "route": "/history",
+      "expectedPaths": [
+        "src/pages/history/HistoryPage.tsx",
+        "src/pages/history/HistoryPage.jsx",
+        "src/pages/history/History.tsx",
+        "src/pages/history/History.jsx",
+        "src/pages/history/index.tsx",
+        "src/pages/history/index.jsx"
+      ]
+    },
+    {
+      "route": "/insights",
+      "expectedPaths": [
+        "src/pages/insights/InsightsPage.tsx",
+        "src/pages/insights/InsightsPage.jsx",
+        "src/pages/insights/Insights.tsx",
+        "src/pages/insights/Insights.jsx",
+        "src/pages/insights/index.tsx",
+        "src/pages/insights/index.jsx"
+      ]
+    },
+    {
+      "route": "/investors",
+      "expectedPaths": [
+        "src/pages/investors/InvestorsPage.tsx",
+        "src/pages/investors/InvestorsPage.jsx",
+        "src/pages/investors/Investors.tsx",
+        "src/pages/investors/Investors.jsx",
+        "src/pages/investors/index.tsx",
+        "src/pages/investors/index.jsx"
+      ]
+    },
+    {
+      "route": "/leaderboards",
+      "expectedPaths": [
+        "src/pages/leaderboards/LeaderboardsPage.tsx",
+        "src/pages/leaderboards/LeaderboardsPage.jsx",
+        "src/pages/leaderboards/Leaderboards.tsx",
+        "src/pages/leaderboards/Leaderboards.jsx",
+        "src/pages/leaderboards/index.tsx",
+        "src/pages/leaderboards/index.jsx"
+      ]
+    },
+    {
+      "route": "/legal",
+      "expectedPaths": [
+        "src/pages/legal/LegalPage.tsx",
+        "src/pages/legal/LegalPage.jsx",
+        "src/pages/legal/Legal.tsx",
+        "src/pages/legal/Legal.jsx",
+        "src/pages/legal/index.tsx",
+        "src/pages/legal/index.jsx"
+      ]
+    },
+    {
+      "route": "/legal/compliance",
+      "expectedPaths": [
+        "src/pages/legal/compliance/CompliancePage.tsx",
+        "src/pages/legal/compliance/CompliancePage.jsx",
+        "src/pages/legal/compliance/Compliance.tsx",
+        "src/pages/legal/compliance/Compliance.jsx",
+        "src/pages/legal/compliance/index.tsx",
+        "src/pages/legal/compliance/index.jsx"
+      ]
+    },
+    {
+      "route": "/legal/cookies",
+      "expectedPaths": [
+        "src/pages/legal/cookies/CookiesPage.tsx",
+        "src/pages/legal/cookies/CookiesPage.jsx",
+        "src/pages/legal/cookies/Cookies.tsx",
+        "src/pages/legal/cookies/Cookies.jsx",
+        "src/pages/legal/cookies/index.tsx",
+        "src/pages/legal/cookies/index.jsx"
+      ]
+    },
+    {
+      "route": "/legal/dmca",
+      "expectedPaths": [
+        "src/pages/legal/dmca/DmcaPage.tsx",
+        "src/pages/legal/dmca/DmcaPage.jsx",
+        "src/pages/legal/dmca/Dmca.tsx",
+        "src/pages/legal/dmca/Dmca.jsx",
+        "src/pages/legal/dmca/index.tsx",
+        "src/pages/legal/dmca/index.jsx"
+      ]
+    },
+    {
+      "route": "/legal/privacy",
+      "expectedPaths": [
+        "src/pages/legal/privacy/PrivacyPage.tsx",
+        "src/pages/legal/privacy/PrivacyPage.jsx",
+        "src/pages/legal/privacy/Privacy.tsx",
+        "src/pages/legal/privacy/Privacy.jsx",
+        "src/pages/legal/privacy/index.tsx",
+        "src/pages/legal/privacy/index.jsx"
+      ]
+    },
+    {
+      "route": "/legal/terms",
+      "expectedPaths": [
+        "src/pages/legal/terms/TermsPage.tsx",
+        "src/pages/legal/terms/TermsPage.jsx",
+        "src/pages/legal/terms/Terms.tsx",
+        "src/pages/legal/terms/Terms.jsx",
+        "src/pages/legal/terms/index.tsx",
+        "src/pages/legal/terms/index.jsx"
+      ]
+    },
+    {
+      "route": "/login",
+      "expectedPaths": [
+        "src/pages/login/LoginPage.tsx",
+        "src/pages/login/LoginPage.jsx",
+        "src/pages/login/Login.tsx",
+        "src/pages/login/Login.jsx",
+        "src/pages/login/index.tsx",
+        "src/pages/login/index.jsx"
+      ]
+    },
+    {
+      "route": "/maintenance",
+      "expectedPaths": [
+        "src/pages/maintenance/MaintenancePage.tsx",
+        "src/pages/maintenance/MaintenancePage.jsx",
+        "src/pages/maintenance/Maintenance.tsx",
+        "src/pages/maintenance/Maintenance.jsx",
+        "src/pages/maintenance/index.tsx",
+        "src/pages/maintenance/index.jsx"
+      ]
+    },
+    {
+      "route": "/marketing",
+      "expectedPaths": [
+        "src/pages/marketing/MarketingPage.tsx",
+        "src/pages/marketing/MarketingPage.jsx",
+        "src/pages/marketing/Marketing.tsx",
+        "src/pages/marketing/Marketing.jsx",
+        "src/pages/marketing/index.tsx",
+        "src/pages/marketing/index.jsx"
+      ]
+    },
+    {
+      "route": "/marketing/campaigns",
+      "expectedPaths": [
+        "src/pages/marketing/campaigns/CampaignsPage.tsx",
+        "src/pages/marketing/campaigns/CampaignsPage.jsx",
+        "src/pages/marketing/campaigns/Campaigns.tsx",
+        "src/pages/marketing/campaigns/Campaigns.jsx",
+        "src/pages/marketing/campaigns/index.tsx",
+        "src/pages/marketing/campaigns/index.jsx"
+      ]
+    },
+    {
+      "route": "/messaging",
+      "expectedPaths": [
+        "src/pages/messaging/MessagingPage.tsx",
+        "src/pages/messaging/MessagingPage.jsx",
+        "src/pages/messaging/Messaging.tsx",
+        "src/pages/messaging/Messaging.jsx",
+        "src/pages/messaging/index.tsx",
+        "src/pages/messaging/index.jsx"
+      ]
+    },
+    {
+      "route": "/mobile",
+      "expectedPaths": [
+        "src/pages/mobile/MobilePage.tsx",
+        "src/pages/mobile/MobilePage.jsx",
+        "src/pages/mobile/Mobile.tsx",
+        "src/pages/mobile/Mobile.jsx",
+        "src/pages/mobile/index.tsx",
+        "src/pages/mobile/index.jsx"
+      ]
+    },
+    {
+      "route": "/mobile/app",
+      "expectedPaths": [
+        "src/pages/mobile/app/AppPage.tsx",
+        "src/pages/mobile/app/AppPage.jsx",
+        "src/pages/mobile/app/App.tsx",
+        "src/pages/mobile/app/App.jsx",
+        "src/pages/mobile/app/index.tsx",
+        "src/pages/mobile/app/index.jsx"
+      ]
+    },
+    {
+      "route": "/mobile/responsive",
+      "expectedPaths": [
+        "src/pages/mobile/responsive/ResponsivePage.tsx",
+        "src/pages/mobile/responsive/ResponsivePage.jsx",
+        "src/pages/mobile/responsive/Responsive.tsx",
+        "src/pages/mobile/responsive/Responsive.jsx",
+        "src/pages/mobile/responsive/index.tsx",
+        "src/pages/mobile/responsive/index.jsx"
+      ]
+    },
+    {
+      "route": "/moderation",
+      "expectedPaths": [
+        "src/pages/moderation/ModerationPage.tsx",
+        "src/pages/moderation/ModerationPage.jsx",
+        "src/pages/moderation/Moderation.tsx",
+        "src/pages/moderation/Moderation.jsx",
+        "src/pages/moderation/index.tsx",
+        "src/pages/moderation/index.jsx"
+      ]
+    },
+    {
+      "route": "/notifications",
+      "expectedPaths": [
+        "src/pages/notifications/NotificationsPage.tsx",
+        "src/pages/notifications/NotificationsPage.jsx",
+        "src/pages/notifications/Notifications.tsx",
+        "src/pages/notifications/Notifications.jsx",
+        "src/pages/notifications/index.tsx",
+        "src/pages/notifications/index.jsx"
+      ]
+    },
+    {
+      "route": "/offline",
+      "expectedPaths": [
+        "src/pages/offline/OfflinePage.tsx",
+        "src/pages/offline/OfflinePage.jsx",
+        "src/pages/offline/Offline.tsx",
+        "src/pages/offline/Offline.jsx",
+        "src/pages/offline/index.tsx",
+        "src/pages/offline/index.jsx"
+      ]
+    },
+    {
+      "route": "/partnerships",
+      "expectedPaths": [
+        "src/pages/partnerships/PartnershipsPage.tsx",
+        "src/pages/partnerships/PartnershipsPage.jsx",
+        "src/pages/partnerships/Partnerships.tsx",
+        "src/pages/partnerships/Partnerships.jsx",
+        "src/pages/partnerships/index.tsx",
+        "src/pages/partnerships/index.jsx"
+      ]
+    },
+    {
+      "route": "/payments",
+      "expectedPaths": [
+        "src/pages/payments/PaymentsPage.tsx",
+        "src/pages/payments/PaymentsPage.jsx",
+        "src/pages/payments/Payments.tsx",
+        "src/pages/payments/Payments.jsx",
+        "src/pages/payments/index.tsx",
+        "src/pages/payments/index.jsx"
+      ]
+    },
+    {
+      "route": "/payments/disputes",
+      "expectedPaths": [
+        "src/pages/payments/disputes/DisputesPage.tsx",
+        "src/pages/payments/disputes/DisputesPage.jsx",
+        "src/pages/payments/disputes/Disputes.tsx",
+        "src/pages/payments/disputes/Disputes.jsx",
+        "src/pages/payments/disputes/index.tsx",
+        "src/pages/payments/disputes/index.jsx"
+      ]
+    },
+    {
+      "route": "/press",
+      "expectedPaths": [
+        "src/pages/press/PressPage.tsx",
+        "src/pages/press/PressPage.jsx",
+        "src/pages/press/Press.tsx",
+        "src/pages/press/Press.jsx",
+        "src/pages/press/index.tsx",
+        "src/pages/press/index.jsx"
+      ]
+    },
+    {
+      "route": "/pricing",
+      "expectedPaths": [
+        "src/pages/pricing/PricingPage.tsx",
+        "src/pages/pricing/PricingPage.jsx",
+        "src/pages/pricing/Pricing.tsx",
+        "src/pages/pricing/Pricing.jsx",
+        "src/pages/pricing/index.tsx",
+        "src/pages/pricing/index.jsx"
+      ]
+    },
+    {
+      "route": "/privacy",
+      "expectedPaths": [
+        "src/pages/privacy/PrivacyPage.tsx",
+        "src/pages/privacy/PrivacyPage.jsx",
+        "src/pages/privacy/Privacy.tsx",
+        "src/pages/privacy/Privacy.jsx",
+        "src/pages/privacy/index.tsx",
+        "src/pages/privacy/index.jsx"
+      ]
+    },
+    {
+      "route": "/profile",
+      "expectedPaths": [
+        "src/pages/profile/ProfilePage.tsx",
+        "src/pages/profile/ProfilePage.jsx",
+        "src/pages/profile/Profile.tsx",
+        "src/pages/profile/Profile.jsx",
+        "src/pages/profile/index.tsx",
+        "src/pages/profile/index.jsx"
+      ]
+    },
+    {
+      "route": "/profile/edit",
+      "expectedPaths": [
+        "src/pages/profile/edit/EditPage.tsx",
+        "src/pages/profile/edit/EditPage.jsx",
+        "src/pages/profile/edit/Edit.tsx",
+        "src/pages/profile/edit/Edit.jsx",
+        "src/pages/profile/edit/index.tsx",
+        "src/pages/profile/edit/index.jsx"
+      ]
+    },
+    {
+      "route": "/promotions",
+      "expectedPaths": [
+        "src/pages/promotions/PromotionsPage.tsx",
+        "src/pages/promotions/PromotionsPage.jsx",
+        "src/pages/promotions/Promotions.tsx",
+        "src/pages/promotions/Promotions.jsx",
+        "src/pages/promotions/index.tsx",
+        "src/pages/promotions/index.jsx"
+      ]
+    },
+    {
+      "route": "/referrals",
+      "expectedPaths": [
+        "src/pages/referrals/ReferralsPage.tsx",
+        "src/pages/referrals/ReferralsPage.jsx",
+        "src/pages/referrals/Referrals.tsx",
+        "src/pages/referrals/Referrals.jsx",
+        "src/pages/referrals/index.tsx",
+        "src/pages/referrals/index.jsx"
+      ]
+    },
+    {
+      "route": "/register",
+      "expectedPaths": [
+        "src/pages/register/RegisterPage.tsx",
+        "src/pages/register/RegisterPage.jsx",
+        "src/pages/register/Register.tsx",
+        "src/pages/register/Register.jsx",
+        "src/pages/register/index.tsx",
+        "src/pages/register/index.jsx"
+      ]
+    },
+    {
+      "route": "/reports",
+      "expectedPaths": [
+        "src/pages/reports/ReportsPage.tsx",
+        "src/pages/reports/ReportsPage.jsx",
+        "src/pages/reports/Reports.tsx",
+        "src/pages/reports/Reports.jsx",
+        "src/pages/reports/index.tsx",
+        "src/pages/reports/index.jsx"
+      ]
+    },
+    {
+      "route": "/reset-password",
+      "expectedPaths": [
+        "src/pages/reset-password/Reset-passwordPage.tsx",
+        "src/pages/reset-password/Reset-passwordPage.jsx",
+        "src/pages/reset-password/Reset-password.tsx",
+        "src/pages/reset-password/Reset-password.jsx",
+        "src/pages/reset-password/index.tsx",
+        "src/pages/reset-password/index.jsx"
+      ]
+    },
+    {
+      "route": "/responsive",
+      "expectedPaths": [
+        "src/pages/responsive/ResponsivePage.tsx",
+        "src/pages/responsive/ResponsivePage.jsx",
+        "src/pages/responsive/Responsive.tsx",
+        "src/pages/responsive/Responsive.jsx",
+        "src/pages/responsive/index.tsx",
+        "src/pages/responsive/index.jsx"
+      ]
+    },
+    {
+      "route": "/robots.txt",
+      "expectedPaths": [
+        "src/pages/robots.txt/Robots.txtPage.tsx",
+        "src/pages/robots.txt/Robots.txtPage.jsx",
+        "src/pages/robots.txt/Robots.txt.tsx",
+        "src/pages/robots.txt/Robots.txt.jsx",
+        "src/pages/robots.txt/index.tsx",
+        "src/pages/robots.txt/index.jsx"
+      ]
+    },
+    {
+      "route": "/search",
+      "expectedPaths": [
+        "src/pages/search/SearchPage.tsx",
+        "src/pages/search/SearchPage.jsx",
+        "src/pages/search/Search.tsx",
+        "src/pages/search/Search.jsx",
+        "src/pages/search/index.tsx",
+        "src/pages/search/index.jsx"
+      ]
+    },
+    {
+      "route": "/settings",
+      "expectedPaths": [
+        "src/pages/settings/SettingsPage.tsx",
+        "src/pages/settings/SettingsPage.jsx",
+        "src/pages/settings/Settings.tsx",
+        "src/pages/settings/Settings.jsx",
+        "src/pages/settings/index.tsx",
+        "src/pages/settings/index.jsx"
+      ]
+    },
+    {
+      "route": "/sitemap.xml",
+      "expectedPaths": [
+        "src/pages/sitemap.xml/Sitemap.xmlPage.tsx",
+        "src/pages/sitemap.xml/Sitemap.xmlPage.jsx",
+        "src/pages/sitemap.xml/Sitemap.xml.tsx",
+        "src/pages/sitemap.xml/Sitemap.xml.jsx",
+        "src/pages/sitemap.xml/index.tsx",
+        "src/pages/sitemap.xml/index.jsx"
+      ]
+    },
+    {
+      "route": "/subscriptions",
+      "expectedPaths": [
+        "src/pages/subscriptions/SubscriptionsPage.tsx",
+        "src/pages/subscriptions/SubscriptionsPage.jsx",
+        "src/pages/subscriptions/Subscriptions.tsx",
+        "src/pages/subscriptions/Subscriptions.jsx",
+        "src/pages/subscriptions/index.tsx",
+        "src/pages/subscriptions/index.jsx"
+      ]
+    },
+    {
+      "route": "/support",
+      "expectedPaths": [
+        "src/pages/support/SupportPage.tsx",
+        "src/pages/support/SupportPage.jsx",
+        "src/pages/support/Support.tsx",
+        "src/pages/support/Support.jsx",
+        "src/pages/support/index.tsx",
+        "src/pages/support/index.jsx"
+      ]
+    },
+    {
+      "route": "/support/faq",
+      "expectedPaths": [
+        "src/pages/support/faq/FaqPage.tsx",
+        "src/pages/support/faq/FaqPage.jsx",
+        "src/pages/support/faq/Faq.tsx",
+        "src/pages/support/faq/Faq.jsx",
+        "src/pages/support/faq/index.tsx",
+        "src/pages/support/faq/index.jsx"
+      ]
+    },
+    {
+      "route": "/support/guides",
+      "expectedPaths": [
+        "src/pages/support/guides/GuidesPage.tsx",
+        "src/pages/support/guides/GuidesPage.jsx",
+        "src/pages/support/guides/Guides.tsx",
+        "src/pages/support/guides/Guides.jsx",
+        "src/pages/support/guides/index.tsx",
+        "src/pages/support/guides/index.jsx"
+      ]
+    },
+    {
+      "route": "/support/help",
+      "expectedPaths": [
+        "src/pages/support/help/HelpPage.tsx",
+        "src/pages/support/help/HelpPage.jsx",
+        "src/pages/support/help/Help.tsx",
+        "src/pages/support/help/Help.jsx",
+        "src/pages/support/help/index.tsx",
+        "src/pages/support/help/index.jsx"
+      ]
+    },
+    {
+      "route": "/support/tickets",
+      "expectedPaths": [
+        "src/pages/support/tickets/TicketsPage.tsx",
+        "src/pages/support/tickets/TicketsPage.jsx",
+        "src/pages/support/tickets/Tickets.tsx",
+        "src/pages/support/tickets/Tickets.jsx",
+        "src/pages/support/tickets/index.tsx",
+        "src/pages/support/tickets/index.jsx"
+      ]
+    },
+    {
+      "route": "/support/tickets/new",
+      "expectedPaths": [
+        "src/pages/support/tickets/new/NewPage.tsx",
+        "src/pages/support/tickets/new/NewPage.jsx",
+        "src/pages/support/tickets/new/New.tsx",
+        "src/pages/support/tickets/new/New.jsx",
+        "src/pages/support/tickets/new/index.tsx",
+        "src/pages/support/tickets/new/index.jsx"
+      ]
+    },
+    {
+      "route": "/support/troubleshooting",
+      "expectedPaths": [
+        "src/pages/support/troubleshooting/TroubleshootingPage.tsx",
+        "src/pages/support/troubleshooting/TroubleshootingPage.jsx",
+        "src/pages/support/troubleshooting/Troubleshooting.tsx",
+        "src/pages/support/troubleshooting/Troubleshooting.jsx",
+        "src/pages/support/troubleshooting/index.tsx",
+        "src/pages/support/troubleshooting/index.jsx"
+      ]
+    },
+    {
+      "route": "/support/tutorials",
+      "expectedPaths": [
+        "src/pages/support/tutorials/TutorialsPage.tsx",
+        "src/pages/support/tutorials/TutorialsPage.jsx",
+        "src/pages/support/tutorials/Tutorials.tsx",
+        "src/pages/support/tutorials/Tutorials.jsx",
+        "src/pages/support/tutorials/index.tsx",
+        "src/pages/support/tutorials/index.jsx"
+      ]
+    },
+    {
+      "route": "/system",
+      "expectedPaths": [
+        "src/pages/system/SystemPage.tsx",
+        "src/pages/system/SystemPage.jsx",
+        "src/pages/system/System.tsx",
+        "src/pages/system/System.jsx",
+        "src/pages/system/index.tsx",
+        "src/pages/system/index.jsx"
+      ]
+    },
+    {
+      "route": "/terms",
+      "expectedPaths": [
+        "src/pages/terms/TermsPage.tsx",
+        "src/pages/terms/TermsPage.jsx",
+        "src/pages/terms/Terms.tsx",
+        "src/pages/terms/Terms.jsx",
+        "src/pages/terms/index.tsx",
+        "src/pages/terms/index.jsx"
+      ]
+    },
+    {
+      "route": "/tickets",
+      "expectedPaths": [
+        "src/pages/tickets/TicketsPage.tsx",
+        "src/pages/tickets/TicketsPage.jsx",
+        "src/pages/tickets/Tickets.tsx",
+        "src/pages/tickets/Tickets.jsx",
+        "src/pages/tickets/index.tsx",
+        "src/pages/tickets/index.jsx"
+      ]
+    },
+    {
+      "route": "/tickets/new",
+      "expectedPaths": [
+        "src/pages/tickets/new/NewPage.tsx",
+        "src/pages/tickets/new/NewPage.jsx",
+        "src/pages/tickets/new/New.tsx",
+        "src/pages/tickets/new/New.jsx",
+        "src/pages/tickets/new/index.tsx",
+        "src/pages/tickets/new/index.jsx"
+      ]
+    },
+    {
+      "route": "/tools",
+      "expectedPaths": [
+        "src/pages/tools/ToolsPage.tsx",
+        "src/pages/tools/ToolsPage.jsx",
+        "src/pages/tools/Tools.tsx",
+        "src/pages/tools/Tools.jsx",
+        "src/pages/tools/index.tsx",
+        "src/pages/tools/index.jsx"
+      ]
+    },
+    {
+      "route": "/topics/new",
+      "expectedPaths": [
+        "src/pages/topics/new/NewPage.tsx",
+        "src/pages/topics/new/NewPage.jsx",
+        "src/pages/topics/new/New.tsx",
+        "src/pages/topics/new/New.jsx",
+        "src/pages/topics/new/index.tsx",
+        "src/pages/topics/new/index.jsx"
+      ]
+    },
+    {
+      "route": "/tracking",
+      "expectedPaths": [
+        "src/pages/tracking/TrackingPage.tsx",
+        "src/pages/tracking/TrackingPage.jsx",
+        "src/pages/tracking/Tracking.tsx",
+        "src/pages/tracking/Tracking.jsx",
+        "src/pages/tracking/index.tsx",
+        "src/pages/tracking/index.jsx"
+      ]
+    },
+    {
+      "route": "/troubleshooting",
+      "expectedPaths": [
+        "src/pages/troubleshooting/TroubleshootingPage.tsx",
+        "src/pages/troubleshooting/TroubleshootingPage.jsx",
+        "src/pages/troubleshooting/Troubleshooting.tsx",
+        "src/pages/troubleshooting/Troubleshooting.jsx",
+        "src/pages/troubleshooting/index.tsx",
+        "src/pages/troubleshooting/index.jsx"
+      ]
+    },
+    {
+      "route": "/tutorials",
+      "expectedPaths": [
+        "src/pages/tutorials/TutorialsPage.tsx",
+        "src/pages/tutorials/TutorialsPage.jsx",
+        "src/pages/tutorials/Tutorials.tsx",
+        "src/pages/tutorials/Tutorials.jsx",
+        "src/pages/tutorials/index.tsx",
+        "src/pages/tutorials/index.jsx"
+      ]
+    },
+    {
+      "route": "/two-factor",
+      "expectedPaths": [
+        "src/pages/two-factor/Two-factorPage.tsx",
+        "src/pages/two-factor/Two-factorPage.jsx",
+        "src/pages/two-factor/Two-factor.tsx",
+        "src/pages/two-factor/Two-factor.jsx",
+        "src/pages/two-factor/index.tsx",
+        "src/pages/two-factor/index.jsx"
+      ]
+    },
+    {
+      "route": "/user",
+      "expectedPaths": [
+        "src/pages/user/UserPage.tsx",
+        "src/pages/user/UserPage.jsx",
+        "src/pages/user/User.tsx",
+        "src/pages/user/User.jsx",
+        "src/pages/user/index.tsx",
+        "src/pages/user/index.jsx"
+      ]
+    },
+    {
+      "route": "/user/favorites",
+      "expectedPaths": [
+        "src/pages/user/favorites/FavoritesPage.tsx",
+        "src/pages/user/favorites/FavoritesPage.jsx",
+        "src/pages/user/favorites/Favorites.tsx",
+        "src/pages/user/favorites/Favorites.jsx",
+        "src/pages/user/favorites/index.tsx",
+        "src/pages/user/favorites/index.jsx"
+      ]
+    },
+    {
+      "route": "/user/history",
+      "expectedPaths": [
+        "src/pages/user/history/HistoryPage.tsx",
+        "src/pages/user/history/HistoryPage.jsx",
+        "src/pages/user/history/History.tsx",
+        "src/pages/user/history/History.jsx",
+        "src/pages/user/history/index.tsx",
+        "src/pages/user/history/index.jsx"
+      ]
+    },
+    {
+      "route": "/user/notifications",
+      "expectedPaths": [
+        "src/pages/user/notifications/NotificationsPage.tsx",
+        "src/pages/user/notifications/NotificationsPage.jsx",
+        "src/pages/user/notifications/Notifications.tsx",
+        "src/pages/user/notifications/Notifications.jsx",
+        "src/pages/user/notifications/index.tsx",
+        "src/pages/user/notifications/index.jsx"
+      ]
+    },
+    {
+      "route": "/user/profile",
+      "expectedPaths": [
+        "src/pages/user/profile/ProfilePage.tsx",
+        "src/pages/user/profile/ProfilePage.jsx",
+        "src/pages/user/profile/Profile.tsx",
+        "src/pages/user/profile/Profile.jsx",
+        "src/pages/user/profile/index.tsx",
+        "src/pages/user/profile/index.jsx"
+      ]
+    },
+    {
+      "route": "/user/profile/edit",
+      "expectedPaths": [
+        "src/pages/user/profile/edit/EditPage.tsx",
+        "src/pages/user/profile/edit/EditPage.jsx",
+        "src/pages/user/profile/edit/Edit.tsx",
+        "src/pages/user/profile/edit/Edit.jsx",
+        "src/pages/user/profile/edit/index.tsx",
+        "src/pages/user/profile/edit/index.jsx"
+      ]
+    },
+    {
+      "route": "/user/settings",
+      "expectedPaths": [
+        "src/pages/user/settings/SettingsPage.tsx",
+        "src/pages/user/settings/SettingsPage.jsx",
+        "src/pages/user/settings/Settings.tsx",
+        "src/pages/user/settings/Settings.jsx",
+        "src/pages/user/settings/index.tsx",
+        "src/pages/user/settings/index.jsx"
+      ]
+    },
+    {
+      "route": "/user/subscriptions",
+      "expectedPaths": [
+        "src/pages/user/subscriptions/SubscriptionsPage.tsx",
+        "src/pages/user/subscriptions/SubscriptionsPage.jsx",
+        "src/pages/user/subscriptions/Subscriptions.tsx",
+        "src/pages/user/subscriptions/Subscriptions.jsx",
+        "src/pages/user/subscriptions/index.tsx",
+        "src/pages/user/subscriptions/index.jsx"
+      ]
+    },
+    {
+      "route": "/users",
+      "expectedPaths": [
+        "src/pages/users/UsersPage.tsx",
+        "src/pages/users/UsersPage.jsx",
+        "src/pages/users/Users.tsx",
+        "src/pages/users/Users.jsx",
+        "src/pages/users/index.tsx",
+        "src/pages/users/index.jsx"
+      ]
+    },
+    {
+      "route": "/verify-email",
+      "expectedPaths": [
+        "src/pages/verify-email/Verify-emailPage.tsx",
+        "src/pages/verify-email/Verify-emailPage.jsx",
+        "src/pages/verify-email/Verify-email.tsx",
+        "src/pages/verify-email/Verify-email.jsx",
+        "src/pages/verify-email/index.tsx",
+        "src/pages/verify-email/index.jsx"
+      ]
+    }
+  ],
+  "httpStatus": {
+    "/": {
+      "status": 404,
+      "ok": false
+    },
+    "/*": {
+      "status": 404,
+      "ok": false
+    },
+    "/403": {
+      "status": 404,
+      "ok": false
+    },
+    "/500": {
+      "status": 404,
+      "ok": false
+    },
+    "/about": {
+      "status": 404,
+      "ok": false
+    },
+    "/achievements": {
+      "status": 404,
+      "ok": false
+    },
+    "/admin": {
+      "status": 404,
+      "ok": false
+    },
+    "/admin/analytics": {
+      "status": 404,
+      "ok": false
+    },
+    "/admin/content": {
+      "status": 404,
+      "ok": false
+    },
+    "/admin/content/moderation": {
+      "status": 404,
+      "ok": false
+    },
+    "/admin/creators": {
+      "status": 404,
+      "ok": false
+    },
+    "/admin/dashboard": {
+      "status": 404,
+      "ok": false
+    },
+    "/admin/payments": {
+      "status": 404,
+      "ok": false
+    },
+    "/admin/payments/disputes": {
+      "status": 404,
+      "ok": false
+    },
+    "/admin/reports": {
+      "status": 404,
+      "ok": false
+    },
+    "/admin/settings": {
+      "status": 404,
+      "ok": false
+    },
+    "/admin/system": {
+      "status": 404,
+      "ok": false
+    },
+    "/admin/users": {
+      "status": 404,
+      "ok": false
+    },
+    "/affiliates": {
+      "status": 404,
+      "ok": false
+    },
+    "/analytics": {
+      "status": 404,
+      "ok": false
+    },
+    "/analytics/insights": {
+      "status": 404,
+      "ok": false
+    },
+    "/analytics/reports": {
+      "status": 404,
+      "ok": false
+    },
+    "/analytics/tracking": {
+      "status": 404,
+      "ok": false
+    },
+    "/app": {
+      "status": 404,
+      "ok": false
+    },
+    "/auth": {
+      "status": 404,
+      "ok": false
+    },
+    "/auth/forgot-password": {
+      "status": 404,
+      "ok": false
+    },
+    "/auth/login": {
+      "status": 404,
+      "ok": false
+    },
+    "/auth/register": {
+      "status": 404,
+      "ok": false
+    },
+    "/auth/reset-password": {
+      "status": 404,
+      "ok": false
+    },
+    "/auth/two-factor": {
+      "status": 404,
+      "ok": false
+    },
+    "/auth/verify-email": {
+      "status": 404,
+      "ok": false
+    },
+    "/blog": {
+      "status": 404,
+      "ok": false
+    },
+    "/campaigns": {
+      "status": 404,
+      "ok": false
+    },
+    "/careers": {
+      "status": 404,
+      "ok": false
+    },
+    "/categories": {
+      "status": 404,
+      "ok": false
+    },
+    "/challenges": {
+      "status": 404,
+      "ok": false
+    },
+    "/community": {
+      "status": 404,
+      "ok": false
+    },
+    "/community/achievements": {
+      "status": 404,
+      "ok": false
+    },
+    "/community/challenges": {
+      "status": 404,
+      "ok": false
+    },
+    "/community/events": {
+      "status": 404,
+      "ok": false
+    },
+    "/community/groups": {
+      "status": 404,
+      "ok": false
+    },
+    "/community/leaderboards": {
+      "status": 404,
+      "ok": false
+    },
+    "/compliance": {
+      "status": 404,
+      "ok": false
+    },
+    "/contact": {
+      "status": 404,
+      "ok": false
+    },
+    "/content": {
+      "status": 404,
+      "ok": false
+    },
+    "/content/moderation": {
+      "status": 404,
+      "ok": false
+    },
+    "/content/new": {
+      "status": 404,
+      "ok": false
+    },
+    "/content/scheduler": {
+      "status": 404,
+      "ok": false
+    },
+    "/cookies": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/analytics": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/content": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/content/new": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/content/scheduler": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/dashboard": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/earnings": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/earnings/history": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/earnings/taxes": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/fans": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/fans/analytics": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/fans/tiers": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/messaging": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/settings": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/tools": {
+      "status": 404,
+      "ok": false
+    },
+    "/creators": {
+      "status": 404,
+      "ok": false
+    },
+    "/dashboard": {
+      "status": 404,
+      "ok": false
+    },
+    "/discover": {
+      "status": 404,
+      "ok": false
+    },
+    "/dmca": {
+      "status": 404,
+      "ok": false
+    },
+    "/earnings": {
+      "status": 404,
+      "ok": false
+    },
+    "/earnings/history": {
+      "status": 404,
+      "ok": false
+    },
+    "/earnings/taxes": {
+      "status": 404,
+      "ok": false
+    },
+    "/error": {
+      "status": 404,
+      "ok": false
+    },
+    "/error/403": {
+      "status": 404,
+      "ok": false
+    },
+    "/error/500": {
+      "status": 404,
+      "ok": false
+    },
+    "/error/maintenance": {
+      "status": 404,
+      "ok": false
+    },
+    "/error/offline": {
+      "status": 404,
+      "ok": false
+    },
+    "/events": {
+      "status": 404,
+      "ok": false
+    },
+    "/fans": {
+      "status": 404,
+      "ok": false
+    },
+    "/fans/analytics": {
+      "status": 404,
+      "ok": false
+    },
+    "/fans/tiers": {
+      "status": 404,
+      "ok": false
+    },
+    "/faq": {
+      "status": 404,
+      "ok": false
+    },
+    "/favorites": {
+      "status": 404,
+      "ok": false
+    },
+    "/features": {
+      "status": 404,
+      "ok": false
+    },
+    "/forgot-password": {
+      "status": 404,
+      "ok": false
+    },
+    "/forum": {
+      "status": 404,
+      "ok": false
+    },
+    "/forum/categories": {
+      "status": 404,
+      "ok": false
+    },
+    "/forum/moderation": {
+      "status": 404,
+      "ok": false
+    },
+    "/forum/search": {
+      "status": 404,
+      "ok": false
+    },
+    "/forum/topics/new": {
+      "status": 404,
+      "ok": false
+    },
+    "/groups": {
+      "status": 404,
+      "ok": false
+    },
+    "/guides": {
+      "status": 404,
+      "ok": false
+    },
+    "/help": {
+      "status": 404,
+      "ok": false
+    },
+    "/history": {
+      "status": 404,
+      "ok": false
+    },
+    "/insights": {
+      "status": 404,
+      "ok": false
+    },
+    "/investors": {
+      "status": 404,
+      "ok": false
+    },
+    "/leaderboards": {
+      "status": 404,
+      "ok": false
+    },
+    "/legal": {
+      "status": 404,
+      "ok": false
+    },
+    "/legal/compliance": {
+      "status": 404,
+      "ok": false
+    },
+    "/legal/cookies": {
+      "status": 404,
+      "ok": false
+    },
+    "/legal/dmca": {
+      "status": 404,
+      "ok": false
+    },
+    "/legal/privacy": {
+      "status": 404,
+      "ok": false
+    },
+    "/legal/terms": {
+      "status": 404,
+      "ok": false
+    },
+    "/login": {
+      "status": 404,
+      "ok": false
+    },
+    "/maintenance": {
+      "status": 404,
+      "ok": false
+    },
+    "/marketing": {
+      "status": 404,
+      "ok": false
+    },
+    "/marketing/affiliates": {
+      "status": 404,
+      "ok": false
+    },
+    "/marketing/campaigns": {
+      "status": 404,
+      "ok": false
+    },
+    "/marketing/partnerships": {
+      "status": 404,
+      "ok": false
+    },
+    "/marketing/promotions": {
+      "status": 404,
+      "ok": false
+    },
+    "/marketing/referrals": {
+      "status": 404,
+      "ok": false
+    },
+    "/messaging": {
+      "status": 404,
+      "ok": false
+    },
+    "/mobile": {
+      "status": 404,
+      "ok": false
+    },
+    "/mobile/app": {
+      "status": 404,
+      "ok": false
+    },
+    "/mobile/responsive": {
+      "status": 404,
+      "ok": false
+    },
+    "/moderation": {
+      "status": 404,
+      "ok": false
+    },
+    "/notifications": {
+      "status": 404,
+      "ok": false
+    },
+    "/offline": {
+      "status": 404,
+      "ok": false
+    },
+    "/partnerships": {
+      "status": 404,
+      "ok": false
+    },
+    "/payments": {
+      "status": 404,
+      "ok": false
+    },
+    "/payments/disputes": {
+      "status": 404,
+      "ok": false
+    },
+    "/press": {
+      "status": 404,
+      "ok": false
+    },
+    "/pricing": {
+      "status": 404,
+      "ok": false
+    },
+    "/privacy": {
+      "status": 404,
+      "ok": false
+    },
+    "/profile": {
+      "status": 404,
+      "ok": false
+    },
+    "/profile/edit": {
+      "status": 404,
+      "ok": false
+    },
+    "/promotions": {
+      "status": 404,
+      "ok": false
+    },
+    "/referrals": {
+      "status": 404,
+      "ok": false
+    },
+    "/register": {
+      "status": 404,
+      "ok": false
+    },
+    "/reports": {
+      "status": 404,
+      "ok": false
+    },
+    "/reset-password": {
+      "status": 404,
+      "ok": false
+    },
+    "/responsive": {
+      "status": 404,
+      "ok": false
+    },
+    "/robots.txt": {
+      "status": 404,
+      "ok": false
+    },
+    "/search": {
+      "status": 404,
+      "ok": false
+    },
+    "/settings": {
+      "status": 404,
+      "ok": false
+    },
+    "/sitemap.xml": {
+      "status": 404,
+      "ok": false
+    },
+    "/subscriptions": {
+      "status": 404,
+      "ok": false
+    },
+    "/support": {
+      "status": 404,
+      "ok": false
+    },
+    "/support/contact": {
+      "status": 404,
+      "ok": false
+    },
+    "/support/faq": {
+      "status": 404,
+      "ok": false
+    },
+    "/support/guides": {
+      "status": 404,
+      "ok": false
+    },
+    "/support/help": {
+      "status": 404,
+      "ok": false
+    },
+    "/support/tickets": {
+      "status": 404,
+      "ok": false
+    },
+    "/support/tickets/new": {
+      "status": 404,
+      "ok": false
+    },
+    "/support/troubleshooting": {
+      "status": 404,
+      "ok": false
+    },
+    "/support/tutorials": {
+      "status": 404,
+      "ok": false
+    },
+    "/system": {
+      "status": 404,
+      "ok": false
+    },
+    "/terms": {
+      "status": 404,
+      "ok": false
+    },
+    "/tickets": {
+      "status": 404,
+      "ok": false
+    },
+    "/tickets/new": {
+      "status": 404,
+      "ok": false
+    },
+    "/tools": {
+      "status": 404,
+      "ok": false
+    },
+    "/topics/new": {
+      "status": 404,
+      "ok": false
+    },
+    "/tracking": {
+      "status": 404,
+      "ok": false
+    },
+    "/troubleshooting": {
+      "status": 404,
+      "ok": false
+    },
+    "/tutorials": {
+      "status": 404,
+      "ok": false
+    },
+    "/two-factor": {
+      "status": 404,
+      "ok": false
+    },
+    "/user": {
+      "status": 404,
+      "ok": false
+    },
+    "/user/favorites": {
+      "status": 404,
+      "ok": false
+    },
+    "/user/history": {
+      "status": 404,
+      "ok": false
+    },
+    "/user/notifications": {
+      "status": 404,
+      "ok": false
+    },
+    "/user/profile": {
+      "status": 404,
+      "ok": false
+    },
+    "/user/profile/edit": {
+      "status": 404,
+      "ok": false
+    },
+    "/user/settings": {
+      "status": 404,
+      "ok": false
+    },
+    "/user/subscriptions": {
+      "status": 404,
+      "ok": false
+    },
+    "/users": {
+      "status": 404,
+      "ok": false
+    },
+    "/verify-email": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator-application": {
+      "status": 404,
+      "ok": false
+    },
+    "/creator/notifications": {
+      "status": 404,
+      "ok": false
+    },
+    "/demo": {
+      "status": 404,
+      "ok": false
+    },
+    "/forum/rules": {
+      "status": 404,
+      "ok": false
+    },
+    "/help/contact": {
+      "status": 404,
+      "ok": false
+    },
+    "/home": {
+      "status": 404,
+      "ok": false
+    },
+    "/messages": {
+      "status": 404,
+      "ok": false
+    },
+    "/onboarding": {
+      "status": 404,
+      "ok": false
+    },
+    "/support/help/all": {
+      "status": 404,
+      "ok": false
+    },
+    "/user/home": {
+      "status": 404,
+      "ok": false
+    },
+    "/vip-access": {
+      "status": 404,
+      "ok": false
+    }
+  },
+  "summary": {
+    "totalRoutes": 209,
+    "workingRoutes": 0,
+    "brokenRoutes": 176,
+    "orphanLinks": 8,
+    "missingFiles": 156,
+    "routerType": "React Router v6 + Vite"
+  }
+}
