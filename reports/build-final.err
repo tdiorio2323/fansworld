@@ -1,0 +1,9 @@
+Generated an empty chunk: "stripe-vendor".
+[plugin vite:reporter] 
+(!) __vite-browser-external:crypto is dynamically imported by /Users/tylerdiorio/CABANA_MASTER_PROJECT/src/lib/security.ts but also statically imported by /Users/tylerdiorio/CABANA_MASTER_PROJECT/src/lib/security.ts, dynamic import will not move module into another chunk.
+
+
+(!) Some chunks are larger than 600 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.

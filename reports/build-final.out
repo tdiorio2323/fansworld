@@ -1,0 +1,19 @@
+
+> fansworld-fresh-new@0.0.0 build
+> vite build
+
+vite v6.3.5 building for production...
+transforming...
+✓ 3589 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              1.23 kB │ gzip:   0.59 kB
+dist/assets/index-DQyh3Kra.css             164.79 kB │ gzip:  25.17 kB
+dist/assets/stripe-vendor-l0sNRNKZ.js        0.00 kB │ gzip:   0.02 kB
+dist/assets/router-vendor-B6DnUhJr.js       31.76 kB │ gzip:  11.59 kB
+dist/assets/query-vendor-C9gS2TV3.js        40.67 kB │ gzip:  12.39 kB
+dist/assets/ui-vendor-DYg95cLH.js           80.43 kB │ gzip:  28.89 kB
+dist/assets/supabase-vendor-DmXb3nG2.js    124.74 kB │ gzip:  34.28 kB
+dist/assets/react-vendor-N8WTeG74.js       314.31 kB │ gzip:  96.47 kB
+dist/assets/index-CGo89FMd.js            1,954.80 kB │ gzip: 378.80 kB
+✓ built in 5.24s
