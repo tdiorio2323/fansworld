@@ -65,8 +65,8 @@ export const createRateLimit = (options: SecurityOptions = {}) => {
       return false;
     },
     
-    // SECURITY: Track suspicious behavior
-    onLimitReached: (req: Request, res: Response) => {
+    // SECURITY: Custom handler replaces deprecated onLimitReached
+    handler: (req: Request, res: Response) => {
       const ip = getClientIP(req);
       const current = suspiciousIPs.get(ip) || { attempts: 0, lastAttempt: 0, blocked: false };
       
@@ -79,6 +79,13 @@ export const createRateLimit = (options: SecurityOptions = {}) => {
       }
       
       suspiciousIPs.set(ip, current);
+      
+      // Send the rate limit response
+      res.status(429).json({
+        error: 'Too many requests. Please try again later.',
+        retryAfter: Math.ceil(windowMs / 1000),
+        code: 'RATE_LIMITED'
+      });
     }
   });
 };
