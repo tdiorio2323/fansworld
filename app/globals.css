@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+/*
+  Global styles for the Cabana pages.  These variables and utility classes
+  reflect the colours, typography and glassmorphism effects defined in the
+  Cabana brand guide.  Tailwind's `@apply` directive is used sparingly
+  to encapsulate base resets; most styling is handled via class names in
+  the components themselves.
+*/
+
+:root {
+  /* Cabana Brand Colors - Based on Screenshots */
+  --cabana-purple: #6B46C1;
+  --cabana-magenta: #EC4899;
+  --cabana-pink: #F472B6;
+  --cabana-dark: #1F1B24;
+  --cabana-darker: #0F0B14;
+  --pearl-white: #F8FAFC;
+  --glass-white: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+
+  /* Primary gradient - Purple to Pink like screenshots */
+  --gradient-primary: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 25%, #A855F7 50%, #EC4899 75%, #F472B6 100%);
+  --gradient-dark: linear-gradient(135deg, #1F1B24 0%, #2D1B69 50%, #1F1B24 100%);
+  
+  /* Legacy color compatibility */
+  --ocean-mist: rgba(255, 255, 255, 0.7);
+  --sunset-gold: var(--cabana-pink);
+  --deep-ocean: var(--cabana-dark);
+  --midnight-navy: var(--cabana-darker);
+}
+
+/* Base resets */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--gradient-primary);
+  background-attachment: fixed;
+  color: var(--pearl-white);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+}
+
+/* Glassmorphism utility - Enhanced like screenshots */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Button base styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--cabana-purple), var(--cabana-magenta));
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--cabana-pink);
+  color: var(--cabana-pink);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Simple toggle style for settings page */
+.toggle-checkbox {
+  appearance: none;
+  width: 2.5rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.15);
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.toggle-checkbox::before {
+  content: '';
+  position: absolute;
+  top: 0.125rem;
+  left: 0.125rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  background-color: var(--cabana-pink);
+  transition: transform 0.2s ease;
+}
+.toggle-checkbox:checked {
+  background-color: var(--cabana-purple);
+}
+.toggle-checkbox:checked::before {
+  transform: translateX(1.25rem);
+  background-color: white;
+}
+
+/* Animation delay utilities */
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+/* Hide scrollbars on cards/containers where overflow is hidden */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cabana-purple);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cabana-magenta);
+}
