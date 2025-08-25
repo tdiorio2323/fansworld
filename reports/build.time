@@ -1,4 +1,1 @@
-
-real	0m10.055s
-user	0m6.726s
-sys	0m1.524s
+npm run -s build > reports/build.out 2> reports/build.err  11.64s user 2.75s system 134% cpu 10.727 total
