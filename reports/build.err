@@ -1,0 +1,224 @@
+ ⚠ Specified "redirects" will not automatically work with "output: export". See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+ ⚠ Specified "redirects" will not automatically work with "output: export". See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+ ⚠ Specified "redirects" will not automatically work with "output: export". See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+ ⚠ Specified "redirects" will not automatically work with "output: export". See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+
+ ⚠ The Next.js plugin was not detected in your ESLint configuration. See https://nextjs.org/docs/app/api-reference/config/eslint#migrating-existing-config
+
+Failed to compile.
+
+./app/about/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/auth/forgot-password/page.tsx
+4:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/auth/login/page.tsx
+4:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/auth/onboarding-complete/page.tsx
+4:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/auth/register/page.tsx
+4:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/auth/verify-email/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/bio-builder/page.tsx
+4:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/content/analytics/page.tsx
+4:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/content/library/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/content/upload/page.tsx
+4:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/dashboard/page.tsx
+4:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/earnings/analytics/page.tsx
+4:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/earnings/overview/page.tsx
+4:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/earnings/payouts/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/messages/priority/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/messages/smart-inbox/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/messages/templates/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/profile/edit/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/profile/pricing-tiers/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/creator/settings/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/features/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/help/contact/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/help/creator-guide/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/help/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/layout.tsx
+4:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/legal/community-guidelines/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/legal/privacy/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/legal/terms/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/pricing/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/user/discover/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/user/home/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/user/messages/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/user/profile/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./app/user/subscriptions/page.tsx
+3:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./components/ui/index.ts
+3:16  Error: Parsing error: '>' expected.
+
+./src/components/AccessibilityProvider.tsx
+12:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/components/ErrorBoundary.tsx
+299:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+311:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/components/casino/CrashGame.tsx
+55:6  Warning: React Hook useEffect has a missing dependency: 'handleCashout'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/components/ui/badge.tsx
+36:17  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/components/ui/empty-state.tsx
+217:22  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+217:42  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/components/ui/enhanced/accessibility/KeyboardShortcuts.tsx
+177:14  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/components/ui/form.tsx
+168:3  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/components/ui/loading.tsx
+157:3  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/components/ui/navigation-menu.tsx
+119:3  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/components/ui/sidebar.tsx
+760:3  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/components/ui/sonner.tsx
+29:19  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/components/ui/toggle.tsx
+43:18  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/features/addons/ai-content-tagging/components/AITagging.tsx
+44:3  Error: React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render.  react-hooks/rules-of-hooks
+48:6  Warning: React Hook useEffect has missing dependencies: 'analysis' and 'analyzeContent'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/features/addons/flash-sales/components/FlashSaleAnalytics.tsx
+38:6  Warning: React Hook useEffect has a missing dependency: 'loadAnalytics'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/features/addons/loyalty-program/components/LoyaltyProgram.tsx
+38:3  Error: React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render.  react-hooks/rules-of-hooks
+44:6  Warning: React Hook useEffect has missing dependencies: 'loadCreatorPrograms' and 'loadProgram'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+46:3  Error: React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render.  react-hooks/rules-of-hooks
+50:6  Warning: React Hook useEffect has a missing dependency: 'loadMemberData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/features/addons/one-click-upsells/components/Upsells.tsx
+48:3  Error: React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render.  react-hooks/rules-of-hooks
+52:6  Warning: React Hook useEffect has missing dependencies: 'checkShouldDisplay' and 'context'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+54:3  Error: React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render.  react-hooks/rules-of-hooks
+67:6  Warning: React Hook useEffect has a missing dependency: 'handleDismiss'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/features/addons/ppv-messages/components/PPVAnalytics.tsx
+62:21  Error: Parsing error: Invalid character.
+
+./src/features/addons/ppv-messages/components/PPVMessageComposer.tsx
+275:44  Error: Parsing error: Invalid character.
+
+./src/features/addons/ppv-messages/components/PPVMessageViewer.tsx
+145:31  Error: Parsing error: Invalid character.
+
+./src/features/addons/ppv-messages/components/PPVMessages.tsx
+158:21  Error: Parsing error: Invalid character.
+
+./src/features/addons/stories-highlights/components/Stories.tsx
+51:3  Error: React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render.  react-hooks/rules-of-hooks
+59:6  Warning: React Hook useEffect has a missing dependency: 'startProgress'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/features/addons/virtual-gifts/components/GiftCatalog.tsx
+96:43  Error: Parsing error: Invalid character.
+
+./src/features/addons/virtual-gifts/components/GiftNotifications.tsx
+222:25  Error: Parsing error: Invalid character.
+
+./src/features/addons/virtual-gifts/components/GiftStats.tsx
+36:21  Error: Parsing error: Invalid character.
+
+./src/features/addons/virtual-gifts/components/VirtualGifts.tsx
+154:21  Error: Parsing error: Invalid character.
+
+./src/features/offers/components/OfferRibbon.tsx
+66:6  Warning: React Hook useEffect has a missing dependency: 'offer.ends_at'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/features/tip-goals/components/TipGoalProgress.tsx
+50:6  Warning: React Hook useEffect has a missing dependency: 'loadGoalData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/hooks/useAuth.tsx
+131:17  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/hooks/useAuthSystem.tsx
+136:17  Warning: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.  react-refresh/only-export-components
+
+./src/pages/AnalyticsDashboard.tsx
+54:6  Warning: React Hook useEffect has a missing dependency: 'loadDashboardStats'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/pages/CreatorProfile.tsx
+89:6  Warning: React Hook useEffect has a missing dependency: 'loadCreatorData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/pages/DemoAnalyticsDashboard.tsx
+77:6  Warning: React Hook useEffect has a missing dependency: 'loadDemoData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/pages/Reels.tsx
+43:6  Warning: React Hook useEffect has a missing dependency: 'loadReels'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules

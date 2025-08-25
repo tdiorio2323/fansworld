@@ -1,22 +1,10 @@
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: 'export',
-  images: { unoptimized: true },
-  outputFileTracingRoot: __dirname,
+export default {
   async redirects() {
     return [
-      {
-        source: '/:path*.html',
-        destination: '/:path*',
-        permanent: true,
-      },
+      { source: "/:path*.html", destination: "/:path*", permanent: true },
+      { source: "/home", destination: "/", permanent: true },
     ];
   },
+  images: { unoptimized: true },
+  output: "export",
 };
-
-export default nextConfig;
