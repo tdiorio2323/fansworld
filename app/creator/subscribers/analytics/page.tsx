@@ -1,4 +1,4 @@
-import DashboardTwoCol from "../../_templates/DashboardTwoCol";
+import DashboardTwoCol from "../../../_templates/DashboardTwoCol";
 export default function Page() {
     return <DashboardTwoCol title="Dashboard" />;
 }
