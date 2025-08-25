@@ -155,29 +155,29 @@ export const PPVMessages: React.FC<PPVMessagesProps> = ({
   // Embedded view (for creator profiles/chat integration)
   if (embedded) {
     return (
-      <div className=\"ppv-messages-embedded\">
-        <div className=\"flex items-center gap-3 mb-4\">
-          <div className=\"p-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg\">
-            <Lock className=\"w-5 h-5 text-white\" />
+      <div className="ppv-messages-embedded">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="p-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg">
+            <Lock className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h3 className=\"text-lg font-semibold text-white\">Premium Messages</h3>
-            <p className=\"text-purple-200 text-sm\">Exclusive content for purchase</p>
+            <h3 className="text-lg font-semibold text-white">Premium Messages</h3>
+            <p className="text-purple-200 text-sm">Exclusive content for purchase</p>
           </div>
         </div>
 
         {loading ? (
-          <div className=\"grid grid-cols-2 gap-4\">
+          <div className="grid grid-cols-2 gap-4">
             {Array.from({ length: 4 }, (_, i) => (
-              <div key={i} className=\"bg-black/20 rounded-xl p-4 animate-pulse\">
-                <div className=\"h-24 bg-white/10 rounded-lg mb-3\"></div>
-                <div className=\"h-4 bg-white/10 rounded mb-2\"></div>
-                <div className=\"h-3 bg-white/10 rounded w-2/3\"></div>
+              <div key={i} className="bg-black/20 rounded-xl p-4 animate-pulse">
+                <div className="h-24 bg-white/10 rounded-lg mb-3"></div>
+                <div className="h-4 bg-white/10 rounded mb-2"></div>
+                <div className="h-3 bg-white/10 rounded w-2/3"></div>
               </div>
             ))}
           </div>
         ) : (
-          <div className=\"grid grid-cols-2 gap-4 max-h-96 overflow-y-auto\">
+          <div className="grid grid-cols-2 gap-4 max-h-96 overflow-y-auto">
             {filteredMessages.slice(0, 6).map((message) => (
               <PPVMessageCard
                 key={message.id}
@@ -192,9 +192,9 @@ export const PPVMessages: React.FC<PPVMessagesProps> = ({
         {viewMode === 'creator' && (
           <Button
             onClick={() => setIsComposerOpen(true)}
-            className=\"w-full mt-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700\"
+            className="w-full mt-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
           >
-            <Plus className=\"w-4 h-4 mr-2\" />
+            <Plus className="w-4 h-4 mr-2" />
             Create PPV Message
           </Button>
         )}
@@ -220,16 +220,16 @@ export const PPVMessages: React.FC<PPVMessagesProps> = ({
 
   // Full component view
   return (
-    <div className=\"ppv-messages-container backdrop-blur-xl bg-white/10 rounded-3xl border border-white/20 p-6\">
+    <div className="ppv-messages-container backdrop-blur-xl bg-white/10 rounded-3xl border border-white/20 p-6">
       {/* Header */}
-      <div className=\"flex items-center justify-between mb-6\">
-        <div className=\"flex items-center gap-3\">
-          <div className=\"p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl\">
-            <Lock className=\"w-6 h-6 text-white\" />
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <div className="p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl">
+            <Lock className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h2 className=\"text-2xl font-bold text-white\">PPV Messages</h2>
-            <p className=\"text-purple-200\">
+            <h2 className="text-2xl font-bold text-white">PPV Messages</h2>
+            <p className="text-purple-200">
               {viewMode === 'creator' 
                 ? 'Monetize your exclusive content' 
                 : 'Premium content from creators'}
@@ -240,9 +240,9 @@ export const PPVMessages: React.FC<PPVMessagesProps> = ({
         {viewMode === 'creator' && (
           <Button
             onClick={() => setIsComposerOpen(true)}
-            className=\"bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white\"
+            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
           >
-            <Plus className=\"w-4 h-4 mr-2\" />
+            <Plus className="w-4 h-4 mr-2" />
             Create Message
           </Button>
         )}
@@ -250,40 +250,40 @@ export const PPVMessages: React.FC<PPVMessagesProps> = ({
 
       {/* Creator Stats Summary */}
       {viewMode === 'creator' && stats && (
-        <div className=\"grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6\">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           <StatCard
-            icon={<DollarSign className=\"w-5 h-5\" />}
-            title=\"Total Earnings\"
+            icon={<DollarSign className="w-5 h-5" />}
+            title="Total Earnings"
             value={formatPrice(stats.totalEarnings)}
-            color=\"text-green-400\"
-            bgColor=\"bg-green-500/10\"
+            color="text-green-400"
+            bgColor="bg-green-500/10"
           />
           <StatCard
-            icon={<Lock className=\"w-5 h-5\" />}
-            title=\"Messages\"
+            icon={<Lock className="w-5 h-5" />}
+            title="Messages"
             value={stats.totalMessages.toString()}
-            color=\"text-purple-400\"
-            bgColor=\"bg-purple-500/10\"
+            color="text-purple-400"
+            bgColor="bg-purple-500/10"
           />
           <StatCard
-            icon={<Eye className=\"w-5 h-5\" />}
-            title=\"Total Views\"
+            icon={<Eye className="w-5 h-5" />}
+            title="Total Views"
             value={stats.totalViews.toString()}
-            color=\"text-blue-400\"
-            bgColor=\"bg-blue-500/10\"
+            color="text-blue-400"
+            bgColor="bg-blue-500/10"
           />
           <StatCard
-            icon={<TrendingUp className=\"w-5 h-5\" />}
-            title=\"Conversion\"
+            icon={<TrendingUp className="w-5 h-5" />}
+            title="Conversion"
             value={`${stats.conversionRate.toFixed(1)}%`}
-            color=\"text-yellow-400\"
-            bgColor=\"bg-yellow-500/10\"
+            color="text-yellow-400"
+            bgColor="bg-yellow-500/10"
           />
         </div>
       )}
 
       {/* Navigation Tabs */}
-      <div className=\"flex gap-2 mb-6\">
+      <div className="flex gap-2 mb-6">
         <Button
           variant={activeTab === 'messages' ? 'default' : 'outline'}
           onClick={() => setActiveTab('messages')}
@@ -291,7 +291,7 @@ export const PPVMessages: React.FC<PPVMessagesProps> = ({
             ? 'bg-purple-600 text-white' 
             : 'border-purple-500/30 text-purple-400 hover:bg-purple-500/10'}
         >
-          <Lock className=\"w-4 h-4 mr-2\" />
+          <Lock className="w-4 h-4 mr-2" />
           Messages
         </Button>
         
@@ -304,7 +304,7 @@ export const PPVMessages: React.FC<PPVMessagesProps> = ({
                 ? 'bg-purple-600 text-white' 
                 : 'border-purple-500/30 text-purple-400 hover:bg-purple-500/10'}
             >
-              <TrendingUp className=\"w-4 h-4 mr-2\" />
+              <TrendingUp className="w-4 h-4 mr-2" />
               Analytics
             </Button>
             
@@ -315,7 +315,7 @@ export const PPVMessages: React.FC<PPVMessagesProps> = ({
                 ? 'bg-purple-600 text-white' 
                 : 'border-purple-500/30 text-purple-400 hover:bg-purple-500/10'}
             >
-              <DollarSign className=\"w-4 h-4 mr-2\" />
+              <DollarSign className="w-4 h-4 mr-2" />
               Earnings
             </Button>
           </>
@@ -323,19 +323,19 @@ export const PPVMessages: React.FC<PPVMessagesProps> = ({
       </div>
 
       {/* Tab Content */}
-      <div className=\"tab-content\">
+      <div className="tab-content">
         {activeTab === 'messages' && (
           <>
             {/* Search and Filters */}
-            <div className=\"flex flex-wrap gap-4 items-center mb-6\">
+            <div className="flex flex-wrap gap-4 items-center mb-6">
               {/* Search */}
-              <div className=\"relative flex-1 min-w-64\">
-                <Search className=\"absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400\" />
+              <div className="relative flex-1 min-w-64">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <Input
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder=\"Search messages...\"
-                  className=\"pl-10 bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400\"
+                  placeholder="Search messages..."
+                  className="pl-10 bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400"
                 />
               </div>
 
@@ -343,12 +343,12 @@ export const PPVMessages: React.FC<PPVMessagesProps> = ({
               <select
                 value={priceFilter}
                 onChange={(e) => setPriceFilter(e.target.value as any)}
-                className=\"bg-black/20 border border-purple-500/30 rounded-lg px-3 py-2 text-white text-sm\"
+                className="bg-black/20 border border-purple-500/30 rounded-lg px-3 py-2 text-white text-sm"
               >
-                <option value=\"all\">All Prices</option>
-                <option value=\"low\">Under $10</option>
-                <option value=\"mid\">$10 - $50</option>
-                <option value=\"high\">Over $50</option>
+                <option value="all">All Prices</option>
+                <option value="low">Under $10</option>
+                <option value="mid">$10 - $50</option>
+                <option value="high">Over $50</option>
               </select>
 
               {/* Status Filter (for creators) */}
@@ -356,36 +356,36 @@ export const PPVMessages: React.FC<PPVMessagesProps> = ({
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value as any)}
-                  className=\"bg-black/20 border border-purple-500/30 rounded-lg px-3 py-2 text-white text-sm\"
+                  className="bg-black/20 border border-purple-500/30 rounded-lg px-3 py-2 text-white text-sm"
                 >
-                  <option value=\"all\">All Status</option>
-                  <option value=\"active\">Active</option>
-                  <option value=\"inactive\">Inactive</option>
-                  <option value=\"expired\">Expired</option>
+                  <option value="all">All Status</option>
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                  <option value="expired">Expired</option>
                 </select>
               )}
 
               {/* View Style Toggle */}
-              <div className=\"flex border border-purple-500/30 rounded-lg overflow-hidden\">
+              <div className="flex border border-purple-500/30 rounded-lg overflow-hidden">
                 <Button
                   variant={viewStyle === 'grid' ? 'default' : 'ghost'}
-                  size=\"sm\"
+                  size="sm"
                   onClick={() => setViewStyle('grid')}
                   className={`rounded-none ${viewStyle === 'grid' 
                     ? 'bg-purple-600 text-white' 
                     : 'text-gray-400 hover:bg-purple-500/10'}`}
                 >
-                  <Grid className=\"w-4 h-4\" />
+                  <Grid className="w-4 h-4" />
                 </Button>
                 <Button
                   variant={viewStyle === 'list' ? 'default' : 'ghost'}
-                  size=\"sm\"
+                  size="sm"
                   onClick={() => setViewStyle('list')}
                   className={`rounded-none ${viewStyle === 'list' 
                     ? 'bg-purple-600 text-white' 
                     : 'text-gray-400 hover:bg-purple-500/10'}`}
                 >
-                  <List className=\"w-4 h-4\" />
+                  <List className="w-4 h-4" />
                 </Button>
               </div>
             </div>
@@ -476,32 +476,32 @@ const PPVMessageCard: React.FC<PPVMessageCardProps> = ({
   if (viewStyle === 'list' && !compact) {
     return (
       <div
-        className=\"flex items-center gap-4 p-4 bg-black/20 rounded-xl border border-white/10 hover:border-purple-500/30 cursor-pointer transition-all duration-200 hover:scale-105\"
+        className="flex items-center gap-4 p-4 bg-black/20 rounded-xl border border-white/10 hover:border-purple-500/30 cursor-pointer transition-all duration-200 hover:scale-105"
         onClick={onClick}
       >
         {/* Thumbnail */}
-        <div className=\"w-20 h-20 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center flex-shrink-0\">
+        <div className="w-20 h-20 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center flex-shrink-0">
           {message.thumbnailUrl ? (
             <img 
               src={message.thumbnailUrl} 
               alt={message.title}
-              className=\"w-full h-full object-cover rounded-xl\"
+              className="w-full h-full object-cover rounded-xl"
             />
           ) : (
-            <Lock className=\"w-8 h-8 text-white\" />
+            <Lock className="w-8 h-8 text-white" />
           )}
         </div>
 
         {/* Content */}
-        <div className=\"flex-1\">
-          <div className=\"flex items-start justify-between mb-2\">
-            <h3 className=\"text-lg font-semibold text-white line-clamp-1\">{message.title}</h3>
-            <div className=\"text-xl font-bold text-green-400\">{formatPrice(message.price)}</div>
+        <div className="flex-1">
+          <div className="flex items-start justify-between mb-2">
+            <h3 className="text-lg font-semibold text-white line-clamp-1">{message.title}</h3>
+            <div className="text-xl font-bold text-green-400">{formatPrice(message.price)}</div>
           </div>
           
-          <p className=\"text-gray-300 text-sm line-clamp-2 mb-2\">{message.description}</p>
+          <p className="text-gray-300 text-sm line-clamp-2 mb-2">{message.description}</p>
           
-          <div className=\"flex items-center gap-3 text-xs text-gray-400\">
+          <div className="flex items-center gap-3 text-xs text-gray-400">
             {showCreatorInfo && message.creator && (
               <span>@{message.creator.username}</span>
             )}
@@ -528,7 +528,7 @@ const PPVMessageCard: React.FC<PPVMessageCardProps> = ({
           <img 
             src={message.thumbnailUrl} 
             alt={message.title}
-            className=\"w-full h-full object-cover rounded-xl\"
+            className="w-full h-full object-cover rounded-xl"
           />
         ) : (
           <Lock className={`text-white ${compact ? 'w-6 h-6' : 'w-8 h-8'}`} />
@@ -536,8 +536,8 @@ const PPVMessageCard: React.FC<PPVMessageCardProps> = ({
       </div>
 
       {/* Content */}
-      <div className=\"flex-1\">
-        <div className=\"flex items-start justify-between mb-2\">
+      <div className="flex-1">
+        <div className="flex items-start justify-between mb-2">
           <h3 className={`font-semibold text-white line-clamp-1 ${compact ? 'text-sm' : 'text-lg'}`}>
             {message.title}
           </h3>
@@ -547,12 +547,12 @@ const PPVMessageCard: React.FC<PPVMessageCardProps> = ({
         </div>
         
         {!compact && message.description && (
-          <p className=\"text-gray-300 text-sm line-clamp-2 mb-3\">{message.description}</p>
+          <p className="text-gray-300 text-sm line-clamp-2 mb-3">{message.description}</p>
         )}
         
         <div className={`flex items-center justify-between ${compact ? 'text-xs' : 'text-sm'}`}>
-          <div className=\"flex items-center gap-2 text-gray-400\">
-            <Eye className=\"w-3 h-3\" />
+          <div className="flex items-center gap-2 text-gray-400">
+            <Eye className="w-3 h-3" />
             <span>{message.currentViews}</span>
           </div>
           
@@ -562,7 +562,7 @@ const PPVMessageCard: React.FC<PPVMessageCardProps> = ({
         </div>
 
         {isCreator && !compact && (
-          <div className=\"mt-2 text-xs text-green-400\">
+          <div className="mt-2 text-xs text-green-400">
             {formatPrice(message.totalEarnings)} earned
           </div>
         )}
@@ -585,9 +585,9 @@ const StatCard: React.FC<StatCardProps> = ({ icon, title, value, color, bgColor 
   <div className={`p-4 ${bgColor} rounded-xl border border-white/10`}>
     <div className={`flex items-center gap-2 ${color} mb-2`}>
       {icon}
-      <span className=\"text-sm font-medium\">{title}</span>
+      <span className="text-sm font-medium">{title}</span>
     </div>
-    <div className=\"text-2xl font-bold text-white\">{value}</div>
+    <div className="text-2xl font-bold text-white">{value}</div>
   </div>
 );
 
@@ -596,10 +596,10 @@ const MessagesSkeleton: React.FC<{ viewStyle: 'grid' | 'list' }> = ({ viewStyle 
     {Array.from({ length: 6 }, (_, i) => (
       <div key={i} className={`bg-black/20 rounded-xl animate-pulse ${viewStyle === 'list' ? 'p-4 flex items-center gap-4' : 'p-4'}`}>
         <div className={viewStyle === 'list' ? 'w-20 h-20 bg-white/10 rounded-xl' : 'h-32 bg-white/10 rounded-xl mb-3'} />
-        <div className=\"flex-1\">
-          <div className=\"h-4 bg-white/10 rounded mb-2\" />
-          <div className=\"h-3 bg-white/10 rounded w-2/3 mb-2\" />
-          <div className=\"h-3 bg-white/10 rounded w-1/2\" />
+        <div className="flex-1">
+          <div className="h-4 bg-white/10 rounded mb-2" />
+          <div className="h-3 bg-white/10 rounded w-2/3 mb-2" />
+          <div className="h-3 bg-white/10 rounded w-1/2" />
         </div>
       </div>
     ))}
@@ -610,12 +610,12 @@ const EmptyState: React.FC<{ viewMode: 'creator' | 'consumer'; onCreateClick: ()
   viewMode, 
   onCreateClick 
 }) => (
-  <div className=\"text-center py-12\">
-    <div className=\"text-6xl mb-6\"></div>
-    <h3 className=\"text-xl font-semibold text-white mb-2\">
+  <div className="text-center py-12">
+    <div className="text-6xl mb-6"></div>
+    <h3 className="text-xl font-semibold text-white mb-2">
       {viewMode === 'creator' ? 'No PPV messages yet' : 'No premium content available'}
     </h3>
-    <p className=\"text-gray-400 mb-6\">
+    <p className="text-gray-400 mb-6">
       {viewMode === 'creator' 
         ? 'Create your first premium message to start monetizing your content' 
         : 'Check back later for exclusive premium content'}
@@ -624,9 +624,9 @@ const EmptyState: React.FC<{ viewMode: 'creator' | 'consumer'; onCreateClick: ()
     {viewMode === 'creator' && (
       <Button
         onClick={onCreateClick}
-        className=\"bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white\"
+        className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
       >
-        <Plus className=\"w-4 h-4 mr-2\" />
+        <Plus className="w-4 h-4 mr-2" />
         Create Your First Message
       </Button>
     )}
@@ -634,21 +634,21 @@ const EmptyState: React.FC<{ viewMode: 'creator' | 'consumer'; onCreateClick: ()
 );
 
 const EarningsOverview: React.FC<{ stats: PPVMessageStats }> = ({ stats }) => (
-  <div className=\"space-y-6\">
-    <div className=\"grid grid-cols-1 md:grid-cols-2 gap-6\">
-      <div className=\"p-6 bg-black/20 rounded-xl border border-white/10\">
-        <h3 className=\"text-lg font-semibold text-white mb-4\">Monthly Comparison</h3>
-        <div className=\"space-y-3\">
-          <div className=\"flex justify-between items-center\">
-            <span className=\"text-gray-300\">This Month</span>
-            <span className=\"text-green-400 font-semibold\">{formatPrice(stats.earningsThisMonth)}</span>
+  <div className="space-y-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="p-6 bg-black/20 rounded-xl border border-white/10">
+        <h3 className="text-lg font-semibold text-white mb-4">Monthly Comparison</h3>
+        <div className="space-y-3">
+          <div className="flex justify-between items-center">
+            <span className="text-gray-300">This Month</span>
+            <span className="text-green-400 font-semibold">{formatPrice(stats.earningsThisMonth)}</span>
           </div>
-          <div className=\"flex justify-between items-center\">
-            <span className=\"text-gray-300\">Last Month</span>
-            <span className=\"text-gray-400\">{formatPrice(stats.earningsLastMonth)}</span>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-300">Last Month</span>
+            <span className="text-gray-400">{formatPrice(stats.earningsLastMonth)}</span>
           </div>
-          <div className=\"flex justify-between items-center pt-2 border-t border-white/10\">
-            <span className=\"text-white font-semibold\">Change</span>
+          <div className="flex justify-between items-center pt-2 border-t border-white/10">
+            <span className="text-white font-semibold">Change</span>
             <span className={stats.earningsThisMonth >= stats.earningsLastMonth ? 'text-green-400' : 'text-red-400'}>
               {stats.earningsLastMonth > 0 
                 ? `${((stats.earningsThisMonth - stats.earningsLastMonth) / stats.earningsLastMonth * 100).toFixed(1)}%`
@@ -658,36 +658,36 @@ const EarningsOverview: React.FC<{ stats: PPVMessageStats }> = ({ stats }) => (
         </div>
       </div>
       
-      <div className=\"p-6 bg-black/20 rounded-xl border border-white/10\">
-        <h3 className=\"text-lg font-semibold text-white mb-4\">Performance Metrics</h3>
-        <div className=\"space-y-3\">
-          <div className=\"flex justify-between items-center\">
-            <span className=\"text-gray-300\">Average Price</span>
-            <span className=\"text-white\">{formatPrice(stats.averagePrice)}</span>
+      <div className="p-6 bg-black/20 rounded-xl border border-white/10">
+        <h3 className="text-lg font-semibold text-white mb-4">Performance Metrics</h3>
+        <div className="space-y-3">
+          <div className="flex justify-between items-center">
+            <span className="text-gray-300">Average Price</span>
+            <span className="text-white">{formatPrice(stats.averagePrice)}</span>
           </div>
-          <div className=\"flex justify-between items-center\">
-            <span className=\"text-gray-300\">Conversion Rate</span>
-            <span className=\"text-white\">{stats.conversionRate.toFixed(1)}%</span>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-300">Conversion Rate</span>
+            <span className="text-white">{stats.conversionRate.toFixed(1)}%</span>
           </div>
-          <div className=\"flex justify-between items-center\">
-            <span className=\"text-gray-300\">Total Buyers</span>
-            <span className=\"text-white\">{stats.totalBuyers}</span>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-300">Total Buyers</span>
+            <span className="text-white">{stats.totalBuyers}</span>
           </div>
         </div>
       </div>
     </div>
     
     {stats.topPerformingMessage && (
-      <div className=\"p-6 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-xl border border-purple-500/30\">
-        <h3 className=\"text-lg font-semibold text-white mb-3\"> Top Performing Message</h3>
-        <div className=\"flex items-center gap-4\">
-          <div className=\"w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center\">
-            <Lock className=\"w-8 h-8 text-white\" />
+      <div className="p-6 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-xl border border-purple-500/30">
+        <h3 className="text-lg font-semibold text-white mb-3"> Top Performing Message</h3>
+        <div className="flex items-center gap-4">
+          <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center">
+            <Lock className="w-8 h-8 text-white" />
           </div>
           <div>
-            <h4 className=\"text-white font-semibold\">{stats.topPerformingMessage.title}</h4>
-            <div className=\"text-green-400 font-semibold\">{formatPrice(stats.topPerformingMessage.totalEarnings)} earned</div>
-            <div className=\"text-sm text-gray-300\">{stats.topPerformingMessage.currentViews} views</div>
+            <h4 className="text-white font-semibold">{stats.topPerformingMessage.title}</h4>
+            <div className="text-green-400 font-semibold">{formatPrice(stats.topPerformingMessage.totalEarnings)} earned</div>
+            <div className="text-sm text-gray-300">{stats.topPerformingMessage.currentViews} views</div>
           </div>
         </div>
       </div>

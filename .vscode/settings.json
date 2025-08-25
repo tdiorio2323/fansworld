@@ -16,5 +16,7 @@
   "vim.useSystemClipboard": true,
   "cSpell.words": [
     "Gift"
-  ]
+  ],
+  "cline.experimental.enableDiffEditor": false,
+  "cline.experimental.enableCommitMessage": false
 }

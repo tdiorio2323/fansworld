@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run server:dev\" \"next dev --turbo\"",
+    "dev": "vite",
     "dev:vite": "concurrently \"npm run server:dev\" \"vite\"",
     "server:dev": "tsx watch api/server.ts",
     "server:build": "tsc --project tsconfig.server.json",
-    "build": "next build",
+    "build": "vite build",
     "build:vite": "vite build",
     "lint": "eslint . && tsc --noEmit",
     "typecheck": "tsc --noEmit",
