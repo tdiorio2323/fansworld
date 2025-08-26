@@ -68,3 +68,7 @@ node scripts/mount-check.mjs
 ```
 
 Reports are generated in the `reports/` directory.
+
+## Contributor Guide
+
+See the Repository Guidelines in [AGENTS.md](./AGENTS.md) for project structure, build/test commands, coding style, testing expectations, commit/PR conventions, and security tips. Prefer `pnpm` for scripts where available.
