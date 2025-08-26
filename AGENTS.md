@@ -1,42 +1,51 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- Source lives in `src/` (e.g., `components/`, `lib/`, `pages/` or `app/`, `styles/`).
-- Tests colocated as `*.test.ts`/`*.spec.ts` or under `__tests__/`.
-- Database schema/migrations in `prisma/`.
-- Assets in `public/` or `assets/`; CI in `.github/workflows/`; scripts in `scripts/`.
-- Shared packages in `packages/` or `libs/`. Prefer small, focused modules with clear exports.
-- Use absolute imports where configured; avoid deep `../../..` chains.
+- **App Router** in `app/` with nested routes (`(marketing)`, `(auth)`, `(dashboard)`, `(admin)`).
+- Reusable UI in `components/` and helpers in `lib/`.
+- Backend utilities in `scripts/` and schema in `prisma/`.
+- Static assets in `public/`. CI workflows in `.github/workflows/`.
+- Tests colocated as `*.test.ts`/`*.spec.ts` or under `tests/`.
 
 ## Build, Test, and Development Commands
-- Install deps: `pnpm i` (fallback: `npm i`).
-- Dev server: `pnpm dev` (default `http://localhost:3000`).
-- Build app: `pnpm build`; production: `pnpm start`.
-- Lint/format: `pnpm lint`, `pnpm format`.
-- Unit tests: `pnpm test`; coverage: `pnpm test -- --coverage`.
-- Prisma: `pnpm prisma generate`, `pnpm prisma migrate dev`.
+- Install deps: `pnpm i`.
+- Run dev server: `pnpm dev` → http://localhost:3000.
+- Production build: `pnpm build` then `pnpm start`.
+- Lint/format: `pnpm lint` and `pnpm format`.
+- Unit tests: `pnpm test` (Vitest). Coverage: `pnpm test -- --coverage`.
+- Supabase migrations: `pnpm supabase db push` or `pnpm prisma migrate dev`.
 
 ## Coding Style & Naming Conventions
-- Language: TypeScript; indent 2 spaces; Prettier config in `.prettierrc.json`.
-- Files: `kebab-case.ts`; React components: `PascalCase.tsx`.
-- Variables/functions: `camelCase`; constants: `UPPER_SNAKE_CASE`.
+- Language: **TypeScript** with strict mode.
+- Indent **2 spaces**. Use Prettier (`.prettierrc.json`).
+- Files: `kebab-case.ts`. React components: `PascalCase.tsx`.
+- Variables/functions: `camelCase`. Constants: `UPPER_SNAKE_CASE`.
+- Absolute imports (`@/lib/...`, `@/components/...`) instead of deep `../../`.
 
 ## Testing Guidelines
-- Frameworks: Vitest/Jest for unit; Playwright for e2e (if configured).
-- Name tests as above; keep near code or in `__tests__/`.
-- Target >80% coverage on critical paths; include edge and error cases.
-- Use factories/mocks in `tests/` or `src/test-utils/`.
+- **Frameworks**: Vitest for unit; Playwright optional for e2e.
+- Name tests `*.test.ts[x]` or `*.spec.ts[x]`.
+- Place near source or in `tests/`.
+- Target **≥80% coverage** on core logic and routes.
+- Use `src/test-utils/` for mocks/factories.
 
 ## Commit & Pull Request Guidelines
-- Conventional Commits: `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`.
-- PRs include description, linked issues (e.g., `Closes #123`), screenshots for UI, and DB migration notes.
-- Ensure CI is green; update tests; run `pnpm lint && pnpm format` before review.
+- Follow **Conventional Commits**:
+  - `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`.
+  - Scope where helpful: `feat(auth): add reset-password`.
+- PRs must include:
+  - Clear description and linked issues (e.g., `Closes #123`).
+  - Screenshots for UI changes.
+  - Notes for DB migrations or API changes.
+- Run `pnpm lint && pnpm test` before requesting review. Ensure CI is green.
 
 ## Security & Configuration
-- Never commit secrets; use `.env.local`. Keep `.env*` in `.gitignore`.
-- Rotate keys if exposed. Use `prisma migrate`; avoid manual SQL in production.
+- Never commit secrets. Use `.env.local`. Ship `.env.example`.
+- Rotate keys if exposed. All secrets must be injected via Vercel/CI.
+- Schema changes go through migrations — no manual SQL in prod.
 
 ## Agent-Specific Instructions
-- Keep diffs minimal and focused; update docs/tests when touching public APIs or CLI.
-- Fix root causes, not symptoms; stay consistent with existing style and structure.
-
+- Keep diffs minimal and atomic.
+- Update docs/tests when changing public APIs or CLI scripts.
+- Fix root cause bugs, not just symptoms.
+- Stay consistent with Next.js App Router patterns and Tailwind class conventions.
