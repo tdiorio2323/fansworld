@@ -44,12 +44,12 @@ jobs:
         run: pnpm run build
 
       # 7. Preview server & Route Health Check
-      - name: Route Health Check
+      - name: Route Health Check (static export)
         env:
           NODE_ENV: production
           PORT: 3000
         run: |
-          pnpm start &
+          npx serve -s out -l 3000 &
           npx wait-on http://localhost:3000
           chmod +x scripts/check-routes.sh
           BASE=http://localhost:3000 scripts/check-routes.sh | tee reports/route-check.txt
