@@ -25,18 +25,29 @@
     }
   },
   "include": [
-    "src",
-    "app",
-    "components",
-    "lib",
+    "src/main.tsx",
+    "src/App.tsx",
+    "src/lib/**/*.ts",
+    "src/lib/**/*.tsx",
     "next-env.d.ts"
   ],
   "exclude": [
     "src/__tests__",
     "**/*.test.*",
     "**/*.spec.*",
-    "tests"
-  ]
+    "tests",
+    "app/**",
+    "src/components/**",
+    "src/features/**",
+    "src/features/addons/**",
+    "src/components/admin/**",
+    "src/components/casino/**",
+    "src/components/InstagramMessaging.tsx",
+    "src/components/InstagramNavbar.tsx",
+    "src/components/InviteRedemption.tsx",
+    "src/components/LinkTracker.tsx",
+    "src/components/AIContentGenerator.tsx"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

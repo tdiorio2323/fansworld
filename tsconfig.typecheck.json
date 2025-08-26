@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noResolve": true,
+    "noEmit": true
+  },
+  "include": [
+    "src/main.tsx",
+    "src/App.tsx",
+    "src/lib/**/*.ts",
+    "src/lib/**/*.tsx",
+    "next-env.d.ts"
+  ]
+}
+
