@@ -21,16 +21,16 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@/lib/*": [
-        "./lib/*"
-      ]
+      "@/*": ["./src/*"],
+      "@/lib/*": ["./lib/*"]
     }
   },
   "include": [
-    "src"
+    "src",
+    "app",
+    "components",
+    "lib",
+    "next-env.d.ts"
   ],
   "references": [
     {
