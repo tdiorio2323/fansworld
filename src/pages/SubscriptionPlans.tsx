@@ -287,14 +287,14 @@ export default function SubscriptionPlans() {
                           {index < 3 ? (
                             <Check className="w-4 h-4 text-green-500 mx-auto" />
                           ) : (
-                            <span className="text-muted-foreground">—</span>
+                            <span className="text-muted-foreground">-</span>
                           )}
                         </td>
                         <td className="text-center py-3 px-4">
                           {index < 6 ? (
                             <Check className="w-4 h-4 text-green-500 mx-auto" />
                           ) : (
-                            <span className="text-muted-foreground">—</span>
+                            <span className="text-muted-foreground">-</span>
                           )}
                         </td>
                         <td className="text-center py-3 px-4">
