@@ -1,9 +1,11 @@
+import { render, fireEvent, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
+import CreatorApplication from '@/pages/CreatorApplication';
+
 // Mocking API clients, file upload services, and database interactions is crucial for these tests.
 // Example using Vitest:
 // vi.mock('@/lib/api/creator');
 // vi.mock('@/lib/storage'); // Assuming a module for file storage
-
-
 
 describe('Creator Features', () => {
   beforeEach(() => {
@@ -21,112 +23,163 @@ describe('Creator Features', () => {
        * 4. Assert that the API was called with the correct form data.
        * 5. Assert that a success message is shown to the user.
        */
-      expect(true).toBe(true); // Placeholder
+      const mockSubmit = vi.fn().mockResolvedValue({ success: true });
+      vi.mock('@/lib/api/creator', () => ({
+        submitApplication: mockSubmit,
+      }));
+
+      const { getByLabelText, getByText } = render(<CreatorApplication />);
+
+      fireEvent.change(getByLabelText('Your Name'), { target: { value: 'Test User' } });
+      fireEvent.change(getByLabelText('Your Email'), { target: { value: 'test@example.com' } });
+      fireEvent.click(getByText('Submit Application'));
+
+      await waitFor(() => {
+        expect(mockSubmit).toHaveBeenCalledWith({
+          name: 'Test User',
+          email: 'test@example.com',
+        });
+        expect(getByText('Application submitted successfully!')).toBeInTheDocument();
+      });
     });
 
-    it('should handle file uploads within the application form', async () => {
-      /*
-       * TODO: Implement test
-       * 1. Mock the file storage service (e.g., Supabase Storage) to simulate a successful upload.
-       * 2. Simulate a user selecting a file for an upload field.
-       * 3. Assert that the upload function is called with the file.
-       * 4. Assert that the form state is updated with the uploaded file URL.
-       */
-      expect(true).toBe(true); // Placeholder
-    });
+    const mockUpload = vi.fn().mockResolvedValue({ url: 'http://example.com/uploaded-file.jpg' });
+      vi.mock('@/lib/storage', () => ({
+        uploadFile: mockUpload,
+      }));
 
-    it('should save the application and notify admin upon submission', async () => {
-      /*
-       * This test might be better as an integration or end-to-end test,
-       * but for unit testing, we can verify the functions are called.
-       * TODO: Implement test
-       * 1. Mock the database insertion function and the admin notification service.
-       * 2. Trigger the application submission process.
-       * 3. Assert that the function to save the application to the database is called.
-       * 4. Assert that the admin notification function (e.g., sending an email) is called.
-       */
-      expect(true).toBe(true); // Placeholder
-    });
+      const { getByLabelText } = render(<CreatorApplication />);
+      const fileInput = getByLabelText('Upload ID');
+      const file = new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' });
 
-    it('should show validation errors for incomplete application forms', async () => {
-      /*
-       * TODO: Implement test
-       * 1. Render the application form component.
-       * 2. Simulate a submission attempt with missing required fields.
-       * 3. Assert that validation error messages are displayed for the empty fields.
-       */
-      expect(true).toBe(true); // Placeholder
-    });
+      fireEvent.change(fileInput, { target: { files: [file] } });
+
+      await waitFor(() => {
+        expect(mockUpload).toHaveBeenCalledWith(file);
+        // More detailed assertions can be added here to check the form state
+      });
+
+    const mockSave = vi.fn().mockResolvedValue({ success: true });
+      const mockNotify = vi.fn();
+      vi.mock('@/lib/db', () => ({
+        saveApplication: mockSave,
+      }));
+      vi.mock('@/lib/notifications', () => ({
+        notifyAdmin: mockNotify,
+      }));
+
+      const { getByText } = render(<CreatorApplication />);
+      fireEvent.click(getByText('Submit Application'));
+
+      await waitFor(() => {
+        expect(mockSave).toHaveBeenCalled();
+        expect(mockNotify).toHaveBeenCalled();
+      });
+
+    const { getByText, findAllByText } = render(<CreatorApplication />);
+      fireEvent.click(getByText('Submit Application'));
+
+      const errorMessages = await findAllByText(/required/i);
+      expect(errorMessages.length).toBeGreaterThan(0);
   });
 
   describe('Content Management', () => {
-    it('should allow a creator to upload new content (image/video)', async () => {
-      /*
-       * TODO: Implement test
-       * 1. Mock the file storage upload API to return a success response.
-       * 2. Simulate a logged-in creator using the content upload UI.
-       * 3. Simulate selecting a media file.
-       * 4. Trigger the upload.
-       * 5. Assert that the storage API was called.
-       * 6. Assert that the UI updates to show the new content.
-       */
-      expect(true).toBe(true); // Placeholder
-    });
+    const mockUpload = vi.fn().mockResolvedValue({ url: 'http://example.com/uploaded-file.jpg' });
+      vi.mock('@/lib/storage', () => ({
+        uploadFile: mockUpload,
+      }));
 
-    it('should display a preview of the media before uploading', async () => {
-      /*
-       * TODO: Implement test
-       * 1. Simulate a user selecting a file in a file input.
-       * 2. Assert that a client-side generated preview (e.g., using URL.createObjectURL) is displayed.
-       */
-      expect(true).toBe(true); // Placeholder
-    });
+      const { getByLabelText, getByText, findByAltText } = render(<CreatorContentPage />);
+      const fileInput = getByLabelText('Upload Content');
+      const file = new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' });
 
-    it('should allow a creator to delete their content', async () => {
-      /*
-       * TODO: Implement test
-       * 1. Mock the API for deleting content to return a success response.
-       * 2. Render a component showing a list of the creator's content.
-       * 3. Simulate the creator clicking a "delete" button on a content item.
-       * 4. Assert that the delete API was called with the correct content ID.
-       * 5. Assert that the content item is removed from the UI.
-       */
-      expect(true).toBe(true); // Placeholder
-    });
+      fireEvent.change(fileInput, { target: { files: [file] } });
+      fireEvent.click(getByText('Upload'));
 
-    it('should prevent uploads if storage limits are exceeded', async () => {
-      /*
-       * TODO: Implement test
-       * 1. Mock the creator's current storage usage to be at or near the limit.
-       * 2. Mock the upload API to return an error for exceeded storage.
-       * 3. Simulate a creator attempting to upload a new file.
-       * 4. Assert that an error message about storage limits is displayed.
-       */
-      expect(true).toBe(true); // Placeholder
-    });
+      await waitFor(() => {
+        expect(mockUpload).toHaveBeenCalledWith(file);
+      });
+
+      const uploadedImage = await findByAltText('Uploaded Content');
+      expect(uploadedImage).toBeInTheDocument();
+
+    const { getByLabelText, findByAltText } = render(<CreatorContentPage />);
+      const fileInput = getByLabelText('Upload Content');
+      const file = new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' });
+      const previewUrl = 'blob:http://localhost:3000/some-random-uuid';
+
+      global.URL.createObjectURL = vi.fn(() => previewUrl);
+
+      fireEvent.change(fileInput, { target: { files: [file] } });
+
+      const previewImage = await findByAltText('Preview');
+      expect(previewImage).toHaveAttribute('src', previewUrl);
+
+    const mockDelete = vi.fn().mockResolvedValue({ success: true });
+      vi.mock('@/lib/api/creator', () => ({
+        deleteContent: mockDelete,
+      }));
+
+      const { getByTestId, queryByTestId } = render(
+        <CreatorContentPage
+          initialContent={[{ id: '123', url: 'http://example.com/image.jpg' }]}
+        />
+      );
+
+      const deleteButton = getByTestId('delete-button-123');
+      fireEvent.click(deleteButton);
+
+      await waitFor(() => {
+        expect(mockDelete).toHaveBeenCalledWith('123');
+        expect(queryByTestId('content-item-123')).not.toBeInTheDocument();
+      });
+
+    const mockUpload = vi.fn().mockRejectedValue(new Error('Storage limit exceeded'));
+      vi.mock('@/lib/storage', () => ({
+        uploadFile: mockUpload,
+      }));
+
+      const { getByLabelText, getByText, findByText } = render(<CreatorContentPage />);
+      const fileInput = getByLabelText('Upload Content');
+      const file = new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' });
+
+      fireEvent.change(fileInput, { target: { files: [file] } });
+      fireEvent.click(getByText('Upload'));
+
+      const errorMessage = await findByText(/storage limit exceeded/i);
+      expect(errorMessage).toBeInTheDocument();
   });
 
   describe('Creator Dashboard', () => {
-    it('should display creator statistics correctly', async () => {
-      /*
-       * TODO: Implement test
-       * 1. Mock the API that fetches dashboard stats (e.g., subscribers, views).
-       * 2. Render the dashboard component.
-       * 3. Assert that the API is called.
-       * 4. Assert that the fetched stats are displayed correctly in the UI.
-       */
-      expect(true).toBe(true); // Placeholder
-    });
+    const mockFetchStats = vi.fn().mockResolvedValue({ subscribers: 1000, views: 50000 });
+      vi.mock('@/lib/api/creator', () => ({
+        fetchDashboardStats: mockFetchStats,
+      }));
 
-    it('should show earnings data accurately', async () => {
-      /*
-       * TODO: Implement test
-       * 1. Mock the API that fetches earnings data.
-       * 2. Render the earnings section of the dashboard.
-       * 3. Assert that the data is displayed and formatted correctly (e.g., as currency).
-       */
-      expect(true).toBe(true); // Placeholder
-    });
+      const { findByText } = render(<CreatorDashboardOverview />);
+
+      expect(mockFetchStats).toHaveBeenCalled();
+
+      const subscribersStat = await findByText(/1,000/i);
+      const viewsStat = await findByText(/50,000/i);
+
+      expect(subscribersStat).toBeInTheDocument();
+      expect(viewsStat).toBeInTheDocument();
+
+    const mockFetchEarnings = vi.fn().mockResolvedValue({ total: 5000, monthly: 1500 });
+      vi.mock('@/lib/api/creator', () => ({
+        fetchEarningsData: mockFetchEarnings,
+      }));
+
+      const { findByText } = render(<CreatorDashboardOverview />);
+
+      expect(mockFetchEarnings).toHaveBeenCalled();
+
+      const totalEarnings = await findByText(/\$5,000.00/i);
+      const monthlyEarnings = await findByText(/\$1,500.00/i);
+
+      expect(totalEarnings).toBeInTheDocument();
+      expect(monthlyEarnings).toBeInTheDocument();
   });
 });
 describe('Authentication', () => {
@@ -136,73 +189,100 @@ describe('Authentication', () => {
     });
 
     describe('Registration Flow', () => {
-        it('should allow a user to register with a valid invite code', async () => {
-            /*
-             * TODO: Implement test
-             * 1. Mock the API call for registration to return a success response.
-             * 2. Simulate user input for email, password, and a valid invite code.
-             * 3. Trigger the registration function.
-             * 4. Assert that the user is created and the session is handled correctly.
-             */
-            expect(true).toBe(true); // Placeholder assertion
+        const mockRegister = vi.fn().mockResolvedValue({ success: true });
+        vi.mock('@/lib/api/auth', () => ({
+          register: mockRegister,
+        }));
+  
+        const { getByLabelText, getByText } = render(<RegisterPage />);
+  
+        fireEvent.change(getByLabelText('Name'), { target: { value: 'Test User' } });
+        fireEvent.change(getByLabelText('Email'), { target: { value: 'test@example.com' } });
+        fireEvent.change(getByLabelText('Password'), { target: { value: 'password123' } });
+        fireEvent.change(getByLabelText('Invite Code'), { target: { value: 'VALIDCODE' } });
+        fireEvent.click(getByText('Create account'));
+  
+        await waitFor(() => {
+          expect(mockRegister).toHaveBeenCalledWith({
+            name: 'Test User',
+            email: 'test@example.com',
+            password: 'password123',
+            inviteCode: 'VALIDCODE',
+          });
         });
 
-        it('should reject registration with an invalid invite code', async () => {
-            /*
-             * TODO: Implement test
-             * 1. Mock the API call for registration to return an error for invalid codes.
-             * 2. Simulate user input with an invalid invite code.
-             * 3. Trigger the registration function.
-             * 4. Assert that an appropriate error message is shown to the user.
-             */
-            expect(true).toBe(true); // Placeholder assertion
-        });
+        const mockRegister = vi.fn().mockRejectedValue(new Error('Invalid invite code'));
+        vi.mock('@/lib/api/auth', () => ({
+          register: mockRegister,
+        }));
+  
+        const { getByLabelText, getByText, findByText } = render(<RegisterPage />);
+  
+        fireEvent.change(getByLabelText('Name'), { target: { value: 'Test User' } });
+        fireEvent.change(getByLabelText('Email'), { target: { value: 'test@example.com' } });
+        fireEvent.change(getByLabelText('Password'), { target: { value: 'password123' } });
+        fireEvent.change(getByLabelText('Invite Code'), { target: { value: 'INVALIDCODE' } });
+        fireEvent.click(getByText('Create account'));
+  
+        const errorMessage = await findByText(/invalid invite code/i);
+        expect(errorMessage).toBeInTheDocument();
 
-        it('should perform email validation on the client-side', async () => {
-            /*
-             * TODO: Implement test
-             * 1. Simulate a user entering an invalid email format (e.g., "test@test").
-             * 2. Assert that a validation error is displayed.
-             * 3. Simulate the user correcting it to a valid email.
-             * 4. Assert that the validation error is removed.
-             */
-            expect(true).toBe(true); // Placeholder assertion
-        });
+        const { getByLabelText, findByText, queryByText } = render(<RegisterPage />);
+        const emailInput = getByLabelText('Email');
+  
+        fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
+        let errorMessage = await findByText(/invalid email/i);
+        expect(errorMessage).toBeInTheDocument();
+  
+        fireEvent.change(emailInput, { target: { value: 'valid@email.com' } });
+        errorMessage = queryByText(/invalid email/i);
+        expect(errorMessage).not.toBeInTheDocument();
 
-        it('should enforce password requirements on the client-side', async () => {
-            /*
-             * TODO: Implement test
-             * 1. Simulate a user entering a password that doesn't meet requirements (e.g., too short).
-             * 2. Assert that a validation error is displayed.
-             * 3. Simulate the user entering a valid password.
-             * 4. Assert that the validation error is removed.
-             */
-            expect(true).toBe(true); // Placeholder assertion
-        });
+        const { getByLabelText, findByText, queryByText } = render(<RegisterPage />);
+        const passwordInput = getByLabelText('Password');
+  
+        fireEvent.change(passwordInput, { target: { value: 'short' } });
+        let errorMessage = await findByText(/password must be at least/i);
+        expect(errorMessage).toBeInTheDocument();
+  
+        fireEvent.change(passwordInput, { target: { value: 'valid-password' } });
+        errorMessage = queryByText(/password must be at least/i);
+        expect(errorMessage).not.toBeInTheDocument();
     });
 
     describe('Login Flow', () => {
-        it('should allow a user to login with valid credentials', async () => {
-            /*
-             * TODO: Implement test
-             * 1. Mock the API call for login to return a successful session.
-             * 2. Simulate user input for email and password.
-             * 3. Trigger the login function.
-             * 4. Assert that the user's session is created and stored.
-             */
-            expect(true).toBe(true); // Placeholder assertion
+        const mockLogin = vi.fn().mockResolvedValue({ success: true, token: 'fake-token' });
+        vi.mock('@/lib/api/auth', () => ({
+          login: mockLogin,
+        }));
+  
+        const { getByLabelText, getB圜asualName } = render(<LoginPage />);
+  
+        fireEvent.change(getByLabelText('Email'), { target: { value: 'test@example.com' } });
+        fireEvent.change(getByLabelText('Password'), { target: { value: 'password123' } });
+        fireEvent.click(getByText('Login'));
+  
+        await waitFor(() => {
+          expect(mockLogin).toHaveBeenCalledWith({
+            email: 'test@example.com',
+            password: 'password123',
+          });
+          // Here you would also assert that the session is created, e.g., by checking cookies or local storage
         });
 
-        it('should show an error for invalid credentials', async () => {
-            /*
-             * TODO: Implement test
-             * 1. Mock the API call for login to return an authentication error.
-             * 2. Simulate user input with incorrect credentials.
-             * 3. Trigger the login function.
-             * 4. Assert that an error message is displayed.
-             */
-            expect(true).toBe(true); // Placeholder assertion
-        });
+        const mockLogin = vi.fn().mockRejectedValue(new Error('Invalid credentials'));
+        vi.mock('@/lib/api/auth', () => ({
+          login: mockLogin,
+        }));
+  
+        const { getByLabelText, getByText, findByText } = render(<LoginPage />);
+  
+        fireEvent.change(getByLabelText('Email'), { target: { value: 'wrong@example.com' } });
+        fireEvent.change(getByLabelText('Password'), { target: { value: 'wrongpassword' } });
+        fireEvent.click(getByText('Login'));
+  
+        const errorMessage = await findByText(/invalid credentials/i);
+        expect(errorMessage).toBeInTheDocument();
 
         it('should correctly log the user out', async () => {
             /*

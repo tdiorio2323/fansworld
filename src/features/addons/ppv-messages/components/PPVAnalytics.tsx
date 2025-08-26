@@ -304,7 +304,7 @@ export const PPVAnalytics: React.FC<PPVAnalyticsProps> = ({ creatorId }) => {
                 </div>
                 
                 <div className="text-right">
-                  <div className="text-green-400 font-semibold">{formatPrice(purchase.amount)}</div>
+                  <div className="text-green-400 font-bold">{formatPrice(purchase.amount)}</div>
                   <div className="text-xs text-gray-400">
                     {new Date(purchase.createdAt).toLocaleDateString()}
                   </div>

@@ -15,6 +15,9 @@
   "files.autoSave": "onFocusChange",
   "vim.useSystemClipboard": true,
   "cSpell.words": [
-    "Gift"
-  ]
+    "Gift",
+    "import"
+  ],
+  "cline.experimental.enableDiffEditor": false,
+  "cline.experimental.enableCommitMessage": false
 }

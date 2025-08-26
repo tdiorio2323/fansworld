@@ -1,0 +1,58 @@
+name: Cabana CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+
+      # 3. Install dependencies
+      - name: Install deps
+        run: npm ci
+
+      # 4. Type check
+      - name: TypeScript check
+        run: npm run typecheck
+
+      # 5. Lint
+      - name: ESLint
+        run: npm run lint
+
+      # 6. Build project
+      - name: Build Cabana
+        run: npm run build
+
+      # 7. Preview server & Route Health Check
+      - name: Route Health Check
+        run: |
+          npm run preview &
+          npx wait-on http://localhost:4173
+          chmod +x scripts/check-routes.sh
+          scripts/check-routes.sh | tee reports/route-check.txt
+
+      # 8. Mount Check
+      - name: Mount Check
+        run: node scripts/mount-check.mjs | tee reports/mount-check.log
+
+      # 9. Upload Reports as Artifacts
+      - name: Upload reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: cabana-reports
+          path: reports/
