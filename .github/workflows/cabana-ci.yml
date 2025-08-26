@@ -13,38 +13,46 @@ jobs:
     steps:
       # 1. Checkout repo
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 2. Setup Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: "npm"
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
       # 3. Install dependencies
       - name: Install deps
-        run: npm ci
+        run: pnpm i --frozen-lockfile=false
 
       # 4. Type check
       - name: TypeScript check
-        run: npm run typecheck
+        run: pnpm run typecheck
 
       # 5. Lint
       - name: ESLint
-        run: npm run lint
+        run: pnpm run lint
 
       # 6. Build project
       - name: Build Cabana
-        run: npm run build
+        run: pnpm run build
 
       # 7. Preview server & Route Health Check
       - name: Route Health Check
+        env:
+          NODE_ENV: production
+          PORT: 3000
         run: |
-          npm run preview &
-          npx wait-on http://localhost:4173
+          pnpm start &
+          npx wait-on http://localhost:3000
           chmod +x scripts/check-routes.sh
-          scripts/check-routes.sh | tee reports/route-check.txt
+          BASE=http://localhost:3000 scripts/check-routes.sh | tee reports/route-check.txt
 
       # 8. Mount Check
       - name: Mount Check
