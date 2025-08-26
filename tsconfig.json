@@ -31,6 +31,12 @@
     "lib",
     "next-env.d.ts"
   ],
+  "exclude": [
+    "src/__tests__",
+    "**/*.test.*",
+    "**/*.spec.*",
+    "tests"
+  ]
   "references": [
     {
       "path": "./tsconfig.node.json"

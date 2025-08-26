@@ -221,7 +221,7 @@ function App() {
   }, []);
 
   return (
-    <QueryClientP client={queryClient}>
+    <QueryClientProvider client={queryClient}>
       <AccessibilityProvider>
         <AuthProvider>
           <TooltipProvider>
@@ -238,7 +238,7 @@ function App() {
           </TooltipProvider>
         </AuthProvider>
       </AccessibilityProvider>
-    </QueryClientP>
+    </QueryClientProvider>
   );
 }
 

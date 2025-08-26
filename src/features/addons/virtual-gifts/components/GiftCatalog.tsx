@@ -120,7 +120,7 @@ export const GiftCatalog: React.FC<GiftCatalogProps> = ({
           <Input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search gifts...";
+            placeholder="Search gifts..."
             className="pl-10 bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400"
           />
         </div>
@@ -351,7 +351,7 @@ const GiftCard: React.FC<GiftCardProps> = ({
         {/* Price */}
         <div className="text-right">
           <div className="text-xl font-bold text-green-400">
-            ${(gift.price / 100).toFixed(2)}
+            {`$${(gift.price / 100).toFixed(2)}`}
           </div>
           <div className="text-xs text-gray-400">per gift</div>
         </div>
@@ -395,7 +395,7 @@ const GiftCard: React.FC<GiftCardProps> = ({
         {/* Price */}
         <div className="text-center">
           <div className="text-lg font-bold text-green-400">
-            ${(gift.price / 100).toFixed(2)}
+            {`$${(gift.price / 100).toFixed(2)}`}
           </div>
         </div>
       </div>
