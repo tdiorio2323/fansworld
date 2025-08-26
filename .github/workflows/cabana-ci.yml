@@ -52,7 +52,7 @@ jobs:
 
       # 9. Upload Reports as Artifacts
       - name: Upload reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: cabana-reports
           path: reports/
