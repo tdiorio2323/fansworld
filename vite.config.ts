@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import path from "path";
 // Removed lovable-tagger import - not needed for local development
 
@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => ({
     port: 4173
   },
   plugins: [
-    react(),
+    react()
     // Removed componentTagger() - Lovable-specific development tool
   ],
   build: {

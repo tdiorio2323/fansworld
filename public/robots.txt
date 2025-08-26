@@ -1,3 +1,37 @@
+# CABANA Platform robots.txt
+# https://cabanagrp.com
+
+# Allow all crawlers by default
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /auth/callback
+Disallow: /settings/
+Disallow: /billing/
+Disallow: /messages/
+Disallow: /.well-known/
+Disallow: /creator/dashboard/
+Disallow: /creator/earnings/
+Disallow: /creator/analytics/
+
+# Block unwanted bots
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: DotBot
+User-agent: MJ12bot
+User-agent: PetalBot
+Disallow: /
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Sitemaps
 Sitemap: https://cabanagrp.com/sitemap.xml

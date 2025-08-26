@@ -5,7 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { AuthProvider } from "./hooks/useAuth";
+import { AuthProvider } from "./hooks/useAuth"; // Fixed: removed .tsx extension
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AdminRoute } from "./components/AdminRoute";
 import { AccessibilityProvider } from "./components/AccessibilityProvider";
@@ -50,7 +50,7 @@ import AboutPage from "./pages/public/AboutPage";
 import FeaturesPage from "./pages/public/FeaturesPage";
 import PricingPage from "./pages/public/PricingPage";
 
-// Auth Pages  
+// Auth Pages
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 
@@ -78,7 +78,7 @@ const queryClient = new QueryClient();
 
 function AppRoutes() {
   const location = useLocation();
-  
+
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
@@ -135,11 +135,7 @@ function AppRoutes() {
         <Route path="/PaymentSuccess" element={<PaymentSuccess />} />
         <Route path="/landing" element={<LandingPage />} />
         <Route path="/LandingPage" element={<LandingPage />} />
-        <Route path="/messages" element={
-          <ProtectedRoute>
-            <Messages />
-          </ProtectedRoute>
-        } />
+        <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
         <Route path="/Messages" element={
           <ProtectedRoute>
             <Messages />
@@ -173,14 +169,14 @@ function AppRoutes() {
         <Route path="/terms" element={<TermsOfServicePage />} />
         <Route path="/forum" element={<ForumCategoriesPage />} />
         <Route path="/luxury-demo" element={<LuxuryThemeDemo />} />
-        
+
         {/* Creator Dashboard Overview */}
         <Route path="/creator/dashboard" element={
           <ProtectedRoute>
             <CreatorDashboardOverview />
           </ProtectedRoute>
         } />
-        
+
         {/* Creator Management Pages */}
         <Route path="/creator/analytics" element={
           <ProtectedRoute>
@@ -207,10 +203,10 @@ function AppRoutes() {
             <CreatorFansPage />
           </ProtectedRoute>
         } />
-        
+
         {/* Homepage route */}
         <Route path="/home" element={<HomePage />} />
-        
+
         {/* 404 - Must be last */}
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -225,7 +221,7 @@ function App() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientP client={queryClient}>
       <AccessibilityProvider>
         <AuthProvider>
           <TooltipProvider>
@@ -242,7 +238,7 @@ function App() {
           </TooltipProvider>
         </AuthProvider>
       </AccessibilityProvider>
-    </QueryClientProvider>
+    </QueryClientP>
   );
 }
 
