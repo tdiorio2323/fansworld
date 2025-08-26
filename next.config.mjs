@@ -7,4 +7,8 @@ export default {
   },
   images: { unoptimized: true },
   output: "export",
+  experimental: {
+    // Avoid incorrect monorepo/workspace root inference during builds
+    outputFileTracingRoot: process.cwd(),
+  },
 };
