@@ -3,12 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "pnpm@10",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "dev": "vite",
+    "dev": "next dev",
     "dev:vite": "concurrently \"npm run server:dev\" \"vite\"",
     "server:dev": "tsx watch api/server.ts",
     "server:build": "tsc --project tsconfig.server.json",
-    "build": "vite build",
+    "build": "next build",
     "build:vite": "vite build",
     "lint": "eslint . && tsc --noEmit",
     "typecheck": "tsc --noEmit",
@@ -113,7 +117,7 @@
     "globals": "^16.3.0",
     "jsdom": "^26.1.0",
     "pg": "^8.16.3",
-    "postcss": "^8.4.32",
+    "postcss": "^8.5.6",
     "tailwindcss": "^3.4.0",
     "typescript": "~5.3.3",
     "typescript-eslint": "^8.35.1",
