@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "packageManager": "pnpm@10",
+  "packageManager": "pnpm@10.0.0",
   "engines": {
     "node": ">=20"
   },
@@ -107,6 +107,7 @@
     "@testsprite/testsprite-mcp": "^0.0.12",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.2",
+    "@types/node": "^24.3.0",
     "@types/react": "^18.3.24",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react-swc": "^3.11.0",
