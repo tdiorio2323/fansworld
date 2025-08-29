@@ -12,17 +12,27 @@ export default function EmailCapture() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    
+
     setIsLoading(true);
-    
+
     try {
-      // TODO: Implement actual email capture API call
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+
+      if (!response.ok) {
+        throw new Error('Email capture failed');
+      }
+
       setIsSubmitted(true);
-      setEmail("");
+      setEmail('');
       setTimeout(() => setIsSubmitted(false), 3000);
     } catch (error) {
-      console.error("Email capture failed:", error);
+      console.error('Email capture failed:', error);
     } finally {
       setIsLoading(false);
     }
