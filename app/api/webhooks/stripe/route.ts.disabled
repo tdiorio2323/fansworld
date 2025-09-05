@@ -1,0 +1,63 @@
+
+import Stripe from 'stripe';
+import { headers } from 'next/headers';
+import { NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Stripe and Supabase clients
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2025-08-27.basil' });
+const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+
+export async function POST(req: Request) {
+  const body = await req.text();
+  const signature = headers().get('Stripe-Signature') as string;
+
+  let event: Stripe.Event;
+
+  try {
+    event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
+  } catch (err: any) {
+    console.error(`❌ Error message: ${err.message}`);
+    return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
+  }
+
+  // Handle the specific event types
+  switch (event.type) {
+    case 'checkout.session.completed':
+      const session = event.data.object as Stripe.Checkout.Session;
+      const { user_id, creator_id } = session.metadata!;
+
+      // Create a new subscription record in Supabase
+      await supabase.from('subscriptions').insert({
+        user_id,
+        creator_id,
+        stripe_subscription_id: session.subscription,
+        status: 'active',
+      });
+      break;
+
+    case 'customer.subscription.updated':
+      const subscriptionUpdated = event.data.object as Stripe.Subscription;
+      // Update the subscription status in Supabase
+      await supabase
+        .from('subscriptions')
+        .update({ status: subscriptionUpdated.status })
+        .eq('stripe_subscription_id', subscriptionUpdated.id);
+      break;
+
+    case 'customer.subscription.deleted':
+      const subscriptionDeleted = event.data.object as Stripe.Subscription;
+      // Typically, you'd update the status to 'canceled'
+      await supabase
+        .from('subscriptions')
+        .update({ status: 'canceled' })
+        .eq('stripe_subscription_id', subscriptionDeleted.id);
+      break;
+
+    default:
+      console.warn(`Unhandled event type: ${event.type}`);
+  }
+
+  return NextResponse.json({ received: true });
+}

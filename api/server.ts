@@ -231,6 +231,10 @@ app.get('/api/health', (req, res) => {
   })
 })
 
+app.get('/api/hello', (req, res) => {
+  res.json({ message: 'Hello from the Cabana API!' })
+})
+
 // AI Chat endpoint with CSRF protection
 app.post('/api/ai/chat', validateCSRFToken, async (req, res) => {
   try {

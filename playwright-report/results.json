@@ -1,0 +1,761 @@
+{
+  "config": {
+    "configFile": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/playwright.config.ts",
+    "rootDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "playwright-report/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 300000
+      },
+      {
+        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 300000
+      },
+      {
+        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 300000
+      },
+      {
+        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 300000
+      },
+      {
+        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "Mobile Safari",
+        "name": "Mobile Safari",
+        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 300000
+      },
+      {
+        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "Microsoft Edge",
+        "name": "Microsoft Edge",
+        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 300000
+      },
+      {
+        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "Google Chrome",
+        "name": "Google Chrome",
+        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 300000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "screenshot-capture.spec.ts",
+      "file": "screenshot-capture.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "CABANA Platform Screenshot Capture",
+          "file": "screenshot-capture.spec.ts",
+          "line": 459,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Capture all CABANA platform screenshots",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 300026,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 300000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 300000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 300000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests/screenshot-capture.spec.ts",
+                            "column": 18,
+                            "line": 518
+                          },
+                          "message": "Error: page.waitForTimeout: Target page, context or browser has been closed\n\n  516 |       \n  517 |       // Small delay between routes\n> 518 |       await page.waitForTimeout(500);\n      |                  ^\n  519 |     }\n  520 |     \n  521 |     // Try to capture some dynamic content states\n    at /Users/tylerdiorio/CABANA_MASTER_PROJECT/tests/screenshot-capture.spec.ts:518:18"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🔍 Testing server connection...\n"
+                        },
+                        {
+                          "text": "✅ Server is running\n"
+                        },
+                        {
+                          "text": "🔐 Creating test user...\n"
+                        },
+                        {
+                          "text": "⚠️  Email field not found, trying login instead...\n"
+                        },
+                        {
+                          "text": "🔐 Attempting to login with demo credentials...\n"
+                        },
+                        {
+                          "text": "⚠️  No demo credentials worked, continuing without auth...\n"
+                        },
+                        {
+                          "text": "🔐 Attempting to login with demo credentials...\n"
+                        },
+                        {
+                          "text": "⚠️  No demo credentials worked, continuing without auth...\n"
+                        },
+                        {
+                          "text": "📸 Capturing / (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 01-homepage-vip-entry-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing / (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 01-homepage-vip-entry-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /SimpleVipEntry (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 02-simple-vip-entry-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /SimpleVipEntry (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 02-simple-vip-entry-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /vip (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 03-vip-entry-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /vip (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 03-vip-entry-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /test (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 04-test-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /test (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 04-test-page-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /ui-demo (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 05-enhanced-ui-demo-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /ui-demo (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 05-enhanced-ui-demo-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /signin (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 06-signin-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /signin (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 06-signin-page-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /login (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 07-login-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /login (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 07-login-page-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /register (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 08-register-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /register (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 08-register-page-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /signup (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 09-signup-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /signup (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 09-signup-page-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /auth/callback (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 10-auth-callback-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /auth/callback (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 10-auth-callback-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /AuthCallback (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 11-auth-callback-alt-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /AuthCallback (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 11-auth-callback-alt-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /discover (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 12-discover-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /discover (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 12-discover-page-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /feed (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 13-feed-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /feed (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 13-feed-page-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /agency (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 14-agency-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /agency (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 14-agency-page-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /analytics (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 15-analytics-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /analytics (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 15-analytics-page-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /AnalyticsDashboard (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 16-analytics-dashboard-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /AnalyticsDashboard (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 16-analytics-dashboard-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /subscription-plans (desktop)...\n"
+                        },
+                        {
+                          "text": "⚠️  No React content detected for /subscription-plans\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 17-subscription-plans-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /subscription-plans (mobile)...\n"
+                        },
+                        {
+                          "text": "⚠️  No React content detected for /subscription-plans\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 17-subscription-plans-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /payment-success (desktop)...\n"
+                        },
+                        {
+                          "text": "⚠️  No React content detected for /payment-success\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 18-payment-success-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /payment-success (mobile)...\n"
+                        },
+                        {
+                          "text": "⚠️  No React content detected for /payment-success\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 18-payment-success-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /PaymentSuccess (desktop)...\n"
+                        },
+                        {
+                          "text": "⚠️  No React content detected for /PaymentSuccess\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 19-payment-success-alt-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /PaymentSuccess (mobile)...\n"
+                        },
+                        {
+                          "text": "⚠️  No React content detected for /PaymentSuccess\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 19-payment-success-alt-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /landing (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 20-landing-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /landing (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 20-landing-page-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /LandingPage (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 21-landing-page-alt-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /LandingPage (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 21-landing-page-alt-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /creator/demo-creator (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 22-creator-profile-demo-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /creator/demo-creator (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 22-creator-profile-demo-mobile.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /creator/test-user (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 23-creator-profile-test-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /creator/test-user (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 23-creator-profile-test-mobile.png\n"
+                        },
+                        {
+                          "text": "🔐 Attempting to capture protected route /reels anyway...\n"
+                        },
+                        {
+                          "text": "📸 Capturing /reels (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 24-reels-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /reels (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 24-reels-page-mobile.png\n"
+                        },
+                        {
+                          "text": "🔐 Attempting to capture protected route /creator-application anyway...\n"
+                        },
+                        {
+                          "text": "📸 Capturing /creator-application (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 25-creator-application-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /creator-application (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 25-creator-application-mobile.png\n"
+                        },
+                        {
+                          "text": "🔐 Attempting to capture protected route /creator-dashboard anyway...\n"
+                        },
+                        {
+                          "text": "📸 Capturing /creator-dashboard (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 26-creator-dashboard-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /creator-dashboard (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 26-creator-dashboard-mobile.png\n"
+                        },
+                        {
+                          "text": "🔐 Attempting to capture protected route /content-manager anyway...\n"
+                        },
+                        {
+                          "text": "📸 Capturing /content-manager (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 27-content-manager-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /content-manager (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 27-content-manager-mobile.png\n"
+                        },
+                        {
+                          "text": "🔐 Attempting to capture protected route /referrals anyway...\n"
+                        },
+                        {
+                          "text": "📸 Capturing /referrals (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 28-referrals-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /referrals (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 28-referrals-page-mobile.png\n"
+                        },
+                        {
+                          "text": "🔐 Attempting to capture protected route /messages anyway...\n"
+                        },
+                        {
+                          "text": "📸 Capturing /messages (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 29-messages-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /messages (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 29-messages-page-mobile.png\n"
+                        },
+                        {
+                          "text": "🔐 Attempting to capture protected route /Messages anyway...\n"
+                        },
+                        {
+                          "text": "📸 Capturing /Messages (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 30-messages-alt-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /Messages (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 30-messages-alt-mobile.png\n"
+                        },
+                        {
+                          "text": "🔐 Attempting to capture protected route /billing anyway...\n"
+                        },
+                        {
+                          "text": "📸 Capturing /billing (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 31-billing-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /billing (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 31-billing-page-mobile.png\n"
+                        },
+                        {
+                          "text": "🔐 Attempting to capture protected route /Billing anyway...\n"
+                        },
+                        {
+                          "text": "📸 Capturing /Billing (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 32-billing-alt-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /Billing (mobile)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 32-billing-alt-mobile.png\n"
+                        },
+                        {
+                          "text": "🔐 Attempting to capture protected route /settings anyway...\n"
+                        },
+                        {
+                          "text": "📸 Capturing /settings (desktop)...\n"
+                        },
+                        {
+                          "text": "✅ Screenshot saved: 33-settings-page-desktop.png\n"
+                        },
+                        {
+                          "text": "📸 Capturing /settings (mobile)...\n"
+                        },
+                        {
+                          "text": "📊 Report generated: /Users/tylerdiorio/CABANA_MASTER_PROJECT/screenshots/screenshot-report.json\n"
+                        },
+                        {
+                          "text": "🌐 HTML Report: /Users/tylerdiorio/CABANA_MASTER_PROJECT/screenshots/screenshot-report.html\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Failed to capture /settings (mobile): page.waitForTimeout: Test ended.\n    at ScreenshotCapture.captureScreenshot \u001b[90m(/Users/tylerdiorio/CABANA_MASTER_PROJECT/\u001b[39mtests/screenshot-capture.spec.ts:145:18\u001b[90m)\u001b[39m\n    at \u001b[90m/Users/tylerdiorio/CABANA_MASTER_PROJECT/\u001b[39mtests/screenshot-capture.spec.ts:515:7\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-08-23T02:29:56.149Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results/screenshot-capture-CABANA--c0b45-CABANA-platform-screenshots-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results/screenshot-capture-CABANA--c0b45-CABANA-platform-screenshots-chromium/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "580b9c59645a7bb599c2-95921a727b5b788ced86",
+              "file": "screenshot-capture.spec.ts",
+              "line": 471,
+              "column": 3
+            },
+            {
+              "title": "Capture modal and overlay states",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6942,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "📊 Report generated: /Users/tylerdiorio/CABANA_MASTER_PROJECT/screenshots/screenshot-report.json\n"
+                        },
+                        {
+                          "text": "🌐 HTML Report: /Users/tylerdiorio/CABANA_MASTER_PROJECT/screenshots/screenshot-report.html\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-23T02:29:56.147Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "580b9c59645a7bb599c2-c78ef88280431800a9cb",
+              "file": "screenshot-capture.spec.ts",
+              "line": 528,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-08-23T02:29:55.236Z",
+    "duration": 301920.33400000003,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}
