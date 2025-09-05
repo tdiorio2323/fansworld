@@ -21,6 +21,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { useFlag } from '@/hooks/useFlag';
 import { vipV2Service, type VipCode, type RedeemCodeData } from '../services/vipService';
 import { useAuth } from '@/hooks/useAuth';
+import { useStripePayments } from '@/hooks/useStripePayments';
 
 const redeemSchema = z.object({
   code: z.string()
@@ -39,6 +40,7 @@ interface VipCodeRedemptionProps {
 export function VipCodeRedemption({ onRedeemSuccess, prefilledCode }: VipCodeRedemptionProps) {
   const { isEnabled: vipV2Enabled } = useFlag('VIP_V2_ENABLED');
   const { user } = useAuth();
+  const stripe = useStripePayments();
   const [isLoading, setIsLoading] = useState(false);
   const [foundCode, setFoundCode] = useState<VipCode | null>(null);
   const [showPayment, setShowPayment] = useState(false);
@@ -83,11 +85,14 @@ export function VipCodeRedemption({ onRedeemSuccess, prefilledCode }: VipCodeRed
 
     setIsLoading(true);
     try {
+      const params = new URLSearchParams(window.location.search);
       const redemptionData: RedeemCodeData = {
         code: foundCode.code,
         userAgent: navigator.userAgent,
         referrerUrl: document.referrer,
-        // TODO: Extract UTM parameters from URL
+        utmSource: params.get('utm_source') || undefined,
+        utmMedium: params.get('utm_medium') || undefined,
+        utmCampaign: params.get('utm_campaign') || undefined,
         metadata: {
           timestamp: new Date().toISOString(),
         },
@@ -95,8 +100,22 @@ export function VipCodeRedemption({ onRedeemSuccess, prefilledCode }: VipCodeRed
 
       // If code has a price, handle payment first
       if (foundCode.price_cents > 0) {
-        // TODO: Integrate with Stripe payment
-        redemptionData.paymentIntentId = 'mock-payment-intent';
+        const defaultMethod =
+          stripe.paymentMethods.paymentMethods?.find(pm => pm.is_default) ||
+          stripe.paymentMethods.paymentMethods?.[0];
+
+        if (!defaultMethod) {
+          toast.error('No payment method available');
+          return;
+        }
+
+        const payment = await stripe.actions.processPayment.mutateAsync({
+          amount: foundCode.price_cents / 100,
+          paymentMethodId: defaultMethod.stripe_payment_method_id,
+          description: `VIP code ${foundCode.code}`,
+        });
+
+        redemptionData.paymentIntentId = payment.paymentIntentId;
         redemptionData.amountPaidCents = foundCode.price_cents;
       }
 
