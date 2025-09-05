@@ -9,6 +9,7 @@ import AdminLayout from '@/components/layout/AdminLayout'
 
 // Public Pages
 import HomePage from '@/pages/HomePage'
+import AboutUs from '@/pages/AboutUs'
 import AboutPage from '@/pages/public/AboutPage'
 import FeaturesPage from '@/pages/public/FeaturesPage'
 import PricingPage from '@/pages/public/PricingPage'
@@ -133,6 +134,7 @@ const AppRoutes = () => {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="about-us" element={<AboutUs />} />
         <Route path="features" element={<FeaturesPage />} />
         <Route path="pricing" element={<PricingPage />} />
         <Route path="blog" element={<BlogPage />} />

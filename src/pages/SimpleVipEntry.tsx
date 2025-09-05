@@ -129,6 +129,14 @@ const SimpleVipEntry = () => {
             
             <div className="text-center mt-6 pt-4 border-t border-white/20">
               <p className="text-white/50 text-xs">Powered by TD Studios</p>
+              <p className="text-white/50 text-xs mt-2">
+                <button
+                  onClick={() => navigate('/about-us')}
+                  className="underline text-white/70 hover:text-white"
+                >
+                  About Us
+                </button>
+              </p>
             </div>
           </div>
           

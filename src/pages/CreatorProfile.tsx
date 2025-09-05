@@ -33,6 +33,7 @@ import { PaymentVerifier } from "@/components/PaymentVerifier";
 import { supabase } from '@/integrations/supabase/supabase';
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
+import { KarolProfile } from "./creator/KarolProfile";
 
 interface CreatorProfile {
   id: string;
@@ -68,6 +69,11 @@ export default function CreatorProfile() {
   const { username } = useParams();
   const { user } = useAuth();
   const { toast } = useToast();
+
+  // Special handling for Karol's OCR-extracted profile
+  if (username === 'karol') {
+    return <KarolProfile />;
+  }
   
   const [creatorProfile, setCreatorProfile] = useState<CreatorProfile | null>(null);
   const [creatorContent, setCreatorContent] = useState<CreatorContent[]>([]);

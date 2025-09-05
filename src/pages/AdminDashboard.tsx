@@ -25,7 +25,12 @@ import {
   Eye,
   Crown,
   Filter,
-  Gift
+  Gift,
+  Plus,
+  Copy,
+  Globe,
+  Download,
+  Upload
 } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from '@/integrations/supabase/supabase';
@@ -46,8 +51,136 @@ interface CreatorApplication {
   progress_stage: number;
 }
 
+interface Client {
+  id: string;
+  name: string;
+  username: string;
+  email: string;
+  avatar_url: string | null;
+  status: 'active' | 'inactive' | 'pending';
+  subscription_tier: 'basic' | 'premium' | 'enterprise';
+  created_at: string;
+  last_active: string;
+  total_clicks: number;
+  total_links: number;
+  monthly_revenue: number;
+  conversion_rate: number;
+}
+
+interface DashboardStats {
+  totalClients: number;
+  activeClients: number;
+  totalRevenue: number;
+  totalClicks: number;
+  avgConversionRate: number;
+  monthlyGrowth: number;
+}
+
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState("applications");
+  const [activeTab, setActiveTab] = useState("clients");
+  const [clients, setClients] = useState<Client[]>([]);
+  const [stats, setStats] = useState<DashboardStats>({
+    totalClients: 0,
+    activeClients: 0,
+    totalRevenue: 0,
+    totalClicks: 0,
+    avgConversionRate: 0,
+    monthlyGrowth: 0
+  });
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterStatus, setFilterStatus] = useState("all");
+
+  // Load mock client data
+  useState(() => {
+    const mockClients: Client[] = [
+      {
+        id: "1",
+        name: "Sarah Chen",
+        username: "sarahc",
+        email: "sarah@example.com",
+        avatar_url: null,
+        status: "active",
+        subscription_tier: "premium",
+        created_at: "2024-01-15",
+        last_active: "2024-02-01",
+        total_clicks: 15420,
+        total_links: 12,
+        monthly_revenue: 97.50,
+        conversion_rate: 3.2
+      },
+      {
+        id: "2",
+        name: "Marcus Rodriguez",
+        username: "marcusr",
+        email: "marcus@example.com",
+        avatar_url: null,
+        status: "active",
+        subscription_tier: "enterprise",
+        created_at: "2024-01-08",
+        last_active: "2024-02-01",
+        total_clicks: 28350,
+        total_links: 24,
+        monthly_revenue: 247.80,
+        conversion_rate: 4.1
+      },
+      {
+        id: "3",
+        name: "Elena Vasquez",
+        username: "elenav",
+        email: "elena@example.com",
+        avatar_url: null,
+        status: "pending",
+        subscription_tier: "basic",
+        created_at: "2024-01-30",
+        last_active: "2024-01-31",
+        total_clicks: 0,
+        total_links: 0,
+        monthly_revenue: 0,
+        conversion_rate: 0
+      }
+    ];
+    
+    setClients(mockClients);
+    
+    const activeClients = mockClients.filter(c => c.status === 'active').length;
+    const totalRevenue = mockClients.reduce((sum, c) => sum + c.monthly_revenue, 0);
+    const totalClicks = mockClients.reduce((sum, c) => sum + c.total_clicks, 0);
+    const avgConversionRate = mockClients.reduce((sum, c) => sum + c.conversion_rate, 0) / mockClients.length;
+
+    setStats({
+      totalClients: mockClients.length,
+      activeClients,
+      totalRevenue,
+      totalClicks,
+      avgConversionRate,
+      monthlyGrowth: 23.5
+    });
+  });
+
+  const filteredClients = clients.filter(client => {
+    const matchesSearch = client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         client.username.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = filterStatus === "all" || client.status === filterStatus;
+    return matchesSearch && matchesStatus;
+  });
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'active': return 'bg-green-500/20 text-green-300';
+      case 'inactive': return 'bg-red-500/20 text-red-300';
+      case 'pending': return 'bg-yellow-500/20 text-yellow-300';
+      default: return 'bg-gray-500/20 text-gray-300';
+    }
+  };
+
+  const getTierColor = (tier: string) => {
+    switch (tier) {
+      case 'enterprise': return 'bg-purple-500/20 text-purple-300';
+      case 'premium': return 'bg-blue-500/20 text-blue-300';
+      case 'basic': return 'bg-gray-500/20 text-gray-300';
+      default: return 'bg-gray-500/20 text-gray-300';
+    }
+  };
   const [selectedApplication, setSelectedApplication] = useState<CreatorApplication | null>(null);
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [reviewNotes, setReviewNotes] = useState('');
@@ -228,7 +361,15 @@ export default function AdminDashboard() {
 
           {/* Main Content */}
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-5">
+            <TabsList className="grid w-full grid-cols-7">
+              <TabsTrigger value="clients" className="flex items-center gap-2">
+                <Users className="w-4 h-4" />
+                Clients
+              </TabsTrigger>
+              <TabsTrigger value="templates" className="flex items-center gap-2">
+                <Globe className="w-4 h-4" />
+                Templates
+              </TabsTrigger>
               <TabsTrigger value="applications" className="flex items-center gap-2">
                 <FileText className="w-4 h-4" />
                 Applications
@@ -250,6 +391,272 @@ export default function AdminDashboard() {
                 Settings
               </TabsTrigger>
             </TabsList>
+
+            <TabsContent value="clients" className="space-y-6">
+              {/* Client Stats Overview */}
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-muted-foreground">Total Clients</p>
+                        <p className="text-2xl font-bold">{stats.totalClients}</p>
+                      </div>
+                      <Users className="h-8 w-8 text-muted-foreground" />
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-muted-foreground">Active</p>
+                        <p className="text-2xl font-bold text-green-600">{stats.activeClients}</p>
+                      </div>
+                      <CheckCircle className="h-8 w-8 text-green-600" />
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-muted-foreground">Revenue</p>
+                        <p className="text-2xl font-bold text-blue-600">${stats.totalRevenue.toFixed(2)}</p>
+                      </div>
+                      <DollarSign className="h-8 w-8 text-blue-600" />
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-muted-foreground">Total Clicks</p>
+                        <p className="text-2xl font-bold">{stats.totalClicks.toLocaleString()}</p>
+                      </div>
+                      <BarChart3 className="h-8 w-8 text-muted-foreground" />
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-muted-foreground">Avg CVR</p>
+                        <p className="text-2xl font-bold">{stats.avgConversionRate.toFixed(1)}%</p>
+                      </div>
+                      <BarChart3 className="h-8 w-8 text-muted-foreground" />
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-muted-foreground">Growth</p>
+                        <p className="text-2xl font-bold text-green-600">+{stats.monthlyGrowth}%</p>
+                      </div>
+                      <BarChart3 className="h-8 w-8 text-green-600" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Client Management */}
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle>Client Management</CardTitle>
+                    <Button>
+                      <UserPlus className="h-4 w-4 mr-2" />
+                      Add Client
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  {/* Filters */}
+                  <div className="flex gap-4 mb-6">
+                    <Input
+                      placeholder="Search clients..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="max-w-sm"
+                    />
+                    <Select value={filterStatus} onValueChange={setFilterStatus}>
+                      <SelectTrigger className="max-w-xs">
+                        <SelectValue placeholder="Filter by status" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Status</SelectItem>
+                        <SelectItem value="active">Active</SelectItem>
+                        <SelectItem value="inactive">Inactive</SelectItem>
+                        <SelectItem value="pending">Pending</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Client Table */}
+                  <div className="border rounded-lg overflow-hidden">
+                    <table className="w-full">
+                      <thead className="bg-muted/50">
+                        <tr>
+                          <th className="text-left p-4 font-medium">Client</th>
+                          <th className="text-left p-4 font-medium">Status</th>
+                          <th className="text-left p-4 font-medium">Tier</th>
+                          <th className="text-left p-4 font-medium">Clicks</th>
+                          <th className="text-left p-4 font-medium">Revenue</th>
+                          <th className="text-left p-4 font-medium">CVR</th>
+                          <th className="text-left p-4 font-medium">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {filteredClients.map((client) => (
+                          <tr key={client.id} className="border-t hover:bg-muted/50">
+                            <td className="p-4">
+                              <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                                  {client.name.slice(0, 2).toUpperCase()}
+                                </div>
+                                <div>
+                                  <div className="font-medium">{client.name}</div>
+                                  <div className="text-sm text-muted-foreground">@{client.username}</div>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="p-4">
+                              <Badge className={`${getStatusColor(client.status)} text-white`}>
+                                {client.status}
+                              </Badge>
+                            </td>
+                            <td className="p-4">
+                              <Badge className={getTierColor(client.subscription_tier)}>
+                                {client.subscription_tier}
+                              </Badge>
+                            </td>
+                            <td className="p-4">{client.total_clicks.toLocaleString()}</td>
+                            <td className="p-4">${client.monthly_revenue.toFixed(2)}</td>
+                            <td className="p-4">{client.conversion_rate.toFixed(1)}%</td>
+                            <td className="p-4">
+                              <div className="flex items-center gap-2">
+                                <Button variant="ghost" size="sm">
+                                  <Eye className="h-4 w-4" />
+                                </Button>
+                                <Button variant="ghost" size="sm">
+                                  <Settings className="h-4 w-4" />
+                                </Button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="templates" className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle>Template Management</CardTitle>
+                      <CardDescription>Create and manage link-in-bio templates for bulk deployment</CardDescription>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button variant="outline">
+                        <Download className="h-4 w-4 mr-2" />
+                        Export Templates
+                      </Button>
+                      <Button>
+                        <Plus className="h-4 w-4 mr-2" />
+                        Create Template
+                      </Button>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {/* Template Cards */}
+                    {[
+                      {
+                        id: 1,
+                        name: "Influencer Premium",
+                        description: "High-converting template for lifestyle influencers",
+                        deployments: 15,
+                        avgCvr: 4.2,
+                        preview: "/api/placeholder/300/200"
+                      },
+                      {
+                        id: 2,
+                        name: "Business Professional",
+                        description: "Clean template for business professionals",
+                        deployments: 8,
+                        avgCvr: 3.8,
+                        preview: "/api/placeholder/300/200"
+                      },
+                      {
+                        id: 3,
+                        name: "Creative Artist",
+                        description: "Colorful template for artists and creators",
+                        deployments: 12,
+                        avgCvr: 3.5,
+                        preview: "/api/placeholder/300/200"
+                      }
+                    ].map((template) => (
+                      <Card key={template.id} className="overflow-hidden">
+                        <div className="aspect-video bg-muted relative">
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <Globe className="h-12 w-12 text-muted-foreground" />
+                          </div>
+                        </div>
+                        <CardContent className="p-4">
+                          <div className="space-y-2">
+                            <h3 className="font-semibold">{template.name}</h3>
+                            <p className="text-sm text-muted-foreground">{template.description}</p>
+                            <div className="flex justify-between text-sm">
+                              <span className="text-muted-foreground">
+                                {template.deployments} deployments
+                              </span>
+                              <span className="font-medium text-green-600">
+                                {template.avgCvr}% CVR
+                              </span>
+                            </div>
+                            <div className="flex gap-2 pt-2">
+                              <Button size="sm" variant="outline" className="flex-1">
+                                <Eye className="h-3 w-3 mr-1" />
+                                Preview
+                              </Button>
+                              <Button size="sm" variant="outline" className="flex-1">
+                                <Copy className="h-3 w-3 mr-1" />
+                                Clone
+                              </Button>
+                              <Button size="sm" className="flex-1">
+                                Deploy
+                              </Button>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                    
+                    {/* Create New Template Card */}
+                    <Card className="border-2 border-dashed border-muted-foreground/25 hover:border-muted-foreground/50 transition-colors cursor-pointer">
+                      <CardContent className="p-6 flex flex-col items-center justify-center h-full min-h-[300px]">
+                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                          <Plus className="h-6 w-6 text-primary" />
+                        </div>
+                        <h3 className="font-semibold mb-2">Create New Template</h3>
+                        <p className="text-sm text-muted-foreground text-center">
+                          Start from scratch or duplicate an existing template
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
             <TabsContent value="applications" className="space-y-6">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

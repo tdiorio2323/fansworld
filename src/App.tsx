@@ -33,12 +33,15 @@ import VipEntry from "./pages/VipEntry";
 import Reels from "./pages/Reels";
 import LandingPage from "./pages/LandingPage";
 import SimpleVipEntry from "./pages/SimpleVipEntry";
+import UltimateLandingPage from "./pages/UltimateLandingPage";
 import TestPage from "./pages/TestPage";
 import Feed from "./pages/Feed";
 import CreatorDashboard from "./pages/CreatorDashboard";
 import ContentManager from "./pages/ContentManager";
 import SubscriptionPlans from "./pages/SubscriptionPlans";
 import PaymentSuccess from "./pages/PaymentSuccess";
+import KeypadEntry from "./pages/KeypadEntry";
+import StudioHomePage from "./pages/StudioHomePage";
 
 const queryClient = new QueryClient();
 
@@ -47,9 +50,12 @@ const AppRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        {/* Simple Home as Homepage */}
+        {/* Keypad Entry as Homepage - Password 420 */}
         {/* CLEAN ROUTES - Only existing pages */}
-        <Route path="/" element={<SimpleVipEntry />} />
+        <Route path="/" element={<KeypadEntry />} />
+        <Route path="/keypad" element={<KeypadEntry />} />
+        <Route path="/studio-home" element={<StudioHomePage />} />
+        <Route path="/ultimate" element={<UltimateLandingPage />} />
         <Route path="/SimpleVipEntry" element={<SimpleVipEntry />} />
         <Route path="/test" element={<TestPage />} />
         <Route path="/vip" element={<VipEntry />} />

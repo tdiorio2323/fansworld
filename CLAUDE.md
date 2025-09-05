@@ -5,56 +5,43 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Development Commands
 
 ### Main Development
-- `npm run dev` - Start both frontend (Vite dev server on port 8080) and backend (Express API server)
-- `npm run server:dev` - Start only the Express API server with hot reload using tsx
-- `vite` - Start only the frontend development server
-
-### Building & Deployment  
-- `npm run build` - Build the frontend for production
-- `npm run server:build` - Build the Express backend using TypeScript compiler
-- `npm run preview` - Preview the production build locally
-- `npm run deploy` - Deploy to Vercel production
-- `npm run deploy:preview` - Deploy to Vercel preview environment
+- `npm run dev` - Start the Next.js development server (default port 3000)
+- `npm run build` - Build the Next.js application for production
+- `npm run start` - Start the production Next.js server
+- `npm run lint` - Run ESLint checks with Next.js configuration
 
 ### Testing
-- `npm test` - Run all unit tests (excludes /tests/ directory and *.spec.ts files)
-- `npm run test:unit` - Run unit tests in src/ directory only
-- `npm run test:watch` - Run tests in watch mode
-- `npm run test:coverage` - Run tests with coverage report
-- `npm run test:e2e` - Run Playwright end-to-end tests
-- `npm run smoke` - Run smoke tests specifically
+- `npm test` - Run unit tests using Vitest
+- `npm run test:watch` - Run tests in watch mode with Vitest
 
 ### Code Quality
-- `npm run lint` - Run ESLint and TypeScript compiler checks
-- `npm run typecheck` - Run TypeScript type checking only
-
-### Utilities
-- `npm run generate:vip-codes` - Generate VIP access codes using the script
+- `npm run type-check` - Run TypeScript type checking only
 
 ## Architecture Overview
 
-### Dual-Server Architecture
-This is a **full-stack application** with two servers:
-1. **Vite Dev Server** (port 8080) - Serves the React frontend with HMR
-2. **Express API Server** (port 3001) - Handles backend API, AI integrations, and database operations
+### Hybrid Architecture: Next.js + Standalone Express API
+This is a **hybrid full-stack application** with two distinct server components:
 
-Both servers run concurrently during development via `npm run dev`.
+1. **Next.js Application** (port 3000) - Main frontend and App Router pages
+2. **Standalone Express API Server** (`/api/server.ts`, port 3001) - Dedicated backend for AI services and complex operations
 
-### Frontend Architecture (React + Vite)
-- **React 18** with TypeScript and React Router v6 for client-side routing
-- **Vite** as build tool with SWC for fast compilation
-- **Tailwind CSS** + **shadcn/ui** components for styling
-- **Framer Motion** for animations and transitions
-- **TanStack React Query** for data fetching and caching
-- **Zod** for runtime type validation
+### Frontend Architecture (Next.js 14 + App Router)
+- **Next.js 14** with App Router for file-based routing and server components
+- **React 18** with TypeScript for type safety
+- **Tailwind CSS** for styling with custom themes (noir, desert, neon)
+- **Framer Motion** for animations and page transitions
+- **Supabase Client** for database operations and authentication
+- **Urbanist** Google Font for typography
 
-### Backend Architecture (Express + AI)
-- **Express.js** server with comprehensive security middleware (CORS, rate limiting, CSRF protection)
-- **AI Integrations**: Anthropic Claude SDK and OpenAI SDK for content generation
-- **Database**: Supabase (PostgreSQL) with real-time subscriptions
-- **Authentication**: Supabase Auth
-- **Payments**: Stripe Connect integration
-- **File Structure**: `/api/server.ts` contains the entire Express application
+### Backend Architecture (Express + AI Services)
+- **Standalone Express Server** (`/api/server.ts`) with enterprise-grade security
+- **AI Integrations**: 
+  - Anthropic Claude SDK (claude-3-sonnet-20240229)
+  - OpenAI SDK (GPT-4) for content generation
+- **Security Features**: CSRF protection, rate limiting, input sanitization, security headers
+- **Database**: Supabase (PostgreSQL) with service role key for server operations
+- **Caching**: TTL-based AI response caching with SecureCache class
+- **Rate Limiting**: Tiered rate limiting (auth: strictest, payments, admin, general API)
 
 ### Feature System - Modular Addon Architecture
 The codebase implements a **sophisticated addon system** located in `src/features/addons/`:
@@ -86,10 +73,10 @@ Each addon follows a consistent structure:
 ```
 
 ### State Management Pattern
-- **React Query** for server state and caching
-- **Context Providers** for global state (Auth, Accessibility)
 - **Local React State** with hooks for component state
-- **Supabase Realtime** for live data updates (visitor tracking, signups)
+- **Supabase Client** for database operations and real-time subscriptions  
+- **Next.js App Router** state management patterns
+- **Framer Motion** for animation state
 
 ### Security Architecture
 Implements enterprise-grade security:
@@ -101,16 +88,17 @@ Implements enterprise-grade security:
 - **API Key Validation** on server startup
 
 ### Performance Optimization
-- **Code Splitting** with manual chunks for vendor libraries (React, UI, Stripe, Supabase)
-- **Performance Monitoring** with Core Web Vitals tracking
-- **Caching Strategy** with TTL-based AI response caching
-- **Bundle Optimization** with tree shaking and dead code elimination
+- **Next.js Optimizations** with App Router and automatic code splitting
+- **AI Response Caching** with TTL-based SecureCache class (1000 item limit)
+- **Static Assets** optimized through Next.js built-in optimizations
+- **Theme System** with dynamic CSS class switching
 
 ## Important Development Notes
 
 ### Path Resolution
 - Uses `@/` alias pointing to `./src/` directory
-- Configured in both Vite config and TypeScript config
+- Uses `app/*` alias pointing to `./app/` directory for App Router pages
+- Configured in TypeScript config with path references
 
 ### Environment Variables Required
 ```bash
@@ -127,28 +115,29 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI...
 STRIPE_SECRET_KEY=sk_test_...
 STRIPE_PUBLISHABLE_KEY=pk_test_...
 
-# Application
-VITE_SITE_URL=http://localhost:5173
+# Application  
+VITE_SITE_URL=http://localhost:3000
 NODE_ENV=development
 PORT=3001
 ```
 
 ### Testing Strategy
-- **Unit Tests**: Vitest with Happy DOM environment for component testing
-- **E2E Tests**: Playwright for full user journey testing  
-- **Smoke Tests**: Quick production health checks
-- **Test Exclusions**: Excludes `/tests/` directory and `*.spec.ts` files from unit test runs
+- **Unit Tests**: Vitest with jsdom environment for React component testing
+- **Test Configuration**: Custom vitest.config.ts with React SWC plugin and tsconfig paths
+- **Test Environment**: Includes mock Supabase environment variables
+- **Test Timeout**: 10 second timeout for async operations
 
 ### TypeScript Configuration
-- **Relaxed Settings**: `strict: false`, `noImplicitAny: false` for rapid development
-- **References Setup**: Uses project references with separate app config
+- **Relaxed Settings**: `strict: false`, `noImplicitAny: false`, `strictNullChecks: false` for rapid development
+- **References Setup**: Uses project references with tsconfig.app.json for application-specific config
 - **Skip Lib Check**: Enabled for faster compilation
+- **Vitest Types**: Global vitest types enabled for testing
 
 ### Deployment Architecture
-- **Frontend**: Static deployment to Vercel with automatic deployments
-- **Backend**: Express server deployment (likely Vercel functions)
-- **Database**: Hosted Supabase instance
-- **CDN**: Vercel Edge Network for global distribution
+- **Frontend**: Next.js application deployed to Vercel with automatic deployments
+- **Backend**: Standalone Express server (`/api/server.ts`) requires separate deployment
+- **Database**: Hosted Supabase PostgreSQL instance
+- **Static Assets**: Next.js optimized static files served via Vercel CDN
 
 ## Claude Code Templates
 

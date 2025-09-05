@@ -1,0 +1,17 @@
+{
+  "name": "cabana-screenshot-generator",
+  "version": "1.0.0",
+  "description": "Generate comprehensive screenshots of CABANA frontend",
+  "scripts": {
+    "screenshots": "node screenshot-generator.js",
+    "start-and-screenshot": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && npm run screenshots\""
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "pdfkit": "^0.13.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.0.1"
+  }
+}
