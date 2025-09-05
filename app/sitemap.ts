@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const base = "https://cabanagrp.com"\;
+  const base = "https://cabanagrp.com";
   return [
     { url: `${base}/`, lastModified: new Date() },
     { url: `${base}/features`, lastModified: new Date() },
