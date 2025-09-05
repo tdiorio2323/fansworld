@@ -23,24 +23,26 @@ A modern creator economy platform built with Vite + React + Supabase.
 
 ## Development
 
+> Requires [pnpm](https://pnpm.io/installation).
+
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Start development server
-npm run dev
+pnpm dev
 
 # Build for production
-npm run build
+pnpm build
 
 # Preview production build
-npm run preview
+pnpm preview
 
 # Run tests
-npm run test
+pnpm test
 
 # Type check
-npm run typecheck
+pnpm typecheck
 ```
 
 ## Deployment
