@@ -6,6 +6,7 @@ import './globals.css';
 const urbanist = Urbanist({ subsets: ['latin'], weight: ['400', '700', '900'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://cabanagrp.com"),
   title: 'CABANA | The Ultimate Creator Empire',
   description: 'Premium creator platform for exclusive content & fan engagement. Advanced monetization tools that go beyond OnlyFans. Build your empire.',
   keywords: 'creator platform, premium content, fan engagement, subscription platform, adult content, creator economy, monetization, OnlyFans alternative',
@@ -22,10 +23,10 @@ export const metadata: Metadata = {
     title: 'CABANA | The Ultimate Creator Empire',
     description: 'Premium creator platform for exclusive content & fan engagement. Advanced monetization tools that go beyond OnlyFans. Build your empire.',
     images: [{
-      url: 'https://www.cabanagrp.com/og-image.png',
+      url: '/og-image.png',
       width: 1200,
       height: 630,
-      alt: 'TD Studios - Premium Creator Platform'
+      alt: 'CABANA - Premium Creator Platform'
     }],
     siteName: 'Cabana',
     locale: 'en_US'
@@ -36,16 +37,20 @@ export const metadata: Metadata = {
     creator: '@cabanaplatform',
     title: 'CABANA | The Ultimate Creator Empire',
     description: 'Premium creator platform for exclusive content & fan engagement. Build your empire.',
-    images: ['https://www.cabanagrp.com/og-image.png']
+    images: ['/og-image.png']
   },
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#9333ea',
   appleWebApp: {
     capable: true,
     title: 'Cabana',
     statusBarStyle: 'black-translucent'
   },
   applicationName: 'Cabana'
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#9333ea'
 };
 
 export default function RootLayout({
