@@ -427,7 +427,7 @@ async function loginAsCreator(page) {
   await page.fill('[data-testid="email-input"]', TEST_CONFIG.creator.email);
   await page.fill('[data-testid="password-input"]', TEST_CONFIG.creator.password);
   await page.click('[data-testid="login-submit"]');
-  await expect(page.locator('[data-testid="user-menu"]')).toBeVisible();
+  await expect(page.locator('[data-testid="user-Cabana"]')).toBeVisible();
 }
 
 async function loginAsUser(page) {
@@ -435,7 +435,7 @@ async function loginAsUser(page) {
   await page.fill('[data-testid="email-input"]', TEST_CONFIG.user.email);
   await page.fill('[data-testid="password-input"]', TEST_CONFIG.user.password);
   await page.click('[data-testid="login-submit"]');
-  await expect(page.locator('[data-testid="user-menu"]')).toBeVisible();
+  await expect(page.locator('[data-testid="user-Cabana"]')).toBeVisible();
 }
 
 async function setupVIPCode(page, options) {

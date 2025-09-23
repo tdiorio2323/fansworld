@@ -489,7 +489,7 @@ const SidebarMenu = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ul
     ref={ref}
-    data-sidebar="menu"
+    data-sidebar="Cabana"
     className={cn("flex w-full min-w-0 flex-col gap-1", className)}
     {...props}
   />
@@ -502,15 +502,15 @@ const SidebarMenuItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <li
     ref={ref}
-    data-sidebar="menu-item"
-    className={cn("group/menu-item relative", className)}
+    data-sidebar="Cabana-item"
+    className={cn("group/Cabana-item relative", className)}
     {...props}
   />
 ))
 SidebarMenuItem.displayName = "SidebarMenuItem"
 
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+  "peer/Cabana-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=Cabana-action]]/Cabana-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -557,7 +557,7 @@ const SidebarMenuButton = React.forwardRef<
     const button = (
       <Comp
         ref={ref}
-        data-sidebar="menu-button"
+        data-sidebar="Cabana-button"
         data-size={size}
         data-active={isActive}
         className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
@@ -602,17 +602,17 @@ const SidebarMenuAction = React.forwardRef<
   return (
     <Comp
       ref={ref}
-      data-sidebar="menu-action"
+      data-sidebar="Cabana-action"
       className={cn(
-        "absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground outline-none ring-sidebar-ring transition-transform hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 peer-hover/menu-button:text-sidebar-accent-foreground [&>svg]:size-4 [&>svg]:shrink-0",
+        "absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground outline-none ring-sidebar-ring transition-transform hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 peer-hover/Cabana-button:text-sidebar-accent-foreground [&>svg]:size-4 [&>svg]:shrink-0",
         // Increases the hit area of the button on mobile.
         "after:absolute after:-inset-2 after:md:hidden",
-        "peer-data-[size=sm]/menu-button:top-1",
-        "peer-data-[size=default]/menu-button:top-1.5",
-        "peer-data-[size=lg]/menu-button:top-2.5",
+        "peer-data-[size=sm]/Cabana-button:top-1",
+        "peer-data-[size=default]/Cabana-button:top-1.5",
+        "peer-data-[size=lg]/Cabana-button:top-2.5",
         "group-data-[collapsible=icon]:hidden",
         showOnHover &&
-          "group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 peer-data-[active=true]/menu-button:text-sidebar-accent-foreground md:opacity-0",
+          "group-focus-within/Cabana-item:opacity-100 group-hover/Cabana-item:opacity-100 data-[state=open]:opacity-100 peer-data-[active=true]/Cabana-button:text-sidebar-accent-foreground md:opacity-0",
         className
       )}
       {...props}
@@ -627,13 +627,13 @@ const SidebarMenuBadge = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    data-sidebar="menu-badge"
+    data-sidebar="Cabana-badge"
     className={cn(
       "absolute right-1 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-xs font-medium tabular-nums text-sidebar-foreground select-none pointer-events-none",
-      "peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[active=true]/menu-button:text-sidebar-accent-foreground",
-      "peer-data-[size=sm]/menu-button:top-1",
-      "peer-data-[size=default]/menu-button:top-1.5",
-      "peer-data-[size=lg]/menu-button:top-2.5",
+      "peer-hover/Cabana-button:text-sidebar-accent-foreground peer-data-[active=true]/Cabana-button:text-sidebar-accent-foreground",
+      "peer-data-[size=sm]/Cabana-button:top-1",
+      "peer-data-[size=default]/Cabana-button:top-1.5",
+      "peer-data-[size=lg]/Cabana-button:top-2.5",
       "group-data-[collapsible=icon]:hidden",
       className
     )}
@@ -656,19 +656,19 @@ const SidebarMenuSkeleton = React.forwardRef<
   return (
     <div
       ref={ref}
-      data-sidebar="menu-skeleton"
+      data-sidebar="Cabana-skeleton"
       className={cn("rounded-md h-8 flex gap-2 px-2 items-center", className)}
       {...props}
     >
       {showIcon && (
         <Skeleton
           className="size-4 rounded-md"
-          data-sidebar="menu-skeleton-icon"
+          data-sidebar="Cabana-skeleton-icon"
         />
       )}
       <Skeleton
         className="h-4 flex-1 max-w-[--skeleton-width]"
-        data-sidebar="menu-skeleton-text"
+        data-sidebar="Cabana-skeleton-text"
         style={
           {
             "--skeleton-width": width,
@@ -686,7 +686,7 @@ const SidebarMenuSub = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ul
     ref={ref}
-    data-sidebar="menu-sub"
+    data-sidebar="Cabana-sub"
     className={cn(
       "mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l border-sidebar-border px-2.5 py-0.5",
       "group-data-[collapsible=icon]:hidden",
@@ -716,7 +716,7 @@ const SidebarMenuSubButton = React.forwardRef<
   return (
     <Comp
       ref={ref}
-      data-sidebar="menu-sub-button"
+      data-sidebar="Cabana-sub-button"
       data-size={size}
       data-active={isActive}
       className={cn(

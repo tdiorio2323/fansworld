@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import holographicBg from "@/assets/holographic-background.jpg";
+// Removed broken image import - using CSS gradient instead
 import { 
   User, 
   Lock, 
@@ -158,7 +158,7 @@ export default function Settings() {
     <div 
       className="min-h-screen bg-background relative overflow-hidden"
       style={{
-        backgroundImage: `url(${holographicBg})`,
+        background: 'linear-gradient(135deg, rgba(94, 234, 212, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'

@@ -19,3 +19,9 @@
 .env*.local
 !.env.example
 .vercel
+node_modules/
+.pnpm/
+.next/
+dist/
+build/
+.vercel/output/

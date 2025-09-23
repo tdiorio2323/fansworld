@@ -271,11 +271,11 @@ export const PPVMessageComposer: React.FC<PPVMessageComposerProps> = ({
 
   const getContentTypeIcon = (type: PPVMessageContent['type']) => {
     switch (type) {
-      case 'text': return <FileText className=\"w-4 h-4\" />;
-      case 'image': return <Image className=\"w-4 h-4\" />;
-      case 'video': return <Video className=\"w-4 h-4\" />;
-      case 'audio': return <Music className=\"w-4 h-4\" />;
-      case 'file': return <File className=\"w-4 h-4\" />;
+      case 'text': return <FileText className="w-4 h-4" />;
+      case 'image': return <Image className="w-4 h-4" />;
+      case 'video': return <Video className="w-4 h-4" />;
+      case 'audio': return <Music className="w-4 h-4" />;
+      case 'file': return <File className="w-4 h-4" />;
     }
   };
 
@@ -283,62 +283,62 @@ export const PPVMessageComposer: React.FC<PPVMessageComposerProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className=\"bg-gradient-to-br from-purple-900/95 to-pink-900/95 border-white/20 max-w-4xl max-h-[90vh] overflow-y-auto\">
+      <DialogContent className="bg-gradient-to-br from-purple-900/95 to-pink-900/95 border-white/20 max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className=\"text-2xl font-bold text-white flex items-center gap-2\">
-            <Plus className=\"w-6 h-6\" />
+          <DialogTitle className="text-2xl font-bold text-white flex items-center gap-2">
+            <Plus className="w-6 h-6" />
             Create PPV Message
           </DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className=\"space-y-6\">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Title and Description */}
-          <div className=\"space-y-4\">
+          <div className="space-y-4">
             <div>
-              <label className=\"block text-white font-semibold mb-2\">
-                Title <span className=\"text-red-400\">*</span>
+              <label className="block text-white font-semibold mb-2">
+                Title <span className="text-red-400">*</span>
               </label>
               <Input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder=\"Enter a compelling title for your premium message...\"
-                className=\"bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400\"
+                placeholder="Enter a compelling title for your premium message..."
+                className="bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400"
                 maxLength={200}
                 required
               />
-              <div className=\"text-right text-xs text-gray-400 mt-1\">
+              <div className="text-right text-xs text-gray-400 mt-1">
                 {title.length}/200
               </div>
             </div>
 
             <div>
-              <label className=\"block text-white font-semibold mb-2\">Description</label>
+              <label className="block text-white font-semibold mb-2">Description</label>
               <Textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder=\"Describe what buyers will get for their purchase...\"
-                className=\"bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400\"
+                placeholder="Describe what buyers will get for their purchase..."
+                className="bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400"
                 rows={3}
                 maxLength={500}
               />
-              <div className=\"text-right text-xs text-gray-400 mt-1\">
+              <div className="text-right text-xs text-gray-400 mt-1">
                 {description.length}/500
               </div>
             </div>
           </div>
 
           {/* Pricing */}
-          <div className=\"space-y-4\">
-            <label className=\"block text-white font-semibold\">
-              Price <span className=\"text-red-400\">*</span>
+          <div className="space-y-4">
+            <label className="block text-white font-semibold">
+              Price <span className="text-red-400">*</span>
             </label>
 
             {/* Quick Price Selection */}
-            <div className=\"grid grid-cols-3 sm:grid-cols-4 gap-3\">
+            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
               {PPV_PRICING_TIERS.map((tier) => (
                 <Button
                   key={tier.value}
-                  type=\"button\"
+                  type="button"
                   variant={price === tier.value ? 'default' : 'outline'}
                   onClick={() => handlePriceSelection(tier.value)}
                   className={price === tier.value 
@@ -351,10 +351,10 @@ export const PPVMessageComposer: React.FC<PPVMessageComposerProps> = ({
             </div>
 
             {/* Custom Price Input */}
-            <div className=\"flex items-center gap-3\">
-              <div className=\"flex-1\">
+            <div className="flex items-center gap-3">
+              <div className="flex-1">
                 <Input
-                  type=\"number\"
+                  type="number"
                   value={price / 100}
                   onChange={(e) => {
                     const dollars = parseFloat(e.target.value) || 0;
@@ -363,90 +363,90 @@ export const PPVMessageComposer: React.FC<PPVMessageComposerProps> = ({
                   min={DEFAULT_PPV_CONFIG.minPrice / 100}
                   max={DEFAULT_PPV_CONFIG.maxPrice / 100}
                   step={0.01}
-                  className=\"bg-black/20 border-purple-500/30 text-white\"
+                  className="bg-black/20 border-purple-500/30 text-white"
                 />
               </div>
-              <div className=\"text-sm text-gray-400\">
-                You earn: <span className=\"text-green-400 font-semibold\">{formatPrice(creatorEarnings)}</span>
+              <div className="text-sm text-gray-400">
+                You earn: <span className="text-green-400 font-semibold">{formatPrice(creatorEarnings)}</span>
               </div>
             </div>
           </div>
 
           {/* Preview Text */}
           <div>
-            <label className=\"block text-white font-semibold mb-2\">
+            <label className="block text-white font-semibold mb-2">
               Preview Text (Optional)
             </label>
             <Input
               value={previewText}
               onChange={(e) => setPreviewText(e.target.value)}
-              placeholder=\"First few words users see before purchasing...\"
-              className=\"bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400\"
+              placeholder="First few words users see before purchasing..."
+              className="bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400"
               maxLength={DEFAULT_PPV_CONFIG.maxPreviewLength}
             />
-            <div className=\"text-xs text-gray-400 mt-1\">
+            <div className="text-xs text-gray-400 mt-1">
               This text is visible to users before they purchase. {previewText.length}/{DEFAULT_PPV_CONFIG.maxPreviewLength} characters.
             </div>
           </div>
 
           {/* Content */}
-          <div className=\"space-y-4\">
-            <label className=\"block text-white font-semibold\">
-              Content <span className=\"text-red-400\">*</span>
+          <div className="space-y-4">
+            <label className="block text-white font-semibold">
+              Content <span className="text-red-400">*</span>
             </label>
 
             {/* Content Type Tabs */}
-            <div className=\"flex gap-2\">
+            <div className="flex gap-2">
               <Button
-                type=\"button\"
+                type="button"
                 variant={activeContentTab === 'text' ? 'default' : 'outline'}
                 onClick={() => setActiveContentTab('text')}
                 className={activeContentTab === 'text' 
                   ? 'bg-purple-600 text-white' 
                   : 'border-purple-500/30 text-purple-400 hover:bg-purple-500/10'}
               >
-                <FileText className=\"w-4 h-4 mr-2\" />
+                <FileText className="w-4 h-4 mr-2" />
                 Text
               </Button>
               <Button
-                type=\"button\"
+                type="button"
                 variant={activeContentTab === 'media' ? 'default' : 'outline'}
                 onClick={() => setActiveContentTab('media')}
                 className={activeContentTab === 'media' 
                   ? 'bg-purple-600 text-white' 
                   : 'border-purple-500/30 text-purple-400 hover:bg-purple-500/10'}
               >
-                <Image className=\"w-4 h-4 mr-2\" />
+                <Image className="w-4 h-4 mr-2" />
                 Media
               </Button>
               <Button
-                type=\"button\"
+                type="button"
                 variant={activeContentTab === 'files' ? 'default' : 'outline'}
                 onClick={() => setActiveContentTab('files')}
                 className={activeContentTab === 'files' 
                   ? 'bg-purple-600 text-white' 
                   : 'border-purple-500/30 text-purple-400 hover:bg-purple-500/10'}
               >
-                <File className=\"w-4 h-4 mr-2\" />
+                <File className="w-4 h-4 mr-2" />
                 Files
               </Button>
             </div>
 
             {/* Text Content Tab */}
             {activeContentTab === 'text' && (
-              <div className=\"space-y-3\">
+              <div className="space-y-3">
                 <Textarea
-                  id=\"text-content-input\"
-                  placeholder=\"Write your premium text content here...\"
-                  className=\"bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400\"
+                  id="text-content-input"
+                  placeholder="Write your premium text content here..."
+                  className="bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400"
                   rows={4}
                 />
                 <Button
-                  type=\"button\"
+                  type="button"
                   onClick={addTextContent}
-                  className=\"bg-purple-600 hover:bg-purple-700 text-white\"
+                  className="bg-purple-600 hover:bg-purple-700 text-white"
                 >
-                  <Plus className=\"w-4 h-4 mr-2\" />
+                  <Plus className="w-4 h-4 mr-2" />
                   Add Text Content
                 </Button>
               </div>
@@ -454,9 +454,9 @@ export const PPVMessageComposer: React.FC<PPVMessageComposerProps> = ({
 
             {/* Media/Files Upload Tab */}
             {(activeContentTab === 'media' || activeContentTab === 'files') && (
-              <div className=\"space-y-3\">
+              <div className="space-y-3">
                 <div
-                  className=\"border-2 border-dashed border-purple-500/30 rounded-xl p-6 text-center hover:border-purple-500/50 transition-colors cursor-pointer\"
+                  className="border-2 border-dashed border-purple-500/30 rounded-xl p-6 text-center hover:border-purple-500/50 transition-colors cursor-pointer"
                   onClick={() => fileInputRef.current?.click()}
                   onDrop={(e) => {
                     e.preventDefault();
@@ -467,21 +467,21 @@ export const PPVMessageComposer: React.FC<PPVMessageComposerProps> = ({
                   }}
                   onDragOver={(e) => e.preventDefault()}
                 >
-                  <Upload className=\"w-8 h-8 text-purple-400 mx-auto mb-3\" />
-                  <div className=\"text-white font-semibold mb-2\">
+                  <Upload className="w-8 h-8 text-purple-400 mx-auto mb-3" />
+                  <div className="text-white font-semibold mb-2">
                     Upload {activeContentTab === 'media' ? 'Images/Videos' : 'Files'}
                   </div>
-                  <div className=\"text-gray-400 text-sm\">
+                  <div className="text-gray-400 text-sm">
                     Click to browse or drag and drop files here
                   </div>
-                  <div className=\"text-xs text-gray-500 mt-2\">
+                  <div className="text-xs text-gray-500 mt-2">
                     Max size: {formatFileSize(DEFAULT_PPV_CONFIG.maxFileSize)}
                   </div>
                 </div>
 
                 <input
                   ref={fileInputRef}
-                  type=\"file\"
+                  type="file"
                   multiple
                   accept={activeContentTab === 'media' 
                     ? 'image/*,video/*' 
@@ -491,11 +491,11 @@ export const PPVMessageComposer: React.FC<PPVMessageComposerProps> = ({
                       handleFileUpload(e.target.files);
                     }
                   }}
-                  className=\"hidden\"
+                  className="hidden"
                 />
 
                 {uploadingFiles.size > 0 && (
-                  <div className=\"text-sm text-gray-400\">
+                  <div className="text-sm text-gray-400">
                     Uploading {uploadingFiles.size} file{uploadingFiles.size !== 1 ? 's' : ''}...
                   </div>
                 )}
@@ -504,8 +504,8 @@ export const PPVMessageComposer: React.FC<PPVMessageComposerProps> = ({
 
             {/* Content Preview */}
             {content.length > 0 && (
-              <div className=\"space-y-3\">
-                <div className=\"text-white font-semibold\">Content Preview ({content.length}/10)</div>
+              <div className="space-y-3">
+                <div className="text-white font-semibold">Content Preview ({content.length}/10)</div>
                 {content.map((item, index) => (
                   <ContentPreview
                     key={index}
@@ -522,10 +522,10 @@ export const PPVMessageComposer: React.FC<PPVMessageComposerProps> = ({
           </div>
 
           {/* Tags */}
-          <div className=\"space-y-4\">
-            <label className=\"block text-white font-semibold\">Tags</label>
+          <div className="space-y-4">
+            <label className="block text-white font-semibold">Tags</label>
             
-            <div className=\"flex gap-2\">
+            <div className="flex gap-2">
               <Input
                 value={tagInput}
                 onChange={(e) => setTagInput(e.target.value)}
@@ -535,33 +535,33 @@ export const PPVMessageComposer: React.FC<PPVMessageComposerProps> = ({
                     addTag();
                   }
                 }}
-                placeholder=\"Add tags to help users find your content...\"
-                className=\"flex-1 bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400\"
+                placeholder="Add tags to help users find your content..."
+                className="flex-1 bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400"
               />
               <Button
-                type=\"button\"
+                type="button"
                 onClick={addTag}
-                className=\"bg-purple-600 hover:bg-purple-700 text-white\"
+                className="bg-purple-600 hover:bg-purple-700 text-white"
               >
-                <Plus className=\"w-4 h-4\" />
+                <Plus className="w-4 h-4" />
               </Button>
             </div>
 
             {/* Current Tags */}
             {tags.length > 0 && (
-              <div className=\"flex flex-wrap gap-2\">
+              <div className="flex flex-wrap gap-2">
                 {tags.map((tag) => (
                   <Badge
                     key={tag}
-                    className=\"bg-purple-500/20 text-purple-300 border-purple-500/30\"
+                    className="bg-purple-500/20 text-purple-300 border-purple-500/30"
                   >
                     #{tag}
                     <button
-                      type=\"button\"
+                      type="button"
                       onClick={() => removeTag(tag)}
-                      className=\"ml-2 text-purple-400 hover:text-white\"
+                      className="ml-2 text-purple-400 hover:text-white"
                     >
-                      <X className=\"w-3 h-3\" />
+                      <X className="w-3 h-3" />
                     </button>
                   </Badge>
                 ))}
@@ -570,19 +570,19 @@ export const PPVMessageComposer: React.FC<PPVMessageComposerProps> = ({
 
             {/* Popular Tags */}
             <div>
-              <div className=\"text-sm text-gray-400 mb-2\">Popular tags:</div>
-              <div className=\"flex flex-wrap gap-2\">
+              <div className="text-sm text-gray-400 mb-2">Popular tags:</div>
+              <div className="flex flex-wrap gap-2">
                 {PPV_POPULAR_TAGS.slice(0, 12).map((tag) => (
                   <Button
                     key={tag}
-                    type=\"button\"
-                    variant=\"outline\"
-                    size=\"sm\"
+                    type="button"
+                    variant="outline"
+                    size="sm"
                     onClick={() => addPopularTag(tag)}
                     disabled={tags.includes(tag) || tags.length >= 10}
-                    className=\"border-purple-500/30 text-purple-400 hover:bg-purple-500/10 text-xs\"
+                    className="border-purple-500/30 text-purple-400 hover:bg-purple-500/10 text-xs"
                   >
-                    <Tag className=\"w-3 h-3 mr-1\" />
+                    <Tag className="w-3 h-3 mr-1" />
                     {tag}
                   </Button>
                 ))}
@@ -591,83 +591,83 @@ export const PPVMessageComposer: React.FC<PPVMessageComposerProps> = ({
           </div>
 
           {/* Advanced Settings */}
-          <div className=\"space-y-4\">
-            <label className=\"block text-white font-semibold\">Advanced Settings</label>
+          <div className="space-y-4">
+            <label className="block text-white font-semibold">Advanced Settings</label>
 
             {/* Expiration */}
-            <div className=\"flex items-center gap-3\">
+            <div className="flex items-center gap-3">
               <input
-                type=\"checkbox\"
-                id=\"expiration-enabled\"
+                type="checkbox"
+                id="expiration-enabled"
                 checked={expirationEnabled}
                 onChange={(e) => setExpirationEnabled(e.target.checked)}
-                className=\"rounded border-purple-500/30\"
+                className="rounded border-purple-500/30"
               />
-              <label htmlFor=\"expiration-enabled\" className=\"text-white cursor-pointer\">
+              <label htmlFor="expiration-enabled" className="text-white cursor-pointer">
                 Set expiration date
               </label>
               {expirationEnabled && (
                 <Input
-                  type=\"datetime-local\"
+                  type="datetime-local"
                   value={expiresAt}
                   onChange={(e) => setExpiresAt(e.target.value)}
                   min={new Date().toISOString().slice(0, 16)}
-                  className=\"ml-3 bg-black/20 border-purple-500/30 text-white\"
+                  className="ml-3 bg-black/20 border-purple-500/30 text-white"
                 />
               )}
             </div>
 
             {/* View Limit */}
-            <div className=\"flex items-center gap-3\">
+            <div className="flex items-center gap-3">
               <input
-                type=\"checkbox\"
-                id=\"view-limit-enabled\"
+                type="checkbox"
+                id="view-limit-enabled"
                 checked={viewLimitEnabled}
                 onChange={(e) => setViewLimitEnabled(e.target.checked)}
-                className=\"rounded border-purple-500/30\"
+                className="rounded border-purple-500/30"
               />
-              <label htmlFor=\"view-limit-enabled\" className=\"text-white cursor-pointer\">
+              <label htmlFor="view-limit-enabled" className="text-white cursor-pointer">
                 Limit number of views
               </label>
               {viewLimitEnabled && (
                 <Input
-                  type=\"number\"
+                  type="number"
                   value={maxViews || ''}
                   onChange={(e) => setMaxViews(parseInt(e.target.value) || undefined)}
                   min={1}
                   max={1000000}
-                  placeholder=\"Max views\"
-                  className=\"ml-3 w-32 bg-black/20 border-purple-500/30 text-white\"
+                  placeholder="Max views"
+                  className="ml-3 w-32 bg-black/20 border-purple-500/30 text-white"
                 />
               )}
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className=\"flex gap-3 pt-4 border-t border-white/10\">
+          <div className="flex gap-3 pt-4 border-t border-white/10">
             <Button
-              type=\"submit\"
+              type="submit"
               disabled={isSubmitting || content.length === 0 || !title.trim()}
-              className=\"flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold h-12\"
+              className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold h-12"
             >
               {isSubmitting ? (
                 <>
-                  <div className=\"w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin mr-2\" />
+                  <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin mr-2" />
                   Creating Message...
                 </>
               ) : (
                 <>
-                  <DollarSign className=\"w-5 h-5 mr-2\" />
+                  <DollarSign className="w-5 h-5 mr-2" />
                   Create PPV Message ({formatPrice(price)})
                 </>
               )}
             </Button>
 
             <Button
-              type=\"button\"
-              variant=\"outline\"
+              type="button"
+              variant="outline"
               onClick={handleClose}
-              className=\"border-gray-500/30 text-gray-400 hover:bg-gray-500/10\"
+              className="border-gray-500/30 text-gray-400 hover:bg-gray-500/10"
             >
               Cancel
             </Button>
@@ -703,65 +703,65 @@ const ContentPreview: React.FC<ContentPreviewProps> = ({
     switch (content.type) {
       case 'text':
         return (
-          <div className=\"p-3 bg-white/5 rounded border-l-4 border-blue-400\">
-            <div className=\"text-white text-sm line-clamp-3\">{content.content}</div>
+          <div className="p-3 bg-white/5 rounded border-l-4 border-blue-400">
+            <div className="text-white text-sm line-clamp-3">{content.content}</div>
           </div>
         );
       
       case 'image':
         return (
-          <div className=\"w-16 h-16 bg-gradient-to-br from-green-600 to-green-400 rounded-lg flex items-center justify-center\">
-            <Image className=\"w-8 h-8 text-white\" />
+          <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-400 rounded-lg flex items-center justify-center">
+            <Image className="w-8 h-8 text-white" />
           </div>
         );
       
       case 'video':
         return (
-          <div className=\"w-16 h-16 bg-gradient-to-br from-red-600 to-red-400 rounded-lg flex items-center justify-center\">
-            <Video className=\"w-8 h-8 text-white\" />
+          <div className="w-16 h-16 bg-gradient-to-br from-red-600 to-red-400 rounded-lg flex items-center justify-center">
+            <Video className="w-8 h-8 text-white" />
           </div>
         );
       
       case 'audio':
         return (
-          <div className=\"w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-400 rounded-lg flex items-center justify-center\">
-            <Music className=\"w-8 h-8 text-white\" />
+          <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-400 rounded-lg flex items-center justify-center">
+            <Music className="w-8 h-8 text-white" />
           </div>
         );
       
       case 'file':
         return (
-          <div className=\"w-16 h-16 bg-gradient-to-br from-yellow-600 to-yellow-400 rounded-lg flex items-center justify-center\">
-            <File className=\"w-8 h-8 text-white\" />
+          <div className="w-16 h-16 bg-gradient-to-br from-yellow-600 to-yellow-400 rounded-lg flex items-center justify-center">
+            <File className="w-8 h-8 text-white" />
           </div>
         );
     }
   };
 
   return (
-    <div className=\"p-4 bg-black/20 rounded-xl border border-white/10\">
-      <div className=\"flex items-start gap-4\">
+    <div className="p-4 bg-black/20 rounded-xl border border-white/10">
+      <div className="flex items-start gap-4">
         {/* Content Preview */}
-        <div className=\"flex-shrink-0\">
+        <div className="flex-shrink-0">
           {renderContentPreview()}
         </div>
 
         {/* Content Info */}
-        <div className=\"flex-1 min-w-0\">
-          <div className=\"flex items-center gap-2 mb-2\">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-2">
             <div className={`flex items-center gap-1 text-sm ${typeConfig.color}`}>
-              {React.createElement(typeConfig.icon.type, { className: \"w-4 h-4\" })}
+              {React.createElement(typeConfig.icon.type, { className: "w-4 h-4" })}
               <span>{typeConfig.label}</span>
             </div>
             
             {content.fileSize && (
-              <Badge variant=\"secondary\" className=\"bg-black/20 text-gray-300 text-xs\">
+              <Badge variant="secondary" className="bg-black/20 text-gray-300 text-xs">
                 {formatFileSize(content.fileSize)}
               </Badge>
             )}
             
             {content.duration && (
-              <Badge variant=\"secondary\" className=\"bg-black/20 text-gray-300 text-xs\">
+              <Badge variant="secondary" className="bg-black/20 text-gray-300 text-xs">
                 {Math.floor(content.duration / 60)}:{(content.duration % 60).toString().padStart(2, '0')}
               </Badge>
             )}
@@ -771,21 +771,21 @@ const ContentPreview: React.FC<ContentPreviewProps> = ({
             <Input
               value={content.caption || ''}
               onChange={(e) => onCaptionChange(e.target.value)}
-              placeholder=\"Add a caption (optional)...\"
-              className=\"bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400 text-sm\"
+              placeholder="Add a caption (optional)..."
+              className="bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400 text-sm"
             />
           )}
         </div>
 
         {/* Actions */}
-        <div className=\"flex flex-col gap-1\">
+        <div className="flex flex-col gap-1">
           {onMoveUp && (
             <Button
-              type=\"button\"
-              variant=\"outline\"
-              size=\"sm\"
+              type="button"
+              variant="outline"
+              size="sm"
               onClick={onMoveUp}
-              className=\"border-purple-500/30 text-purple-400 hover:bg-purple-500/10 h-8 w-8 p-0\"
+              className="border-purple-500/30 text-purple-400 hover:bg-purple-500/10 h-8 w-8 p-0"
             >
               ↑
             </Button>
@@ -793,24 +793,24 @@ const ContentPreview: React.FC<ContentPreviewProps> = ({
           
           {onMoveDown && (
             <Button
-              type=\"button\"
-              variant=\"outline\"
-              size=\"sm\"
+              type="button"
+              variant="outline"
+              size="sm"
               onClick={onMoveDown}
-              className=\"border-purple-500/30 text-purple-400 hover:bg-purple-500/10 h-8 w-8 p-0\"
+              className="border-purple-500/30 text-purple-400 hover:bg-purple-500/10 h-8 w-8 p-0"
             >
               ↓
             </Button>
           )}
           
           <Button
-            type=\"button\"
-            variant=\"outline\"
-            size=\"sm\"
+            type="button"
+            variant="outline"
+            size="sm"
             onClick={onRemove}
-            className=\"border-red-500/30 text-red-400 hover:bg-red-500/10 h-8 w-8 p-0\"
+            className="border-red-500/30 text-red-400 hover:bg-red-500/10 h-8 w-8 p-0"
           >
-            <X className=\"w-4 h-4\" />
+            <X className="w-4 h-4" />
           </Button>
         </div>
       </div>

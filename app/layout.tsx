@@ -1,9 +1,9 @@
 
 import type { Metadata } from 'next';
-import { Urbanist } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 
-const urbanist = Urbanist({ subsets: ['latin'], weight: ['400', '700', '900'] });
+const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800', '900'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://cabanagrp.com"),
@@ -60,7 +60,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={urbanist.className}>{children}</body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

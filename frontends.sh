@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SEARCH_DIRS=("$HOME/CABANA_MASTER_PROJECT" "$HOME/Projects" "$HOME/Downloads" "$HOME")
+// disabled path check for canonicalized location
 
 # collect projects
 mapfile -t PKGS < <(find "${SEARCH_DIRS[@]}" -maxdepth 5 -type f -name package.json 2>/dev/null | sort)

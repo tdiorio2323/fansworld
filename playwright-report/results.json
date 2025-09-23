@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/playwright.config.ts",
-    "rootDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+// disabled path check for canonicalized location
+// disabled path check for canonicalized location
     "forbidOnly": false,
     "fullyParallel": true,
     "globalSetup": null,
@@ -33,7 +33,7 @@
     "quiet": false,
     "projects": [
       {
-        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+// disabled path check for canonicalized location
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -41,7 +41,7 @@
         },
         "id": "chromium",
         "name": "chromium",
-        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+// disabled path check for canonicalized location
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -49,7 +49,7 @@
         "timeout": 300000
       },
       {
-        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+// disabled path check for canonicalized location
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -57,7 +57,7 @@
         },
         "id": "firefox",
         "name": "firefox",
-        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+// disabled path check for canonicalized location
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -65,7 +65,7 @@
         "timeout": 300000
       },
       {
-        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+// disabled path check for canonicalized location
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -73,7 +73,7 @@
         },
         "id": "webkit",
         "name": "webkit",
-        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+// disabled path check for canonicalized location
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -81,7 +81,7 @@
         "timeout": 300000
       },
       {
-        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+// disabled path check for canonicalized location
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -89,7 +89,7 @@
         },
         "id": "Mobile Chrome",
         "name": "Mobile Chrome",
-        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+// disabled path check for canonicalized location
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -97,7 +97,7 @@
         "timeout": 300000
       },
       {
-        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+// disabled path check for canonicalized location
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -105,7 +105,7 @@
         },
         "id": "Mobile Safari",
         "name": "Mobile Safari",
-        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+// disabled path check for canonicalized location
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -113,7 +113,7 @@
         "timeout": 300000
       },
       {
-        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+// disabled path check for canonicalized location
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -121,7 +121,7 @@
         },
         "id": "Microsoft Edge",
         "name": "Microsoft Edge",
-        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+// disabled path check for canonicalized location
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -129,7 +129,7 @@
         "timeout": 300000
       },
       {
-        "outputDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results",
+// disabled path check for canonicalized location
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -137,7 +137,7 @@
         },
         "id": "Google Chrome",
         "name": "Google Chrome",
-        "testDir": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests",
+// disabled path check for canonicalized location
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -193,11 +193,11 @@
                         },
                         {
                           "location": {
-                            "file": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/tests/screenshot-capture.spec.ts",
+// disabled path check for canonicalized location
                             "column": 18,
                             "line": 518
                           },
-                          "message": "Error: page.waitForTimeout: Target page, context or browser has been closed\n\n  516 |       \n  517 |       // Small delay between routes\n> 518 |       await page.waitForTimeout(500);\n      |                  ^\n  519 |     }\n  520 |     \n  521 |     // Try to capture some dynamic content states\n    at /Users/tylerdiorio/CABANA_MASTER_PROJECT/tests/screenshot-capture.spec.ts:518:18"
+// disabled path check for canonicalized location
                         }
                       ],
                       "stdout": [
@@ -667,15 +667,15 @@
                           "text": "📸 Capturing /settings (mobile)...\n"
                         },
                         {
-                          "text": "📊 Report generated: /Users/tylerdiorio/CABANA_MASTER_PROJECT/screenshots/screenshot-report.json\n"
+// disabled path check for canonicalized location
                         },
                         {
-                          "text": "🌐 HTML Report: /Users/tylerdiorio/CABANA_MASTER_PROJECT/screenshots/screenshot-report.html\n"
+// disabled path check for canonicalized location
                         }
                       ],
                       "stderr": [
                         {
-                          "text": "❌ Failed to capture /settings (mobile): page.waitForTimeout: Test ended.\n    at ScreenshotCapture.captureScreenshot \u001b[90m(/Users/tylerdiorio/CABANA_MASTER_PROJECT/\u001b[39mtests/screenshot-capture.spec.ts:145:18\u001b[90m)\u001b[39m\n    at \u001b[90m/Users/tylerdiorio/CABANA_MASTER_PROJECT/\u001b[39mtests/screenshot-capture.spec.ts:515:7\n"
+// disabled path check for canonicalized location
                         }
                       ],
                       "retry": 0,
@@ -685,12 +685,12 @@
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results/screenshot-capture-CABANA--c0b45-CABANA-platform-screenshots-chromium/test-failed-1.png"
+// disabled path check for canonicalized location
                         },
                         {
                           "name": "error-context",
                           "contentType": "text/markdown",
-                          "path": "/Users/tylerdiorio/CABANA_MASTER_PROJECT/test-results/screenshot-capture-CABANA--c0b45-CABANA-platform-screenshots-chromium/error-context.md"
+// disabled path check for canonicalized location
                         }
                       ]
                     }
@@ -723,10 +723,10 @@
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "📊 Report generated: /Users/tylerdiorio/CABANA_MASTER_PROJECT/screenshots/screenshot-report.json\n"
+// disabled path check for canonicalized location
                         },
                         {
-                          "text": "🌐 HTML Report: /Users/tylerdiorio/CABANA_MASTER_PROJECT/screenshots/screenshot-report.html\n"
+// disabled path check for canonicalized location
                         }
                       ],
                       "stderr": [],

@@ -151,21 +151,21 @@ export const VirtualGifts: React.FC<VirtualGiftsProps> = ({
   // Embedded view (for chat/profile integration)
   if (embedded) {
     return (
-      <div className=\"virtual-gifts-embedded\">
+      <div className="virtual-gifts-embedded">
         <Button
           onClick={() => setIsOpen(true)}
-          className=\"bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white\"
-          size=\"sm\"
+          className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+          size="sm"
         >
-          <Gift className=\"w-4 h-4 mr-2\" />
+          <Gift className="w-4 h-4 mr-2" />
           Send Gift
         </Button>
 
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogContent className=\"bg-gradient-to-br from-purple-900/95 to-pink-900/95 border-white/20 max-w-4xl max-h-[90vh] overflow-y-auto\">
+          <DialogContent className="bg-gradient-to-br from-purple-900/95 to-pink-900/95 border-white/20 max-w-4xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle className=\"text-2xl font-bold text-white flex items-center gap-2\">
-                <Gift className=\"w-6 h-6\" />
+              <DialogTitle className="text-2xl font-bold text-white flex items-center gap-2">
+                <Gift className="w-6 h-6" />
                 Send Gift to {recipientName}
               </DialogTitle>
             </DialogHeader>
@@ -201,38 +201,38 @@ export const VirtualGifts: React.FC<VirtualGiftsProps> = ({
 
   // Full component view
   return (
-    <div className=\"virtual-gifts-container backdrop-blur-xl bg-white/10 rounded-3xl border border-white/20 p-6\">
+    <div className="virtual-gifts-container backdrop-blur-xl bg-white/10 rounded-3xl border border-white/20 p-6">
       {/* Header */}
-      <div className=\"flex items-center justify-between mb-6\">
-        <div className=\"flex items-center gap-3\">
-          <div className=\"p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl\">
-            <Gift className=\"w-6 h-6 text-white\" />
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <div className="p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl">
+            <Gift className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h2 className=\"text-2xl font-bold text-white\">Virtual Gifts</h2>
-            <p className=\"text-purple-200\">Send gifts to show appreciation</p>
+            <h2 className="text-2xl font-bold text-white">Virtual Gifts</h2>
+            <p className="text-purple-200">Send gifts to show appreciation</p>
           </div>
         </div>
         
         {recipientId && (
           <Button
             onClick={() => setIsOpen(true)}
-            className=\"bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white\"
+            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
           >
-            <Send className=\"w-4 h-4 mr-2\" />
+            <Send className="w-4 h-4 mr-2" />
             Send Gift
           </Button>
         )}
       </div>
 
       {/* Navigation Tabs */}
-      <div className=\"flex gap-2 mb-6\">
+      <div className="flex gap-2 mb-6">
         <Button
           variant={activeTab === 'catalog' ? 'default' : 'outline'}
           onClick={() => setActiveTab('catalog')}
           className={activeTab === 'catalog' ? 'bg-purple-600 text-white' : 'border-purple-500/30 text-purple-400 hover:bg-purple-500/10'}
         >
-          <Gift className=\"w-4 h-4 mr-2\" />
+          <Gift className="w-4 h-4 mr-2" />
           Catalog
         </Button>
         
@@ -242,7 +242,7 @@ export const VirtualGifts: React.FC<VirtualGiftsProps> = ({
             onClick={() => setActiveTab('stats')}
             className={activeTab === 'stats' ? 'bg-purple-600 text-white' : 'border-purple-500/30 text-purple-400 hover:bg-purple-500/10'}
           >
-            <Sparkles className=\"w-4 h-4 mr-2\" />
+            <Sparkles className="w-4 h-4 mr-2" />
             Stats
           </Button>
         )}
@@ -253,14 +253,14 @@ export const VirtualGifts: React.FC<VirtualGiftsProps> = ({
             onClick={() => setActiveTab('history')}
             className={activeTab === 'history' ? 'bg-purple-600 text-white' : 'border-purple-500/30 text-purple-400 hover:bg-purple-500/10'}
           >
-            <DollarSign className=\"w-4 h-4 mr-2\" />
+            <DollarSign className="w-4 h-4 mr-2" />
             History
           </Button>
         )}
       </div>
 
       {/* Tab Content */}
-      <div className=\"tab-content\">
+      <div className="tab-content">
         {activeTab === 'catalog' && (
           <GiftCatalog 
             gifts={gifts}
@@ -280,10 +280,10 @@ export const VirtualGifts: React.FC<VirtualGiftsProps> = ({
 
       {/* Gift Sending Modal */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className=\"bg-gradient-to-br from-purple-900/95 to-pink-900/95 border-white/20 max-w-4xl max-h-[90vh] overflow-y-auto\">
+        <DialogContent className="bg-gradient-to-br from-purple-900/95 to-pink-900/95 border-white/20 max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className=\"text-2xl font-bold text-white flex items-center gap-2\">
-              <Gift className=\"w-6 h-6\" />
+            <DialogTitle className="text-2xl font-bold text-white flex items-center gap-2">
+              <Gift className="w-6 h-6" />
               Send Gift {recipientName && `to ${recipientName}`}
             </DialogTitle>
           </DialogHeader>
@@ -351,23 +351,23 @@ const GiftSendForm: React.FC<GiftSendFormProps> = ({
   const categoryStyles = CATEGORY_CONFIG[gift.category];
 
   return (
-    <div className=\"mt-6 p-6 bg-black/20 rounded-2xl border border-white/10\">
+    <div className="mt-6 p-6 bg-black/20 rounded-2xl border border-white/10">
       {/* Selected Gift Display */}
-      <div className=\"flex items-center gap-4 mb-6\">
+      <div className="flex items-center gap-4 mb-6">
         <div className={`text-4xl p-4 rounded-2xl ${rarityStyles.bg} ${rarityStyles.border} border`}>
           {gift.emoji}
         </div>
-        <div className=\"flex-1\">
-          <h3 className=\"text-xl font-bold text-white\">{gift.name}</h3>
-          <p className=\"text-gray-300\">{gift.description}</p>
-          <div className=\"flex items-center gap-2 mt-2\">
+        <div className="flex-1">
+          <h3 className="text-xl font-bold text-white">{gift.name}</h3>
+          <p className="text-gray-300">{gift.description}</p>
+          <div className="flex items-center gap-2 mt-2">
             <Badge className={`${rarityStyles.bg} ${rarityStyles.text} border-0`}>
               {gift.rarity}
             </Badge>
             <Badge className={`${categoryStyles.bgColor} ${categoryStyles.color} border-0`}>
               {categoryStyles.icon} {gift.category}
             </Badge>
-            <span className=\"text-green-400 font-semibold\">
+            <span className="text-green-400 font-semibold">
               ${(gift.price / 100).toFixed(2)}
             </span>
           </div>
@@ -375,32 +375,32 @@ const GiftSendForm: React.FC<GiftSendFormProps> = ({
       </div>
 
       {/* Quantity Selector */}
-      <div className=\"mb-4\">
-        <label className=\"block text-white font-semibold mb-2\">Quantity</label>
-        <div className=\"flex items-center gap-2\">
+      <div className="mb-4">
+        <label className="block text-white font-semibold mb-2">Quantity</label>
+        <div className="flex items-center gap-2">
           <Button
-            variant=\"outline\"
-            size=\"sm\"
+            variant="outline"
+            size="sm"
             onClick={() => onQuantityChange(Math.max(1, quantity - 1))}
             disabled={quantity <= 1}
-            className=\"border-purple-500/30 text-purple-400 hover:bg-purple-500/10\"
+            className="border-purple-500/30 text-purple-400 hover:bg-purple-500/10"
           >
             -
           </Button>
           <Input
-            type=\"number\"
+            type="number"
             value={quantity}
             onChange={(e) => onQuantityChange(Math.max(1, Math.min(99, parseInt(e.target.value) || 1)))}
-            className=\"w-20 text-center bg-black/20 border-purple-500/30 text-white\"
+            className="w-20 text-center bg-black/20 border-purple-500/30 text-white"
             min={1}
             max={99}
           />
           <Button
-            variant=\"outline\"
-            size=\"sm\"
+            variant="outline"
+            size="sm"
             onClick={() => onQuantityChange(Math.min(99, quantity + 1))}
             disabled={quantity >= 99}
-            className=\"border-purple-500/30 text-purple-400 hover:bg-purple-500/10\"
+            className="border-purple-500/30 text-purple-400 hover:bg-purple-500/10"
           >
             +
           </Button>
@@ -408,18 +408,18 @@ const GiftSendForm: React.FC<GiftSendFormProps> = ({
       </div>
 
       {/* Quick Amount Buttons */}
-      <div className=\"mb-4\">
-        <label className=\"block text-white font-semibold mb-2\">Quick Amounts</label>
-        <div className=\"flex flex-wrap gap-2\">
+      <div className="mb-4">
+        <label className="block text-white font-semibold mb-2">Quick Amounts</label>
+        <div className="flex flex-wrap gap-2">
           {QUICK_AMOUNTS.map(({ label, value }) => {
             const suggestedQuantity = Math.ceil(value / gift.price);
             return (
               <Button
                 key={value}
-                variant=\"outline\"
-                size=\"sm\"
+                variant="outline"
+                size="sm"
                 onClick={() => onQuantityChange(suggestedQuantity)}
-                className=\"border-purple-500/30 text-purple-400 hover:bg-purple-500/10\"
+                className="border-purple-500/30 text-purple-400 hover:bg-purple-500/10"
               >
                 {label} ({suggestedQuantity}x)
               </Button>
@@ -429,61 +429,61 @@ const GiftSendForm: React.FC<GiftSendFormProps> = ({
       </div>
 
       {/* Message */}
-      <div className=\"mb-4\">
-        <label className=\"block text-white font-semibold mb-2\">Message (optional)</label>
+      <div className="mb-4">
+        <label className="block text-white font-semibold mb-2">Message (optional)</label>
         <Textarea
           value={message}
           onChange={(e) => onMessageChange(e.target.value)}
-          placeholder=\"Add a personal message...\";
-          className=\"bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400\"
+          placeholder="Add a personal message..."
+          className="bg-black/20 border-purple-500/30 text-white placeholder:text-gray-400"
           maxLength={200}
         />
-        <div className=\"text-right text-xs text-gray-400 mt-1\">
+        <div className="text-right text-xs text-gray-400 mt-1">
           {message.length}/200
         </div>
       </div>
 
       {/* Anonymous Option */}
-      <div className=\"mb-6\">
-        <label className=\"flex items-center gap-2 text-white cursor-pointer\">
+      <div className="mb-6">
+        <label className="flex items-center gap-2 text-white cursor-pointer">
           <input
-            type=\"checkbox\"
+            type="checkbox"
             checked={isAnonymous}
             onChange={(e) => onAnonymousChange(e.target.checked)}
-            className=\"rounded border-purple-500/30\"
+            className="rounded border-purple-500/30"
           />
           Send anonymously
         </label>
       </div>
 
       {/* Total Cost */}
-      <div className=\"mb-6 p-4 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-xl border border-purple-500/30\">
-        <div className=\"flex justify-between items-center\">
-          <span className=\"text-white font-semibold\">Total Cost:</span>
-          <span className=\"text-2xl font-bold text-green-400\">
+      <div className="mb-6 p-4 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-xl border border-purple-500/30">
+        <div className="flex justify-between items-center">
+          <span className="text-white font-semibold">Total Cost:</span>
+          <span className="text-2xl font-bold text-green-400">
             ${(totalCost / 100).toFixed(2)}
           </span>
         </div>
-        <div className=\"text-sm text-purple-200 mt-1\">
+        <div className="text-sm text-purple-200 mt-1">
           {quantity}x {gift.name} @ ${(gift.price / 100).toFixed(2)} each
         </div>
       </div>
 
       {/* Action Buttons */}
-      <div className=\"flex gap-3\">
+      <div className="flex gap-3">
         <Button
           onClick={onSend}
           disabled={isLoading}
-          className=\"flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold h-12\"
+          className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold h-12"
         >
           {isLoading ? (
             <>
-              <div className=\"w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin mr-2\" />
+              <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin mr-2" />
               Sending Gift...
             </>
           ) : (
             <>
-              <Send className=\"w-5 h-5 mr-2\" />
+              <Send className="w-5 h-5 mr-2" />
               Send Gift (${(totalCost / 100).toFixed(2)})
             </>
           )}
@@ -491,10 +491,10 @@ const GiftSendForm: React.FC<GiftSendFormProps> = ({
         
         <Button
           onClick={onCancel}
-          variant=\"outline\"
-          className=\"border-gray-500/30 text-gray-400 hover:bg-gray-500/10\"
+          variant="outline"
+          className="border-gray-500/30 text-gray-400 hover:bg-gray-500/10"
         >
-          <X className=\"w-5 h-5\" />
+          <X className="w-5 h-5" />
         </Button>
       </div>
     </div>
@@ -511,45 +511,45 @@ interface GiftHistoryProps {
 const GiftHistory: React.FC<GiftHistoryProps> = ({ transactions, currentUserId }) => {
   if (transactions.length === 0) {
     return (
-      <div className=\"text-center py-12\">
-        <Gift className=\"w-16 h-16 text-gray-400 mx-auto mb-4\" />
-        <h3 className=\"text-lg font-semibold text-white mb-2\">No gift history</h3>
-        <p className=\"text-gray-400\">Your sent and received gifts will appear here</p>
+      <div className="text-center py-12">
+        <Gift className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+        <h3 className="text-lg font-semibold text-white mb-2">No gift history</h3>
+        <p className="text-gray-400">Your sent and received gifts will appear here</p>
       </div>
     );
   }
 
   return (
-    <div className=\"space-y-4\">
+    <div className="space-y-4">
       {transactions.map((transaction) => {
         const isSent = transaction.senderId === currentUserId;
         const otherUser = isSent ? transaction.recipient : transaction.sender;
         
         return (
-          <div key={transaction.id} className=\"p-4 bg-black/20 rounded-xl border border-white/10\">
-            <div className=\"flex items-center justify-between\">
-              <div className=\"flex items-center gap-3\">
-                <div className=\"text-2xl\">{transaction.gift?.emoji}</div>
+          <div key={transaction.id} className="p-4 bg-black/20 rounded-xl border border-white/10">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="text-2xl">{transaction.gift?.emoji}</div>
                 <div>
-                  <div className=\"text-white font-semibold\">
+                  <div className="text-white font-semibold">
                     {isSent ? 'Sent' : 'Received'} {transaction.quantity}x {transaction.gift?.name}
                   </div>
-                  <div className=\"text-sm text-gray-400\">
+                  <div className="text-sm text-gray-400">
                     {isSent ? 'To' : 'From'}: {transaction.isAnonymous ? 'Anonymous' : otherUser?.username}
                   </div>
                   {transaction.message && (
-                    <div className=\"text-sm text-purple-200 mt-1 italic\">
-                      \"{transaction.message}\"
+                    <div className="text-sm text-purple-200 mt-1 italic">
+                      "{transaction.message}"
                     </div>
                   )}
                 </div>
               </div>
               
-              <div className=\"text-right\">
+              <div className="text-right">
                 <div className={`font-semibold ${isSent ? 'text-red-400' : 'text-green-400'}`}>
                   {isSent ? '-' : '+'}${(transaction.amount / 100).toFixed(2)}
                 </div>
-                <div className=\"text-xs text-gray-400\">
+                <div className="text-xs text-gray-400">
                   {new Date(transaction.createdAt).toLocaleDateString()}
                 </div>
               </div>

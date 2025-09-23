@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { 
   MessageSquare, Users, Clock, Search, Plus, Pin, 
-  TrendingUp, Fire, Star, ArrowRight, Eye
+  TrendingUp, Flame, Star, ArrowRight, Eye
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
@@ -298,7 +298,7 @@ const ForumCategoriesPage = () => {
                           </Link>
                           {category.isHot && (
                             <Badge className="bg-red-100 text-red-800 border-red-200">
-                              <Fire className="h-3 w-3 mr-1" />
+                              <Flame className="h-3 w-3 mr-1" />
                               Hot
                             </Badge>
                           )}
@@ -378,7 +378,7 @@ const ForumCategoriesPage = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Fire className="h-5 w-5 text-orange-500" />
+                  <Flame className="h-5 w-5 text-orange-500" />
                   Trending Topics
                 </CardTitle>
               </CardHeader>

@@ -1,11 +1,23 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  /* TD STUDIOS LUXURY GLASS SYSTEM - ENHANCED */
+  --td-glass-bg: rgba(255,255,255,0.04);
+  --td-glass-border: rgba(255,255,255,0.08);
+  --td-glass-hover: rgba(255,255,255,0.06);
+  --td-glass-blur: blur(32px);
+  --td-shadow-luxury: 0 25px 80px rgba(0,0,0,.6);
+  --td-shadow-premium: 0 35px 100px rgba(0,0,0,.7);
+  --td-accent-gold: #C0A772;
+  --td-accent-blue: #8BC6EC;
+  --td-radius-luxury: 24px;
+  
   /* Noir Theme - Sophisticated Black & Gold */
   --theme-noir-bg-primary: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
   --theme-noir-bg-secondary: rgba(15, 15, 15, 0.95);
@@ -110,6 +122,143 @@
 }
 
 @layer components {
+  /* TD STUDIOS ULTRA-LUXURY GLASS SYSTEM */
+  .td-ultra-glass-card {
+    background: var(--td-glass-bg);
+    backdrop-filter: var(--td-glass-blur) saturate(200%);
+    -webkit-backdrop-filter: var(--td-glass-blur) saturate(200%);
+    border: 1px solid var(--td-glass-border);
+    border-radius: var(--td-radius-luxury);
+    box-shadow: 
+      var(--td-shadow-luxury),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.02);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .td-ultra-glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+    transition: left 0.8s ease;
+  }
+  
+  .td-ultra-glass-card:hover::before {
+    left: 100%;
+  }
+  
+  .td-ultra-glass-card:hover {
+    background: var(--td-glass-hover);
+    border-color: rgba(192, 167, 114, 0.3);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+      var(--td-shadow-premium),
+      0 0 40px rgba(192, 167, 114, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+  
+  .td-ultra-glass-button {
+    background: var(--td-glass-bg);
+    backdrop-filter: var(--td-glass-blur) saturate(180%);
+    -webkit-backdrop-filter: var(--td-glass-blur) saturate(180%);
+    border: 1px solid var(--td-glass-border);
+    border-radius: 18px;
+    padding: 18px 36px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .td-ultra-glass-button:hover {
+    background: var(--td-glass-hover);
+    border-color: rgba(192, 167, 114, 0.4);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+      0 20px 60px rgba(0,0,0,0.4),
+      0 0 30px rgba(192, 167, 114, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  /* BEBAS NEUE LUXURY TYPOGRAPHY */
+  .bebas-ultra-display {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: clamp(4rem, 12vw, 12rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 0.85;
+    background: linear-gradient(135deg, #ffffff 0%, var(--td-accent-gold) 50%, #ffffff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 300% 300%;
+    animation: luxuryShimmer 4s ease-in-out infinite;
+  }
+  
+  .bebas-luxury-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 0.9;
+    color: #ffffff;
+    text-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.8),
+      0 0 20px rgba(192, 167, 114, 0.3);
+  }
+  
+  .bebas-luxury-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--td-accent-gold);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* PREMIUM GLASS SURFACES */
+  .td-premium-surface {
+    background: rgba(255,255,255,0.02);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 
+      0 30px 90px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  .td-luxury-glow {
+    position: relative;
+  }
+  
+  .td-luxury-glow::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--td-accent-gold) 0%, transparent 60%);
+    opacity: 0.06;
+    z-index: -1;
+    animation: luxuryPulse 6s ease-in-out infinite;
+  }
+  
   /* Premium Glassmorphism Components */
   .glass-card {
     background: var(--theme-noir-glass);
@@ -331,6 +480,24 @@
   @keyframes shimmer {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
+  }
+  
+  @keyframes luxuryShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 100% 25%; }
+    50% { background-position: 200% 50%; }
+    75% { background-position: 100% 75%; }
+  }
+  
+  @keyframes luxuryPulse {
+    0%, 100% { 
+      transform: scale(1) rotate(0deg); 
+      opacity: 0.04; 
+    }
+    50% { 
+      transform: scale(1.2) rotate(180deg); 
+      opacity: 0.08; 
+    }
   }
   
   @keyframes pulse {

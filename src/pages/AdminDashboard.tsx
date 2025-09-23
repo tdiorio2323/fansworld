@@ -207,7 +207,7 @@ export default function AdminDashboard() {
   });
 
   // Fetch stats
-  const { data: stats } = useQuery({
+  const { data: applicationStats } = useQuery({
     queryKey: ['admin-stats'],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -260,7 +260,7 @@ export default function AdminDashboard() {
     },
   });
 
-  const getStatusColor = (status: string) => {
+  const getApplicationStatusColor = (status: string) => {
     switch (status) {
       case 'approved': return 'bg-green-600';
       case 'rejected': return 'bg-red-600';
@@ -315,7 +315,7 @@ export default function AdminDashboard() {
                 <div className="flex items-center gap-3">
                   <FileText className="w-8 h-8 text-blue-500" />
                   <div>
-                    <p className="text-2xl font-bold">{stats?.totalApplications || 0}</p>
+                    <p className="text-2xl font-bold">{applicationStats?.totalApplications || 0}</p>
                     <p className="text-sm text-muted-foreground">Total Applications</p>
                   </div>
                 </div>
@@ -327,7 +327,7 @@ export default function AdminDashboard() {
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-8 h-8 text-green-500" />
                   <div>
-                    <p className="text-2xl font-bold">{stats?.approvedApplications || 0}</p>
+                    <p className="text-2xl font-bold">{applicationStats?.approvedApplications || 0}</p>
                     <p className="text-sm text-muted-foreground">Approved</p>
                   </div>
                 </div>
@@ -339,7 +339,7 @@ export default function AdminDashboard() {
                 <div className="flex items-center gap-3">
                   <Clock className="w-8 h-8 text-yellow-500" />
                   <div>
-                    <p className="text-2xl font-bold">{stats?.pendingApplications || 0}</p>
+                    <p className="text-2xl font-bold">{applicationStats?.pendingApplications || 0}</p>
                     <p className="text-sm text-muted-foreground">Pending Review</p>
                   </div>
                 </div>
@@ -351,7 +351,7 @@ export default function AdminDashboard() {
                 <div className="flex items-center gap-3">
                   <DollarSign className="w-8 h-8 text-green-500" />
                   <div>
-                    <p className="text-2xl font-bold">${stats?.totalRevenue.toLocaleString() || 0}</p>
+                    <p className="text-2xl font-bold">${applicationStats?.totalRevenue.toLocaleString() || 0}</p>
                     <p className="text-sm text-muted-foreground">Total Revenue</p>
                   </div>
                 </div>
@@ -709,7 +709,7 @@ export default function AdminDashboard() {
                                 </p>
                               </div>
                               <div className="flex items-center gap-2">
-                                <Badge className={`${getStatusColor(app.status)} text-white`}>
+                                <Badge className={`${getApplicationStatusColor(app.status)} text-white`}>
                                   {getStatusIcon(app.status)}
                                   <span className="ml-1 capitalize">{app.status.replace('_', ' ')}</span>
                                 </Badge>

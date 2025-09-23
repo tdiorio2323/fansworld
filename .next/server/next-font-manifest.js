@@ -1,1 +1,0 @@
-self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/Users/tylerdiorio/CABANA_CONSOLIDATED/active-development/main-platform/app/layout":["static/media/a22b1dc24103c00d-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';

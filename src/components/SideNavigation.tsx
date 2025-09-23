@@ -29,7 +29,7 @@ export const SideNavigation: React.FC<SideNavigationProps> = ({ isOpen, onToggle
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
 
-  const menuItems = [
+  const CabanaItems = [
     { icon: Home, label: 'Home', path: '/feed' },
     { icon: Search, label: 'Search', path: '/explore' },
     { icon: PlusSquare, label: 'Create', path: '/upload' },
@@ -45,7 +45,7 @@ export const SideNavigation: React.FC<SideNavigationProps> = ({ isOpen, onToggle
 
   const handleNavigation = (path: string) => {
     navigate(path);
-    onToggle(); // Close menu on mobile after navigation
+    onToggle(); // Close Cabana on mobile after navigation
   };
 
   const handleSignOut = async () => {
@@ -106,7 +106,7 @@ export const SideNavigation: React.FC<SideNavigationProps> = ({ isOpen, onToggle
           {/* Navigation Items */}
           <nav className="flex-1 overflow-y-auto">
             <div className="p-2 space-y-1">
-              {menuItems.map((item) => {
+              {CabanaItems.map((item) => {
                 const Icon = item.icon;
                 return (
                   <Button

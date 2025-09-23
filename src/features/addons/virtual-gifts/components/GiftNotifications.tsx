@@ -219,17 +219,17 @@ export const GiftNotifications: React.FC<GiftNotificationsProps> = ({
         
         {/* Sound Toggle Button */}
         {notifications.length > 0 && (
-          <div className=\"flex justify-end pointer-events-auto\">
+          <div className="flex justify-end pointer-events-auto">
             <Button
-              variant=\"outline\"
-              size=\"sm\"
+              variant="outline"
+              size="sm"
               onClick={() => setSoundEnabled(!soundEnabled)}
-              className=\"bg-black/80 border-white/20 text-white hover:bg-black/90\"
+              className="bg-black/80 border-white/20 text-white hover:bg-black/90"
             >
               {soundEnabled ? (
-                <Volume2 className=\"w-4 h-4\" />
+                <Volume2 className="w-4 h-4" />
               ) : (
-                <VolumeX className=\"w-4 h-4\" />
+                <VolumeX className="w-4 h-4" />
               )}
             </Button>
           </div>
@@ -238,7 +238,7 @@ export const GiftNotifications: React.FC<GiftNotificationsProps> = ({
 
       {/* Gift Animations Overlay */}
       {showAnimation && (
-        <div className=\"fixed inset-0 pointer-events-none z-40\">
+        <div className="fixed inset-0 pointer-events-none z-40">
           {animatingGifts.map((gift) => (
             <GiftAnimation
               key={gift.id}
@@ -303,33 +303,33 @@ const NotificationCard: React.FC<NotificationCardProps> = ({ notification, onClo
 
   return (
     <div className={`${bgColor} backdrop-blur-md border border-white/20 rounded-xl p-4 shadow-lg pointer-events-auto transform transition-all duration-500 ease-out animate-in slide-in-from-right`}>
-      <div className=\"flex items-start gap-3\">
+      <div className="flex items-start gap-3">
         {/* Gift Icon */}
-        <div className=\"text-2xl flex-shrink-0\">
+        <div className="text-2xl flex-shrink-0">
           {gift?.emoji || icon}
         </div>
 
         {/* Content */}
-        <div className=\"flex-1 min-w-0\">
-          <div className=\"flex items-center justify-between mb-1\">
-            <h4 className=\"text-white font-semibold text-sm\">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between mb-1">
+            <h4 className="text-white font-semibold text-sm">
               {isReceived ? 'Gift Received!' : 'Gift Sent!'}
             </h4>
             <Button
-              variant=\"ghost\"
-              size=\"sm\"
+              variant="ghost"
+              size="sm"
               onClick={onClose}
-              className=\"h-6 w-6 p-0 text-white/60 hover:text-white hover:bg-white/10\"
+              className="h-6 w-6 p-0 text-white/60 hover:text-white hover:bg-white/10"
             >
-              <X className=\"w-4 h-4\" />
+              <X className="w-4 h-4" />
             </Button>
           </div>
           
-          <div className=\"text-white/90 text-sm\">
+          <div className="text-white/90 text-sm">
             <strong>{transaction.quantity}x {gift?.name}</strong>
           </div>
           
-          <div className=\"text-white/70 text-xs mt-1\">
+          <div className="text-white/70 text-xs mt-1">
             {isReceived ? 'From' : 'To'}: {
               transaction.isAnonymous 
                 ? 'Anonymous' 
@@ -338,12 +338,12 @@ const NotificationCard: React.FC<NotificationCardProps> = ({ notification, onClo
           </div>
           
           {transaction.message && (
-            <div className=\"text-white/80 text-xs mt-2 italic bg-black/20 p-2 rounded\">
-              \"{transaction.message}\"
+            <div className="text-white/80 text-xs mt-2 italic bg-black/20 p-2 rounded">
+              "{transaction.message}"
             </div>
           )}
           
-          <div className=\"text-white/60 text-xs mt-2\">
+          <div className="text-white/60 text-xs mt-2">
             ${(transaction.amount / 100).toFixed(2)}
           </div>
         </div>

@@ -1,0 +1,21 @@
+{
+  "colors": {
+    "bg": "#0A0A0A",
+    "fg": "#FFFFFF", 
+    "muted": "#A3A3A3",
+    "glass": "rgba(255,255,255,0.06)",
+    "border": "rgba(255,255,255,0.12)",
+    "accent": "#C0A772",
+    "accent2": "#8BC6EC"
+  },
+  "effects": {
+    "backdropBlur": "24px",
+    "radius": "20px", 
+    "shadow": "0 20px 60px rgba(0,0,0,.45)"
+  },
+  "fonts": {
+    "display": "Bebas Neue, ui-sans-serif, system-ui",
+    "heading": "Bebas Neue, ui-sans-serif, system-ui",
+    "body": "Inter, ui-sans-serif, system-ui"
+  }
+}

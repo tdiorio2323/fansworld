@@ -69,11 +69,6 @@ export default function CreatorProfile() {
   const { username } = useParams();
   const { user } = useAuth();
   const { toast } = useToast();
-
-  // Special handling for Karol's OCR-extracted profile
-  if (username === 'karol') {
-    return <KarolProfile />;
-  }
   
   const [creatorProfile, setCreatorProfile] = useState<CreatorProfile | null>(null);
   const [creatorContent, setCreatorContent] = useState<CreatorContent[]>([]);
@@ -89,10 +84,15 @@ export default function CreatorProfile() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (username) {
+    if (username && username !== 'karol') {
       loadCreatorData();
     }
   }, [username, user]);
+
+  // Special handling for Karol's OCR-extracted profile
+  if (username === 'karol') {
+    return <KarolProfile />;
+  }
 
   const loadCreatorData = async () => {
     try {

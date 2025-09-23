@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
-          'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tabs'],
+          'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-Cabana', '@radix-ui/react-tabs'],
           'stripe-vendor': ['@stripe/stripe-js', 'stripe'],
           'supabase-vendor': ['@supabase/supabase-js'],
           'router-vendor': ['react-router-dom'],

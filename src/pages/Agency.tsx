@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import { Crown, Star, TrendingUp, Shield, Users, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 
 export function Agency() {
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const servicePackages = [
     {
@@ -107,7 +107,7 @@ export function Agency() {
                 size="lg" 
                 variant="outline" 
                 className="border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg"
-                onClick={() => navigate('/creator-application')}
+                onClick={() => router.push('/creator-application')}
               >
                 Apply Now
               </Button>
@@ -279,7 +279,7 @@ export function Agency() {
             <Button 
               size="lg" 
               className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-12 py-4 text-lg"
-              onClick={() => navigate('/creator-application')}
+              onClick={() => router.push('/creator-application')}
             >
               Start Your Application
             </Button>
