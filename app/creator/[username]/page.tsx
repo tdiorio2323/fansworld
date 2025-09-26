@@ -2,10 +2,10 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
-import FrostedButton from '@/components/FrostedButton'
-import GlassCard from '@/components/GlassCard'
+import CreatorHeader from '@/components/CreatorHeader'
 import GlassModal from '@/components/GlassModal'
-import PendingFeature from '@/components/PendingFeature'
+import Card from '@/components/ui/Card'
+import Button from '@/components/ui/Button'
 import creatorsData from '@/mocks/creators.json'
 import postsData from '@/mocks/posts.json'
 
@@ -18,6 +18,7 @@ export default function CreatorPage({ params }: { params: { username: string } }
     [params.username],
   )
   const [isModalOpen, setModalOpen] = useState(false)
+  const [tab, setTab] = useState<'posts' | 'about'>('posts')
 
   const creatorPosts = useMemo<Post[]>(() => {
     if (!creator) return []
@@ -30,7 +31,7 @@ export default function CreatorPage({ params }: { params: { username: string } }
         <h1 className="font-display text-4xl">Creator not found</h1>
         <p className="text-white/70">Select a creator from explore to view their showcase.</p>
         <Link href="/explore" className="inline-block">
-          <FrostedButton size="lg">Go to Explore</FrostedButton>
+          <Button size="lg">Go to Explore</Button>
         </Link>
       </div>
     )
@@ -38,64 +39,64 @@ export default function CreatorPage({ params }: { params: { username: string } }
 
   return (
     <div className="space-y-10">
-      <section className="overflow-hidden rounded-3xl border border-white/10">
-        <div
-          className="h-60 w-full bg-cover bg-center md:h-72"
-          style={{
-            backgroundImage: `linear-gradient(180deg, rgba(11,14,19,0.05), rgba(11,14,19,0.85)), url(${creator.cover})`,
-          }}
-        />
-        <div className="glass flex flex-col gap-4 border-t border-white/10 p-6 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h1 className="font-display text-5xl">{creator.displayName}</h1>
-            <p className="text-sm text-white/70">@{creator.username} · {creator.genre}</p>
-            <p className="mt-3 max-w-2xl text-sm text-white/70">{creator.tagline}</p>
-          </div>
-          <div className="flex shrink-0 flex-col items-start gap-2 md:items-end">
-            <FrostedButton size="lg" onClick={() => setModalOpen(true)}>
-              Subscribe ${creator.price}/mo
-            </FrostedButton>
-            <p className="text-xs uppercase tracking-[0.3em] text-white/50">
-              Payments pending
-            </p>
-          </div>
+      <CreatorHeader
+        cover={creator.cover}
+        displayName={creator.displayName}
+        username={creator.username}
+        stats={{ posts: creator.posts, subs: creator.subs, price: creator.price }}
+        onSubscribe={() => setModalOpen(true)}
+      />
+      <Card className="!p-2">
+        <div className="inline-flex gap-1 rounded-full bg-white/10 p-1">
+          <button
+            type="button"
+            onClick={() => setTab('posts')}
+            className={`rounded-full px-4 py-1.5 text-sm transition ${tab === 'posts' ? 'frost text-white' : 'bg-transparent text-white/70'}`}
+          >
+            Posts
+          </button>
+          <button
+            type="button"
+            onClick={() => setTab('about')}
+            className={`rounded-full px-4 py-1.5 text-sm transition ${tab === 'about' ? 'frost text-white' : 'bg-transparent text-white/70'}`}
+          >
+            About
+          </button>
         </div>
-      </section>
+      </Card>
 
-      <PendingFeature title="Studio analytics incoming" description="Cabana Studio insights will appear once the analytics pipeline is wired." />
-
-      <section className="space-y-4">
-        <h2 className="font-display text-3xl">Gallery</h2>
+      {tab === 'posts' ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {creatorPosts.map((post) => (
             <Link key={post.id} href={`/post/${post.id}`}>
-              <GlassCard>
+              <Card className="!p-0 overflow-hidden">
                 <div
-                  className="aspect-[4/5] w-full rounded-2xl border border-white/10"
+                  className="aspect-[4/5] w-full bg-cover bg-center"
                   style={{
                     backgroundImage: `linear-gradient(180deg, rgba(11,14,19,0.1), rgba(11,14,19,0.75)), url(${post.media})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
                   }}
                 />
-                <div className="mt-4 flex items-center justify-between">
+                <div className="flex items-center justify-between px-4 py-3 text-sm">
                   <div>
-                    <p className="font-display text-xl">{post.title}</p>
+                    <p className="font-display text-lg">{post.title}</p>
                     <p className="text-xs text-white/60">{post.locked ? 'Locked preview' : 'Public preview'}</p>
                   </div>
                   {post.locked ? (
-                    <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">
-                      Unlock ${post.price}
-                    </span>
+                    <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">Unlock ${post.price}</span>
                   ) : (
                     <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">Free</span>
                   )}
                 </div>
-              </GlassCard>
+              </Card>
             </Link>
           ))}
         </div>
-      </section>
+      ) : (
+        <Card>
+          <h3 className="mb-2 font-display text-2xl">About {creator.displayName}</h3>
+          <p className="text-white/75">Creator bio placeholder. UI preview only.</p>
+        </Card>
+      )}
 
       <GlassModal open={isModalOpen} onClose={() => setModalOpen(false)}>
         <h2 className="font-display text-2xl">Integration pending</h2>
