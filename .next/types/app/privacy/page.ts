@@ -1,4 +1,4 @@
-// File: /Users/tylerdiorio/CABANA_CONSOLIDATED/active-development/main-platform/app/privacy/page.tsx
+// File: /Users/tylerdiorio/fansworld/app/privacy/page.tsx
 import * as entry from '../../../../app/privacy/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

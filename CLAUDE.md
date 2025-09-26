@@ -123,9 +123,10 @@ PORT=3001
 
 ### Testing Strategy
 - **Unit Tests**: Vitest with jsdom environment for React component testing
-- **Test Configuration**: Custom vitest.config.ts with React SWC plugin and tsconfig paths
-- **Test Environment**: Includes mock Supabase environment variables
+- **Test Configuration**: Custom vitest.config.ts with React SWC plugin and vite-tsconfig-paths for path resolution
+- **Test Environment**: Includes mock Supabase environment variables and test globals
 - **Test Timeout**: 10 second timeout for async operations
+- **E2E Testing**: Playwright configuration available for end-to-end testing
 
 ### TypeScript Configuration
 - **Relaxed Settings**: `strict: false`, `noImplicitAny: false`, `strictNullChecks: false` for rapid development

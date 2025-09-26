@@ -1,4 +1,4 @@
-// File: /Users/tylerdiorio/CABANA_CONSOLIDATED/active-development/main-platform/app/enter/complete/page.tsx
+// File: /Users/tylerdiorio/fansworld/app/enter/complete/page.tsx
 import * as entry from '../../../../../app/enter/complete/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

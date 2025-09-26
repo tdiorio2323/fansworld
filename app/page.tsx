@@ -91,17 +91,19 @@ export default function Home() {
         </div>
       </section>
 
-      <GlassModal
-        isOpen={isModalOpen}
-        onClose={() => setModalOpen(false)}
-        title="Creator applications pending"
-        description="Cabana Studio onboarding will unlock once the payments and auth stack is ready."
-        primaryActionLabel="Close"
-      >
-        <p className="text-sm text-white/60">
+      <GlassModal open={isModalOpen} onClose={() => setModalOpen(false)}>
+        <h2 className="font-display text-2xl">Creator applications pending</h2>
+        <p className="mt-3 text-sm text-white/60">
           This build focuses on UI polish. Keep refining the visuals, then layer in Supabase and Stripe when the
           product enters the integration phase.
         </p>
+        <button
+          type="button"
+          className="btn-reset mt-6 inline-flex rounded-full bg-white/10 px-4 py-2 text-sm hover:bg-white/20"
+          onClick={() => setModalOpen(false)}
+        >
+          Close
+        </button>
       </GlassModal>
     </div>
   )

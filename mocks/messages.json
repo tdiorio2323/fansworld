@@ -1,0 +1,27 @@
+{
+  "conversation": {
+    "id": "demo",
+    "creator": "avaluna",
+    "participant": "You",
+    "messages": [
+      {
+        "id": "m1",
+        "sender": "Ava Luna",
+        "timestamp": "2025-09-25T18:02:00Z",
+        "content": "Merci for checking in. The couture drop goes live next Friday."
+      },
+      {
+        "id": "m2",
+        "sender": "You",
+        "timestamp": "2025-09-25T18:05:00Z",
+        "content": "Can we preview the backstage footage tonight?"
+      },
+      {
+        "id": "m3",
+        "sender": "Ava Luna",
+        "timestamp": "2025-09-25T18:07:00Z",
+        "content": "Unlock early access once payments launch. I\u2019ll notify you first."
+      }
+    ]
+  }
+}

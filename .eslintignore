@@ -1,0 +1,8 @@
+src/**
+components/auth/**
+components/dashboard/**
+components/linkbio/**
+components/messaging/**
+components/Instagram*/**
+components/ui/**
+app/enter/**

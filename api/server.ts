@@ -1,39 +1,65 @@
 import express from 'express'
 import cors from 'cors'
-import rateLimit from 'express-rate-limit'
-import cookieParser from 'cookie-parser'
+import compression from 'compression'
 import { config } from 'dotenv'
 import { Anthropic } from '@anthropic-ai/sdk'
 import OpenAI from 'openai'
 import { z } from 'zod'
 import { createClient } from '@supabase/supabase-js'
-import { authRateLimit, apiRateLimit, paymentRateLimit, adminRateLimit } from '../src/lib/rate-limit'
-import { 
-  securityHeaders, 
-  setCSRFToken, 
-  validateCSRFToken, 
-  sanitizeRequest, 
-  validateApiKeys, 
-  secureErrorHandler 
-} from '../src/lib/security'
+import pinoHttp from 'pino-http'
+import {
+  securityHeaders,
+  trustProxyConfig,
+  authRateLimit,
+  apiRateLimit,
+  mediaUploadRateLimit,
+  adminRateLimit,
+  speedLimiter,
+  bruteForceProtection,
+  correlationId,
+  securityAuditLog,
+  configureForEnvironment,
+  secureErrorHandler,
+  healthCheck,
+  readinessCheck,
+  logger,
+  bodySizeLimits
+} from '../src/lib/security-enhanced'
 
 // Load environment variables
 config()
 
-// SECURITY: Validate all API keys on startup
-validateApiKeys()
-
-const app = express()
-const PORT = process.env.PORT || 3001
-
-// Environment validation
+// SECURITY: Enhanced environment validation
 const envSchema = z.object({
+  NODE_ENV: z.enum(['development', 'staging', 'production']).default('development'),
+  PORT: z.string().transform(Number).default(3001),
   ANTHROPIC_API_KEY: z.string().min(1, 'Anthropic API key is required'),
   OPENAI_API_KEY: z.string().min(1, 'OpenAI API key is required'),
-  VITE_SITE_URL: z.string().url().default('http://localhost:5173'),
+  VITE_SUPABASE_URL: z.string().url('Invalid Supabase URL'),
+  SUPABASE_SERVICE_ROLE_KEY: z.string().min(1, 'Supabase service role key is required'),
+  VITE_SITE_URL: z.string().url().optional(),
+  FRONTEND_URL: z.string().url().optional(),
+  LOG_LEVEL: z.enum(['error', 'warn', 'info', 'debug']).default('info')
 })
 
 const env = envSchema.parse(process.env)
+
+// SECURITY: Validate configuration on startup
+if (!env.ANTHROPIC_API_KEY.startsWith('sk-ant-')) {
+  throw new Error('Invalid Anthropic API key format')
+}
+
+if (!env.OPENAI_API_KEY.startsWith('sk-')) {
+  throw new Error('Invalid OpenAI API key format')
+}
+
+logger.info('Server starting', {
+  environment: env.NODE_ENV,
+  port: env.PORT,
+  logLevel: env.LOG_LEVEL
+})
+
+const app = express()
 
 // Initialize AI clients (server-side only)
 const claude = new Anthropic({
@@ -46,72 +72,71 @@ const openai = new OpenAI({
   // No dangerouslyAllowBrowser - secure server-side only
 })
 
-// Initialize Supabase client
+// Initialize Supabase client with enhanced configuration
 const supabase = createClient(
-  process.env.VITE_SUPABASE_URL || '',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+  env.VITE_SUPABASE_URL,
+  env.SUPABASE_SERVICE_ROLE_KEY,
+  {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false
+    },
+    realtime: {
+      params: {
+        eventsPerSecond: 10
+      }
+    }
+  }
 )
 
-// SECURITY: Enhanced CORS configuration with strict origin checking
-const corsOptions = {
-  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
-    const allowedOrigins = [
-      env.VITE_SITE_URL, 
-      'http://localhost:5173', 
-      'http://localhost:4173',
-      'https://localhost:5173', // HTTPS versions
-      'https://localhost:4173'
-    ]
-    
-    // SECURITY: More restrictive - only allow specific origins in production
-    if (process.env.NODE_ENV === 'production' && !origin) {
-      return callback(new Error('CORS policy: Origin header required in production'))
-    }
-    
-    // Allow localhost in development
-    if (process.env.NODE_ENV === 'development' && !origin) {
-      return callback(null, true)
-    }
-    
-    if (allowedOrigins.includes(origin!)) {
-      callback(null, true)
-    } else {
-      console.warn(`⚠️ CORS policy violation: ${origin} not allowed`)
-      callback(new Error(`CORS policy violation: ${origin} not allowed`))
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'X-CSRF-Token'],
-  exposedHeaders: ['X-CSRF-Token']
-}
+// Get environment-specific configuration
+const config = configureForEnvironment()
 
-// Rate limiting - 60 requests per minute per IP
-const limiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  max: 60, // 60 requests per window
-  message: {
-    error: 'Too many requests from this IP, please try again later.',
-    retryAfter: 60
-  },
-  standardHeaders: true,
-  legacyHeaders: false,
-})
+// SECURITY: Production-grade middleware stack
+app.use(trustProxyConfig) // Trust proxy configuration
+app.use(correlationId) // Request correlation IDs
+app.use(pinoHttp({ logger })) // Request logging
+app.use(securityHeaders) // Security headers (Helmet)
+app.use(compression()) // Gzip compression
+app.use(cors(config.cors)) // CORS with environment-specific settings
 
-// SECURITY: Enhanced middleware stack
-app.use(securityHeaders) // Security headers first
-app.use(cors(corsOptions))
-app.use(cookieParser()) // Cookie parser for CSRF tokens
-app.use(express.json({ limit: '1mb' })) // Reduced payload limit
-app.use(express.urlencoded({ extended: true, limit: '1mb' }))
-app.use(sanitizeRequest) // Sanitize all inputs
-app.use(setCSRFToken) // Set CSRF tokens
+// Body parsing with size limits
+app.use(express.json({ limit: bodySizeLimits.json }))
+app.use(express.urlencoded({ extended: true, limit: bodySizeLimits.urlencoded }))
+app.use(express.raw({ limit: bodySizeLimits.raw, type: 'application/octet-stream' })) // For media uploads
+app.use(express.text({ limit: bodySizeLimits.text }))
 
-// Rate limiting - applied in order of strictness
-app.use('/api/auth', authRateLimit) // Strictest for auth
-app.use('/api/payment', paymentRateLimit) // Payment endpoints  
-app.use('/api/admin', adminRateLimit) // Admin endpoints
-app.use('/api', apiRateLimit) // General API rate limiting
+// Global rate limiting and slowdown
+app.use(speedLimiter)
+app.use(apiRateLimit)
+
+// Route-specific rate limiting (applied before routes)
+app.use('/api/v1/auth/login', bruteForceProtection.prevent)
+app.use('/api/v1/auth/register', authRateLimit)
+app.use('/api/v1/media', mediaUploadRateLimit)
+app.use('/api/v1/admin', adminRateLimit)
+
+// Health and readiness checks (no auth required)
+app.get('/health', healthCheck)
+app.get('/ready', readinessCheck)
+
+// Import and mount API routes
+import authRoutes from '../src/routes/auth'
+import userRoutes from '../src/routes/users'
+import mediaRoutes from '../src/routes/media'
+import messagingRoutes from '../src/routes/messaging'
+import subscriptionRoutes from '../src/routes/subscriptions'
+import { authenticate } from '../src/lib/auth-middleware'
+
+// Apply authentication middleware globally
+app.use(authenticate)
+
+// Mount API routes with versioning
+app.use('/api/v1/auth', authRoutes)
+app.use('/api/v1/users', userRoutes)
+app.use('/api/v1/media', mediaRoutes)
+app.use('/api/v1/messaging', messagingRoutes)
+app.use('/api/v1/subscriptions', subscriptionRoutes)
 
 // SECURITY: Enhanced cache with size limits and encryption
 interface CacheItem<T> {
@@ -433,27 +458,74 @@ app.post('/api/visitor/ping', async (req, res) => {
 // SECURITY: Enhanced error handling
 app.use(secureErrorHandler)
 
-// 404 handler
+// 404 handler with security audit
 app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    error: 'Endpoint not found',
+  logger.warn('404 - Endpoint not found', {
     path: req.path,
-    method: req.method
+    method: req.method,
+    ip: req.ip,
+    userAgent: req.get('User-Agent'),
+    correlationId: req.correlationId
+  });
+
+  res.status(404).json({
+    error: 'not_found',
+    message: 'Endpoint not found',
+    path: req.path,
+    correlationId: req.correlationId
   })
 })
 
-// Start server with security validation
-app.listen(PORT, () => {
-  console.log(`🚀 SECURE API SERVER RUNNING ON PORT ${PORT}`)
-  console.log(`📡 CORS enabled for: ${env.VITE_SITE_URL}`)
-  console.log(`⚡ Enhanced rate limiting active`)
-  console.log(`🔒 AI keys validated and secure`)
-  console.log(`🛡️ Security headers enabled`)
-  console.log(`🔐 CSRF protection active`)
-  console.log(`🧹 Input sanitization enabled`)
-  console.log(`📊 Cache size limit: 1000 items`)
-  console.log(`🚨 Security monitoring active`)
+// Graceful shutdown handling
+const server = app.listen(env.PORT, () => {
+  logger.info('🚀 Production-Ready API Server Started', {
+    port: env.PORT,
+    environment: env.NODE_ENV,
+    features: {
+      security_headers: true,
+      rate_limiting: true,
+      cors_protection: true,
+      request_logging: true,
+      error_handling: true,
+      health_checks: true,
+      ai_caching: true,
+      brute_force_protection: true
+    }
+  })
+})
+
+// Graceful shutdown
+const gracefulShutdown = (signal: string) => {
+  logger.info(`Received ${signal}, shutting down gracefully`)
+
+  server.close(() => {
+    logger.info('HTTP server closed')
+
+    // Close database connections, clear caches, etc.
+    aiCache.clear()
+
+    process.exit(0)
+  })
+
+  // Force shutdown after 30 seconds
+  setTimeout(() => {
+    logger.error('Could not close connections in time, forcefully shutting down')
+    process.exit(1)
+  }, 30000)
+}
+
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'))
+process.on('SIGINT', () => gracefulShutdown('SIGINT'))
+
+// Handle uncaught exceptions
+process.on('uncaughtException', (error) => {
+  logger.fatal('Uncaught Exception:', error)
+  process.exit(1)
+})
+
+process.on('unhandledRejection', (reason, promise) => {
+  logger.fatal('Unhandled Rejection at:', promise, 'reason:', reason)
+  process.exit(1)
 })
 
 export default app

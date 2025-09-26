@@ -1,12 +1,22 @@
 {
+  "/about/page": "app/about/page.js",
   "/_not-found": "app/_not-found.js",
-  "/enter/features/page": "app/enter/features/page.js",
-  "/[username]/page": "app/[username]/page.js",
+  "/api/health/route": "app/api/health/route.js",
+  "/creator/[username]/page": "app/creator/[username]/page.js",
   "/enter/complete/page": "app/enter/complete/page.js",
+  "/enter/features/page": "app/enter/features/page.js",
+  "/enter/page": "app/enter/page.js",
+  "/messages/page": "app/messages/page.js",
   "/enter/setup/page": "app/enter/setup/page.js",
-  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/explore/page": "app/explore/page.js",
+  "/post/[id]/page": "app/post/[id]/page.js",
   "/page": "app/page.js",
   "/privacy/page": "app/privacy/page.js",
-  "/enter/page": "app/enter/page.js",
-  "/terms/page": "app/terms/page.js"
+  "/[username]/page": "app/[username]/page.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/studio/page": "app/studio/page.js",
+  "/manifest.webmanifest/route": "app/manifest.webmanifest/route.js",
+  "/terms/page": "app/terms/page.js",
+  "/icon.png/route": "app/icon.png/route.js",
+  "/opengraph-image/route": "app/opengraph-image/route.js"
 }

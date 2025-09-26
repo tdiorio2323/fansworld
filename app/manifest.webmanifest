@@ -1,0 +1,21 @@
+{
+  "name": "Cabana",
+  "short_name": "Cabana",
+  "description": "Luxury creator subscriptions UI demo.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0E13",
+  "theme_color": "#0B0E13",
+  "icons": [
+    {
+      "src": "/brand/cabana-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/cabana-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

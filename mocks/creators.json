@@ -1,0 +1,52 @@
+{
+  "creators": [
+    {
+      "username": "avaluna",
+      "displayName": "Ava Luna",
+      "avatar": "/brand/cabana-holo.png",
+      "cover": "/brand/luxury-house.jpg",
+      "price": 24,
+      "genre": "Fashion Film",
+      "tagline": "Cinematic couture and nocturnal runways.",
+      "posts": 48,
+      "subs": 1820,
+      "samplePosts": ["avaluna-1", "avaluna-2", "avaluna-3"]
+    },
+    {
+      "username": "kyros",
+      "displayName": "Kyros Noir",
+      "avatar": "/brand/cabana-logo.png",
+      "cover": "/brand/luxury-house.jpg",
+      "price": 19,
+      "genre": "Soundscapes",
+      "tagline": "Late-night lounges and analog waves.",
+      "posts": 63,
+      "subs": 2410,
+      "samplePosts": ["kyros-1", "kyros-2", "kyros-3"]
+    },
+    {
+      "username": "seraphine",
+      "displayName": "Seraphine Vale",
+      "avatar": "/brand/cabana-holo.png",
+      "cover": "/brand/luxury-house.jpg",
+      "price": 32,
+      "genre": "Editorial",
+      "tagline": "Paris rooftops and moonlight editorials.",
+      "posts": 54,
+      "subs": 3050,
+      "samplePosts": ["seraphine-1", "seraphine-2", "seraphine-3"]
+    },
+    {
+      "username": "lennox",
+      "displayName": "Lennox Hale",
+      "avatar": "/brand/cabana-logo.png",
+      "cover": "/brand/luxury-house.jpg",
+      "price": 21,
+      "genre": "Architecture",
+      "tagline": "Modern villas from Monaco to Mykonos.",
+      "posts": 28,
+      "subs": 980,
+      "samplePosts": ["lennox-1", "lennox-2", "lennox-3"]
+    }
+  ]
+}
