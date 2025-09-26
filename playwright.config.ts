@@ -5,6 +5,50 @@ import { defineConfig, devices } from '@playwright/test'
  */
 const isCI = !!process.env.CI
 
+const ciProjects = [
+  {
+    name: 'chromium',
+    use: { ...devices['Desktop Chrome'] },
+  },
+]
+
+const localProjects = [
+  {
+    name: 'chromium',
+    use: { ...devices['Desktop Chrome'] },
+  },
+
+  {
+    name: 'firefox',
+    use: { ...devices['Desktop Firefox'] },
+  },
+
+  {
+    name: 'webkit',
+    use: { ...devices['Desktop Safari'] },
+  },
+
+  /* Test against mobile viewports. */
+  {
+    name: 'Mobile Chrome',
+    use: { ...devices['Pixel 5'] },
+  },
+  {
+    name: 'Mobile Safari',
+    use: { ...devices['iPhone 12'] },
+  },
+
+  /* Test against branded browsers. */
+  {
+    name: 'Microsoft Edge',
+    use: { ...devices['Desktop Edge'], channel: 'msedge' },
+  },
+  {
+    name: 'Google Chrome',
+    use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+  },
+]
+
 export default defineConfig({
   testDir: './tests',
   testMatch: isCI ? ['**/smoke.spec.ts'] : ['**/e2e/**/*.spec.ts', '**/smoke.spec.ts'],
@@ -38,46 +82,11 @@ export default defineConfig({
   },
 
   /* Configure projects for major browsers */
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-
-    /* Test against mobile viewports. */
-    {
-      name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
-    },
-    {
-      name: 'Mobile Safari',
-      use: { ...devices['iPhone 12'] },
-    },
-
-    /* Test against branded browsers. */
-    {
-      name: 'Microsoft Edge',
-      use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    },
-    {
-      name: 'Google Chrome',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    },
-  ],
+  projects: isCI ? ciProjects : localProjects,
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: process.env.CI ? 'npm run dev -- --hostname 0.0.0.0 --port 5173' : 'npm run dev',
+    command: process.env.CI ? 'npx next dev --hostname 0.0.0.0 --port 5173' : 'npm run dev',
     url: 'http://localhost:5173',
     reuseExistingServer: !process.env.CI,
     timeout: 120000,
