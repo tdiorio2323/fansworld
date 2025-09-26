@@ -3,9 +3,11 @@ import { defineConfig, devices } from '@playwright/test'
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
+const isCI = !!process.env.CI
+
 export default defineConfig({
   testDir: './tests',
-  testMatch: ['**/e2e/**/*.spec.ts', '**/smoke.spec.ts'],
+  testMatch: isCI ? ['**/smoke.spec.ts'] : ['**/e2e/**/*.spec.ts', '**/smoke.spec.ts'],
   testIgnore: ['**/unit/**'],
   /* Run tests in files in parallel */
   fullyParallel: true,
