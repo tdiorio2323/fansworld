@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node --stack_size=8192 node_modules/next/dist/bin/next build",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run",
